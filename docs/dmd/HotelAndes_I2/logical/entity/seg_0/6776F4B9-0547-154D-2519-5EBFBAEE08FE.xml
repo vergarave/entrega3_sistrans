@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6776F4B9-0547-154D-2519-5EBFBAEE08FE" name="servicios_spas">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6776F4B9-0547-154D-2519-5EBFBAEE08FE" name="servispas">
 <createdBy>orteg</createdBy>
 <createdTime>2023-09-27 05:11:21 UTC</createdTime>
 <ownerDesignName>HotelAndes_I2</ownerDesignName>
@@ -65,5 +65,32 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="idservispas" id="FD6C4EAC-E2CE-DD5D-4473-CB9D1054C13F">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 23:19:51 UTC</createdTime>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<engineerTo>
+<item key="7BA93118-9A88-7FB0-56FD-318C1BA15AF9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="5F59D770-14F6-C248-D218-40EBC5254CFA" name="servispas PK">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 23:20:00 UTC</createdTime>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="7BA93118-9A88-7FB0-56FD-318C1BA15AF9" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>FD6C4EAC-E2CE-DD5D-4473-CB9D1054C13F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
 </Entity>

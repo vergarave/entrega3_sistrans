@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9FF7351E-558F-6E9C-BD2C-01EDFDFB8E23" name="productos">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>DD1FFCC0-DD0A-6C4D-4173-8CC3DC42261B</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="nombre" id="9EC80FF0-3807-69D9-021E-0C4EA3F6CED6">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>49C85614-4407-1073-F851-4B81647E2176</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="precio" id="1DEF98B4-5742-F299-8B19-2DF992A03EA1">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>0C6BF831-D9A0-D86B-CA97-8BE661192C7B</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="restaurantes_idservicio" id="C47BADD8-C1FD-C9E4-EF56-AFEA4517A885">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>3FB81F7B-B76D-626E-1055-E4CA64735E3E</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EE37E7E1-2CD1-3631-98C4-E078D8402DAB" referredColumn="06F9CB50-72F6-D645-4757-30CF7D438C38"/>
+</associations>
+</Column>
+<Column name="bares_idservicio" id="6A0E7C7D-2CE8-2AC6-3AFE-F5DD040B31BF">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>E3F581D4-1D83-90D7-5BC4-658695B74D26</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7FA43B62-0480-0C3A-8A42-0BD6DEEE223D" referredColumn="C68495D5-7E21-3E77-69F8-A19AD2BB0F0F"/>
+</associations>
+</Column>
+<Column name="tiendas_idservicio" id="8A07076C-9531-E092-38BF-8BCBF47A5E3B">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>2D1E9A5C-5966-1B1F-9ED9-2C5F531C161B</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="540651DB-E17A-5F45-EAC3-728D6BDF72D9" referredColumn="6AC3E866-D2A7-68B2-CAD3-3D9F9BD722EB"/>
+</associations>
+</Column>
+<Column name="idproducto" id="2B9D88E3-2C56-C082-6114-ABD96216209A">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>0441B0E3-71AC-4C46-0DAE-0B3B388987A7</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="221C908D-F091-C6CD-1271-EC81B4D9280C" name="productos_PK">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>372FA9AD-1B7B-A3F0-7F64-DF55C71364F1</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2B9D88E3-2C56-C082-6114-ABD96216209A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="299E0603-0A31-8D70-8B24-96167114A3B4" name="productos_restaurantes_FK">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>7A085596-C3F9-622B-EAF1-A401FE1CBC27</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C47BADD8-C1FD-C9E4-EF56-AFEA4517A885"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1DEC20A6-5D6D-AEB9-4322-B8A8AD84ABAB" name="productos_bares_FK">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>0BBFF3E0-ABF6-414B-5BBA-275C8159B465</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6A0E7C7D-2CE8-2AC6-3AFE-F5DD040B31BF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4D24FA75-A0BE-BCC6-1FA7-202AF42B10B7" name="productos_tiendas_FK">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>0EAE343E-0559-6E0B-6E67-746CA76A6993</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8A07076C-9531-E092-38BF-8BCBF47A5E3B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

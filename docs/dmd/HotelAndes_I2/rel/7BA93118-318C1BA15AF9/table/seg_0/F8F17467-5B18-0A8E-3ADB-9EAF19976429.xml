@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F8F17467-5B18-0A8E-3ADB-9EAF19976429" name="planes">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>0A8C7F91-7C09-A638-B19F-28EC4BD9CFBC</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="tipoplan" id="065C7E31-5A70-916C-7898-9D738CAABA24">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>1C0DEBD8-973A-3E91-B9C6-07823FF69066</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>64</dataTypeSize>
+<listOfValues>
+<valueDef value="Larga_Estadia" description=""/>
+<valueDef value="Promo_Particular" description=""/>
+<valueDef value="Tiempo_Compartido" description=""/>
+<valueDef value="Todo_Incluido" description=""/>
+</listOfValues>
+<ownDataTypeParameters>64,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descuento" id="66090A52-A537-FCAF-6B5C-6389A10C616B">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>5F2DD466-21FE-1AB4-FCB6-86FDDED33C53</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="idplan" id="540E70CF-E0BD-A9EE-79F5-0E5C3729DF57">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>9CE377E4-2A8C-3F06-0818-97852BA9508B</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9F47AD80-406A-278F-F834-4AD0EDBEE542" name="planes_PK">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>F16198C1-09ED-E17B-1D1A-4E012D0EBEC6</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="540E70CF-E0BD-A9EE-79F5-0E5C3729DF57"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -82,6 +82,18 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="idproducto" id="0441B0E3-71AC-4C46-0DAE-0B3B388987A7">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:51:59 UTC</createdTime>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<engineerTo>
+<item key="7BA93118-9A88-7FB0-56FD-318C1BA15AF9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="372FA9AD-1B7B-A3F0-7F64-DF55C71364F1" name="Productos PK">
@@ -94,7 +106,7 @@
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>49C85614-4407-1073-F851-4B81647E2176</attributeRef>
+<attributeRef>0441B0E3-71AC-4C46-0DAE-0B3B388987A7</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

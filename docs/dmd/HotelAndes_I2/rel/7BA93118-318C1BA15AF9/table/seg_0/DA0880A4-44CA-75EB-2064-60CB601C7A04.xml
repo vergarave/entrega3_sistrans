@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DA0880A4-44CA-75EB-2064-60CB601C7A04" name="reservas">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>7F718D18-7DDD-678D-4FC7-572EF053C114</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="horareserva" id="533C3FA0-E430-4F65-E86C-D8D52FDD1160">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>615FFF2D-00DD-C746-1481-E118143256DB</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="idreserva" id="B0D0B571-5A9D-D40A-6B52-D2E74A4ED677">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>D7B323FA-4976-8782-9C3B-AF899D8396E0</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cuentas_idcuenta" id="4D3CEFEE-0BD1-A7F1-0241-D14B4969C6DC">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>FB5167B5-4678-5F10-3971-799123FA4EFD</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B1745F6E-EE7A-5851-BD8C-1D3C66A02207" referredColumn="EED09F19-0C0E-ABB0-28E1-6B09F48FDD59"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5E90BB37-8227-FD0F-FD44-770B13E41B1D" name="reservas_PK">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>2E64F844-C19F-6FA0-DB1E-AF8C344CA1A0</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B0D0B571-5A9D-D40A-6B52-D2E74A4ED677"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D9EBAE33-AC48-B489-91ED-FA1A84755009" name="reservas_cuentas_FK">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>DFF85BBD-BF41-B7D0-1107-20A25C339D64</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4D3CEFEE-0BD1-A7F1-0241-D14B4969C6DC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="7FA43B62-0480-0C3A-8A42-0BD6DEEE223D" containerWithKeyObject="9FF7351E-558F-6E9C-BD2C-01EDFDFB8E23" localFKIndex="1DEC20A6-5D6D-AEB9-4322-B8A8AD84ABAB" name="productos_bares_FK">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>0BBFF3E0-ABF6-414B-5BBA-275C8159B465</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<referredTableLongName>bares</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>40E5E07B-8160-1865-FE6E-FFF3E9243013</referredTableID>
+<keyObject>559CEDB2-196B-62AF-4474-689919473E4E</keyObject>
+<referredKeyID>559CEDB2-196B-62AF-4474-689919473E4E</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>idservicio</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -4,7 +4,7 @@ CREATE TABLE alojamientos (
     usuarios_iduser           NUMBER NOT NULL,
     checkin                   DATE NOT NULL,
     checkout                  DATE NOT NULL,
-    acompanantes              NUMBER NOT NULL,
+    acompañantes              NUMBER NOT NULL,
     planes_idplan             NUMBER NOT NULL,
     cuentas_idcuenta          NUMBER NOT NULL,
     idalojamiento             NUMBER NOT NULL,
@@ -106,10 +106,11 @@ CREATE TABLE productos (
     precio                  NUMBER NOT NULL,
     restaurantes_idservicio NUMBER NOT NULL,
     bares_idservicio        NUMBER NOT NULL,
-    tiendas_idservicio      NUMBER NOT NULL
+    tiendas_idservicio      NUMBER NOT NULL,
+    idproducto              NUMBER NOT NULL
 );
 
-ALTER TABLE productos ADD CONSTRAINT productos_pk PRIMARY KEY ( nombre );
+ALTER TABLE productos ADD CONSTRAINT productos_pk PRIMARY KEY ( idproducto );
 
 CREATE TABLE reservas (
     horareserva      DATE,
@@ -156,12 +157,15 @@ ALTER TABLE servicios
 
 ALTER TABLE servicios ADD CONSTRAINT servicios_pk PRIMARY KEY ( idservicio );
 
-CREATE TABLE servicios_spas (
+CREATE TABLE servispas (
     duracion        NUMBER NOT NULL,
     costo           NUMBER NOT NULL,
     fecha           DATE NOT NULL,
-    spas_idservicio NUMBER NOT NULL
+    spas_idservicio NUMBER NOT NULL,
+    idservispas     NUMBER NOT NULL
 );
+
+ALTER TABLE servispas ADD CONSTRAINT servispas_pk PRIMARY KEY ( idservispas );
 
 CREATE TABLE spas (
     capacidad  NUMBER NOT NULL,
@@ -309,8 +313,8 @@ ALTER TABLE servicios
         REFERENCES reservas ( idreserva )
             ON DELETE CASCADE;
 
-ALTER TABLE servicios_spas
-    ADD CONSTRAINT servicios_spas_spas_fk FOREIGN KEY ( spas_idservicio )
+ALTER TABLE servispas
+    ADD CONSTRAINT servispas_spas_fk FOREIGN KEY ( spas_idservicio )
         REFERENCES spas ( idservicio )
             ON DELETE CASCADE;
 

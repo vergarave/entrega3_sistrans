@@ -1,6 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import java.sql.Date;
+import java.sql.Time;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,8 +20,8 @@ public class servicios {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idservicio;
 
-    private Date horarioinicio;
-    private Date horariofin;
+    private Time horarioinicio;
+    private Time horariofin;
     private String nombre;
     private Integer costo;
     private String cargado;
@@ -33,7 +33,7 @@ public class servicios {
 
 
     // Constructor
-    public servicios(Date horarioinicio, Date horariofin, String nombre, Integer costo, String cargado, String existe, Integer idservicio, reserva reserva)
+    public servicios(Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, Integer idservicio, reserva reserva)
     {
         this.horarioinicio = horarioinicio;
         this.horariofin = horariofin;
@@ -50,11 +50,11 @@ public class servicios {
 
 
     // Getters
-    public Date getHorarioinicio() {
+    public Time getHorarioinicio() {
         return horarioinicio;
     }
 
-    public Date getHorariofin() {
+    public Time getHorariofin() {
         return horariofin;
     }
 
@@ -84,11 +84,11 @@ public class servicios {
 
 
     // Setters
-    public void setHorarioinicio(Date horarioinicio) {
+    public void setHorarioinicio(Time horarioinicio) {
         this.horarioinicio = horarioinicio;
     }
 
-    public void setHorariofin(Date horariofin) {
+    public void setHorariofin(Time horariofin) {
         this.horariofin = horariofin;
     }
 

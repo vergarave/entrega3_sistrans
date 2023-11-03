@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKArc class="oracle.dbtools.crest.model.design.relational.FKArc" directorySegmentName="seg_0" id="DB223A9C-0B66-C53C-654B-67616E58B74B" name="FKArc_4">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<mandatory>false</mandatory>
+<reverseArc>true</reverseArc>
+<table>815BF49D-2EE8-187B-37CE-F6191FCB01D7</table>
+<fkeys>
+<fkeyID>F2E0CEDA-C1E0-9CFC-03CB-1700A21E5FC3</fkeyID>
+<fkeyID>8F005FC7-9B2C-B6BF-349B-7986383F019C</fkeyID>
+<fkeyID>E4ED6CDE-8AF5-6D98-AC05-928005F51D01</fkeyID>
+<fkeyID>BDD6A1D2-8818-425A-63F1-BFEA6121971B</fkeyID>
+<fkeyID>A04257F6-2004-73D4-2BE2-8A80AE005D6E</fkeyID>
+<fkeyID>B05C1698-5ED7-C4DE-CB76-1F84C8B1C19D</fkeyID>
+<fkeyID>A74CDF85-FD6E-39AB-B423-782FE00C74D6</fkeyID>
+<fkeyID>9D25B366-9B22-0172-F535-B1E612241BD0</fkeyID>
+<fkeyID>6BE57A24-75A8-4147-8CE4-F1FDC0D5DAC2</fkeyID>
+<fkeyID>81A9601E-C968-41D0-1B20-7B5D4B4D7F14</fkeyID>
+</fkeys>
+</FKArc>

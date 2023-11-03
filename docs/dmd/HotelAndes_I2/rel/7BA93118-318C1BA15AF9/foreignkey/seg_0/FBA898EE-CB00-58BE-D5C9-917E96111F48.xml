@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="FBA898EE-CB00-58BE-D5C9-917E96111F48" containerWithKeyObject="1FCE3729-502F-6FA3-E050-BE5B047EC790" localFKIndex="A7DACA05-F279-D38F-6B4B-B0EA56731B20" name="habitaciones_hoteles_FK">
+<createdBy>orteg</createdBy>
+<createdTime>2023-11-03 22:52:28 UTC</createdTime>
+<generatorID>CC7BD542-33ED-1E19-6BA8-76312A183797</generatorID>
+<ownerDesignName>HotelAndes_I2</ownerDesignName>
+<referredTableLongName>hoteles</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>1C864433-628E-CEC8-CA8E-2D5A655023E1</referredTableID>
+<keyObject>AF38B9D8-25CC-854B-2D99-61A472FF1C6B</keyObject>
+<referredKeyID>AF38B9D8-25CC-854B-2D99-61A472FF1C6B</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>idhotel</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
