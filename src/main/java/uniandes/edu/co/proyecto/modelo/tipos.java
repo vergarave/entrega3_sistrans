@@ -22,12 +22,11 @@ public class tipos {
     
 
     // Constructor
-    public tipos(String tipo, Integer capacidad, String dotacion, Integer idtipo)
+    public tipos(String tipo, Integer capacidad, String dotacion)
     {
         this.tipo = tipo;
         this.capacidad = capacidad;
         this.dotacion = dotacion;
-        this.idtipo = idtipo;
     }
 
 
@@ -47,10 +46,6 @@ public class tipos {
         return dotacion;
     }
 
-    public Integer getIdtipo() {
-        return idtipo;
-    }
-
     
     // Setters
     public void setTipo(String tipo) {
@@ -63,10 +58,6 @@ public class tipos {
 
     public void setDotacion(String dotacion) {
         this.dotacion = dotacion;
-    }
-
-    public void setIdtipo(Integer idtipo) {
-        this.idtipo = idtipo;
     }
 
 }

@@ -21,11 +21,10 @@ public class planes {
     
 
     // Constructor
-    public planes(String tipoplan, Float descuento, Integer idplan)
+    public planes(String tipoplan, Float descuento)
     {
         this.tipoplan = tipoplan;
         this.descuento = descuento;
-        this.idplan = idplan;
     }
 
 
@@ -41,10 +40,6 @@ public class planes {
         return descuento;
     }
 
-    public Integer getIdplan() {
-        return idplan;
-    }
-
     
     // Setters
     public void setTipoplan(String tipoplan) {
@@ -53,10 +48,6 @@ public class planes {
 
     public void setDescuento(Float descuento) {
         this.descuento = descuento;
-    }
-
-    public void setIdplan(Integer idplan) {
-        this.idplan = idplan;
     }
     
 }

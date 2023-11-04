@@ -29,13 +29,12 @@ public class usuarios {
 
 
     // Constructor
-    public usuarios(String nombreuser, String tipodocuser, Integer numdocuser, String correouser, Integer iduser, alojamientos alojamiento)
+    public usuarios(String nombreuser, String tipodocuser, Integer numdocuser, String correouser, alojamientos alojamiento)
     {
         this.nombreuser = nombreuser;
         this.tipodocuser = tipodocuser;
         this.numdocuser = numdocuser;
         this.correouser = correouser;
-        this.iduser = iduser;
         this.alojamiento = alojamiento;
     }
 
@@ -60,10 +59,6 @@ public class usuarios {
         return correouser;
     }
 
-    public Integer getIduser() {
-        return iduser;
-    }
-
     public alojamientos getAlojamiento() {
         return alojamiento;
     }
@@ -84,10 +79,6 @@ public class usuarios {
 
     public void setCorreouser(String correouser) {
         this.correouser = correouser;
-    }
-
-    public void setIduser(Integer iduser) {
-        this.iduser = iduser;
     }
 
     public void setAlojamiento(alojamientos alojamiento) {

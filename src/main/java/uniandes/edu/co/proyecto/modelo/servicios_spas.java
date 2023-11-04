@@ -25,7 +25,7 @@ public class servicios_spas {
     private Date fecha;
     //FK
     @ManyToOne
-    @JoinColumn(name="spas", referencedColumnName = "idservicio")
+    @JoinColumn(name="servicios", referencedColumnName = "idservicio")
     private spas spa;
 
 
@@ -35,7 +35,6 @@ public class servicios_spas {
         this.duracion = duracion;
         this.costo = costo;
         this.fecha = fecha;
-        this.idservispas = idservispas;
         this.spa = spa;
     }
 
@@ -56,10 +55,6 @@ public class servicios_spas {
         return fecha;
     }
 
-    public Integer getIdservispas() {
-        return idservispas;
-    }
-
     public spas getSpa() {
         return spa;
     }
@@ -76,10 +71,6 @@ public class servicios_spas {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public void setIdservispas(Integer idservispas) {
-        this.idservispas = idservispas;
     }
 
     public void setSpa(spas spa) {

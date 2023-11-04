@@ -1,10 +1,13 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import java.sql.Time;
+
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name="utensilios")
+@PrimaryKeyJoinColumn(name="idservicio")
 
 public class utensilios extends servicios {
 
@@ -14,9 +17,10 @@ public class utensilios extends servicios {
 
 
     // Constructor
-    public utensilios(String devuelto, String estado)
+    public utensilios(String devuelto, String estado,
+    Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, reserva reserva)
     {
-        super();
+        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
         this.devuelto = devuelto;
         this.estado = estado;
     }

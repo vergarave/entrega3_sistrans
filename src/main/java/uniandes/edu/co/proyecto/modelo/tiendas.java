@@ -1,21 +1,25 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import java.sql.Time;
+
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name="tiendas")
+@PrimaryKeyJoinColumn(name="idservicio")
 
-public class tiendas {
+public class tiendas extends servicios{
     
     // Atributos
     private String tipo;
     
 
     // Constructor
-    public tiendas(String tipo)
+    public tiendas(String tipo,
+                    Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, reserva reserva)
     {
-        super();
+        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
         this.tipo = tipo;
     }
 

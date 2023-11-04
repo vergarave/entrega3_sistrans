@@ -1,12 +1,15 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import java.sql.Time;
+
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name="piscinas")
+@PrimaryKeyJoinColumn(name="idservicio")
 
-public class piscinas {
+public class piscinas extends servicios{
 
     // Atributos
     private Integer capacidad;
@@ -14,9 +17,10 @@ public class piscinas {
 
 
     // Constructor
-    public piscinas(Integer capacidad, Float profundidad)
+    public piscinas(Integer capacidad, Float profundidad,
+                    Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, reserva reserva)
     {
-        super();
+        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
         this.capacidad = capacidad;
         this.profundidad = profundidad;
     }

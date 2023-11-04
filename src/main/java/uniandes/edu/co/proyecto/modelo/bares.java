@@ -1,10 +1,14 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import java.sql.Time;
+
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name="bares")
+@PrimaryKeyJoinColumn(name="idservicio")
+
 public class bares extends servicios {
 
     // Atributos
@@ -12,9 +16,10 @@ public class bares extends servicios {
 
 
     // Constructor
-    public bares(String estilo)
+    public bares(String estilo, 
+                Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, reserva reserva)
     {
-        super();
+        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
         this.estilo = estilo;
     }
 

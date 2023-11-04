@@ -28,10 +28,9 @@ public class reserva {
 
 
     // Constructor
-    public reserva(Date horareserva, Integer idreserva, cuentas cuenta)
+    public reserva(Date horareserva, cuentas cuenta)
     {
         this.horareserva = horareserva;
-        this.idreserva = idreserva;
         this.cuenta = cuenta;
     }
 
@@ -44,10 +43,6 @@ public class reserva {
         return horareserva;
     }
 
-    public Integer getIdreserva() {
-        return idreserva;
-    }
-
     public cuentas getCuenta() {
         return cuenta;
     }
@@ -56,10 +51,6 @@ public class reserva {
     // Setters
     public void setHorareserva(Date horareserva) {
         this.horareserva = horareserva;
-    }
-
-    public void setIdreserva(Integer idreserva) {
-        this.idreserva = idreserva;
     }
 
     public void setCuenta(cuentas cuenta) {

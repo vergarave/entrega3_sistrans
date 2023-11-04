@@ -22,22 +22,21 @@ public class productos {
     private Integer precio;
     //FK
     @ManyToOne
-    @JoinColumn(name="bares", referencedColumnName = "idservicio")
+    @JoinColumn(name="servicios", referencedColumnName = "idservicio")
     private bares bar;
     @ManyToOne
-    @JoinColumn(name="restaurantes", referencedColumnName = "idservicio")
+    @JoinColumn(name="servicios", referencedColumnName = "idservicio")
     private restaurantes restaurante;
     @ManyToOne
-    @JoinColumn(name="tiendas", referencedColumnName = "idservicio")
+    @JoinColumn(name="servicios", referencedColumnName = "idservicio")
     private tiendas tienda;
 
 
     // Constructor
-    public productos(String nombre, Integer precio, Integer idproducto, bares bar, restaurantes restaurante, tiendas tienda)
+    public productos(String nombre, Integer precio, bares bar, restaurantes restaurante, tiendas tienda)
     {
         this.nombre = nombre;
         this.precio = precio;
-        this.idproducto = idproducto;
         this.bar = bar;
         this.restaurante = restaurante;
         this.tienda = tienda;
@@ -54,10 +53,6 @@ public class productos {
 
     public Integer getPrecio() {
         return precio;
-    }
-
-    public Integer getIdproducto() {
-        return idproducto;
     }
 
     public bares getBar() {
@@ -80,10 +75,6 @@ public class productos {
 
     public void setPrecio(Integer precio) {
         this.precio = precio;
-    }
-
-    public void setIdproducto(Integer idproducto) {
-        this.idproducto = idproducto;
     }
 
     public void setBar(bares bar) {

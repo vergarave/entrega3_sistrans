@@ -34,12 +34,11 @@ public class habitaciones {
 
 
     // Constructor
-    public habitaciones(Integer numhabitacion, String disponible, Integer precionoche, Integer idhabitacion, hoteles hotel, tipos tipo, alojamientos alojamiento)
+    public habitaciones(Integer numhabitacion, String disponible, Integer precionoche, hoteles hotel, tipos tipo, alojamientos alojamiento)
     {
         this.numhabitacion = numhabitacion;
         this.disponible = disponible;
         this.precionoche = precionoche;
-        this.idhabitacion = idhabitacion;
         this.hotel = hotel;
         this.tipo = tipo;
         this.alojamiento = alojamiento;
@@ -60,10 +59,6 @@ public class habitaciones {
 
     public Integer getPrecionoche() {
         return precionoche;
-    }
-
-    public Integer getIdhabitacion() {
-        return idhabitacion;
     }
 
     public hoteles getHotel() {
@@ -90,10 +85,6 @@ public class habitaciones {
 
     public void setPrecionoche(Integer precionoche) {
         this.precionoche = precionoche;
-    }
-
-    public void setIdhabitacion(Integer idhabitacion) {
-        this.idhabitacion = idhabitacion;
     }
 
     public void setHotel(hoteles hotel) {

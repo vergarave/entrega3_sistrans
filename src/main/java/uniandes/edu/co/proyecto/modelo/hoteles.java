@@ -21,11 +21,10 @@ public class hoteles {
     
     
     // Constructor
-    public hoteles(String nombrehotel, Integer nithotel, Integer idhotel)
+    public hoteles(String nombrehotel, Integer nithotel)
     {
         this.nombrehotel = nombrehotel;
         this.nithotel = nithotel;
-        this.idhotel = idhotel;
     }
 
 
@@ -41,10 +40,6 @@ public class hoteles {
         return nithotel;
     }
 
-    public Integer getIdhotel() {
-        return idhotel;
-    }
-
     
     // Setters
     public void setNombrehotel(String nombrehotel) {
@@ -53,10 +48,6 @@ public class hoteles {
 
     public void setNithotel(Integer nithotel) {
         this.nithotel = nithotel;
-    }
-
-    public void setIdhotel(Integer idhotel) {
-        this.idhotel = idhotel;
     }
 
 }

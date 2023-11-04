@@ -26,10 +26,9 @@ public class cuentas {
 
 
     // Constructor
-    public cuentas(Integer netocuenta, Integer idcuenta, alojamientos alojamiento)
+    public cuentas(Integer netocuenta, alojamientos alojamiento)
     {
         this.netocuenta = netocuenta;
-        this.idcuenta = idcuenta;
         this.alojamiento = alojamiento;
     }
 
@@ -42,10 +41,6 @@ public class cuentas {
         return netocuenta;
     }
 
-    public Integer getIdcuenta() {
-        return idcuenta;
-    }
-
     public alojamientos getAlojamiento() {
         return alojamiento;
     }
@@ -54,10 +49,6 @@ public class cuentas {
     // Setters
     public void setNetocuenta(Integer netocuenta) {
         this.netocuenta = netocuenta;
-    }
-
-    public void setIdcuenta(Integer idcuenta) {
-        this.idcuenta = idcuenta;
     }
 
     public void setAlojamiento(alojamientos alojamiento) {

@@ -6,18 +6,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="servicios")
+@Inheritance(strategy = InheritanceType.JOINED)
 
 public class servicios {
     
     // Atributos
     @Id //PK
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idservicio;
 
     private Time horarioinicio;
@@ -33,7 +36,7 @@ public class servicios {
 
 
     // Constructor
-    public servicios(Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, Integer idservicio, reserva reserva)
+    public servicios(Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, reserva reserva)
     {
         this.horarioinicio = horarioinicio;
         this.horariofin = horariofin;
@@ -41,7 +44,6 @@ public class servicios {
         this.costo = costo;
         this.cargado = cargado;
         this.existe = existe;
-        this.idservicio = idservicio;
         this.reserva = reserva;
     }
 
@@ -74,10 +76,6 @@ public class servicios {
         return existe;
     }
 
-    public Integer getIdservicio() {
-        return idservicio;
-    }
-
     public reserva getReserva() {
         return reserva;
     }
@@ -106,10 +104,6 @@ public class servicios {
 
     public void setExiste(String existe) {
         this.existe = existe;
-    }
-
-    public void setIdservicio(Integer idservicio) {
-        this.idservicio = idservicio;
     }
 
     public void setReserva(reserva reserva) {

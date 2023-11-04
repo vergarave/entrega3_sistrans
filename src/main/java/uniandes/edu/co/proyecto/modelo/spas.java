@@ -1,20 +1,25 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import java.sql.Time;
+
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name="spas")
-public class spas {
+@PrimaryKeyJoinColumn(name="idservicio")
+
+public class spas extends servicios {
 
     // Atributos
     private Integer capacidad;
 
 
     // Constructor
-    public spas(Integer capacidad)
+    public spas(Integer capacidad, 
+                Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, reserva reserva)
     {
-        super();
+        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
         this.capacidad = capacidad;
     }
 

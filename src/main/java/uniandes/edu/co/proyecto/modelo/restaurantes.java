@@ -1,21 +1,25 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import java.sql.Time;
+
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name="restaurantes")
+@PrimaryKeyJoinColumn(name="idservicio")
 
-public class restaurantes {
+public class restaurantes extends servicios{
 
     // Atributos
     private String estilo;
 
 
     // Constructor
-    public restaurantes(String estilo)
+    public restaurantes(String estilo, 
+                        Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, reserva reserva)
     {
-        super();
+        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
         this.estilo = estilo;
     }
 

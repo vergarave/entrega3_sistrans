@@ -8,6 +8,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="conferencias")
+@PrimaryKeyJoinColumn(name="idservicio")
+
 public class conferencias extends servicios {
 
     // Atributos
@@ -18,9 +20,10 @@ public class conferencias extends servicios {
 
 
     // Constructor
-    public conferencias(Integer capacidad, Date fecha, Time hora, Integer duracion, Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, Integer idservicio, reserva reserva)
+    public conferencias(Integer capacidad, Date fecha, Time hora, Integer duracion, 
+                        Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, reserva reserva)
     {
-        super();
+        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
         this.capacidad = capacidad;
         this.fecha = fecha;
         this.hora = hora;

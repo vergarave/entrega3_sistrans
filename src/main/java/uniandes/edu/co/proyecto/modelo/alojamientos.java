@@ -40,13 +40,12 @@ public class alojamientos {
 
 
     // Constructor
-    public alojamientos(String activa, Date checkin, Date checkout, Integer acompanantes, Integer idalojamiento, usuarios usuario, planes plan, cuentas cuenta, habitaciones habitacion)
+    public alojamientos(String activa, Date checkin, Date checkout, Integer acompanantes, usuarios usuario, planes plan, cuentas cuenta, habitaciones habitacion)
     {
         this.activa = activa;
         this.checkin = checkin;
         this.checkout = checkout;
         this.acompanantes = acompanantes;
-        this.idalojamiento = idalojamiento;
         this.usuario = usuario;
         this.plan = plan;
         this.cuenta = cuenta;
@@ -72,10 +71,6 @@ public class alojamientos {
 
     public Integer getAcompanantes() {
         return acompanantes;
-    }
-
-    public Integer getIdalojamiento() {
-        return idalojamiento;
     }
 
     public usuarios getUsuario() {
@@ -110,10 +105,6 @@ public class alojamientos {
 
     public void setAcompanantes(Integer acompanantes) {
         this.acompanantes = acompanantes;
-    }
-
-    public void setIdalojamiento(Integer idalojamiento) {
-        this.idalojamiento = idalojamiento;
     }
 
     public void setUsuario(usuarios usuario) {

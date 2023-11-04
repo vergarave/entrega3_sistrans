@@ -3,11 +3,12 @@ package uniandes.edu.co.proyecto.modelo;
 import java.sql.Date;
 import java.sql.Time;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name="reuniones")
+@PrimaryKeyJoinColumn(name="idservicio")
 
 public class reuniones extends servicios {
 
@@ -20,9 +21,10 @@ public class reuniones extends servicios {
 
 
     // Constructor
-    public reuniones(Integer capacidad, Integer costoadicional, Date fecha, Time hora, Integer duracion, Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, Integer idservicio, reserva reserva)
+    public reuniones(Integer capacidad, Integer costoadicional, Date fecha, Time hora, Integer duracion, 
+                    Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, reserva reserva)
     {
-        super();
+        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
         this.capacidad = capacidad;
         this.costoadicional = costoadicional;
         this.fecha = fecha;
