@@ -52,6 +52,10 @@ public class servicios {
 
 
     // Getters
+    public Integer getIdservicio(){
+        return idservicio;
+    }
+
     public Time getHorarioinicio() {
         return horarioinicio;
     }
@@ -82,6 +86,10 @@ public class servicios {
 
 
     // Setters
+    public void setIdservicio(Integer idservicio){
+        this.idservicio = idservicio;
+    }
+    
     public void setHorarioinicio(Time horarioinicio) {
         this.horarioinicio = horarioinicio;
     }

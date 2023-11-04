@@ -43,6 +43,10 @@ public class usuarios {
 
 
     // Getters
+    public Integer getIduser(){
+        return iduser;
+    }
+
     public String getNombreuser() {
         return nombreuser;
     }
@@ -65,6 +69,10 @@ public class usuarios {
 
     
     // Setters
+    public void setIduser(Integer iduser){
+        this.iduser = iduser;
+    }
+    
     public void setNombreuser(String nombreuser) {
         this.nombreuser = nombreuser;
     }

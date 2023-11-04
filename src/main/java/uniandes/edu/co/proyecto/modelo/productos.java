@@ -47,6 +47,10 @@ public class productos {
 
 
     // Getters
+    public Integer getIdproducto(){
+        return idproducto;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -69,6 +73,10 @@ public class productos {
 
 
     // Setters
+    public void setIdproducto(Integer idproducto){
+        this.idproducto = idproducto;
+    }
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

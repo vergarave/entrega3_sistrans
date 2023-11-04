@@ -49,6 +49,10 @@ public class habitaciones {
 
 
     // Getters
+    public Integer getIdhabitacion(){
+        return idhabitacion;
+    }
+
     public Integer getNumhabitacion() {
         return numhabitacion;
     }
@@ -75,6 +79,10 @@ public class habitaciones {
 
 
     // Setters
+    public void setIdhabitacion(Integer idhabitacion){
+        this.idhabitacion = idhabitacion;
+    }
+    
     public void setNumhabitacion(Integer numhabitacion) {
         this.numhabitacion = numhabitacion;
     }

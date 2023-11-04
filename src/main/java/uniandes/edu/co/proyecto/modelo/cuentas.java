@@ -37,6 +37,10 @@ public class cuentas {
 
 
     // Getters
+    public Integer getIdcuenta(){
+        return idcuenta;
+    }
+
     public Integer getNetocuenta() {
         return netocuenta;
     }
@@ -47,6 +51,10 @@ public class cuentas {
 
 
     // Setters
+    public void setIdcuenta(Integer idcuenta){
+        this.idcuenta = idcuenta;
+    }
+
     public void setNetocuenta(Integer netocuenta) {
         this.netocuenta = netocuenta;
     }

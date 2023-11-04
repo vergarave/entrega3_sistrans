@@ -32,6 +32,10 @@ public class hoteles {
 
 
     // Getters
+    public Integer getIdhotel(){
+        return idhotel;
+    }
+
     public String getNombrehotel() {
         return nombrehotel;
     }
@@ -42,6 +46,10 @@ public class hoteles {
 
     
     // Setters
+    public void setIdhotel(Integer idhotel){
+        this.idhotel = idhotel;
+    }
+    
     public void setNombrehotel(String nombrehotel) {
         this.nombrehotel = nombrehotel;
     }

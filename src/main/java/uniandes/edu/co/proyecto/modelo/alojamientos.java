@@ -57,6 +57,10 @@ public class alojamientos {
 
 
     // Getters
+    public Integer getIdalojamiento(){
+        return idalojamiento;
+    }
+
     public String getActiva() {
         return activa;
     }
@@ -91,6 +95,10 @@ public class alojamientos {
 
 
     // Setters
+    public void setIdalojamiento(Integer idalojamiento){
+        this.idalojamiento = idalojamiento;
+    }
+
     public void setActiva(String activa) {
         this.activa = activa;
     }

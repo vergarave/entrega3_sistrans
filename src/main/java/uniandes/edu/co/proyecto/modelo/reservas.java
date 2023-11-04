@@ -39,6 +39,10 @@ public class reserva {
 
 
     // Getters
+    public Integer getIdreserva(){
+        return idreserva;
+    }
+
     public Date getHorareserva() {
         return horareserva;
     }
@@ -49,6 +53,10 @@ public class reserva {
 
 
     // Setters
+    public void setIdreserva(Integer idreserva){
+        this.idreserva = idreserva;
+    }
+    
     public void setHorareserva(Date horareserva) {
         this.horareserva = horareserva;
     }

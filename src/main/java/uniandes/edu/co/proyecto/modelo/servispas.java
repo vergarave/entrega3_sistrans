@@ -11,9 +11,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="servicios_spas")
+@Table(name="servispas")
 
-public class servicios_spas {
+public class servispas {
     
     // Atributos
     @Id
@@ -30,7 +30,7 @@ public class servicios_spas {
 
 
     // Constructor
-    public servicios_spas(Integer duracion, Integer costo, Date fecha, Integer idservispas, spas spa)
+    public servispas(Integer duracion, Integer costo, Date fecha, spas spa)
     {
         this.duracion = duracion;
         this.costo = costo;
@@ -39,10 +39,14 @@ public class servicios_spas {
     }
 
 
-    public servicios_spas(){;}
+    public servispas(){;}
 
 
     // Getters
+    public Integer getIdservispas(){
+        return idservispas;
+    }
+
     public Integer getDuracion() {
         return duracion;
     }
@@ -61,6 +65,10 @@ public class servicios_spas {
 
 
     // Setters
+    public void setIdservispas(Integer idservispas){
+        this.idservispas = idservispas;
+    }
+
     public void setDuracion(Integer duracion) {
         this.duracion = duracion;
     }

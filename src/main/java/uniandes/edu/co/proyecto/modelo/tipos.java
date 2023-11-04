@@ -34,6 +34,10 @@ public class tipos {
 
 
     // Getters
+    public Integer getIdtipo(){
+        return idtipo;
+    }
+
     public String getTipo() {
         return tipo;
     }
@@ -48,6 +52,10 @@ public class tipos {
 
     
     // Setters
+    public void setIdtipo(Integer idtipo){
+        this.idtipo = idtipo;
+    }
+    
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }

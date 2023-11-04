@@ -32,6 +32,10 @@ public class planes {
 
 
     // Getters
+    public Integer getIdplan(){
+        return idplan;
+    }
+
     public String getTipoplan() {
         return tipoplan;
     }
@@ -42,6 +46,10 @@ public class planes {
 
     
     // Setters
+    public void setIdplan(Integer idplan){
+        this.idplan = idplan;
+    }
+    
     public void setTipoplan(String tipoplan) {
         this.tipoplan = tipoplan;
     }
