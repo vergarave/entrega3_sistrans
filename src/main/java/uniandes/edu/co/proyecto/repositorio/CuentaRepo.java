@@ -1,5 +1,5 @@
 package uniandes.edu.co.proyecto.repositorio;
 
-public class cuentasRepo {
+public class CuentaRepo {
     
 }

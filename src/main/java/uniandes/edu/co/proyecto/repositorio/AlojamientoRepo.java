@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import uniandes.edu.co.proyecto.modelo.Alojamiento;
 
-public interface alojamientosRepo extends JpaRepository <Alojamiento, Integer> {
+public interface AlojamientoRepo extends JpaRepository <Alojamiento, Integer> {
 
     @Query(value = "SELECT * FROM alojamientos", nativeQuery = true)
     Collection<Alojamiento> darAlojamientos();
