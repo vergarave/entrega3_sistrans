@@ -75,13 +75,6 @@ CREATE TABLE hoteles (
 
 ALTER TABLE hoteles ADD CONSTRAINT hoteles_pk PRIMARY KEY ( idhotel );
 
-CREATE TABLE internet (
-    anchobanda FLOAT NOT NULL,
-    idservicio NUMBER NOT NULL
-);
-
-ALTER TABLE internet ADD CONSTRAINT internet_pk PRIMARY KEY ( idservicio );
-
 CREATE TABLE piscinas (
     capacidad   NUMBER NOT NULL,
     profundidad FLOAT NOT NULL,
@@ -221,6 +214,13 @@ ALTER TABLE utensilios
 
 ALTER TABLE utensilios ADD CONSTRAINT utensilios_pk PRIMARY KEY ( idservicio );
 
+CREATE TABLE wifi (
+    anchobanda FLOAT NOT NULL,
+    idservicio NUMBER NOT NULL
+);
+
+ALTER TABLE wifi ADD CONSTRAINT wifi_pk PRIMARY KEY ( idservicio );
+
 ALTER TABLE alojamientos
     ADD CONSTRAINT alojamientos_cuentas_fk FOREIGN KEY ( cuentas_idcuenta )
         REFERENCES cuentas ( idcuenta )
@@ -271,10 +271,6 @@ ALTER TABLE habitaciones
     ADD CONSTRAINT habitaciones_tipos_fk FOREIGN KEY ( tipos_idtipo )
         REFERENCES tipos ( idtipo )
             ON DELETE CASCADE;
-
-ALTER TABLE internet
-    ADD CONSTRAINT internet_servicios_fk FOREIGN KEY ( idservicio )
-        REFERENCES servicios ( idservicio );
 
 ALTER TABLE piscinas
     ADD CONSTRAINT piscinas_servicios_fk FOREIGN KEY ( idservicio )
@@ -333,4 +329,8 @@ ALTER TABLE usuarios
 
 ALTER TABLE utensilios
     ADD CONSTRAINT utensilios_servicios_fk FOREIGN KEY ( idservicio )
+        REFERENCES servicios ( idservicio );
+
+ALTER TABLE wifi
+    ADD CONSTRAINT wifi_servicios_fk FOREIGN KEY ( idservicio )
         REFERENCES servicios ( idservicio );
