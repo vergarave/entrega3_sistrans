@@ -1,25 +1,24 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import java.sql.Time;
-
 import jakarta.persistence.*;
 
 
 @Entity
 @Table(name="spas")
-@PrimaryKeyJoinColumn(name="idservicio")
 
-public class Spa extends Servicio {
+public class Spa {
 
     // Atributos
+    @Id //PK
+    private Integer idservicio;
+
     private Integer capacidad;
 
 
     // Constructor
-    public Spa(Integer capacidad, 
-                Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, Reserva reserva)
+    public Spa(Integer idservicio, Integer capacidad)
     {
-        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
+        this.idservicio = idservicio;
         this.capacidad = capacidad;
     }
 
@@ -28,14 +27,23 @@ public class Spa extends Servicio {
 
 
     // Getters
+    public Integer getIdservicio(){
+        return idservicio;
+    }
+
     public Integer getCapacidad() {
         return capacidad;
     }
 
 
     // Setters
+    public void setIdservicio(Integer idservicio)
+    {
+        this.idservicio = idservicio;
+    }
+
     public void setCapacidad(Integer capacidad) {
         this.capacidad = capacidad;
     }
-    
+
 }

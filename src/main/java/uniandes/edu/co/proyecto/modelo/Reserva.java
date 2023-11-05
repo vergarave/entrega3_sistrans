@@ -19,7 +19,7 @@ public class Reserva {
     @Id //PK
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idreserva;
-    
+
     private Date horareserva;
     //FK
     @ManyToOne
@@ -64,5 +64,5 @@ public class Reserva {
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
     }
-    
+
 }

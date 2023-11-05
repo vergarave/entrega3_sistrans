@@ -1,25 +1,24 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import java.sql.Time;
-
 import jakarta.persistence.*;
 
 
 @Entity
 @Table(name="tiendas")
-@PrimaryKeyJoinColumn(name="idservicio")
 
-public class Tienda extends Servicio {
-    
+public class Tienda {
+
     // Atributos
+    @Id //PK
+    private Integer idservicio;
+
     private String tipo;
     
 
     // Constructor
-    public Tienda(String tipo,
-                    Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, Reserva reserva)
+    public Tienda(Integer idservicio, String tipo)
     {
-        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
+        this.idservicio = idservicio;
         this.tipo = tipo;
     }
 
@@ -28,6 +27,10 @@ public class Tienda extends Servicio {
 
 
     // Getters
+    public Integer getIdservicio(){
+        return idservicio;
+    }
+
     public String getTipo()
     {
         return this.tipo;
@@ -35,6 +38,11 @@ public class Tienda extends Servicio {
 
 
     // Setters
+    public void setIdservicio(Integer idservicio)
+    {
+        this.idservicio = idservicio;
+    }
+
     public void setTipo(String tipo)
     {
         this.tipo = tipo;

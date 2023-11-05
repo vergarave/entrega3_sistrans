@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name="servispas")
 
 public class Servispa {
-    
+
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -84,5 +84,5 @@ public class Servispa {
     public void setSpa(Spa spa) {
         this.spa = spa;
     }
-    
+
 }

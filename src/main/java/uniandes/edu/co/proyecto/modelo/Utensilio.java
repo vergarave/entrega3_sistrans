@@ -1,26 +1,25 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import java.sql.Time;
-
 import jakarta.persistence.*;
 
 
 @Entity
 @Table(name="utensilios")
-@PrimaryKeyJoinColumn(name="idservicio")
 
-public class Utensilio extends Servicio {
+public class Utensilio {
 
     // Atributos
+    @Id //PK
+    private Integer idservicio;
+
     private String devuelto;
     private String estado;
 
 
     // Constructor
-    public Utensilio(String devuelto, String estado,
-    Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, Reserva reserva)
+    public Utensilio(Integer idservicio, String devuelto, String estado)
     {
-        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
+        this.idservicio = idservicio;
         this.devuelto = devuelto;
         this.estado = estado;
     }
@@ -30,6 +29,10 @@ public class Utensilio extends Servicio {
 
 
     // Getters
+    public Integer getIdservicio(){
+        return idservicio;
+    }
+
     public String getDevuelto()
     {
         return this.devuelto;
@@ -42,6 +45,11 @@ public class Utensilio extends Servicio {
 
 
     // Setters
+    public void setIdservicio(Integer idservicio)
+    {
+        this.idservicio = idservicio;
+    }
+
     public void setDevuelto(String devuelto)
     {
         this.devuelto = devuelto;
@@ -51,5 +59,5 @@ public class Utensilio extends Servicio {
     {
         this.estado = estado;
     }
-    
+
 }

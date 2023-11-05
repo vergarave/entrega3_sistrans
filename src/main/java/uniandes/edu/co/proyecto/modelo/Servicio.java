@@ -6,8 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -16,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name="servicios")
 
 public class Servicio {
-    
+
     // Atributos
     @Id //PK
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -88,7 +86,7 @@ public class Servicio {
     public void setIdservicio(Integer idservicio){
         this.idservicio = idservicio;
     }
-    
+
     public void setHorarioinicio(Time horarioinicio) {
         this.horarioinicio = horarioinicio;
     }
@@ -116,5 +114,5 @@ public class Servicio {
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
     }
-    
+
 }

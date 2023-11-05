@@ -67,12 +67,12 @@ public class Usuario {
         return alojamiento;
     }
 
-    
+
     // Setters
     public void setIduser(Integer iduser){
         this.iduser = iduser;
     }
-    
+
     public void setNombreuser(String nombreuser) {
         this.nombreuser = nombreuser;
     }
@@ -92,5 +92,5 @@ public class Usuario {
     public void setAlojamiento(Alojamiento alojamiento) {
         this.alojamiento = alojamiento;
     }
-    
+
 }

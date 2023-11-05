@@ -8,11 +8,13 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="conferencias")
-@PrimaryKeyJoinColumn(name="idservicio")
 
-public class Conferencia extends Servicio {
+public class Conferencia {
 
     // Atributos
+    @Id //PK
+    private Integer idservicio;
+
     private Integer capacidad;
     private Date fecha;
     private Time hora;
@@ -20,10 +22,9 @@ public class Conferencia extends Servicio {
 
 
     // Constructor
-    public Conferencia(Integer capacidad, Date fecha, Time hora, Integer duracion, 
-                        Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, Reserva reserva)
+    public Conferencia(Integer idservicio,Integer capacidad, Date fecha, Time hora, Integer duracion)
     {
-        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
+        this.idservicio = idservicio;
         this.capacidad = capacidad;
         this.fecha = fecha;
         this.hora = hora;
@@ -35,6 +36,10 @@ public class Conferencia extends Servicio {
 
 
     // Getters
+    public Integer getIdservicio(){
+        return idservicio;
+    }
+
     public Integer getCapacidad() {
         return capacidad;
     }
@@ -53,6 +58,11 @@ public class Conferencia extends Servicio {
 
 
     // Setters
+    public void setIdservicio(Integer idservicio)
+    {
+        this.idservicio = idservicio;
+    }
+
     public void setCapacidad(Integer capacidad) {
         this.capacidad = capacidad;
     }

@@ -1,25 +1,24 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import java.sql.Time;
-
 import jakarta.persistence.*;
 
 
 @Entity
 @Table(name="internet")
-@PrimaryKeyJoinColumn(name="idservicio")
 
-public class Wifi extends Servicio{
-    
+public class Wifi {
+
     // Atributos
+    @Id //PK
+    private Integer idservicio;
+
     private Integer anchobanda;
     
 
     // Constructor
-    public Wifi(Integer anchobanda,
-                    Time horarioinicio, Time horariofin, String nombre, Integer costo, String cargado, String existe, Reserva reserva)
+    public Wifi(Integer idservicio, Integer anchobanda)
     {
-        super(horarioinicio, horariofin, nombre, costo, cargado, existe, reserva);
+        this.idservicio = idservicio;
         this.anchobanda = anchobanda;
     }
 
@@ -28,14 +27,23 @@ public class Wifi extends Servicio{
 
 
     // Getters
+    public Integer getIdservicio(){
+        return idservicio;
+    }
+
     public Integer getAnchobanda() {
         return anchobanda;
     }
 
 
     // Setters
+    public void setIdservicio(Integer idservicio)
+    {
+        this.idservicio = idservicio;
+    }
+
     public void setAnchobanda(Integer anchobanda) {
         this.anchobanda = anchobanda;
     }
-    
+
 }

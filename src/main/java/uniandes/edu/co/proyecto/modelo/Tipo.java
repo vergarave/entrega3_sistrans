@@ -10,16 +10,16 @@ import jakarta.persistence.Table;
 @Table(name="tipos")
 
 public class Tipo {
-    
+
     // Atributos
     @Id //PK
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idtipo;
-    
+
     private String tipo;
     private Integer capacidad;
     private String dotacion;
-    
+
 
     // Constructor
     public Tipo(String tipo, Integer capacidad, String dotacion)
@@ -50,12 +50,12 @@ public class Tipo {
         return dotacion;
     }
 
-    
+
     // Setters
     public void setIdtipo(Integer idtipo){
         this.idtipo = idtipo;
     }
-    
+
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
