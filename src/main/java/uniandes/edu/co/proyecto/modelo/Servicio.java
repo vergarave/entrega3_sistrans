@@ -14,13 +14,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="servicios")
-@Inheritance(strategy = InheritanceType.JOINED)
 
 public class Servicio {
     
     // Atributos
     @Id //PK
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idservicio;
 
     private Time horarioinicio;
