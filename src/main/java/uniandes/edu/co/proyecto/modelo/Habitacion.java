@@ -82,7 +82,7 @@ public class Habitacion {
     public void setIdhabitacion(Integer idhabitacion){
         this.idhabitacion = idhabitacion;
     }
-    
+
     public void setNumhabitacion(Integer numhabitacion) {
         this.numhabitacion = numhabitacion;
     }

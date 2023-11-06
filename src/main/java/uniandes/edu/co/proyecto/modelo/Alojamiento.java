@@ -14,7 +14,7 @@ import java.sql.Date;
 @Table(name="alojamientos")
 
 public class Alojamiento {
-    
+
     // Atributos
     @Id //PK
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -130,5 +130,5 @@ public class Alojamiento {
     public void setHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
     }
-    
+
 }

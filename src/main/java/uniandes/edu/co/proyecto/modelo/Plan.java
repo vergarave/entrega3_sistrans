@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Table(name="planes")
 
 public class Plan {
-    
+
     // Atributos
     @Id //PK
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,12 +44,12 @@ public class Plan {
         return descuento;
     }
 
-    
+
     // Setters
     public void setIdplan(Integer idplan){
         this.idplan = idplan;
     }
-    
+
     public void setTipoplan(String tipoplan) {
         this.tipoplan = tipoplan;
     }
@@ -57,5 +57,5 @@ public class Plan {
     public void setDescuento(Float descuento) {
         this.descuento = descuento;
     }
-    
+
 }

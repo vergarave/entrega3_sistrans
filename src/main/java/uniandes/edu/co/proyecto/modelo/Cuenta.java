@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 @Table(name="cuentas")
 
 public class Cuenta {
-    
+
     // Atributos
     @Id //PK
     @GeneratedValue(strategy = GenerationType.AUTO)
