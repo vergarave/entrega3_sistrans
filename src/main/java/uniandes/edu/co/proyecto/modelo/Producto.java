@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 @Table(name="productos")
 
 public class Producto {
-    
+
     // Atributos
     @Id //PK
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -76,7 +76,7 @@ public class Producto {
     public void setIdproducto(Integer idproducto){
         this.idproducto = idproducto;
     }
-    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -96,5 +96,5 @@ public class Producto {
     public void setTienda(Tienda tienda) {
         this.tienda = tienda;
     }
-    
+
 }

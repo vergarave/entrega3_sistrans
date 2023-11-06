@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Table(name="gimnasios")
 
 public class Gimnasio{
-    
+
     // Atributos
     @Id //PK
     private Integer idservicio;
@@ -55,5 +55,5 @@ public class Gimnasio{
     public void setMaquinas(String maquinas) {
         this.maquinas = maquinas;
     }
-    
+
 }
