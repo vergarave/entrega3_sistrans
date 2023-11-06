@@ -18,8 +18,8 @@ public class Hotel {
 
     private String nombrehotel;
     private Integer nithotel;
-    
-    
+
+
     // Constructor
     public Hotel(String nombrehotel, Integer nithotel)
     {
@@ -44,12 +44,12 @@ public class Hotel {
         return nithotel;
     }
 
-    
+
     // Setters
     public void setIdhotel(Integer idhotel){
         this.idhotel = idhotel;
     }
-    
+
     public void setNombrehotel(String nombrehotel) {
         this.nombrehotel = nombrehotel;
     }

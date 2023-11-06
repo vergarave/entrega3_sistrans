@@ -55,5 +55,5 @@ public class Piscina {
     public void setProfundidad(Float profundidad) {
         this.profundidad = profundidad;
     }
-    
+
 }
