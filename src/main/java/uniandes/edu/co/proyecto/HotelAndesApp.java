@@ -7,16 +7,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import uniandes.edu.co.proyecto.modelo.Alojamiento;
-import uniandes.edu.co.proyecto.modelo.Hotel;
-import uniandes.edu.co.proyecto.repositorio.AlojamientoRepo;
-import uniandes.edu.co.proyecto.repositorio.HotelRepo;
+
+import uniandes.edu.co.proyecto.modelo.Usuario;
+
+import uniandes.edu.co.proyecto.repositorio.UsuarioRepo;
 
 @SpringBootApplication
 public class HotelAndesApp implements CommandLineRunner{
 
 	@Autowired
-	private HotelRepo hotelrepo;
+	private UsuarioRepo usuarioRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(HotelAndesApp.class, args);
@@ -25,10 +25,10 @@ public class HotelAndesApp implements CommandLineRunner{
 	@Override
 	public void run(String ... arg)
 	{
-		Collection<Hotel> hoteles = hotelrepo.darHoteles();
-		for(Hotel a: hoteles)
+		Collection<Usuario> usuarios = usuarioRepo.darUsuarios();
+		for(Usuario u: usuarios)
 		{
-			System.out.println(a);
+			System.out.println(u);
 		}
 	}
 
