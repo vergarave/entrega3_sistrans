@@ -22,13 +22,13 @@ public class Producto {
     private Integer precio;
     //FK
     @ManyToOne
-    @JoinColumn(name="servicios_bar", referencedColumnName = "idservicio")
+    @JoinColumn(name="bar", referencedColumnName = "idservicio")
     private Bar bar;
     @ManyToOne
-    @JoinColumn(name="servicios_restaurante", referencedColumnName = "idservicio")
+    @JoinColumn(name="restaurante", referencedColumnName = "idservicio")
     private Restaurante restaurante;
     @ManyToOne
-    @JoinColumn(name="servicios_tienda", referencedColumnName = "idservicio")
+    @JoinColumn(name="tienda", referencedColumnName = "idservicio")
     private Tienda tienda;
 
 

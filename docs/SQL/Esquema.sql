@@ -4,7 +4,7 @@ CREATE TABLE alojamientos (
     usuarios_iduser           NUMBER NOT NULL,
     checkin                   DATE NOT NULL,
     checkout                  DATE NOT NULL,
-    acompañantes              NUMBER NOT NULL,
+    acompanantes              NUMBER NOT NULL,
     planes_idplan             NUMBER NOT NULL,
     cuentas_idcuenta          NUMBER NOT NULL,
     idalojamiento             NUMBER NOT NULL,
