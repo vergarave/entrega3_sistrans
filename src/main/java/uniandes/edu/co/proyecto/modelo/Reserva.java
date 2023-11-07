@@ -23,7 +23,7 @@ public class Reserva {
     private Date horareserva;
     //FK
     @ManyToOne
-    @JoinColumn(name = "cuentas", referencedColumnName = "idcuentas")
+    @JoinColumn(name = "cuentas", referencedColumnName = "idcuenta")
     private Cuenta cuenta;
 
 

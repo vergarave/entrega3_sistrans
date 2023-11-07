@@ -32,8 +32,8 @@ public interface CuentaRepo extends JpaRepository <Cuenta, Integer> {
     // Update
     @Modifying
     @Transactional
-    @Query(value = "UPDATE cuentas SET netocuenta=:netocuenta, alojamiento=:alojamiento WHERE idalojamiento=:idalojamiento", nativeQuery = true)
-    void actualizarCuenta(@Param("idcuenta") int idcuenta, @Param("netocuenta") Integer netocuenta, @Param("alojamiento") Alojamiento alojamiento);
+    @Query(value = "UPDATE cuentas SET netocuenta=:netocuenta WHERE idcuenta = :idcuenta", nativeQuery = true)
+    void actualizarCuenta(@Param("idcuenta") int idcuenta, @Param("netocuenta") Integer netocuenta);
 
 
     // Delete

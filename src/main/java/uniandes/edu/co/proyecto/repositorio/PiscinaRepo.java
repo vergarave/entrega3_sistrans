@@ -16,7 +16,7 @@ public interface PiscinaRepo extends JpaRepository <Piscina, Integer> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO piscinas (idservicio, capacidad, profundidad) VALUES (parranderos_sequence.nextval, :capacidad, :profundidad)", nativeQuery = true)
-    void insertarPiscina(@Param("capacidad") Integer capacidad, @Param("profunidad") Float profundidad);
+    void insertarPiscina(@Param("capacidad") Integer capacidad, @Param("profundidad") Float profundidad);
 
 
     // Read
@@ -32,7 +32,7 @@ public interface PiscinaRepo extends JpaRepository <Piscina, Integer> {
     @Transactional
     @Query(value = "UPDATE piscinas SET capacidad=:capacidad, profundidad=:profundidad WHERE idservicio=:idservicio", nativeQuery = true)
     void actualizarPiscina(@Param("idservicio") Integer idservicio, @Param("capacidad") Integer capacidad,
-                               @Param("profunidad") Float profundidad);
+                               @Param("profundidad") Float profundidad);
 
 
     // Delete
