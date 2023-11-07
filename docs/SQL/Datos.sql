@@ -409,26 +409,26 @@ INSERT INTO tipos (tipo, capacidad, dotacion, idtipo) VALUES ('Suite', 2, 'Cama 
 INSERT INTO tipos (tipo, capacidad, dotacion, idtipo) VALUES ('Suite Presidencial', 2, 'Cama tamaño imperial, vestidor, baño de mármol, servicio de mayordomo', 20);
 
 -- Insertando datos en la tabla 'usuarios'
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Ana Ramirez', 'CC', 1012345678, 'ana.ramirez@email.com', 1, 1);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Luis Morales', 'CE', 2012345679, 'luis.morales@email.com', 2, 2);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Sofia Cruz', 'TI', 3012345680, 'sofia.cruz@email.com', 3, 3);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Carlos Gómez', 'PASAPORTE', 4012345681, 'carlos.gomez@email.com', 4, 4);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('María Alzate', 'CC', 5012345682, 'maria.alzate@email.com', 5, 5);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Jorge Martínez', 'CC', 6012345683, 'jorge.martinez@email.com', 6, 6);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Lucía Hernández', 'NIT', 7012345684, 'lucia.hernandez@email.com', 7, 7);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('David Guerrero', 'CE', 8012345685, 'david.guerrero@email.com', 8, 8);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Daniela Jiménez', 'TI', 9012345686, 'daniela.jimenez@email.com', 9, 9);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Miguel Ángel Toro', 'PASAPORTE', 10012345687, 'miguel.toro@email.com', 10, 10);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Tatiana Ruiz', 'CC', 11012345688, 'tatiana.ruiz@email.com', 11, 11);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Santiago Navas', 'CE', 12012345689, 'santiago.navas@email.com', 12, 12);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Laura Torres', 'TI', 13012345690, 'laura.torres@email.com', 13, 13);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Fernando Castaño', 'PASAPORTE', 14012345691, 'fernando.castaño@email.com', 14, 14);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Sandra Osorio', 'CC', 15012345692, 'sandra.osorio@email.com', 15, 15);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Esteban Mejía', 'CC', 16012345693, 'esteban.mejia@email.com', 16, 16);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Camila Giraldo', 'NIT', 17012345694, 'camila.giraldo@email.com', 17, 17);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Sebastián Vargas', 'CE', 18012345695, 'sebastian.vargas@email.com', 18, 18);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Andrea Rodríguez', 'TI', 19012345696, 'andrea.rodriguez@email.com', 19, 19);
-INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser, alojamientos_idalojamiento) VALUES ('Juan Pablo Arango', 'PASAPORTE', 20012345697, 'juan.pablo.arango@email.com', 20, 20);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Ana Ramirez', 'CC', 1012345678, 'ana.ramirez@email.com', 1);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Luis Morales', 'CE', 2012345679, 'luis.morales@email.com', 2);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Sofia Cruz', 'TI', 3012345680, 'sofia.cruz@email.com', 3);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Carlos Gómez', 'PASAPORTE', 4012345681, 'carlos.gomez@email.com', 4);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('María Alzate', 'CC', 5012345682, 'maria.alzate@email.com', 5);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Jorge Martínez', 'CC', 6012345683, 'jorge.martinez@email.com', 6);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Lucía Hernández', 'NIT', 7012345684, 'lucia.hernandez@email.com', 7);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('David Guerrero', 'CE', 8012345685, 'david.guerrero@email.com', 8);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Daniela Jiménez', 'TI', 9012345686, 'daniela.jimenez@email.com', );
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Miguel Ángel Toro', 'PASAPORTE', 10012345687, 'miguel.toro@email.com', 10);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Tatiana Ruiz', 'CC', 11012345688, 'tatiana.ruiz@email.com', 11);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Santiago Navas', 'CE', 12012345689, 'santiago.navas@email.com', 12);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Laura Torres', 'TI', 13012345690, 'laura.torres@email.com', 13);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Fernando Castaño', 'PASAPORTE', 14012345691, 'fernando.castaño@email.com', 14);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Sandra Osorio', 'CC', 15012345692, 'sandra.osorio@email.com', 15);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Esteban Mejía', 'CC', 16012345693, 'esteban.mejia@email.com', 16);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Camila Giraldo', 'NIT', 17012345694, 'camila.giraldo@email.com', 17);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Sebastián Vargas', 'CE', 18012345695, 'sebastian.vargas@email.com', 18);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Andrea Rodríguez', 'TI', 19012345696, 'andrea.rodriguez@email.com', 19);
+INSERT INTO usuarios (nombreuser, tipodocuser, numdocuser, correouser, iduser) VALUES ('Juan Pablo Arango', 'PASAPORTE', 20012345697, 'juan.pablo.arango@email.com', 20);
 
 
 -- Insertando datos en la tabla 'utensilios'
