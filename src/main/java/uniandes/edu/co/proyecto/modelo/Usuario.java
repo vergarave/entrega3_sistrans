@@ -22,10 +22,10 @@ public class Usuario {
     private String tipodocuser;
     private Integer numdocuser;
     private String correouser;
-    //FK
-    @ManyToOne 
-    @JoinColumn(name="alojamientos", referencedColumnName = "idalojamiento")
-    private Alojamiento alojamiento;
+    // //FK
+    // @ManyToOne 
+    // @JoinColumn(name="alojamientos", referencedColumnName = "idalojamiento")
+    // private Alojamiento alojamiento;
 
 
     // Constructor
@@ -35,7 +35,7 @@ public class Usuario {
         this.tipodocuser = tipodocuser;
         this.numdocuser = numdocuser;
         this.correouser = correouser;
-        this.alojamiento = alojamiento;
+        // this.alojamiento = alojamiento;
     }
 
 
@@ -63,9 +63,9 @@ public class Usuario {
         return correouser;
     }
 
-    public Alojamiento getAlojamiento() {
-        return alojamiento;
-    }
+    // public Alojamiento getAlojamiento() {
+    //     return alojamiento;
+    // }
 
 
     // Setters
@@ -89,8 +89,8 @@ public class Usuario {
         this.correouser = correouser;
     }
 
-    public void setAlojamiento(Alojamiento alojamiento) {
-        this.alojamiento = alojamiento;
-    }
+    // public void setAlojamiento(Alojamiento alojamiento) {
+    //     this.alojamiento = alojamiento;
+    // }
 
 }
