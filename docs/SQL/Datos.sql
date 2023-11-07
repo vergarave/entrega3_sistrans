@@ -86,27 +86,49 @@ INSERT INTO planes (tipoplan, descuento, idplan) VALUES ('Larga_Estadia', 25.0, 
 INSERT INTO planes (tipoplan, descuento, idplan) VALUES ('Promo_Particular', 15.0, 19);
 INSERT INTO planes (tipoplan, descuento, idplan) VALUES ('Tiempo_Compartido', 30.0, 20);
 
+-- Insertando datos en la tabla 'habitaciones'
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (101, 'SI', 150, 1, 1, 1, 1);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (102, 'SI', 200, 2, 2, 2, 2);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (103, 'NO', 250, 3, 3, 3, 3);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (104, 'SI', 300, 4, 4, 4, 4);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (105, 'NO', 350, 5, 5, 5, 5);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (101, 'SI', 150.00, 6, 6, 6, 6);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (102, 'NO', 200.00, 7, 7, 7, 7);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (103, 'SI', 180.00, 8, 8, 8, 8);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (104, 'NO', 220.00, 9, 9, 9, 9);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (105, 'SI', 250.00, 10, 10, 10, 10);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (201, 'NO', 300.00, 11, 11, 11, 11);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (202, 'SI', 350.00, 12, 12, 12, 12);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (203, 'NO', 320.00, 13, 13, 13, 13);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (204, 'SI', 280.00, 14, 14, 14, 14);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (205, 'NO', 260.00, 15, 15, 15, 15);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (301, 'SI', 200.00, 16, 16, 16, 16);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (302, 'NO', 180.00, 17, 17, 17, 17);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (303, 'SI', 220.00, 18, 18, 18, 18);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (304, 'NO', 240.00, 19, 19, 19, 19);
+INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (305, 'SI', 260.00, 20, 20, 20, 20);
+
 -- Insertando datos en la tabla 'alojamientos'
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 1, TO_DATE('2023-01-01', 'YYYY-MM-DD'), TO_DATE('2023-01-10', 'YYYY-MM-DD'), 1, 1, 1, 1, 1);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 2, TO_DATE('2023-02-15', 'YYYY-MM-DD'), TO_DATE('2023-02-20', 'YYYY-MM-DD'), 2, 2, 2, 2, 2);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 3, TO_DATE('2023-03-10', 'YYYY-MM-DD'), TO_DATE('2023-03-15', 'YYYY-MM-DD'), 3, 3, 3, 3, 3);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 4, TO_DATE('2023-04-05', 'YYYY-MM-DD'), TO_DATE('2023-04-12', 'YYYY-MM-DD'), 4, 4, 4, 4, 4);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 5, TO_DATE('2023-05-01', 'YYYY-MM-DD'), TO_DATE('2023-05-08', 'YYYY-MM-DD'), 5, 5, 5, 5, 5);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 6, TO_DATE('2023-01-01','YYYY-MM-DD'), TO_DATE('2023-01-08','YYYY-MM-DD'), 6, 6, 6, 6, 6);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 7, TO_DATE('2023-02-15','YYYY-MM-DD'), TO_DATE('2023-02-22','YYYY-MM-DD'), 7, 7, 7, 7, 7);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 8, TO_DATE('2023-03-10','YYYY-MM-DD'), TO_DATE('2023-03-17','YYYY-MM-DD'), 8, 8, 8, 8, 8);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 9, TO_DATE('2023-04-05','YYYY-MM-DD'), TO_DATE('2023-04-12','YYYY-MM-DD'), 9, 9, 9, 9, 9);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 10, TO_DATE('2023-05-01','YYYY-MM-DD'), TO_DATE('2023-05-08','YYYY-MM-DD'), 10, 10, 10, 10, 10);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 11, TO_DATE('2023-06-15','YYYY-MM-DD'), TO_DATE('2023-06-22','YYYY-MM-DD'), 11, 11, 11, 11, 11);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 12, TO_DATE('2023-07-19','YYYY-MM-DD'), TO_DATE('2023-07-26','YYYY-MM-DD'), 12, 12, 12, 12, 12);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 13, TO_DATE('2023-08-10','YYYY-MM-DD'), TO_DATE('2023-08-17','YYYY-MM-DD'), 13, 13, 13, 13, 13);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 14, TO_DATE('2023-09-05','YYYY-MM-DD'), TO_DATE('2023-09-12','YYYY-MM-DD'), 14, 14, 14, 14, 14);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 15, TO_DATE('2023-10-21','YYYY-MM-DD'), TO_DATE('2023-10-28','YYYY-MM-DD'), 15, 15, 15, 15, 15);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 16, TO_DATE('2023-11-11','YYYY-MM-DD'), TO_DATE('2023-11-18','YYYY-MM-DD'), 16, 16, 16, 16, 16);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 17, TO_DATE('2023-12-01','YYYY-MM-DD'), TO_DATE('2023-12-08','YYYY-MM-DD'), 17, 17, 17, 17, 17);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 18, TO_DATE('2024-01-15','YYYY-MM-DD'), TO_DATE('2024-01-22','YYYY-MM-DD'), 18, 18, 18, 18, 18);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 19, TO_DATE('2024-02-18','YYYY-MM-DD'), TO_DATE('2024-02-25','YYYY-MM-DD'), 19, 19, 19, 19, 19);
-INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompañantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 20, TO_DATE('2024-03-10','YYYY-MM-DD'), TO_DATE('2024-03-17','YYYY-MM-DD'), 20, 20, 20, 20, 20);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 1, TO_DATE('2023-01-01', 'YYYY-MM-DD'), TO_DATE('2023-01-10', 'YYYY-MM-DD'), 1, 1, 1, 1, 1);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 2, TO_DATE('2023-02-15', 'YYYY-MM-DD'), TO_DATE('2023-02-20', 'YYYY-MM-DD'), 2, 2, 2, 2, 2);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 3, TO_DATE('2023-03-10', 'YYYY-MM-DD'), TO_DATE('2023-03-15', 'YYYY-MM-DD'), 3, 3, 3, 3, 3);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 4, TO_DATE('2023-04-05', 'YYYY-MM-DD'), TO_DATE('2023-04-12', 'YYYY-MM-DD'), 4, 4, 4, 4, 4);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 5, TO_DATE('2023-05-01', 'YYYY-MM-DD'), TO_DATE('2023-05-08', 'YYYY-MM-DD'), 5, 5, 5, 5, 5);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 6, TO_DATE('2023-01-01','YYYY-MM-DD'), TO_DATE('2023-01-08','YYYY-MM-DD'), 6, 6, 6, 6, 6);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 7, TO_DATE('2023-02-15','YYYY-MM-DD'), TO_DATE('2023-02-22','YYYY-MM-DD'), 7, 7, 7, 7, 7);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 8, TO_DATE('2023-03-10','YYYY-MM-DD'), TO_DATE('2023-03-17','YYYY-MM-DD'), 8, 8, 8, 8, 8);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 9, TO_DATE('2023-04-05','YYYY-MM-DD'), TO_DATE('2023-04-12','YYYY-MM-DD'), 9, 9, 9, 9, 9);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 10, TO_DATE('2023-05-01','YYYY-MM-DD'), TO_DATE('2023-05-08','YYYY-MM-DD'), 10, 10, 10, 10, 10);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 11, TO_DATE('2023-06-15','YYYY-MM-DD'), TO_DATE('2023-06-22','YYYY-MM-DD'), 11, 11, 11, 11, 11);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 12, TO_DATE('2023-07-19','YYYY-MM-DD'), TO_DATE('2023-07-26','YYYY-MM-DD'), 12, 12, 12, 12, 12);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 13, TO_DATE('2023-08-10','YYYY-MM-DD'), TO_DATE('2023-08-17','YYYY-MM-DD'), 13, 13, 13, 13, 13);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 14, TO_DATE('2023-09-05','YYYY-MM-DD'), TO_DATE('2023-09-12','YYYY-MM-DD'), 14, 14, 14, 14, 14);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 15, TO_DATE('2023-10-21','YYYY-MM-DD'), TO_DATE('2023-10-28','YYYY-MM-DD'), 15, 15, 15, 15, 15);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 16, TO_DATE('2023-11-11','YYYY-MM-DD'), TO_DATE('2023-11-18','YYYY-MM-DD'), 16, 16, 16, 16, 16);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 17, TO_DATE('2023-12-01','YYYY-MM-DD'), TO_DATE('2023-12-08','YYYY-MM-DD'), 17, 17, 17, 17, 17);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 18, TO_DATE('2024-01-15','YYYY-MM-DD'), TO_DATE('2024-01-22','YYYY-MM-DD'), 18, 18, 18, 18, 18);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('NO', 19, TO_DATE('2024-02-18','YYYY-MM-DD'), TO_DATE('2024-02-25','YYYY-MM-DD'), 19, 19, 19, 19, 19);
+INSERT INTO alojamientos (activa, usuarios_iduser, checkin, checkout, acompanantes, planes_idplan, cuentas_idcuenta, idalojamiento, habitaciones_idhabitacion) VALUES ('SI', 20, TO_DATE('2024-03-10','YYYY-MM-DD'), TO_DATE('2024-03-17','YYYY-MM-DD'), 20, 20, 20, 20, 20);
 
 -- Insertando datos en la tabla 'cuentas'
 INSERT INTO cuentas (netocuenta, idcuenta, alojamientos_idalojamiento) VALUES (5000, 1, 1);
@@ -416,27 +438,7 @@ INSERT INTO servispas (duracion, costo, fecha, spas_idservicio, idservispas) VAL
 INSERT INTO servispas (duracion, costo, fecha, spas_idservicio, idservispas) VALUES (90, 160.00, TO_DATE('2023-11-14', 'YYYY-MM-DD'), 159, 19);
 INSERT INTO servispas (duracion, costo, fecha, spas_idservicio, idservispas) VALUES (120, 210.00, TO_DATE('2023-11-15', 'YYYY-MM-DD'), 160, 20);
 
--- Insertando datos en la tabla 'habitaciones'
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (101, 'SI', 150, 1, 1, 1, 1);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (102, 'SI', 200, 2, 2, 2, 2);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (103, 'NO', 250, 3, 3, 3, 3);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (104, 'SI', 300, 4, 4, 4, 4);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (105, 'NO', 350, 5, 5, 5, 5);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (101, 'SI', 150.00, 6, 6, 6, 6);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (102, 'NO', 200.00, 7, 7, 7, 7);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (103, 'SI', 180.00, 8, 8, 8, 8);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (104, 'NO', 220.00, 9, 9, 9, 9);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (105, 'SI', 250.00, 10, 10, 10, 10);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (201, 'NO', 300.00, 11, 11, 11, 11);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (202, 'SI', 350.00, 12, 12, 12, 12);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (203, 'NO', 320.00, 13, 13, 13, 13);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (204, 'SI', 280.00, 14, 14, 14, 14);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (205, 'NO', 260.00, 15, 15, 15, 15);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (301, 'SI', 200.00, 16, 16, 16, 16);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (302, 'NO', 180.00, 17, 17, 17, 17);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (303, 'SI', 220.00, 18, 18, 18, 18);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (304, 'NO', 240.00, 19, 19, 19, 19);
-INSERT INTO habitaciones (numhabitacion, disponible, precionoche, hoteles_idhotel, tipos_idtipo, alojamientos_idalojamiento, idhabitacion) VALUES (305, 'SI', 260.00, 20, 20, 20, 20);
+
 
 
 
