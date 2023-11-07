@@ -190,12 +190,11 @@ ALTER TABLE tipos
 ALTER TABLE tipos ADD CONSTRAINT tipos_pk PRIMARY KEY ( idtipo );
 
 CREATE TABLE usuarios (
-    nombreuser                 VARCHAR2(64) NOT NULL,
-    tipodocuser                VARCHAR2(32) NOT NULL,
-    numdocuser                 NUMBER NOT NULL,
-    correouser                 VARCHAR2(64) NOT NULL,
-    iduser                     NUMBER NOT NULL,
-    alojamientos_idalojamiento NUMBER NOT NULL
+    nombreuser  VARCHAR2(64) NOT NULL,
+    tipodocuser VARCHAR2(32) NOT NULL,
+    numdocuser  NUMBER NOT NULL,
+    correouser  VARCHAR2(64) NOT NULL,
+    iduser      NUMBER NOT NULL
 );
 
 ALTER TABLE usuarios
@@ -322,11 +321,6 @@ ALTER TABLE tiendas
     ADD CONSTRAINT tiendas_servicios_fk FOREIGN KEY ( idservicio )
         REFERENCES servicios ( idservicio );
 
-ALTER TABLE usuarios
-    ADD CONSTRAINT usuarios_alojamientos_fk FOREIGN KEY ( alojamientos_idalojamiento )
-        REFERENCES alojamientos ( idalojamiento )
-            ON DELETE CASCADE;
-
 ALTER TABLE utensilios
     ADD CONSTRAINT utensilios_servicios_fk FOREIGN KEY ( idservicio )
         REFERENCES servicios ( idservicio );
@@ -334,3 +328,4 @@ ALTER TABLE utensilios
 ALTER TABLE wifi
     ADD CONSTRAINT wifi_servicios_fk FOREIGN KEY ( idservicio )
         REFERENCES servicios ( idservicio );
+
