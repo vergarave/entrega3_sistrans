@@ -57,4 +57,5 @@ public class AlojamientosControl {
     public String alojamientoEliminar(@PathVariable("id") int id){
         alojamientoRepo.eliminarAlojamiento(id);
         return "redirect:/alojamientos";
+    }
 }

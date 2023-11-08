@@ -24,32 +24,20 @@ public class Alojamiento {
     private Date checkin;
     private Date checkout;
     private Integer acompanantes;
-    //FK
-    @ManyToOne
-    @JoinColumn(name = "usuarios", referencedColumnName = "iduser")
-    private Usuario usuario;
+    //FK-
     @ManyToOne
     @JoinColumn(name = "planes", referencedColumnName = "idplan")
     private Plan plan;
-    @ManyToOne
-    @JoinColumn(name = "cuentas", referencedColumnName = "idcuenta")
-    private Cuenta cuenta;
-    @ManyToOne
-    @JoinColumn(name = "habitaciones", referencedColumnName = "idhabitacion")
-    private Habitacion habitacion;
 
 
     // Constructor
-    public Alojamiento(String activa, Date checkin, Date checkout, Integer acompanantes, Usuario usuario, Plan plan, Cuenta cuenta, Habitacion habitacion)
+    public Alojamiento(String activa, Date checkin, Date checkout, Integer acompanantes, Plan plan)
     {
         this.activa = activa;
         this.checkin = checkin;
         this.checkout = checkout;
         this.acompanantes = acompanantes;
-        this.usuario = usuario;
         this.plan = plan;
-        this.cuenta = cuenta;
-        this.habitacion = habitacion;
     }
 
 
@@ -77,22 +65,9 @@ public class Alojamiento {
         return acompanantes;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
     public Plan getPlan() {
         return plan;
     }
-
-    public Cuenta getCuenta() {
-        return cuenta;
-    }
-
-    public Habitacion getHabitacion() {
-        return habitacion;
-    }
-
 
     // Setters
     public void setIdalojamiento(Integer idalojamiento){
@@ -115,20 +90,8 @@ public class Alojamiento {
         this.acompanantes = acompanantes;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public void setPlan(Plan plan) {
         this.plan = plan;
-    }
-
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
-    }
-
-    public void setHabitacion(Habitacion habitacion) {
-        this.habitacion = habitacion;
     }
 
 }

@@ -58,4 +58,16 @@ public class Hotel {
         this.nithotel = nithotel;
     }
 
+
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "idhotel=" + idhotel +
+                ", nombrehotel='" + nombrehotel + '\'' +
+                ", nithotel='" + nithotel + '\'' +
+                // Imprime aquí cualquier otro campo que quieras mostrar
+                '}';
+        }
+
 }
