@@ -3,7 +3,7 @@ CREATE TABLE alojamientos (
     activa        VARCHAR2(2) NOT NULL,
     checkin       DATE NOT NULL,
     checkout      DATE NOT NULL,
-    acompañantes  NUMBER NOT NULL,
+    acompanantes  NUMBER NOT NULL,
     idplan        NUMBER NOT NULL,
     idalojamiento NUMBER NOT NULL
 );
@@ -136,7 +136,7 @@ CREATE TABLE servicios (
     cargado            VARCHAR2(2) NOT NULL,
     existe             VARCHAR2(2) NOT NULL,
     idservicio         NUMBER NOT NULL,
-    reservas_idreserva NUMBER NOT NULL
+    idreserva NUMBER NOT NULL
 );
 
 ALTER TABLE servicios
@@ -287,7 +287,7 @@ ALTER TABLE reuniones
         REFERENCES servicios ( idservicio );
 
 ALTER TABLE servicios
-    ADD CONSTRAINT servicios_reservas_fk FOREIGN KEY ( reservas_idreserva )
+    ADD CONSTRAINT servicios_reservas_fk FOREIGN KEY ( idreserva )
         REFERENCES reservas ( idreserva )
             ON DELETE CASCADE;
 
@@ -316,3 +316,5 @@ ALTER TABLE utensilios
 ALTER TABLE wifi
     ADD CONSTRAINT wifi_servicios_fk FOREIGN KEY ( idservicio )
         REFERENCES servicios ( idservicio );
+
+COMMIT;
