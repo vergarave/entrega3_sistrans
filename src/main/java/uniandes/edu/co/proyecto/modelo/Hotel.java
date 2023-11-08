@@ -60,7 +60,7 @@ public class Hotel {
 
 
 
-    @Override
+    /*@Override
     public String toString() {
         return "Hotel{" +
                 "idhotel=" + idhotel +
@@ -68,6 +68,6 @@ public class Hotel {
                 ", nithotel='" + nithotel + '\'' +
                 // Imprime aquí cualquier otro campo que quieras mostrar
                 '}';
-        }
+        }*/
 
 }
