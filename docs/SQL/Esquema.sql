@@ -1,14 +1,11 @@
 
 CREATE TABLE alojamientos (
-    activa                    VARCHAR2(2) NOT NULL,
-    usuarios_iduser           NUMBER NOT NULL,
-    checkin                   DATE NOT NULL,
-    checkout                  DATE NOT NULL,
-    acompanantes              NUMBER NOT NULL,
-    planes_idplan             NUMBER NOT NULL,
-    cuentas_idcuenta          NUMBER NOT NULL,
-    idalojamiento             NUMBER NOT NULL,
-    habitaciones_idhabitacion NUMBER NOT NULL
+    activa        VARCHAR2(2) NOT NULL,
+    checkin       DATE NOT NULL,
+    checkout      DATE NOT NULL,
+    acompanantes  NUMBER NOT NULL,
+    idplan        NUMBER NOT NULL,
+    idalojamiento NUMBER NOT NULL
 );
 
 ALTER TABLE alojamientos
@@ -37,9 +34,9 @@ CREATE TABLE conferencias (
 ALTER TABLE conferencias ADD CONSTRAINT conferencias_pk PRIMARY KEY ( idservicio );
 
 CREATE TABLE cuentas (
-    netocuenta                 NUMBER NOT NULL,
-    idcuenta                   NUMBER NOT NULL,
-    alojamientos_idalojamiento NUMBER NOT NULL
+    netocuenta    NUMBER NOT NULL,
+    idcuenta      NUMBER NOT NULL,
+    idalojamiento NUMBER NOT NULL
 );
 
 ALTER TABLE cuentas ADD CONSTRAINT cuentas_pk PRIMARY KEY ( idcuenta );
@@ -53,13 +50,13 @@ CREATE TABLE gimnasios (
 ALTER TABLE gimnasios ADD CONSTRAINT gimnasios_pk PRIMARY KEY ( idservicio );
 
 CREATE TABLE habitaciones (
-    numhabitacion              NUMBER NOT NULL,
-    disponible                 VARCHAR2(2) NOT NULL,
-    precionoche                NUMBER NOT NULL,
-    hoteles_idhotel            NUMBER NOT NULL,
-    tipos_idtipo               NUMBER NOT NULL,
-    alojamientos_idalojamiento NUMBER NOT NULL,
-    idhabitacion               NUMBER NOT NULL
+    numhabitacion NUMBER NOT NULL,
+    disponible    VARCHAR2(2) NOT NULL,
+    precionoche   NUMBER NOT NULL,
+    idhotel       NUMBER NOT NULL,
+    idtipo        NUMBER NOT NULL,
+    idalojamiento NUMBER NOT NULL,
+    idhabitacion  NUMBER NOT NULL
 );
 
 ALTER TABLE habitaciones
@@ -95,20 +92,20 @@ ALTER TABLE planes
 ALTER TABLE planes ADD CONSTRAINT planes_pk PRIMARY KEY ( idplan );
 
 CREATE TABLE productos (
-    nombre                  VARCHAR2(100) NOT NULL,
-    precio                  NUMBER NOT NULL,
-    restaurantes_idservicio NUMBER NOT NULL,
-    bares_idservicio        NUMBER NOT NULL,
-    tiendas_idservicio      NUMBER NOT NULL,
-    idproducto              NUMBER NOT NULL
+    nombre        VARCHAR2(100) NOT NULL,
+    precio        NUMBER NOT NULL,
+    idrestaurante NUMBER NOT NULL,
+    idbar         NUMBER NOT NULL,
+    idtienda      NUMBER NOT NULL,
+    idproducto    NUMBER NOT NULL
 );
 
 ALTER TABLE productos ADD CONSTRAINT productos_pk PRIMARY KEY ( idproducto );
 
 CREATE TABLE reservas (
-    horareserva      DATE,
-    idreserva        NUMBER NOT NULL,
-    cuentas_idcuenta NUMBER NOT NULL
+    horareserva DATE,
+    idreserva   NUMBER NOT NULL,
+    idcuenta    NUMBER NOT NULL
 );
 
 ALTER TABLE reservas ADD CONSTRAINT reservas_pk PRIMARY KEY ( idreserva );
@@ -139,7 +136,7 @@ CREATE TABLE servicios (
     cargado            VARCHAR2(2) NOT NULL,
     existe             VARCHAR2(2) NOT NULL,
     idservicio         NUMBER NOT NULL,
-    reservas_idreserva NUMBER NOT NULL
+    idreserva NUMBER NOT NULL
 );
 
 ALTER TABLE servicios
@@ -151,11 +148,11 @@ ALTER TABLE servicios
 ALTER TABLE servicios ADD CONSTRAINT servicios_pk PRIMARY KEY ( idservicio );
 
 CREATE TABLE servispas (
-    duracion        NUMBER NOT NULL,
-    costo           NUMBER NOT NULL,
-    fecha           DATE NOT NULL,
-    spas_idservicio NUMBER NOT NULL,
-    idservispas     NUMBER NOT NULL
+    duracion    NUMBER NOT NULL,
+    costo       NUMBER NOT NULL,
+    fecha       DATE NOT NULL,
+    idservicio  NUMBER NOT NULL,
+    idservispas NUMBER NOT NULL
 );
 
 ALTER TABLE servispas ADD CONSTRAINT servispas_pk PRIMARY KEY ( idservispas );
@@ -190,11 +187,12 @@ ALTER TABLE tipos
 ALTER TABLE tipos ADD CONSTRAINT tipos_pk PRIMARY KEY ( idtipo );
 
 CREATE TABLE usuarios (
-    nombreuser  VARCHAR2(64) NOT NULL,
-    tipodocuser VARCHAR2(32) NOT NULL,
-    numdocuser  NUMBER NOT NULL,
-    correouser  VARCHAR2(64) NOT NULL,
-    iduser      NUMBER NOT NULL
+    nombreuser    VARCHAR2(64) NOT NULL,
+    tipodocuser   VARCHAR2(32) NOT NULL,
+    numdocuser    NUMBER NOT NULL,
+    correouser    VARCHAR2(64) NOT NULL,
+    iduser        NUMBER NOT NULL,
+    idalojamiento NUMBER NOT NULL
 );
 
 ALTER TABLE usuarios
@@ -221,23 +219,8 @@ CREATE TABLE wifi (
 ALTER TABLE wifi ADD CONSTRAINT wifi_pk PRIMARY KEY ( idservicio );
 
 ALTER TABLE alojamientos
-    ADD CONSTRAINT alojamientos_cuentas_fk FOREIGN KEY ( cuentas_idcuenta )
-        REFERENCES cuentas ( idcuenta )
-            ON DELETE CASCADE;
-
-ALTER TABLE alojamientos
-    ADD CONSTRAINT alojamientos_habitaciones_fk FOREIGN KEY ( habitaciones_idhabitacion )
-        REFERENCES habitaciones ( idhabitacion )
-            ON DELETE CASCADE;
-
-ALTER TABLE alojamientos
-    ADD CONSTRAINT alojamientos_planes_fk FOREIGN KEY ( planes_idplan )
+    ADD CONSTRAINT alojamientos_planes_fk FOREIGN KEY ( idplan )
         REFERENCES planes ( idplan );
-
-ALTER TABLE alojamientos
-    ADD CONSTRAINT alojamientos_usuarios_fk FOREIGN KEY ( usuarios_iduser )
-        REFERENCES usuarios ( iduser )
-            ON DELETE CASCADE;
 
 ALTER TABLE bares
     ADD CONSTRAINT bares_servicios_fk FOREIGN KEY ( idservicio )
@@ -248,7 +231,7 @@ ALTER TABLE conferencias
         REFERENCES servicios ( idservicio );
 
 ALTER TABLE cuentas
-    ADD CONSTRAINT cuentas_alojamientos_fk FOREIGN KEY ( alojamientos_idalojamiento )
+    ADD CONSTRAINT cuentas_alojamientos_fk FOREIGN KEY ( idalojamiento )
         REFERENCES alojamientos ( idalojamiento )
             ON DELETE CASCADE;
 
@@ -257,17 +240,17 @@ ALTER TABLE gimnasios
         REFERENCES servicios ( idservicio );
 
 ALTER TABLE habitaciones
-    ADD CONSTRAINT habitaciones_alojamientos_fk FOREIGN KEY ( alojamientos_idalojamiento )
+    ADD CONSTRAINT habitaciones_alojamientos_fk FOREIGN KEY ( idalojamiento )
         REFERENCES alojamientos ( idalojamiento )
             ON DELETE CASCADE;
 
 ALTER TABLE habitaciones
-    ADD CONSTRAINT habitaciones_hoteles_fk FOREIGN KEY ( hoteles_idhotel )
+    ADD CONSTRAINT habitaciones_hoteles_fk FOREIGN KEY ( idhotel )
         REFERENCES hoteles ( idhotel )
             ON DELETE CASCADE;
 
 ALTER TABLE habitaciones
-    ADD CONSTRAINT habitaciones_tipos_fk FOREIGN KEY ( tipos_idtipo )
+    ADD CONSTRAINT habitaciones_tipos_fk FOREIGN KEY ( idtipo )
         REFERENCES tipos ( idtipo )
             ON DELETE CASCADE;
 
@@ -276,22 +259,22 @@ ALTER TABLE piscinas
         REFERENCES servicios ( idservicio );
 
 ALTER TABLE productos
-    ADD CONSTRAINT productos_bares_fk FOREIGN KEY ( bares_idservicio )
+    ADD CONSTRAINT productos_bares_fk FOREIGN KEY ( idbar )
         REFERENCES bares ( idservicio )
             ON DELETE CASCADE;
 
 ALTER TABLE productos
-    ADD CONSTRAINT productos_restaurantes_fk FOREIGN KEY ( restaurantes_idservicio )
+    ADD CONSTRAINT productos_restaurantes_fk FOREIGN KEY ( idrestaurante )
         REFERENCES restaurantes ( idservicio )
             ON DELETE CASCADE;
 
 ALTER TABLE productos
-    ADD CONSTRAINT productos_tiendas_fk FOREIGN KEY ( tiendas_idservicio )
+    ADD CONSTRAINT productos_tiendas_fk FOREIGN KEY ( idtienda )
         REFERENCES tiendas ( idservicio )
             ON DELETE CASCADE;
 
 ALTER TABLE reservas
-    ADD CONSTRAINT reservas_cuentas_fk FOREIGN KEY ( cuentas_idcuenta )
+    ADD CONSTRAINT reservas_cuentas_fk FOREIGN KEY ( idcuenta )
         REFERENCES cuentas ( idcuenta )
             ON DELETE CASCADE;
 
@@ -304,12 +287,12 @@ ALTER TABLE reuniones
         REFERENCES servicios ( idservicio );
 
 ALTER TABLE servicios
-    ADD CONSTRAINT servicios_reservas_fk FOREIGN KEY ( reservas_idreserva )
+    ADD CONSTRAINT servicios_reservas_fk FOREIGN KEY ( idreserva )
         REFERENCES reservas ( idreserva )
             ON DELETE CASCADE;
 
 ALTER TABLE servispas
-    ADD CONSTRAINT servispas_spas_fk FOREIGN KEY ( spas_idservicio )
+    ADD CONSTRAINT servispas_spas_fk FOREIGN KEY ( idservicio )
         REFERENCES spas ( idservicio )
             ON DELETE CASCADE;
 
@@ -321,6 +304,11 @@ ALTER TABLE tiendas
     ADD CONSTRAINT tiendas_servicios_fk FOREIGN KEY ( idservicio )
         REFERENCES servicios ( idservicio );
 
+ALTER TABLE usuarios
+    ADD CONSTRAINT usuarios_alojamientos_fk FOREIGN KEY ( idalojamiento )
+        REFERENCES alojamientos ( idalojamiento )
+            ON DELETE CASCADE;
+
 ALTER TABLE utensilios
     ADD CONSTRAINT utensilios_servicios_fk FOREIGN KEY ( idservicio )
         REFERENCES servicios ( idservicio );
@@ -329,3 +317,4 @@ ALTER TABLE wifi
     ADD CONSTRAINT wifi_servicios_fk FOREIGN KEY ( idservicio )
         REFERENCES servicios ( idservicio );
 
+COMMIT;

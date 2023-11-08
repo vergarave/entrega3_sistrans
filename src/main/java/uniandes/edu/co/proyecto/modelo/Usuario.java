@@ -22,13 +22,6 @@ public class Usuario {
     private String tipodocuser;
     private Integer numdocuser;
     private String correouser;
-<<<<<<< HEAD
-=======
-    // //FK
-    // @ManyToOne 
-    // @JoinColumn(name="alojamientos", referencedColumnName = "idalojamiento")
-    // private Alojamiento alojamiento;
->>>>>>> 6ee3f843aee9efa79a8dbc49bbd1e4bdb4485a2a
 
 
     // Constructor
@@ -38,10 +31,6 @@ public class Usuario {
         this.tipodocuser = tipodocuser;
         this.numdocuser = numdocuser;
         this.correouser = correouser;
-<<<<<<< HEAD
-=======
-        // this.alojamiento = alojamiento;
->>>>>>> 6ee3f843aee9efa79a8dbc49bbd1e4bdb4485a2a
     }
 
 
@@ -69,12 +58,6 @@ public class Usuario {
         return correouser;
     }
 
-<<<<<<< HEAD
-=======
-    // public Alojamiento getAlojamiento() {
-    //     return alojamiento;
-    // }
->>>>>>> 6ee3f843aee9efa79a8dbc49bbd1e4bdb4485a2a
 
 
     // Setters
@@ -98,11 +81,4 @@ public class Usuario {
         this.correouser = correouser;
     }
 
-<<<<<<< HEAD
-=======
-    // public void setAlojamiento(Alojamiento alojamiento) {
-    //     this.alojamiento = alojamiento;
-    // }
-
->>>>>>> 6ee3f843aee9efa79a8dbc49bbd1e4bdb4485a2a
 }
