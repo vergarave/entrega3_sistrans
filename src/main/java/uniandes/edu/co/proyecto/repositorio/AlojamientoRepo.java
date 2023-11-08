@@ -10,10 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.Alojamiento;
-import uniandes.edu.co.proyecto.modelo.Cuenta;
-import uniandes.edu.co.proyecto.modelo.Habitacion;
 import uniandes.edu.co.proyecto.modelo.Plan;
-import uniandes.edu.co.proyecto.modelo.Usuario;
 
 public interface AlojamientoRepo extends JpaRepository <Alojamiento, Integer> {
 
