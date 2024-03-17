@@ -13,10 +13,11 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "personas")
-public class Persona {
+public abstract class Persona {
 
   @Id
   private Integer numeroDocumento;
+
   private String tipoPersona;
 
   private String tipoDocumento;
