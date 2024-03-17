@@ -3,12 +3,7 @@ package uniandes.edu.co.proyecto.modelo;
 import java.sql.Date;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,7 +13,7 @@ public abstract class Persona {
   @Id
   private Integer numeroDocumento;
 
-  private String tipoPersona;
+  private String tipo;
 
   private String tipoDocumento;
   private String nombre;
@@ -30,8 +25,6 @@ public abstract class Persona {
   private String ciudad;
   private String departamento;
 
-  public Persona() {
-    ;
-  }
+  public Persona() {;}
 
 }

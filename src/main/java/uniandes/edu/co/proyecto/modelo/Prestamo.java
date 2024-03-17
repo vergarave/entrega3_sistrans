@@ -36,7 +36,7 @@ public class Prestamo {
 
   private double saldoPendiente;
 
-  private Empleado gerente;
+  private TieneCuentaEmpleado gerente;
   // NO ESTOY SEGURO SI ES MANY TO ONE O ONETOMANY
   @ManyToOne
   @JoinColumn(name = "cliente", referencedColumnName = "id")
@@ -47,7 +47,7 @@ public class Prestamo {
   }
 
   public Prestamo(Integer id, String estadoPrestamo, String tipoPrestamo, double monto, double interes,
-      int numeroCuotas, Date fechaPagoCuota, double valorCuota, double saldoPendiente, Empleado gerente,
+      int numeroCuotas, Date fechaPagoCuota, double valorCuota, double saldoPendiente, TieneCuentaEmpleado gerente,
       Persona cliente) {
     this.id = id;
     this.estadoPrestamo = estadoPrestamo;
@@ -98,7 +98,7 @@ public class Prestamo {
     return saldoPendiente;
   }
 
-  public Empleado getGerente() {
+  public TieneCuentaEmpleado getGerente() {
     return gerente;
   }
 
@@ -142,7 +142,7 @@ public class Prestamo {
     this.saldoPendiente = saldoPendiente;
   }
 
-  public void setGerente(Empleado gerente) {
+  public void setGerente(TieneCuentaEmpleado gerente) {
     this.gerente = gerente;
   }
 

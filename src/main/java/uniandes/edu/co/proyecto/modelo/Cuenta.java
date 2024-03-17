@@ -17,7 +17,7 @@ public class Cuenta {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer numeroCuenta;
+  private String numeroCuenta;
 
   private String estado;
 
@@ -25,7 +25,8 @@ public class Cuenta {
 
   private String tipo;
 
-  private Double ultimaTransaccion;
+  private Date ultimaTransaccion;
+  
   private Date fechaCreacion;
 
   @OneToMany
@@ -34,7 +35,7 @@ public class Cuenta {
 
   @OneToMany
   @JoinColumn(name = "gerente", referencedColumnName = "id")
-  private Empleado gerente;
+  private TieneCuentaEmpleado gerente;
 
   public Cuenta() {
     ;

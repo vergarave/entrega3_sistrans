@@ -27,13 +27,13 @@ public class Oficina {
 
   @OneToMany
   @JoinColumn(name = "gerente", referencedColumnName = "id")
-  private Empleado gerente;
+  private TieneCuentaEmpleado gerente;
 
   public Oficina() {
     ;
   }
 
-  public Oficina(String nombre, String direccion, Integer numPuntosAtencion, String ciudad, Empleado gerente) {
+  public Oficina(String nombre, String direccion, Integer numPuntosAtencion, String ciudad, TieneCuentaEmpleado gerente) {
     this.nombre = nombre;
     this.direccion = direccion;
     this.numPuntosAtencion = numPuntosAtencion;

@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Empleado;
 import uniandes.edu.co.proyecto.modelo.Persona;
 import uniandes.edu.co.proyecto.modelo.Prestamo;
 
