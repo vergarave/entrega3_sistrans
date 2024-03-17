@@ -7,7 +7,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Embeddable
-public class TieneCuentaEmpleadoPK implements Serializable {
+public class EmpleadoPK implements Serializable {
     @OneToOne
     @JoinColumn(name = "numero_documento", referencedColumnName = "numero_documento")
     private Persona numeroDocumento;
@@ -17,13 +17,13 @@ public class TieneCuentaEmpleadoPK implements Serializable {
     @JoinColumn(name = "login", referencedColumnName = "login")
     private UsuarioEmpleado login;
 
-    public TieneCuentaEmpleadoPK()
+    public EmpleadoPK()
     {
         super();
     }
 
     
-    public TieneCuentaEmpleadoPK(Persona numeroDocumento, UsuarioEmpleado login)
+    public EmpleadoPK(Persona numeroDocumento, UsuarioEmpleado login)
     {
         super();
         this.numeroDocumento = numeroDocumento;

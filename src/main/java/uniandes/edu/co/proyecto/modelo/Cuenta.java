@@ -35,7 +35,7 @@ public class Cuenta {
 
   @OneToMany
   @JoinColumn(name = "gerente", referencedColumnName = "id")
-  private TieneCuentaEmpleado gerente;
+  private Empleado gerente;
 
   public Cuenta() {
     ;
