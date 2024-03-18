@@ -10,12 +10,12 @@ public class Pertenece {
     @EmbeddedId
     private PertenecePK pk;
 
-    public Pertenece(){;}
+    public Pertenece() {
+        ;
+    }
 
-
-    
-    public Pertenece(PertenecePK pk) {
-        this.pk = pk;
+    public Pertenece(Oficina id_Oficina, PuntoAtencion id_PuntoAtencion) {
+        this.pk = new PertenecePK(id_Oficina, id_PuntoAtencion);
     }
 
     public PertenecePK getPk() {

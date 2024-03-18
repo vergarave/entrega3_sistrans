@@ -25,6 +25,24 @@ public abstract class Persona {
   private String ciudad;
   private String departamento;
 
-  public Persona() {;}
+  public Persona() {
+    ;
+  }
+
+  public Persona(Integer numeroDocumento, String tipo, String tipoDocumento, String nombre, String nacionalidad,
+      String direccionFisica, String direccionElectronica, String telefono, String codigoPostal, String ciudad,
+      String departamento) {
+    this.numeroDocumento = numeroDocumento;
+    this.tipo = tipo;
+    this.tipoDocumento = tipoDocumento;
+    this.nombre = nombre;
+    this.nacionalidad = nacionalidad;
+    this.direccionFisica = direccionFisica;
+    this.direccionElectronica = direccionElectronica;
+    this.telefono = telefono;
+    this.codigoPostal = codigoPostal;
+    this.ciudad = ciudad;
+    this.departamento = departamento;
+  }
 
 }

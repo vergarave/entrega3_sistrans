@@ -7,16 +7,16 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "realizada")
 public class Realizada {
-    
+
     @EmbeddedId
     private RealizadaPK pk;
 
-    public Realizada(){;}
+    public Realizada() {
+        ;
+    }
 
-
-    
-    public Realizada(RealizadaPK pk) {
-        this.pk = pk;
+    public Realizada(OperacionCuenta idOperacionCuenta, PuntoAtencion idPuntoAtencion) {
+        this.pk = new RealizadaPK(idOperacionCuenta, idPuntoAtencion);
     }
 
     public RealizadaPK getPk() {
@@ -27,7 +27,4 @@ public class Realizada {
         this.pk = pk;
     }
 
-    
-
-    
 }

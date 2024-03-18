@@ -25,8 +25,6 @@ public class Oficina {
 
   private String ciudad;
 
-  @OneToMany
-  @JoinColumn(name = "gerente", referencedColumnName = "id")
   private Empleado gerente;
 
   public Oficina() {
