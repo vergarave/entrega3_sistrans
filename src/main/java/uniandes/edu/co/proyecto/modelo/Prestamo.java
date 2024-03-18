@@ -46,10 +46,9 @@ public class Prestamo {
     ;
   }
 
-  public Prestamo(Integer id, String estadoPrestamo, String tipoPrestamo, double monto, double interes,
+  public Prestamo(String estadoPrestamo, String tipoPrestamo, double monto, double interes,
       int numeroCuotas, Date fechaPagoCuota, double valorCuota, double saldoPendiente, Empleado gerente,
       Persona cliente) {
-    this.id = id;
     this.estadoPrestamo = estadoPrestamo;
     this.tipoPrestamo = tipoPrestamo;
     this.monto = monto;

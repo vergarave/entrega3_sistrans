@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 public abstract class Persona {
 
   @Id
-  private Integer numeroDocumento;
+  private String numeroDocumento;
 
   private String tipo;
 
@@ -29,7 +29,7 @@ public abstract class Persona {
     ;
   }
 
-  public Persona(Integer numeroDocumento, String tipo, String tipoDocumento, String nombre, String nacionalidad,
+  public Persona(String numeroDocumento, String tipo, String tipoDocumento, String nombre, String nacionalidad,
       String direccionFisica, String direccionElectronica, String telefono, String codigoPostal, String ciudad,
       String departamento) {
     this.numeroDocumento = numeroDocumento;
