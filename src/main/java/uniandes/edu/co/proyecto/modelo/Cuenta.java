@@ -35,9 +35,8 @@ public class Cuenta {
     ;
   }
 
-  public Cuenta(String numeroCuenta, String estado, double saldo, String tipo, Date ultimaTransaccion,
+  public Cuenta(String estado, double saldo, String tipo, Date ultimaTransaccion,
       Date fechaCreacion, Empleado gerente) {
-    this.numeroCuenta = numeroCuenta;
     this.estado = estado;
     this.saldo = saldo;
     this.tipo = tipo;

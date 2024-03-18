@@ -9,7 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import uniandes.edu.co.proyecto.modelo.Empleado;
 import uniandes.edu.co.proyecto.modelo.Oficina;
+import uniandes.edu.co.proyecto.modelo.OperacionCuenta;
 import uniandes.edu.co.proyecto.modelo.Prestamo;
 
 public interface OficinaRepository extends JpaRepository<Oficina, Integer> {
@@ -19,34 +21,19 @@ public interface OficinaRepository extends JpaRepository<Oficina, Integer> {
 
   @Query(value = "SELECT * FROM oficinas WHERE id = :id", nativeQuery = true)
   Oficina darOficina(@Param("id") int id);
-  /*
-   * @Modifying
-   * 
-   * @Transactional
-   * 
-   * @Query(value = "INSERT INTO prestamos (id, estadoPrestamo, tipoPrestamo,
-   * monto, interes,numeroCuotas,fechaPagoCuota,valorCuota,saldoPendiente,gerente,
-   * cliente) VALUES
-   * ( parranderos_sequence.nextval , :nombre, :ciudad, :presupuesto,
-   * :cant_sedes)", nativeQuery = true)
-   * void insertarPrestamo(@Param("id") Integer id, @Param("estadoPrestamo")
-   * String estadoPrestamo,
-   * 
-   * @Param("tipoPrestamo") String tipoPrestamo, @Param("monto") double monto
-   * , @Param("interes") double interes, @Param("numeroCuotas") Integer
-   * numeroCuotas,
-   * 
-   * @Param("fechaPagoCuota") Date fechaPagoCuota,@Param("valorCuota") double
-   * valorCuota,
-   * 
-   * @Param("saldoPendiente") double saldoPendiente,@Param("gerente") Empleado
-   * gerente, @Param("cliente")Persona cliente
-   * );
-   * // ,,saldoPendiente,gerente
-   */
 
   @Modifying
   @Transactional
   @Query(value = "DELETE FROM oficinas WHERE id = :id", nativeQuery = true)
   void eliminarOficina(@Param("id") long id);
+
+  @Modifying
+  @Transactional
+  @Query(value = "INSERT INTO oficinas (id_Oficina, nombre, direccion, numPuntosAtencion, ciudad, gerente) VALUES(proyecto_sequence.nextval) ", nativeQuery = true)
+  OperacionCuenta insertarOficina(@Param("nombre") String nombre,
+      @Param("direccion") String direccion,
+      @Param("numPuntosAtencion") Integer numPuntosAtencion,
+      @Param("ciudad") String ciudad,
+      @Param("gerente") Empleado gerente);
+
 }
