@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,28 +9,26 @@ import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
-
-
 @Entity
-@Table(name="TransaccionPrestamos")
+@Table(name = "transaccion_prestamos")
 public class TransaccionPrestamo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @EmbeddedId
+    private TransaccionPrestamoPK pk;
 
-
-    @OneToOne
-    @JoinColumn(name = "id_operacion", referencedColumnName = "id")
-    private OperacionPrestamo idOperacion;
-
-    @OneToOne
-    @JoinColumn(name = "id_prestamo", referencedColumnName = "id")
-    private Prestamo idPrestamo;
-
-
-
-    public TransaccionPrestamo(int id) {
-        this.id = id;
-
+    public TransaccionPrestamo() {
+        ;
     }
+
+    public TransaccionPrestamo(OperacionPrestamo idOperacion, Prestamo idPrestamo) {
+        this.pk = new TransaccionPrestamoPK(idOperacion, idPrestamo);
+    }
+
+    public TransaccionPrestamo getPk() {
+        return pk;
+    }
+
+    public void setPk(TransaccionPrestamo pk) {
+        this.pk = pk;
+    }
+
 }
