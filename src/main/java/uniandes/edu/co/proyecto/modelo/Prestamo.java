@@ -12,26 +12,26 @@ public class Prestamo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer numPrestamo;
     private String estado;
     private String tipoPrestamo;
-    private Integer monto;
+    private Float monto;
     private Float intereses;
     private Integer numCuotas;
     private String diaMesAPagarCuota;
     private Float valorCuota;
+    private Integer cliente;
     private String gerenteCreador;
     private Float saldoPendiente;
 
 
 
-    public Prestamo(int id, Integer numPrestamo, String estado, String tipoPrestamo, Integer monto, Float intereses,
+    public Prestamo(int id, String estado, String tipoPrestamo, Float monto, Float intereses, Integer cliente,
     Integer numCuotas, String diaMesAPagarCuota, Float valorCuota, String gerenteCreador, Float saldoPendiente ) {
         this.id = id;
-        this.numPrestamo = numPrestamo;
         this.tipoPrestamo = tipoPrestamo;
         this.monto=monto;
         this.intereses=intereses;
+        this.cliente=cliente;
         this.numCuotas=numCuotas;
         this.diaMesAPagarCuota=diaMesAPagarCuota;
         this.valorCuota=valorCuota;
@@ -51,20 +51,6 @@ public class Prestamo {
     public void setId(Integer id) {
         this.id = id;
     }
-
-
-
-    public Integer getNumPrestamo() {
-        return numPrestamo;
-    }
-
-
-
-    public void setNumPrestamo(Integer numPrestamo) {
-        this.numPrestamo = numPrestamo;
-    }
-
-
 
     public String getEstado() {
         return estado;
@@ -90,13 +76,13 @@ public class Prestamo {
 
 
 
-    public Integer getMonto() {
+    public Float getMonto() {
         return monto;
     }
 
 
 
-    public void setMonto(Integer monto) {
+    public void setMonto(Float monto) {
         this.monto = monto;
     }
 
@@ -170,6 +156,18 @@ public class Prestamo {
 
     public void setSaldoPendiente(Float saldoPendiente) {
         this.saldoPendiente = saldoPendiente;
+    }
+
+
+
+    public Integer getCliente() {
+        return cliente;
+    }
+
+
+
+    public void setCliente(Integer cliente) {
+        this.cliente = cliente;
     }
 
 
