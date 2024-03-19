@@ -18,7 +18,7 @@ public class UsuarioEmpleado {
   private String login;
   private String password_empleados;
   @OneToOne
-  @JoinColumn(name = "id", referencedColumnName = "id")
+  @JoinColumn(name = "id_empleado", referencedColumnName = "id")
   private Empleado idEmpleado;
 
   public UsuarioEmpleado(String login, String password_empleados, Empleado idEmpleado) {

@@ -19,7 +19,7 @@ public class UsuarioCliente {
   private String password_clientes;
 
   @OneToOne
-  @JoinColumn(name = "id", referencedColumnName = "id")
+  @JoinColumn(name = "id_cliente", referencedColumnName = "id")
   private Cliente idCliente;
 
   public UsuarioCliente(String login, String password_clientes, Cliente idCliente) {
