@@ -14,40 +14,37 @@ public class Cliente {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  private String numero_documento;
+  private Integer numero_documento;
   private String tipo;
   private String tipoDocumento;
   private String nombre;
   private String nacionalidad;
-  private String direccionFisica;
-  private String direccionElectronica;
+  private String direccion_fisica;
+  private String direccion_electronica;
   private String telefono;
-  private String codigoPostal;
+  private String codigo_postal;
   private String ciudad;
   private String departamento;
-  private String login;
-  private String password;
 
   public Cliente() {
     ;
   }
 
-  public Cliente(String numero_documento, String tipo, String tipoDocumento, String nombre, String nacionalidad,
-      String direccionFisica, String direccionElectronica, String telefono, String codigoPostal, String ciudad,
-      String departamento, String login, String password) {
+  public Cliente(Integer numero_documento, String tipo, String tipoDocumento, String nombre, String nacionalidad,
+      String direccion_fisica, String direccion_electronica, String telefono, String codigo_postal, String ciudad,
+      String departamento) {
     this.numero_documento = numero_documento;
     this.tipo = tipo;
     this.tipoDocumento = tipoDocumento;
     this.nombre = nombre;
     this.nacionalidad = nacionalidad;
-    this.direccionFisica = direccionFisica;
-    this.direccionElectronica = direccionElectronica;
+    this.direccion_fisica = direccion_fisica;
+    this.direccion_electronica = direccion_electronica;
     this.telefono = telefono;
-    this.codigoPostal = codigoPostal;
+    this.codigo_postal = codigo_postal;
     this.ciudad = ciudad;
     this.departamento = departamento;
-    this.login = login;
-    this.password = password;
+
   }
 
   public Integer getId() {
@@ -58,11 +55,11 @@ public class Cliente {
     this.id = id;
   }
 
-  public String getNumero_documento() {
+  public Integer getNumero_documento() {
     return numero_documento;
   }
 
-  public void setNumero_documento(String numero_documento) {
+  public void setNumero_documento(Integer numero_documento) {
     this.numero_documento = numero_documento;
   }
 
@@ -98,20 +95,20 @@ public class Cliente {
     this.nacionalidad = nacionalidad;
   }
 
-  public String getDireccionFisica() {
-    return direccionFisica;
+  public String getDireccion_fisica() {
+    return direccion_fisica;
   }
 
-  public void setDireccionFisica(String direccionFisica) {
-    this.direccionFisica = direccionFisica;
+  public void setDireccion_fisica(String direccion_fisica) {
+    this.direccion_fisica = direccion_fisica;
   }
 
-  public String getDireccionElectronica() {
-    return direccionElectronica;
+  public String getDireccion_electronica() {
+    return direccion_electronica;
   }
 
-  public void setDireccionElectronica(String direccionElectronica) {
-    this.direccionElectronica = direccionElectronica;
+  public void setDireccion_electronica(String direccion_electronica) {
+    this.direccion_electronica = direccion_electronica;
   }
 
   public String getTelefono() {
@@ -123,11 +120,11 @@ public class Cliente {
   }
 
   public String getCodigoPostal() {
-    return codigoPostal;
+    return codigo_postal;
   }
 
   public void setCodigoPostal(String codigoPostal) {
-    this.codigoPostal = codigoPostal;
+    this.codigo_postal = codigoPostal;
   }
 
   public String getCiudad() {
@@ -144,22 +141,6 @@ public class Cliente {
 
   public void setDepartamento(String departamento) {
     this.departamento = departamento;
-  }
-
-  public String getLogin() {
-    return login;
-  }
-
-  public void setLogin(String login) {
-    this.login = login;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
   }
 
 }

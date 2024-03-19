@@ -9,22 +9,23 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "usuarios_empleados")
-public class UsuarioEmpleado {
+@Table(name = "usuarios_clientes")
+public class UsuarioCliente {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
   private String login;
-  private String password_empleados;
+  private String password_clientes;
+
   @OneToOne
   @JoinColumn(name = "id", referencedColumnName = "id")
-  private Empleado idEmpleado;
+  private Cliente idCliente;
 
-  public UsuarioEmpleado(String login, String password_empleados, Empleado idEmpleado) {
+  public UsuarioCliente(String login, String password_clientes, Cliente idCliente) {
     this.login = login;
-    this.password_empleados = password_empleados;
-    this.idEmpleado = idEmpleado;
+    this.password_clientes = password_clientes;
+    this.idCliente = idCliente;
   }
 
   public Integer getId() {
@@ -43,20 +44,20 @@ public class UsuarioEmpleado {
     this.login = login;
   }
 
-  public String getPassword_empleados() {
-    return password_empleados;
+  public String getPassword_clientes() {
+    return password_clientes;
   }
 
-  public void setPassword_empleados(String password_empleados) {
-    this.password_empleados = password_empleados;
+  public void setPassword_clientes(String password_clientes) {
+    this.password_clientes = password_clientes;
   }
 
-  public Empleado getIdEmpleado() {
-    return idEmpleado;
+  public Cliente getIdCliente() {
+    return idCliente;
   }
 
-  public void setIdEmpleado(Empleado idEmpleado) {
-    this.idEmpleado = idEmpleado;
+  public void setIdCliente(Cliente idCliente) {
+    this.idCliente = idCliente;
   }
 
 }

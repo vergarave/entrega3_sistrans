@@ -22,13 +22,13 @@ public class Oficina {
 
   private String ciudad;
 
-  private String gerente;
+  private Integer gerente;
 
   public Oficina() {
     ;
   }
 
-  public Oficina(String nombre, String direccion, Integer numero_puntos_atencion, String ciudad, String gerente) {
+  public Oficina(String nombre, String direccion, Integer numero_puntos_atencion, String ciudad, Integer gerente) {
     this.nombre = nombre;
     this.direccion = direccion;
     this.numero_puntos_atencion = numero_puntos_atencion;
@@ -76,11 +76,11 @@ public class Oficina {
     this.ciudad = ciudad;
   }
 
-  public String getGerente() {
+  public Integer getGerente() {
     return gerente;
   }
 
-  public void setGerente(String gerente) {
+  public void setGerente(Integer gerente) {
     this.gerente = gerente;
   }
 
