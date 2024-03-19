@@ -162,7 +162,4 @@ public class Cliente {
     this.password = password;
   }
 
-  
-  
-
 }
