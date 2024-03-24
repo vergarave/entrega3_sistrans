@@ -1,50 +1,47 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class TransaccionPrestamoPK implements Serializable {
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_operacion", referencedColumnName = "id")
-    private OperacionPrestamo idOperacion;
+    private OperacionPrestamo id_operacion;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_prestamo", referencedColumnName = "id")
-    private Prestamo idPrestamo;
+    private Prestamo id_prestamo;
 
     public TransaccionPrestamoPK() {
         super();
     }
 
-    public TransaccionPrestamoPK(OperacionPrestamo idOperacion, Prestamo idPrestamo) {
-        this.idOperacion = idOperacion;
-        this.idPrestamo = idPrestamo;
+    public TransaccionPrestamoPK(OperacionPrestamo id_operacion, Prestamo id_prestamo) {
+        super();
+        this.id_operacion = id_operacion;
+        this.id_prestamo = id_prestamo;
     }
 
-    public OperacionPrestamo getIdOperacion() {
-        return idOperacion;
+    public OperacionPrestamo getId_operacion() {
+        return id_operacion;
     }
 
-    public void setIdOperacion(OperacionPrestamo idOperacion) {
-        this.idOperacion = idOperacion;
+    public void setId_operacion(OperacionPrestamo id_operacion) {
+        this.id_operacion = id_operacion;
     }
 
-    public Prestamo getIdPrestamo() {
-        return idPrestamo;
+    public Prestamo getId_prestamo() {
+        return id_prestamo;
     }
 
-    public void setIdPrestamo(Prestamo idPrestamo) {
-        this.idPrestamo = idPrestamo;
+    public void setId_prestamo(Prestamo id_prestamo) {
+        this.id_prestamo = id_prestamo;
     }
+
+    
 
 }

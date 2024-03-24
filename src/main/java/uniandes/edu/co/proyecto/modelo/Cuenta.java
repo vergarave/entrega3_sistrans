@@ -1,7 +1,11 @@
 package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -9,50 +13,51 @@ import jakarta.persistence.Table;
 public class Cuenta {
 
     @Id
-    private Integer numeroCuenta;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    private Integer numero_cuenta;
     private String estado;
     private Integer saldo;
     private String tipo;
-    private String ultimaTransaccion;
-    private String gerenteOficinaCreador;
-    private String fechaCreacion;
+    @ManyToOne
+    @JoinColumn(name = "cliente", referencedColumnName = "id")
+    private Cliente cliente;
 
-    public Cuenta(Integer numeroCuenta, String estado, Integer saldo, String tipo, String ultimaTransaccion, String gerenteOficinaCreador, String fechaCreacion) {
-        super();
-        this.numeroCuenta = numeroCuenta;
+    private String ultima_transaccion;
+    private String gerente_oficina_creador;
+    private String fecha_creacion;
+
+    public Cuenta(Integer numero_cuenta, String estado, Integer saldo, String tipo, Cliente cliente,
+            String ultima_transaccion, String gerente_oficina_creador, String fecha_creacion) {
+        this.numero_cuenta = numero_cuenta;
         this.estado = estado;
         this.saldo = saldo;
         this.tipo = tipo;
-        this.ultimaTransaccion = ultimaTransaccion;
-        this.gerenteOficinaCreador=gerenteOficinaCreador;
-        this.fechaCreacion=fechaCreacion;
+        this.cliente = cliente;
+        this.ultima_transaccion = ultima_transaccion;
+        this.gerente_oficina_creador = gerente_oficina_creador;
+        this.fecha_creacion = fecha_creacion;
     }
 
     public Cuenta() {
+        ;
     }
 
-    public Integer getNumeroCuenta() {
-        return numeroCuenta;
+    public Integer getId() {
+        return id;
     }
 
-    public void setNumeroCuenta(Integer numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getTipo() {
-        return tipo;
+    public Integer getNumero_cuenta() {
+        return numero_cuenta;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public Integer getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(Integer saldo) {
-        this.saldo = saldo;
+    public void setNumero_cuenta(Integer numero_cuenta) {
+        this.numero_cuenta = numero_cuenta;
     }
 
     public String getEstado() {
@@ -63,27 +68,57 @@ public class Cuenta {
         this.estado = estado;
     }
 
-    public String getUltimaTransaccion() {
-        return ultimaTransaccion;
+    public Integer getSaldo() {
+        return saldo;
     }
 
-    public void setUltimaTransaccion(String ultimaTransaccion) {
-        this.ultimaTransaccion = ultimaTransaccion;
+    public void setSaldo(Integer saldo) {
+        this.saldo = saldo;
     }
 
-    public String getGerenteOficinaCreador() {
-        return gerenteOficinaCreador;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setGerenteOficinaCreador(String gerenteOficinaCreador) {
-        this.gerenteOficinaCreador = gerenteOficinaCreador;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public String getFechaCreacion() {
-        return fechaCreacion;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
+
+    public String getUltima_transaccion() {
+        return ultima_transaccion;
+    }
+
+    public void setUltima_transaccion(String ultima_transaccion) {
+        this.ultima_transaccion = ultima_transaccion;
+    }
+
+    public String getGerente_oficina_creador() {
+        return gerente_oficina_creador;
+    }
+
+    public void setGerente_oficina_creador(String gerente_oficina_creador) {
+        this.gerente_oficina_creador = gerente_oficina_creador;
+    }
+
+    public String getFecha_creacion() {
+        return fecha_creacion;
+    }
+
+    public void setFecha_creacion(String fecha_creacion) {
+        this.fecha_creacion = fecha_creacion;
+    }
+
+    
+
+    
+
+
 }

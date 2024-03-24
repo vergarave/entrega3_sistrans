@@ -3,7 +3,6 @@ package uniandes.edu.co.proyecto.modelo;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,32 +19,32 @@ public class PuntoAtencion {
 
   private String ciudad;
 
-  private String horarioAtencion;
+  private String horario_atencion;
 
   private String direccion;
 
-  @OneToMany
+  @ManyToOne
   @JoinColumn(name = "id_oficina", referencedColumnName = "id")
-  private Oficina idOficina;
+  private Oficina id_oficina;
 
   public PuntoAtencion() {
     ;
   }
 
-  public PuntoAtencion(String tipo, String ciudad, String horarioAtencion, String direccion, Oficina idOficina) {
+  public PuntoAtencion(String tipo, String ciudad, String horario_atencion, String direccion, Oficina id_oficina) {
     this.tipo = tipo;
     this.ciudad = ciudad;
-    this.horarioAtencion = horarioAtencion;
+    this.horario_atencion = horario_atencion;
     this.direccion = direccion;
-    this.idOficina = idOficina;
+    this.id_oficina = id_oficina;
   }
 
   public Oficina getIdOficina() {
-    return idOficina;
+    return id_oficina;
   }
 
-  public void setIdOficina(Oficina idOficina) {
-    this.idOficina = idOficina;
+  public void setIdOficina(Oficina id_oficina) {
+    this.id_oficina = id_oficina;
   }
 
   public Integer getId() {
@@ -73,11 +72,11 @@ public class PuntoAtencion {
   }
 
   public String getHorarioAtencion() {
-    return horarioAtencion;
+    return horario_atencion;
   }
 
-  public void setHorarioAtencion(String horarioAtencion) {
-    this.horarioAtencion = horarioAtencion;
+  public void setHorarioAtencion(String horario_atencion) {
+    this.horario_atencion = horario_atencion;
   }
 
   public String getDireccion() {

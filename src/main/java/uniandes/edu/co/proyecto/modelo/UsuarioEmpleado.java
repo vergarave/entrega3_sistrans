@@ -19,12 +19,12 @@ public class UsuarioEmpleado {
   private String password_empleados;
   @OneToOne
   @JoinColumn(name = "id_empleado", referencedColumnName = "id")
-  private Empleado idEmpleado;
+  private Empleado id_empleado;
 
-  public UsuarioEmpleado(String login, String password_empleados, Empleado idEmpleado) {
+  public UsuarioEmpleado(String login, String password_empleados, Empleado id_empleado) {
     this.login = login;
     this.password_empleados = password_empleados;
-    this.idEmpleado = idEmpleado;
+    this.id_empleado = id_empleado;
   }
 
   public Integer getId() {
@@ -52,11 +52,11 @@ public class UsuarioEmpleado {
   }
 
   public Empleado getIdEmpleado() {
-    return idEmpleado;
+    return id_empleado;
   }
 
-  public void setIdEmpleado(Empleado idEmpleado) {
-    this.idEmpleado = idEmpleado;
+  public void setIdEmpleado(Empleado id_empleado) {
+    this.id_empleado = id_empleado;
   }
 
 }

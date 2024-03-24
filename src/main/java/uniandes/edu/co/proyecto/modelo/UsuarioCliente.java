@@ -16,16 +16,16 @@ public class UsuarioCliente {
   private Integer id;
 
   private String login;
-  private String password_clientes;
+  private String password_cliente;
 
   @OneToOne
   @JoinColumn(name = "id_cliente", referencedColumnName = "id")
-  private Cliente idCliente;
+  private Cliente id_cliente;
 
-  public UsuarioCliente(String login, String password_clientes, Cliente idCliente) {
+  public UsuarioCliente(String login, String password_cliente, Cliente id_cliente) {
     this.login = login;
-    this.password_clientes = password_clientes;
-    this.idCliente = idCliente;
+    this.password_cliente = password_cliente;
+    this.id_cliente = id_cliente;
   }
 
   public Integer getId() {
@@ -44,20 +44,22 @@ public class UsuarioCliente {
     this.login = login;
   }
 
-  public String getPassword_clientes() {
-    return password_clientes;
+  public String getPassword_cliente() {
+    return password_cliente;
   }
 
-  public void setPassword_clientes(String password_clientes) {
-    this.password_clientes = password_clientes;
+  public void setPassword_cliente(String password_cliente) {
+    this.password_cliente = password_cliente;
   }
 
-  public Cliente getIdCliente() {
-    return idCliente;
+  public Cliente getId_cliente() {
+    return id_cliente;
   }
 
-  public void setIdCliente(Cliente idCliente) {
-    this.idCliente = idCliente;
+  public void setId_cliente(Cliente id_cliente) {
+    this.id_cliente = id_cliente;
   }
+
+  
 
 }

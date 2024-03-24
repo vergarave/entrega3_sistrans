@@ -20,9 +20,10 @@ public class Oficina {
 
   private Integer numero_puntos_atencion;
 
+  private Integer gerente;
+
   private String ciudad;
 
-  private Integer gerente;
 
   public Oficina() {
     ;

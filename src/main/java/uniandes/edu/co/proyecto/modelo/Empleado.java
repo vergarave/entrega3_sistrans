@@ -15,7 +15,8 @@ public class Empleado {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  private Integer numero_documento;
+  private String numero_documento;
+  private String cargo;
   private String tipo; // Este se refiere a tipo de personas natural o juridica
   private String tipo_documento;
   private String nombre;
@@ -26,19 +27,18 @@ public class Empleado {
   private String codigo_postal;
   private String ciudad;
   private String departamento;
-  private String cargo;
 
   @OneToMany
   @JoinColumn(name = "id_oficina", referencedColumnName = "id")
-  private Oficina idOficina;
+  private Oficina id_Oficina;
 
   public Empleado() {
     ;
   }
 
-  public Empleado(Integer numero_documento, String tipo, String tipo_documento, String nombre, String nacionalidad,
+  public Empleado(String numero_documento, String tipo, String tipo_documento, String nombre, String nacionalidad,
       String direccion_fisica, String direccion_electronica, String telefono, String codigo_postal, String ciudad,
-      String departamento, String cargo, Oficina idOficina) {
+      String departamento, String cargo, Oficina id_Oficina) {
     this.numero_documento = numero_documento;
     this.tipo = tipo;
     this.tipo_documento = tipo_documento;
@@ -51,7 +51,7 @@ public class Empleado {
     this.ciudad = ciudad;
     this.departamento = departamento;
     this.cargo = cargo;
-    this.idOficina = idOficina;
+    this.id_Oficina = id_Oficina;
   }
 
   public Integer getId() {
@@ -62,11 +62,11 @@ public class Empleado {
     this.id = id;
   }
 
-  public Integer getNumero_documento() {
+  public String getNumero_documento() {
     return numero_documento;
   }
 
-  public void setNumero_documento(Integer numero_documento) {
+  public void setNumero_documento(String numero_documento) {
     this.numero_documento = numero_documento;
   }
 
@@ -159,11 +159,11 @@ public class Empleado {
   }
 
   public Oficina getIdOficina() {
-    return idOficina;
+    return id_Oficina;
   }
 
-  public void setIdOficina(Oficina idOficina) {
-    this.idOficina = idOficina;
+  public void setIdOficina(Oficina id_Oficina) {
+    this.id_Oficina = id_Oficina;
   }
 
 }
