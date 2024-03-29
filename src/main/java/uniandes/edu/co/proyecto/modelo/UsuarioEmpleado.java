@@ -16,14 +16,14 @@ public class UsuarioEmpleado {
   private Integer id;
 
   private String login;
-  private String password_empleados;
+  private String password_empleado;
   @OneToOne
   @JoinColumn(name = "id_empleado", referencedColumnName = "id")
   private Empleado id_empleado;
 
-  public UsuarioEmpleado(String login, String password_empleados, Empleado id_empleado) {
+  public UsuarioEmpleado(String login, String password_empleado, Empleado id_empleado) {
     this.login = login;
-    this.password_empleados = password_empleados;
+    this.password_empleado = password_empleado;
     this.id_empleado = id_empleado;
   }
 
@@ -44,11 +44,11 @@ public class UsuarioEmpleado {
   }
 
   public String getPassword_empleados() {
-    return password_empleados;
+    return password_empleado;
   }
 
-  public void setPassword_empleados(String password_empleados) {
-    this.password_empleados = password_empleados;
+  public void setPassword_empleados(String password_empleado) {
+    this.password_empleado = password_empleado;
   }
 
   public Empleado getIdEmpleado() {

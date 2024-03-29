@@ -18,9 +18,9 @@ public class Oficina {
 
   private String direccion;
 
-  private Integer numero_puntos_atencion;
+  private int numero_puntos_atencion;
 
-  private Integer gerente;
+  private int gerente;
 
   private String ciudad;
 

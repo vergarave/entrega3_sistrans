@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,20 +18,19 @@ public class Cuenta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private Integer numero_cuenta;
+    private String numero_cuenta;
     private String estado;
-    private Integer saldo;
+    private Float saldo;
     private String tipo;
     @ManyToOne
     @JoinColumn(name = "cliente", referencedColumnName = "id")
     private Cliente cliente;
 
-    private String ultima_transaccion;
-    private String gerente_oficina_creador;
-    private String fecha_creacion;
+    private Date ultima_transaccion;
+    private Integer gerente_oficina_creador;
+    private Date fecha_creacion;
 
-    public Cuenta(Integer numero_cuenta, String estado, Integer saldo, String tipo, Cliente cliente,
-            String ultima_transaccion, String gerente_oficina_creador, String fecha_creacion) {
+    public Cuenta(String numero_cuenta, String estado, Float saldo, String tipo, Cliente cliente, Date ultima_transaccion, int gerente_oficina_creador, Date fecha_creacion) {
         this.numero_cuenta = numero_cuenta;
         this.estado = estado;
         this.saldo = saldo;
@@ -40,10 +41,6 @@ public class Cuenta {
         this.fecha_creacion = fecha_creacion;
     }
 
-    public Cuenta() {
-        ;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -52,11 +49,11 @@ public class Cuenta {
         this.id = id;
     }
 
-    public Integer getNumero_cuenta() {
+    public String getNumero_cuenta() {
         return numero_cuenta;
     }
 
-    public void setNumero_cuenta(Integer numero_cuenta) {
+    public void setNumero_cuenta(String numero_cuenta) {
         this.numero_cuenta = numero_cuenta;
     }
 
@@ -68,11 +65,11 @@ public class Cuenta {
         this.estado = estado;
     }
 
-    public Integer getSaldo() {
+    public Float getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(Integer saldo) {
+    public void setSaldo(Float saldo) {
         this.saldo = saldo;
     }
 
@@ -92,30 +89,31 @@ public class Cuenta {
         this.cliente = cliente;
     }
 
-    public String getUltima_transaccion() {
+    public Date getUltima_transaccion() {
         return ultima_transaccion;
     }
 
-    public void setUltima_transaccion(String ultima_transaccion) {
+    public void setUltima_transaccion(Date ultima_transaccion) {
         this.ultima_transaccion = ultima_transaccion;
     }
 
-    public String getGerente_oficina_creador() {
+    public int getGerente_oficina_creador() {
         return gerente_oficina_creador;
     }
 
-    public void setGerente_oficina_creador(String gerente_oficina_creador) {
+    public void setGerente_oficina_creador(int gerente_oficina_creador) {
         this.gerente_oficina_creador = gerente_oficina_creador;
     }
 
-    public String getFecha_creacion() {
+    public Date getFecha_creacion() {
         return fecha_creacion;
     }
 
-    public void setFecha_creacion(String fecha_creacion) {
+    public void setFecha_creacion(Date fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
     }
 
+    
     
 
     

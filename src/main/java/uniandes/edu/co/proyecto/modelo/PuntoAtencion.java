@@ -25,26 +25,26 @@ public class PuntoAtencion {
 
   @ManyToOne
   @JoinColumn(name = "id_oficina", referencedColumnName = "id")
-  private Oficina id_oficina;
+  private Oficina oficina;
 
   public PuntoAtencion() {
     ;
   }
 
-  public PuntoAtencion(String tipo, String ciudad, String horario_atencion, String direccion, Oficina id_oficina) {
+  public PuntoAtencion(String tipo, String ciudad, String horario_atencion, String direccion, Oficina oficina) {
     this.tipo = tipo;
     this.ciudad = ciudad;
     this.horario_atencion = horario_atencion;
     this.direccion = direccion;
-    this.id_oficina = id_oficina;
+    this.oficina = oficina;
   }
 
   public Oficina getIdOficina() {
-    return id_oficina;
+    return oficina;
   }
 
-  public void setIdOficina(Oficina id_oficina) {
-    this.id_oficina = id_oficina;
+  public void setIdOficina(Oficina oficina) {
+    this.oficina = oficina;
   }
 
   public Integer getId() {
