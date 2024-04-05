@@ -22,6 +22,10 @@ public class UsuarioCliente {
   @JoinColumn(name = "id_cliente", referencedColumnName = "id")
   private Cliente id_cliente;
 
+  public UsuarioCliente() {
+    ;
+  }
+
   public UsuarioCliente(String login, String password_cliente, Cliente id_cliente) {
     this.login = login;
     this.password_cliente = password_cliente;
