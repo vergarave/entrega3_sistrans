@@ -38,7 +38,7 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
 
   @Modifying
   @Transactional
-  @Query(value = "UPDATE empleados SET numero_documento=: numero_documento, tipo = :tipo, cargo=: cargo, tipo_documento = :tipo_documento,nombre = :nombre, nacionalidad =: nacionalidad, direccion_fisica =: direccion_fisica, direccion_electronica =: direccion_electronica , telefono= :telefono, codigo_postal= :codigo_postal, ciudad= :ciudad, departamento= :departamento, id_oficina = :id_oficina WHERE id = :id", nativeQuery = true)
+  @Query(value = "UPDATE empleados SET numero_documento=:numero_documento, tipo = :tipo, cargo= :cargo, tipo_documento = :tipo_documento,nombre = :nombre, nacionalidad = :nacionalidad, direccion_fisica = :direccion_fisica, direccion_electronica = :direccion_electronica , telefono= :telefono, codigo_postal= :codigo_postal, ciudad= :ciudad, departamento= :departamento, id_oficina = :id_oficina WHERE id = :id", nativeQuery = true)
   void actualizarEmpleado(
       @Param("id") long id,
       @Param("numero_documento") Integer numero_documento,

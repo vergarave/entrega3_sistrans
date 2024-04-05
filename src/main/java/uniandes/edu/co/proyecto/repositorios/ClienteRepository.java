@@ -34,7 +34,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
   @Modifying
   @Transactional
-  @Query(value = "UPDATE clientes SET numero_documento=: numero_documento, tipo = :tipo, tipo_documento = :tipo_documento,nombre = :nombre, nacionalidad =: nacionalidad, direccion_fisica =: direccion_fisica,direccion_electronica =: direccion_electronica ,codigo_postal=: codigo_postal, ciudad=:ciudad, departamento:=departamento  WHERE id = :id", nativeQuery = true)
+  @Query(value = "UPDATE clientes SET numero_documento=:numero_documento, tipo = :tipo, tipo_documento = :tipo_documento,nombre = :nombre, nacionalidad = :nacionalidad, direccion_fisica = :direccion_fisica, direccion_electronica = :direccion_electronica , telefono = :telefono, codigo_postal = :codigo_postal, ciudad = :ciudad, departamento= :departamento  WHERE id = :id", nativeQuery = true)
   void actualizarCliente(@Param("id") long  id,
       @Param("numero_documento") String numero_documento,
       @Param("tipo") String tipo,
@@ -50,7 +50,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
   @Modifying
   @Transactional
-  @Query(value = "DELETE FROM clientes WHERE id=:id", nativeQuery = true)
+  @Query(value = "DELETE FROM clientes WHERE id= :id", nativeQuery = true)
   void eliminarCliente(@Param("id") long  id);
 
 }

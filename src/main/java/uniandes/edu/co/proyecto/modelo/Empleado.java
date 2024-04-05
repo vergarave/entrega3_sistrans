@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,7 +28,7 @@ public class Empleado {
   private String ciudad;
   private String departamento;
 
-  @OneToMany
+  @ManyToOne
   @JoinColumn(name = "id_oficina", referencedColumnName = "id")
   private Oficina id_Oficina;
 

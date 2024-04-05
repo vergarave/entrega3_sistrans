@@ -36,7 +36,7 @@ public interface UsuarioEmpleadoRepository extends JpaRepository<UsuarioEmpleado
     @Query(value = "UPDATE usuarios_empleados SET login= :login, password_empleado= :password_empleado, id_empleado= :id_empleado WHERE id = :id", nativeQuery = true)
     void actualizarUsuarioEmpleado(@Param("id") long id,
         @Param("login") String login,
-        @Param("password_cliente") String password_cliente,
+        @Param("password_empleado") String password_cliente,
         @Param("id_empleado") Integer id_empleado);
 
 }

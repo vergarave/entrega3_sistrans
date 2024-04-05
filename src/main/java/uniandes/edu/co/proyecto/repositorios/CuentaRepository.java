@@ -33,7 +33,7 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE cuentas SET numero_cuenta= :numero_cuenta, estado = :estado, saldo = :saldo, tipo = :tipo, cliente =:cliente, ultima_transaccion =: ultima_transaccion,gerente_oficina_creador =: gerente_oficina_creador ,fecha_creacion=: fecha_creacion WHERE id = :id", nativeQuery = true)
+    @Query(value = "UPDATE cuentas SET numero_cuenta=:numero_cuenta, estado =:estado, saldo = :saldo, tipo = :tipo, cliente = :cliente, ultima_transaccion = :ultima_transaccion, gerente_oficina_creador = :gerente_oficina_creador ,fecha_creacion= :fecha_creacion WHERE id = :id", nativeQuery = true)
     void actualizarCuenta(@Param("id") long  id,
         @Param("numero_cuenta") String numero_cuenta,
         @Param("estado") String estado,
