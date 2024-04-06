@@ -21,6 +21,8 @@ public class UsuarioEmpleado {
   @JoinColumn(name = "id_empleado", referencedColumnName = "id")
   private Empleado id_empleado;
 
+  public UsuarioEmpleado(){;}
+
   public UsuarioEmpleado(String login, String password_empleado, Empleado id_empleado) {
     this.login = login;
     this.password_empleado = password_empleado;

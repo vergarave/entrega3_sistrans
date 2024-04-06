@@ -27,6 +27,8 @@ public class OperacionPrestamo {
     @JoinColumn(name = "punto_atencion", referencedColumnName = "id")
     private PuntoAtencion punto_atencion;
 
+    public OperacionPrestamo(){;}
+
     public OperacionPrestamo(String tipo_operacion, Date fecha, Integer cuenta_prestamo, Float monto_operacion,
             Integer cliente, PuntoAtencion punto_atencion) {
         this.tipo_operacion = tipo_operacion;
