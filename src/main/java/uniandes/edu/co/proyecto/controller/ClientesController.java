@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import uniandes.edu.co.proyecto.modelo.Cliente;
 import uniandes.edu.co.proyecto.repositorios.ClienteRepository;
 
-
 @Controller
 public class ClientesController {
 
@@ -25,7 +24,7 @@ public class ClientesController {
     }
 
     @GetMapping("/clientes/new")
-    public String clientesForm(Model model){
+    public String clientesForm(Model model) {
 
         model.addAttribute("cliente", new Cliente());
         return "clientes";
@@ -35,10 +34,10 @@ public class ClientesController {
     public String clientesSave(@ModelAttribute Cliente cliente) {
 
         clienteRepository.insertarCliente(cliente.getNumero_documento(), cliente.getTipo(),
-                                            cliente.getTipoDocumento(), cliente.getNombre(),
-                                            cliente.getNacionalidad(),cliente.getDireccion_fisica(),
-                                            cliente.getDireccion_electronica(), cliente.getTelefono(),
-                                            cliente.getCodigoPostal(), cliente.getCiudad(), cliente.getDepartamento());
+                cliente.getTipoDocumento(), cliente.getNombre(),
+                cliente.getNacionalidad(), cliente.getDireccion_fisica(),
+                cliente.getDireccion_electronica(), cliente.getTelefono(),
+                cliente.getCodigoPostal(), cliente.getCiudad(), cliente.getDepartamento());
         return "redirect:/clientes";
     }
 
@@ -55,19 +54,18 @@ public class ClientesController {
 
     @PostMapping("/clientes/{id}/edit/save")
     public String clienteEditSave(@PathVariable("id") long id, @ModelAttribute Cliente cliente) {
-        clienteRepository.actualizarCliente(((long) id),cliente.getNumero_documento(), cliente.getTipo(),
-                                            cliente.getTipoDocumento(), cliente.getNombre(),
-                                            cliente.getNacionalidad(),cliente.getDireccion_fisica(),
-                                            cliente.getDireccion_electronica(), cliente.getTelefono(),
-                                            cliente.getCodigoPostal(), cliente.getCiudad(), cliente.getDepartamento());
+        clienteRepository.actualizarCliente(((long) id), cliente.getNumero_documento(), cliente.getTipo(),
+                cliente.getTipoDocumento(), cliente.getNombre(),
+                cliente.getNacionalidad(), cliente.getDireccion_fisica(),
+                cliente.getDireccion_electronica(), cliente.getTelefono(),
+                cliente.getCodigoPostal(), cliente.getCiudad(), cliente.getDepartamento());
         return "redirect:/clientes";
     }
 
     @GetMapping("/clientes/{id}/delete")
-    public String bebedorBorrar(@PathVariable("id") long id) {
+    public String clienteBorrar(@PathVariable("id") long id) {
         clienteRepository.eliminarCliente(id);
         return "redirect:/clientes";
     }
 
-    
 }

@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="cuentas")
+@Table(name = "cuentas")
 public class Cuenta {
 
     @Id
@@ -30,7 +30,12 @@ public class Cuenta {
     private Integer gerente_oficina_creador;
     private Date fecha_creacion;
 
-    public Cuenta(String numero_cuenta, String estado, Float saldo, String tipo, Cliente cliente, Date ultima_transaccion, int gerente_oficina_creador, Date fecha_creacion) {
+    public Cuenta() {
+        ;
+    }
+
+    public Cuenta(String numero_cuenta, String estado, Float saldo, String tipo, Cliente cliente,
+            Date ultima_transaccion, int gerente_oficina_creador, Date fecha_creacion) {
         this.numero_cuenta = numero_cuenta;
         this.estado = estado;
         this.saldo = saldo;
@@ -112,11 +117,5 @@ public class Cuenta {
     public void setFecha_creacion(Date fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
     }
-
-    
-    
-
-    
-
 
 }
