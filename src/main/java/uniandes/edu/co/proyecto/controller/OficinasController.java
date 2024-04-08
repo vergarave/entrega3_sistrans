@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import uniandes.edu.co.proyecto.modelo.Empleado;
 import uniandes.edu.co.proyecto.modelo.Oficina;
-import uniandes.edu.co.proyecto.repositorios.EmpleadoRepository;
 import uniandes.edu.co.proyecto.repositorios.OficinaRepository;
 
 @Controller

@@ -9,7 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="prestamos")
+@Table(name = "prestamos")
 public class Prestamo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,9 +25,9 @@ public class Prestamo {
     @ManyToOne
     @JoinColumn(name = "cliente", referencedColumnName = "id")
     private Cliente cliente;
+
     private Integer gerente_creador;
     private Float saldo_pendiente;
-
 
     public Prestamo(String estado, String tipo, Float monto, Float interes, Integer numero_cuotas,
             String dia_mes_pagar_cuota, Float valor_cuota, Cliente cliente, Integer gerente_creador,
@@ -43,7 +43,7 @@ public class Prestamo {
         this.gerente_creador = gerente_creador;
         this.saldo_pendiente = saldo_pendiente;
     }
-    
+
     public Prestamo() {
         ;
     }
@@ -135,6 +135,5 @@ public class Prestamo {
     public void setSaldo_pendiente(Float saldo_pendiente) {
         this.saldo_pendiente = saldo_pendiente;
     }
-
 
 }
