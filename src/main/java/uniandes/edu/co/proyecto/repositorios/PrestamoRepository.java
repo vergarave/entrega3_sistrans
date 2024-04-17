@@ -25,9 +25,10 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
 
   @Modifying
   @Transactional
-  @Query(value = "INSERT INTO prestamos (id, estado, tipo, monto,interes,numero_cuotas,dia_mes_pagar_cuota, valor_cuota,cliente, gerente_creador, saldo_pendiente)  \r\n" + //
-                "VALUES(proyecto_sequence.nextval, :estado, :tipo, :monto,:interes,:numero_cuotas,:dia_mes_pagar_cuota, :valor_cuota,:cliente, :gerente_creador, :saldo_pendiente) ", nativeQuery = true)
-  void  insertarPrestamo(@Param("estado") String estado,
+  @Query(value = "INSERT INTO prestamos (id, estado, tipo, monto,interes,numero_cuotas,dia_mes_pagar_cuota, valor_cuota,cliente, gerente_creador, saldo_pendiente)  \r\n"
+      + //
+      "VALUES(proyecto_sequence.nextval, :estado, :tipo, :monto,:interes,:numero_cuotas,:dia_mes_pagar_cuota, :valor_cuota,:cliente, :gerente_creador, :saldo_pendiente) ", nativeQuery = true)
+  void insertarPrestamo(@Param("estado") String estado,
       @Param("tipo") String tipo,
       @Param("monto") Float monto,
       @Param("interes") Float interes,
@@ -41,15 +42,15 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
   @Modifying
   @Transactional
   @Query(value = "UPDATE prestamos SET estado= :estado , tipo= :tipo, monto =:monto,interes=:interes,numero_cuotas =:numero_cuotas ,dia_mes_pagar_cuota =:dia_mes_pagar_cuota,valor_cuota=:valor_cuota,cliente=:cliente,gerente_creador =:gerente_creador,saldo_pendiente =:saldo_pendiente WHERE id = :id", nativeQuery = true)
-  void  actualizarPrestamo(@Param("id") long id,
-    @Param("estado") String estado,
+  void actualizarPrestamo(@Param("id") long id,
+      @Param("estado") String estado,
       @Param("tipo") String tipo,
       @Param("monto") Float monto,
       @Param("interes") Float interes,
       @Param("numero_cuotas") int numero_cuotas,
       @Param("dia_mes_pagar_cuota") String dia_mes_pagar_cuota,
       @Param("valor_cuota") Float valor_cuota,
-      @Param("cliente") Float cliente,
-      @Param("gerente_creador") String gerente_creador,
+      @Param("cliente") Integer cliente,
+      @Param("gerente_creador") Integer gerente_creador,
       @Param("saldo_pendiente") Float saldo_pendiente);
 }

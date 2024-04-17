@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-
 @Controller
 public class UsuariosEmpleadosController {
 
@@ -76,14 +75,7 @@ public class UsuariosEmpleadosController {
         return "usuarioEmpleadoNew";
     }
 
-    @PostMapping("/usuariosEmpleados/new/save")
-    public String usuarioEmpleadoSave(@ModelAttribute UsuarioEmpleado usuarioEmpleado) {
 
-        usuarioEmpleadoRepository.insertarUsuarioEmpleado(usuarioEmpleado.getLogin(), usuarioEmpleado.getPassword_empleados(), 
-                                                          usuarioEmpleado.getIdEmpleado().getId());
-        
-        return "redirect:/usuariosEmpleados";
-    }
 
     @GetMapping("/usuariosEmpleados/{id}/edit")
     public String usuarioEmpleadoEditForm(@PathVariable("id") int id, Model model) {
@@ -97,9 +89,11 @@ public class UsuariosEmpleadosController {
     }
 
     @PostMapping("/usuariosEmpleados/{id}/save")
-    public String usuarioEmpleadoEditSave(@PathVariable("id") long id, @ModelAttribute UsuarioEmpleado usuarioEmpleado) {
-        usuarioEmpleadoRepository.insertarUsuarioEmpleado(usuarioEmpleado.getLogin(), usuarioEmpleado.getPassword_empleados(),
-                                                        usuarioEmpleado.getId());
+    public String usuarioEmpleadoEditSave(@PathVariable("id") long id,
+            @ModelAttribute UsuarioEmpleado usuarioEmpleado) {
+        usuarioEmpleadoRepository.insertarUsuarioEmpleado(usuarioEmpleado.getLogin(),
+                usuarioEmpleado.getPassword_empleados(),
+                usuarioEmpleado.getId());
         return "redirect:/usuariosEmpleados";
     }
 
@@ -108,5 +102,5 @@ public class UsuariosEmpleadosController {
         usuarioEmpleadoRepository.eliminarUsuarioEmpleado(id);
         return "redirect:/usuariosEmpleados";
     }
-    
+
 }
