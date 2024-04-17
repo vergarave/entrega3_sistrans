@@ -38,4 +38,11 @@ public interface UsuarioClienteRepository extends JpaRepository<UsuarioCliente, 
         @Param("password_cliente") String password_cliente,
         @Param("id_cliente") Integer id_cliente);
 
+    @Query(value = "SELECT clientes.id \r\n" + //
+        "FROM usuarios_clientes \r\n" + //
+        "INNER JOIN clientes on usuarios_clientes.id = clientes.id \r\n" + //
+        "WHERE usuarios_clientes.login= :login AND usuarios_clientes.password_cliente= :password_cliente", nativeQuery = true)
+    String verificarUsuarioCliente(@Param("login") String login,
+                                 @Param("password_cliente") String password_cliente); 
+
 }

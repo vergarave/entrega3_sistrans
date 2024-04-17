@@ -36,7 +36,16 @@ public interface UsuarioEmpleadoRepository extends JpaRepository<UsuarioEmpleado
     @Query(value = "UPDATE usuarios_empleados SET login= :login, password_empleado= :password_empleado, id_empleado= :id_empleado WHERE id = :id", nativeQuery = true)
     void actualizarUsuarioEmpleado(@Param("id") long id,
         @Param("login") String login,
-        @Param("password_empleado") String password_cliente,
+        @Param("password_empleado") String password_empleado,
         @Param("id_empleado") Integer id_empleado);
+
+
+
+    @Query(value = "SELECT empleados.cargo \r\n" + //
+                    "FROM usuarios_empleados \r\n" + //
+                    "INNER JOIN empleados on usuarios_empleados.id = empleados.id \r\n" + //
+                    "WHERE usuarios_empleados.login= :login AND usuarios_empleados.password_empleado= :password_empleado", nativeQuery = true)
+    String verificarUsuarioEmpleadoYObtenerCargo(@Param("login") String login,
+                                                @Param("password_empleado") String password_empleado);
 
 }
