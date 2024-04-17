@@ -22,6 +22,7 @@
       
                   <h3 class="mb-5">Sign in</h3>
 
+                  <form action="usuarios" method="get">
                   <div data-mdb-input-init class="form-outline mb-4">
                     <input type="text" id="loginInic" class="form-control form-control-lg" name="login" required />
                     <label class="form-label" for="typeEmailX-2">Login</label>
@@ -32,8 +33,8 @@
                     <label class="form-label" for="typePasswordX-2">Password</label>
                   </div>
                 
-                  <a th:href="@{usuariosEmpleados/{login}/{password_empleado}(login=ja.fierro,password_empleado=1234)}"class="btn btn-primary">Iniciar</a>
-                
+                  <button type="submit" class="btn btn-primary">Iniciar</button>
+                </form>
 
       
                 </div>
