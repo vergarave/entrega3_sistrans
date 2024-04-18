@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+
 @Controller
 public class UsuariosEmpleadosController {
 
@@ -30,6 +31,11 @@ public class UsuariosEmpleadosController {
     public String usuariosEmpleados(Model model) {
         model.addAttribute("usuariosEmpleados", usuarioEmpleadoRepository.darUsuariosEmpleados());
         return "usuariosEmpleados";
+    }
+
+    @GetMapping("/administrador")
+    public String volverAdmin(Model model) {
+        return "administrador";
     }
 
     @RequestMapping(path= "/usuarios", method= RequestMethod.GET)
@@ -75,7 +81,14 @@ public class UsuariosEmpleadosController {
         return "usuarioEmpleadoNew";
     }
 
+    @PostMapping("/usuariosEmpleados/new/save")
+    public String usuarioEmpleadoSave(@ModelAttribute UsuarioEmpleado usuarioEmpleado) {
 
+        usuarioEmpleadoRepository.insertarUsuarioEmpleado(usuarioEmpleado.getLogin(), usuarioEmpleado.getPassword_empleado(), 
+                                                          usuarioEmpleado.getId_empleado().getId());
+        
+        return "redirect:/usuariosEmpleados";
+    }
 
     @GetMapping("/usuariosEmpleados/{id}/edit")
     public String usuarioEmpleadoEditForm(@PathVariable("id") int id, Model model) {
@@ -89,11 +102,9 @@ public class UsuariosEmpleadosController {
     }
 
     @PostMapping("/usuariosEmpleados/{id}/save")
-    public String usuarioEmpleadoEditSave(@PathVariable("id") long id,
-            @ModelAttribute UsuarioEmpleado usuarioEmpleado) {
-        usuarioEmpleadoRepository.insertarUsuarioEmpleado(usuarioEmpleado.getLogin(),
-                usuarioEmpleado.getPassword_empleados(),
-                usuarioEmpleado.getId());
+    public String usuarioEmpleadoEditSave(@PathVariable("id") long id, @ModelAttribute UsuarioEmpleado usuarioEmpleado) {
+        usuarioEmpleadoRepository.insertarUsuarioEmpleado(usuarioEmpleado.getLogin(), usuarioEmpleado.getPassword_empleado(),
+                                                        usuarioEmpleado.getId());
         return "redirect:/usuariosEmpleados";
     }
 
@@ -102,5 +113,5 @@ public class UsuariosEmpleadosController {
         usuarioEmpleadoRepository.eliminarUsuarioEmpleado(id);
         return "redirect:/usuariosEmpleados";
     }
-
+    
 }

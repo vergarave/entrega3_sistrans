@@ -158,11 +158,11 @@ public class Empleado {
     this.cargo = cargo;
   }
 
-  public Oficina getIdOficina() {
+  public Oficina getId_oficina() {
     return id_Oficina;
   }
 
-  public void setIdOficina(Oficina id_Oficina) {
+  public void setId_oficina(Oficina id_Oficina) {
     this.id_Oficina = id_Oficina;
   }
 

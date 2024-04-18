@@ -26,7 +26,7 @@ public class EmpleadosController {
   @GetMapping("/empleados/new")
   public String empleadosForm(Model model) {
     model.addAttribute("empleado", new Empleado());
-    return "empleados";
+    return "empleadosNew";
   }
 
   @PostMapping("/empleados/new/save")
@@ -36,8 +36,8 @@ public class EmpleadosController {
         empleado.getNombre(), empleado.getNacionalidad(),
         empleado.getDireccion_fisica(), empleado.getDireccion_electronica(),
         empleado.getTelefono(), empleado.getCodigo_postal(), empleado.getCiudad(),
-        empleado.getDepartamento(), empleado.getIdOficina().getId());
-    return "redirect:/empleados";
+        empleado.getDepartamento(), empleado.getId_oficina().getId());
+    return "usuarioEmpleadoNew";
   }
 
   @GetMapping("/empleados/{id}/edit")
@@ -57,7 +57,7 @@ public class EmpleadosController {
         empleado.getTipo_documento(), empleado.getNombre(), empleado.getNacionalidad(), empleado.getDireccion_fisica(),
         empleado.getDireccion_electronica(),
         empleado.getTelefono(), empleado.getCodigo_postal(), empleado.getCiudad(), empleado.getDepartamento(),
-        empleado.getIdOficina().getId());
+        empleado.getId_oficina().getId());
     return "redirect:/empleados";
   }
 

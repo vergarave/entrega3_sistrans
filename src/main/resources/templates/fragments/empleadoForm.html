@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fragmento</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    </br>
+    <div th:fragment="empleadoForm(titulo)" class="container border border-2 w-25">
+    <h1 class="text-center" th:text="${titulo}"></h1>
+
+    <form>
+        <div class="form-row"> 
+
+        <label class="col-form-label">Numero documento:</label>
+        <input class="form-control" type="text" id="numero_documento" name="numero_documento" required th:value="${empleado.numero_documento}" />
+
+
+        <label class="col-form-label">Cargo:</label>
+        <input class="form-control" type="text" id="cargo" name="cargo" required th:value="${empleado.cargo}" />
+
+        <label class="col-form-label">Tipo:</label>
+        <input class="form-control" type="text" id="tipo" name="tipo" required th:value="${empleado.tipo}" />
+
+
+        <label class="col-form-label">Tipo documento:</label>
+        <input class="form-control" type="text" id="tipo_documento" name="tipo_documento" required th:value="${empleado.tipo_documento}" />
+
+        </div>
+
+        <div class="form-row">
+        <label class="col-form-label">Nombre:</label>
+        <input class="form-control" type="text" id="nombre" name="nombre" required th:value="${empleado.nombre}" />
+
+        <label class="col-form-label">Nacionalidad::</label>
+        <input class="form-control" type="text" id="nacionalidad" name="nacionalidad" required th:value="${empleado.nacionalidad}" />
+
+        <label class="col-form-label">Direccion electronica:</label>
+        <input class="form-control" type="text" id="direccion_electronica" name="direccion_electronica" required th:value="${empleado.direccion_electronica}" />
+
+        <label class="col-form-label">Dirección física:</label>
+        <input class="form-control" type="text" id="direccion_fisica" name="direccion_fisica" required th:value="${empleado.direccion_fisica}" />
+
+        </div>
+
+        <div class="form-row">
+
+        <label class="col-form-label">Telefono:</label>
+        <input class="form-control" type="text" id="telefono" name="telefono" required th:value="${empleado.telefono}" />
+
+        <label class="col-form-label">Código postal:</label>
+        <input class="form-control" type="text" id="codigo_postal" name="codigo_postal" required th:value="${empleado.codigo_postal}" />
+
+        <label class="col-form-label">Ciudad:</label>
+        <input class="form-control" type="text" id="ciudad" name="ciudad" required th:value="${empleado.ciudad}" />
+
+        <label class="col-form-label">Departemento:</label>
+        <input class="form-control" type="text" id="departamento" name="departamento" required th:value="${empleado.departamento}" />
+
+        </div>
+
+        <div class="form-row">
+        <label class="col-form-label">Id oficina:</label>
+        <input class="form-control" type="number" id="id_oficina" name="id_oficina" required th:value="${empleado.id_oficina}" />
+
+        </div>
+
+        <div class="text-center" style="margin-top: 10px;" >
+            <input type="submit" value="Guardar" class="btn btn-primary">
+            <a th:href="@{/administrador}" class="btn btn-primary">Cancelar</a>
+        </div>
+    </form>
+    
+</body>
+</html>

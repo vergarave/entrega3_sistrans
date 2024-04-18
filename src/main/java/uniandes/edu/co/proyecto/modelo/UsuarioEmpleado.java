@@ -45,19 +45,19 @@ public class UsuarioEmpleado {
     this.login = login;
   }
 
-  public String getPassword_empleados() {
+  public String getPassword_empleado() {
     return password_empleado;
   }
 
-  public void setPassword_empleados(String password_empleado) {
+  public void setPassword_empleado(String password_empleado) {
     this.password_empleado = password_empleado;
   }
 
-  public Empleado getIdEmpleado() {
+  public Empleado getId_empleado() {
     return id_empleado;
   }
 
-  public void setIdEmpleado(Empleado id_empleado) {
+  public void setId_empleado(Empleado id_empleado) {
     this.id_empleado = id_empleado;
   }
 
