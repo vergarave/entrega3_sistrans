@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import uniandes.edu.co.proyecto.modelo.OperacionCuenta;
 import uniandes.edu.co.proyecto.modelo.OperacionPrestamo;
-import uniandes.edu.co.proyecto.repositorios.OperacionCuentaRepository;
 import uniandes.edu.co.proyecto.repositorios.OperacionPrestamoRepository;
 
 @Controller
