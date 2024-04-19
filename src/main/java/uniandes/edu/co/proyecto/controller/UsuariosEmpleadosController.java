@@ -78,7 +78,7 @@ public class UsuariosEmpleadosController {
     @GetMapping("/usuariosEmpleados/new")
     public String usuarioEmpleadoForm(Model model) {
         model.addAttribute("usuarioEmpleado", new UsuarioEmpleado());
-        return "usuarioEmpleadoNew";
+        return "empleadoNew";
     }
 
     @PostMapping("/usuariosEmpleados/new/save")
@@ -87,7 +87,7 @@ public class UsuariosEmpleadosController {
         usuarioEmpleadoRepository.insertarUsuarioEmpleado(usuarioEmpleado.getLogin(), usuarioEmpleado.getPassword_empleado(), 
                                                           usuarioEmpleado.getId_empleado().getId());
         
-        return "redirect:/usuariosEmpleados";
+        return "administrador";
     }
 
     @GetMapping("/usuariosEmpleados/{id}/edit")

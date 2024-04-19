@@ -3,14 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear nuevo usuario</title>
+    <title>Usuario empleado</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-    <form action="#" th:action="@{usuariosEmpleados/new/save}" method="post">
-        <div th:replace="~{fragments/usuarioEmpleadoForm :: usuarioEmpleadoForm(titulo='Agregar usuario')}"></div>
+    <div class="row">
+        <br>
+        <br>
+
+    </div>
+    <div class="row">
+
+        <div class="col-md-1"><br></div>
+
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
+    <form action="#" th:action="@{/usuariosEmpleados/new/save}" method="post">
+        <div th:replace="~{fragments/usuarioEmpleadoForm :: usuarioEmpleadoForm(titulo='Agregar usuario del cliente')}"></div>
     </form>
-    
 </body>
 </html>

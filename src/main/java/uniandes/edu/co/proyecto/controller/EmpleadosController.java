@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import uniandes.edu.co.proyecto.modelo.Empleado;
+import uniandes.edu.co.proyecto.modelo.UsuarioEmpleado;
 import uniandes.edu.co.proyecto.repositorios.EmpleadoRepository;
 
 @Controller
@@ -26,17 +27,20 @@ public class EmpleadosController {
   @GetMapping("/empleados/new")
   public String empleadosForm(Model model) {
     model.addAttribute("empleado", new Empleado());
-    return "empleadosNew";
+    return "empleadoNew";
   }
 
   @PostMapping("/empleados/new/save")
-  public String empleadossSave(@ModelAttribute Empleado empleado) {
+  public String empleadossSave(@ModelAttribute Empleado empleado,Model model) {
     empleadoRepository.insertarEmpleado(empleado.getNumero_documento(),
         empleado.getCargo(), empleado.getTipo(), empleado.getTipo_documento(),
         empleado.getNombre(), empleado.getNacionalidad(),
         empleado.getDireccion_fisica(), empleado.getDireccion_electronica(),
         empleado.getTelefono(), empleado.getCodigo_postal(), empleado.getCiudad(),
         empleado.getDepartamento(), empleado.getId_oficina().getId());
+    
+      model.addAttribute("usuarioEmpleado", new UsuarioEmpleado());
+
     return "usuarioEmpleadoNew";
   }
 

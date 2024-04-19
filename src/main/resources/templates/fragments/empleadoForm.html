@@ -17,11 +17,17 @@
 
 
         <label class="col-form-label">Cargo:</label>
-        <input class="form-control" type="text" id="cargo" name="cargo" required th:value="${empleado.cargo}" />
+        <select class="form-control"  id="cargo" name="cargo" required>
+            <option value="Gerente general" th:selected="${empleado.cargo eq 'Gerente general'}">Gerente general</option>
+            <option value="Gerente oficina" th:selected="${empleado.cargo eq 'Gerente oficina'}">Gerente oficina</option>
+            <option value="Cajero" th:selected="${empleado.cargo eq 'Cajero'}">Cajero</option>
+        </select>
 
-        <label class="col-form-label">Tipo:</label>
-        <input class="form-control" type="text" id="tipo" name="tipo" required th:value="${empleado.tipo}" />
-
+        <label class="col-form-label">Tipo de persona:</label>
+        <select class="form-control"  id="tipo" name="tipo" required>
+            <option value="juridica" th:selected="${empleado.tipo eq 'Gerente general'}">Juridica</option>
+            <option value="natural" th:selected="${empleado.tipo eq 'Gerente oficina'}">Natural</option>
+        </select>
 
         <label class="col-form-label">Tipo documento:</label>
         <input class="form-control" type="text" id="tipo_documento" name="tipo_documento" required th:value="${empleado.tipo_documento}" />
