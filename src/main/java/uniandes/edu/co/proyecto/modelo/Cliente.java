@@ -71,11 +71,11 @@ public class Cliente {
     this.tipo = tipo;
   }
 
-  public String getTipoDocumento() {
+  public String getTipo_documento() {
     return tipo_documento;
   }
 
-  public void setTipoDocumento(String tipo_documento) {
+  public void setTipo_documento(String tipo_documento) {
     this.tipo_documento = tipo_documento;
   }
 
@@ -119,11 +119,11 @@ public class Cliente {
     this.telefono = telefono;
   }
 
-  public String getCodigoPostal() {
+  public String getCodigo_postal() {
     return codigo_postal;
   }
 
-  public void setCodigoPostal(String codigoPostal) {
+  public void setCodigo_postal(String codigoPostal) {
     this.codigo_postal = codigoPostal;
   }
 

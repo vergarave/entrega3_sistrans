@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import uniandes.edu.co.proyecto.modelo.Cliente;
+import uniandes.edu.co.proyecto.modelo.UsuarioCliente;
 import uniandes.edu.co.proyecto.repositorios.ClienteRepository;
 
 @Controller
@@ -27,18 +28,21 @@ public class ClientesController {
     public String clientesForm(Model model) {
 
         model.addAttribute("cliente", new Cliente());
-        return "clientes";
+        return "clienteNew";
     }
 
     @PostMapping("/clientes/new/save")
-    public String clientesSave(@ModelAttribute Cliente cliente) {
+    public String clientesSave(@ModelAttribute Cliente cliente,Model model) {
 
         clienteRepository.insertarCliente(cliente.getNumero_documento(), cliente.getTipo(),
-                cliente.getTipoDocumento(), cliente.getNombre(),
+                cliente.getTipo_documento(), cliente.getNombre(),
                 cliente.getNacionalidad(), cliente.getDireccion_fisica(),
                 cliente.getDireccion_electronica(), cliente.getTelefono(),
-                cliente.getCodigoPostal(), cliente.getCiudad(), cliente.getDepartamento());
-        return "redirect:/clientes";
+                cliente.getCodigo_postal(), cliente.getCiudad(), cliente.getDepartamento());
+
+        model.addAttribute("usuarioCliente", new UsuarioCliente());
+
+        return "usuarioClienteNew";
     }
 
     @GetMapping("/clientes/{id}/edit")
@@ -55,10 +59,10 @@ public class ClientesController {
     @PostMapping("/clientes/{id}/edit/save")
     public String clienteEditSave(@PathVariable("id") long id, @ModelAttribute Cliente cliente) {
         clienteRepository.actualizarCliente(((long) id), cliente.getNumero_documento(), cliente.getTipo(),
-                cliente.getTipoDocumento(), cliente.getNombre(),
+                cliente.getTipo_documento(), cliente.getNombre(),
                 cliente.getNacionalidad(), cliente.getDireccion_fisica(),
                 cliente.getDireccion_electronica(), cliente.getTelefono(),
-                cliente.getCodigoPostal(), cliente.getCiudad(), cliente.getDepartamento());
+                cliente.getCodigo_postal(), cliente.getCiudad(), cliente.getDepartamento());
         return "redirect:/clientes";
     }
 

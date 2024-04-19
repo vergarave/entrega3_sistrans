@@ -38,7 +38,7 @@ public class UsuariosClientesController {
         usuarioClienteRepository.insertarUsuarioCliente(usuarioCliente.getLogin(), usuarioCliente.getPassword_cliente(), 
                                                         usuarioCliente.getId());
         
-        return "redirect:/usuariosClientes";
+        return "gerenteOficina";
     }
 
     @GetMapping("/usuariosClientes/{id}/edit")

@@ -25,8 +25,8 @@
 
         <label class="col-form-label">Tipo de persona:</label>
         <select class="form-control"  id="tipo" name="tipo" required>
-            <option value="juridica" th:selected="${empleado.tipo eq 'Gerente general'}">Juridica</option>
-            <option value="natural" th:selected="${empleado.tipo eq 'Gerente oficina'}">Natural</option>
+            <option value="juridica" th:selected="${empleado.tipo eq 'juridica'}">Juridica</option>
+            <option value="natural" th:selected="${empleado.tipo eq 'natural'}">Natural</option>
         </select>
 
         <label class="col-form-label">Tipo documento:</label>
