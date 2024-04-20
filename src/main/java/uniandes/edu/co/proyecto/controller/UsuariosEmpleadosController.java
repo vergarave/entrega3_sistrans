@@ -64,7 +64,7 @@ public class UsuariosEmpleadosController {
                 paginaDestino = "administrador";
             }
             }else if(cliente != null){
-                paginaDestino="cliente";
+                paginaDestino="clientes";
             }
 
         } else {

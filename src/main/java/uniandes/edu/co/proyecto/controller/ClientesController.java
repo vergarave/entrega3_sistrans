@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import uniandes.edu.co.proyecto.modelo.Cliente;
 import uniandes.edu.co.proyecto.modelo.UsuarioCliente;
 import uniandes.edu.co.proyecto.repositorios.ClienteRepository;
+import uniandes.edu.co.proyecto.repositorios.ClienteRepository.RespuestaExtracto;
 
 @Controller
 public class ClientesController {
@@ -19,8 +22,34 @@ public class ClientesController {
     private ClienteRepository clienteRepository;
 
     @GetMapping("/clientes")
-    public String clientes(Model model) {
-        model.addAttribute("clientes", clienteRepository.darClientes());
+    public String clientes(Model model,Integer numMes,Integer  numCuenta, Integer anio) {
+
+        if(numMes == null|| numCuenta== null || anio==null)
+        {
+            model.addAttribute("clientes", clienteRepository.darClientes());
+        }
+        else
+        {
+            Collection<RespuestaExtracto> informacion = clienteRepository.infoExtracto(numMes,numCuenta,anio);
+            model.addAttribute("clientesExtracto", clienteRepository.infoExtracto(numMes, numCuenta, anio));
+
+            RespuestaExtracto ultimoElemento = null;
+            RespuestaExtracto primerElemento = null;
+
+            if (!informacion.isEmpty()) {
+                for (RespuestaExtracto elemento : informacion) {
+                    if (primerElemento == null) {
+                        primerElemento = elemento;
+                    }
+                    ultimoElemento = elemento;
+                }
+            }
+            model.addAttribute("saldoFinalMes", ultimoElemento.getSALDO());
+            model.addAttribute("saldoInicioMes", primerElemento.getSALDO());
+            return "infoExtracto";
+
+
+        }
         return "clientes";
     }
 
@@ -41,6 +70,7 @@ public class ClientesController {
                 cliente.getCodigo_postal(), cliente.getCiudad(), cliente.getDepartamento());
 
         model.addAttribute("usuarioCliente", new UsuarioCliente());
+        model.addAttribute("clientes", clienteRepository.darClientes());
 
         return "usuarioClienteNew";
     }

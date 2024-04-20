@@ -25,5 +25,29 @@
     <form action="#" th:action="@{/usuariosClientes/new/save}" method="post">
         <div th:replace="~{fragments/usuarioClienteForm :: usuarioClienteForm(titulo='Agregar usuario del cliente')}"></div>
     </form>
+
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre del empleado</th>
+                </tr>
+            </thead>
+            <th:block th:each="cliente : ${clientes}">
+                <tr>
+                    <td th:text="${cliente.id}"></td>
+                    <td th:text="${cliente.nombre}"></td>
+                </tr>
+            </th:block>
+
+        </table>
+    </div>
+
 </body>
 </html>

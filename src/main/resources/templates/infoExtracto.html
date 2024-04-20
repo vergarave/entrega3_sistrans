@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Extracto</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <script th:src="@{/css/jquery.min.js}"></script>
+    <script th:src="@{/css/bootstrap.min.js}"></script>
+</head>
+
+<body>
+    <div class="text-center">
+        <h1>Resultado</h1>
+
+        <div class="row">
+
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Saldo</th>
+                    <th>Tipo Operación</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <th:block th:each="operacion : ${clientesExtracto}">
+                <tr>
+                    <td th:text="${operacion.SALDO}"></td>
+                    <td th:text="${operacion.TIPO_OPERACION}"></td>
+                    <td th:text="${operacion.FECHA}"></td>
+                </tr>
+            </th:block>
+        </table>
+
+        </div>
+        <p>Saldo al Inicio del mes del mes: <span th:text="${saldoInicioMes}"></span></p>
+        <div>
+
+        </div>
+        <p>Saldo al final del mes: <span th:text="${saldoFinalMes}"></span></p>
+        <div>
+            
+        </div>
+        <br />
+
+        <div>
+            <a th:href='@{/clientes}' class="btn btn-primary">Volver Atrás</a>
+        </div>
+        <br />
+
+    </div>
+</body>
+
+</html>

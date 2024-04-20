@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cliente</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <div class="container-flui"> 
+        <div class="row" style="background-color:rgb(100,133,6); font-size: 40px;" >
+        <div class="1-col" style="margin-left: 20px; font-size: 38px; font-family: 'Aptos Black';">Banco de los Andes</div>
+        </div>
+        <div class="row" style="margin-left: 140px; font-size: 30px; font-family: 'Aptos Black';"><br><br><br>Panel de funcionalidades<br><br></div>
+  
+        <div>
+            <form action="#" th:action="@{/clientes}" method="get">
+                <div th:replace="~{fragments/extracBancarioForm :: extracBancarioForm(titulo='Consultar extracto bancario')}"></div>
+            </form>
+
+        </div>
+
+        <div class="row">
+            <div class="1-col" style="margin-left: 150px;"> <a th:href="@{/}" class="btn btn-primary">Cerrar sesión</a> <br> <br> </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>

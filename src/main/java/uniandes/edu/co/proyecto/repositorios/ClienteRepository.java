@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.repositorios;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,6 +13,18 @@ import jakarta.transaction.Transactional;
 import uniandes.edu.co.proyecto.modelo.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
+
+      public interface RespuestaExtracto {
+
+        double getSALDO();
+        String getTIPO_OPERACION();
+        Timestamp getFECHA();
+      }
+
+
+
+
+
   @Query(value = "SELECT * FROM clientes", nativeQuery = true)
   Collection<Cliente> darClientes();
 
@@ -52,5 +66,14 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
   @Transactional
   @Query(value = "DELETE FROM clientes WHERE id= :id", nativeQuery = true)
   void eliminarCliente(@Param("id") long  id);
+
+
+
+  @Query(value = "SELECT CUENTAS.saldo as SALDO, operaciones_cuentas.tipo_operacion AS TIPO_OPERACION,operaciones_cuentas.fecha AS FECHA \r\n" + //
+          "FROM CUENTAS \r\n" + //
+          "INNER JOIN OPERACIONES_CUENTAS ON operaciones_cuentas.cuenta_salida = cuentas.numero_cuenta \r\n" + //
+          "WHERE EXTRACT(MONTH FROM operaciones_cuentas.fecha) = :numMes AND EXTRACT(YEAR FROM operaciones_cuentas.fecha) = :anio AND cuentas.numero_cuenta = :numCuenta\r\n" + //
+          "ORDER BY operaciones_cuentas.fecha ASC", nativeQuery = true)
+  Collection<RespuestaExtracto>  infoExtracto(@Param("numMes") Integer  numMes,@Param("numCuenta") Integer  numCuenta, @Param("anio") Integer  anio);
 
 }

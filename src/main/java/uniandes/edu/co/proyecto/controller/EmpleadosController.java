@@ -40,6 +40,7 @@ public class EmpleadosController {
         empleado.getDepartamento(), empleado.getId_oficina().getId());
     
       model.addAttribute("usuarioEmpleado", new UsuarioEmpleado());
+      model.addAttribute("empleados", empleadoRepository.darEmpleados());
 
     return "usuarioEmpleadoNew";
   }
