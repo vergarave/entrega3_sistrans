@@ -25,7 +25,7 @@ public class OficinasController {
   @GetMapping("/oficinas/new")
   public String oficinasForm(Model model) {
     model.addAttribute("oficina", new Oficina());
-    return "oficinas";
+    return "oficinaNew";
   }
 
   @PostMapping("/oficinas/new/save")

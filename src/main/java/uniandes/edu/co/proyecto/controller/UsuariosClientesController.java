@@ -36,7 +36,7 @@ public class UsuariosClientesController {
     public String usuarioClienteSave(@ModelAttribute UsuarioCliente usuarioCliente) {
 
         usuarioClienteRepository.insertarUsuarioCliente(usuarioCliente.getLogin(), usuarioCliente.getPassword_cliente(), 
-                                                        usuarioCliente.getId());
+                                                        usuarioCliente.getId_cliente().getId());
         
         return "gerenteOficina";
     }

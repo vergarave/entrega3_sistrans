@@ -42,4 +42,14 @@ public interface PuntoAtencionRepository extends JpaRepository<PuntoAtencion, In
         @Param("horario_atencion") String horario_atencion,
         @Param("direccion") String direccion,
         @Param("oficina") Integer oficina);
+
+    @Query(value = "SELECT count(operaciones_cuentas.id)\r\n" + //
+                "FROM operaciones_cuentas \r\n" + //
+                "where punto_atencion = :id" , nativeQuery = true)
+    Integer verificarOperacionesCuentas(@Param("id") long id);
+
+    @Query(value = "SELECT count(operaciones_prestamos.id)\r\n" + //
+    "FROM operaciones_prestamos \r\n" + //
+    "where punto_atencion = :id" , nativeQuery = true)
+    Integer verificarOperacionesPrestamos(@Param("id") long id);
 }

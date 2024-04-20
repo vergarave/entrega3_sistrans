@@ -1,8 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,15 +21,13 @@ public class PuntoAtencion {
 
   private String direccion;
 
-  @ManyToOne
-  @JoinColumn(name = "id_oficina", referencedColumnName = "id")
-  private Oficina oficina;
+  private Integer oficina;
 
   public PuntoAtencion() {
     ;
   }
 
-  public PuntoAtencion(String tipo, String ciudad, String horario_atencion, String direccion, Oficina oficina) {
+  public PuntoAtencion(String tipo, String ciudad, String horario_atencion, String direccion, Integer oficina) {
     this.tipo = tipo;
     this.ciudad = ciudad;
     this.horario_atencion = horario_atencion;
@@ -39,11 +35,11 @@ public class PuntoAtencion {
     this.oficina = oficina;
   }
 
-  public Oficina getIdOficina() {
+  public Integer getOficina() {
     return oficina;
   }
 
-  public void setIdOficina(Oficina oficina) {
+  public void setOficina(Integer oficina) {
     this.oficina = oficina;
   }
 
@@ -71,11 +67,11 @@ public class PuntoAtencion {
     this.ciudad = ciudad;
   }
 
-  public String getHorarioAtencion() {
+  public String getHorario_atencion() {
     return horario_atencion;
   }
 
-  public void setHorarioAtencion(String horario_atencion) {
+  public void setHorario_atencion(String horario_atencion) {
     this.horario_atencion = horario_atencion;
   }
 

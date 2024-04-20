@@ -16,49 +16,58 @@ public class PuntosAtencionController {
   @Autowired
   private PuntoAtencionRepository puntoAtencionRepository;
 
-  @GetMapping("/puntos_atencion")
-  public String puntos_atencion(Model model) {
-    model.addAttribute("puntos_atencion", puntoAtencionRepository.darPuntosAtencion());
-    return "puntos_atencion";
+  @GetMapping("/puntosAtencion")
+  public String puntosAtencion(Model model) {
+    model.addAttribute("puntosAtencion", puntoAtencionRepository.darPuntosAtencion());
+    return "puntosAtencion";
   }
 
-  @GetMapping("/puntos_atencion/new")
-  public String prestamosForm(Model model) {
-    model.addAttribute("punto_atencion", new PuntoAtencion());
-    return "puntos_atencion";
+  @GetMapping("/puntosAtencion/new")
+  public String puntosAtencionForm(Model model) {
+    model.addAttribute("puntoAtencion", new PuntoAtencion());
+    return "puntosAtencionNew";
   }
 
-  @PostMapping("/puntos_atencion/new/save")
-  public String prestamosSave(@ModelAttribute PuntoAtencion puntoAtencion) {
+  @PostMapping("/puntosAtencion/new/save")
+  public String puntosAtencionSave(@ModelAttribute PuntoAtencion puntoAtencion) {
     puntoAtencionRepository.insertarPuntoAtencion(puntoAtencion.getTipo(),
-        puntoAtencion.getCiudad(), puntoAtencion.getHorarioAtencion(), puntoAtencion.getDireccion(),
-        puntoAtencion.getIdOficina().getId());
-    return "redirect:/puntos_atencion";
+        puntoAtencion.getCiudad(), puntoAtencion.getHorario_atencion(), puntoAtencion.getDireccion(),
+        puntoAtencion.getOficina());
+    return "redirect:/puntosAtencion";
   }
 
-  @GetMapping("/puntos_atencion/{id}/edit")
-  public String puntos_atencionEditForm(@PathVariable("id") int id, Model model) {
+  @GetMapping("/puntosAtencion/{id}/edit")
+  public String puntosAtencionEditForm(@PathVariable("id") int id, Model model) {
     PuntoAtencion puntoAtencion = puntoAtencionRepository.darPuntoAtencion(id);
     if (puntoAtencion != null) {
-      model.addAttribute("punto_atencion", puntoAtencion);
-      return "punto_atencionEdit";
+      model.addAttribute("puntoAtencion", puntoAtencion);
+      return "puntosAtencionEdit";
     } else {
-      return "redirect:/puntos_atencion";
+      return "redirect:/puntosAtencion";
     }
   }
 
-  @PostMapping("/puntos_atencion/{id}/edit/save")
-  public String prestamosditSave(@PathVariable("id") long id,
+  @PostMapping("/puntosAtencion/{id}/edit/save")
+  public String puntosAtencionEditSave(@PathVariable("id") long id,
       @ModelAttribute PuntoAtencion puntoAtencion) {
     puntoAtencionRepository.actualizarPuntoAtencion(id, puntoAtencion.getTipo(),
-        puntoAtencion.getCiudad(), puntoAtencion.getHorarioAtencion(), puntoAtencion.getDireccion(),
-        puntoAtencion.getIdOficina().getId());
-    return "redirect:/puntos_atencion";
+        puntoAtencion.getCiudad(), puntoAtencion.getHorario_atencion(), puntoAtencion.getDireccion(),
+        puntoAtencion.getOficina());
+    return "redirect:/puntosAtencion";
   }
 
-  @GetMapping("/puntos_atencion/{id}/delete")
-  public String prestamosBorrar(@PathVariable("id") long id) {
-    puntoAtencionRepository.eliminaPuntoAtencion(id);
-    return "redirect:/puntos_atencion";
+  @GetMapping("/puntosAtencion/{id}/delete")
+  public String puntosAtencionBorrar(@PathVariable("id") long id) {
+    Integer operacionesCuentas = puntoAtencionRepository.verificarOperacionesCuentas(id);
+    Integer operacionesPrestamos= puntoAtencionRepository.verificarOperacionesPrestamos(id);
+    System.out.println("id"+id);
+    System.out.println(operacionesCuentas);
+    System.out.println(operacionesPrestamos);
+    if (operacionesCuentas >=1 || operacionesPrestamos >=1) {
+      return "noBorrarPuntoAtencion";
+    }else{
+      puntoAtencionRepository.eliminaPuntoAtencion(id);
+      return "redirect:/puntosAtencion";
+    }   
   }
 }

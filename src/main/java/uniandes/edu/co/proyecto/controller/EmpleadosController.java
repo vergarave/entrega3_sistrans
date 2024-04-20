@@ -21,7 +21,7 @@ public class EmpleadosController {
   @GetMapping("/empleados")
   public String empleados(Model model) {
     model.addAttribute("empleados", empleadoRepository.darEmpleados());
-    return "empleados";
+    return "administrador";
   }
 
   @GetMapping("/empleados/new")
