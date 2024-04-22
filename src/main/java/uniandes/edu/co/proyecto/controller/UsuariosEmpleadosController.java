@@ -59,7 +59,7 @@ public class UsuariosEmpleadosController {
             } else if (cargo.equals("Gerente general")) {
                 paginaDestino = "gerenteGeneral";
             } else if (cargo.equals("Cajero")) {
-                paginaDestino = "cajero";
+                paginaDestino = "cajeroDos";
             }else if (cargo.equals("Administrador")) {
                 paginaDestino = "administrador";
             }

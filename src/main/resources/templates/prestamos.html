@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerente general</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-flui"> 
+        <div class="row" style="background-color:rgb(100,133,6); font-size: 40px;" >
+        <div class="1-col" style="margin-left: 20px; font-size: 38px; font-family: 'Aptos Black';">Banco de los Andes</div>
+        </div>
+
+        <br>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Estado</th>
+                    <th>Tipo</th>
+                    <th>Monto</th>
+                    <th>Interes</th>
+                    <th>Cuotas</th>
+                    <th>Dia de pago</th>
+                    <th>Valor cuota</th>
+                    <th>Cliente id</th>
+                    <th>Gerente creador id</th>
+                    <th>Saldo pendiente</th>
+                </tr>
+            </thead>
+            <th:block th:each="prestamo : ${prestamos}">
+                <tr>
+                    <td th:text="${prestamo.id}"></td>
+                    <td th:text="${prestamo.estado}"></td>
+                    <td th:text="${prestamo.tipo}"></td>
+                    <td th:text="${prestamo.monto}"></td>
+                    <td th:text="${prestamo.interes}"></td>
+                    <td th:text="${prestamo.numero_cuotas}"></td>
+                    <td th:text="${prestamo.dia_mes_pagar_cuota}"></td>
+                    <td th:text="${prestamo.valor_cuota}"></td>
+                    <td th:text="${prestamo.cliente.id}"></td>
+                    <td th:text="${prestamo.gerente_creador}"></td>
+                    <td th:text="${prestamo.saldo_pendiente}"></td>
+                    <td>
+                        <a th:href="@{prestamos/{id}/edit(id=${prestamo.id})}">Actualizar</a>
+                        <a th:href="@{prestamos/{id}/delete(id=${prestamo.id})}"
+                            onclick="return confirm('¿Estás seguro de borrar esta oficina?')">Borrar</a>
+                    </td>
+                </tr>
+            </th:block>
+
+        </table>
+
+
+        <div class="row" style="margin-left: 140px; font-size: 30px; font-family: 'Aptos Black';"><br><br><br>Panel de funcionalidades<br><br></div>
+        <div class="row">
+            <div class="1-col" style="margin-left: 150px;"> <a th:href="@{prestamos/new}" class="btn btn-primary">Crear prestamo</a> <br> <br> </div>
+        </div>
+        <div class="row">
+            <div class="1-col" style="margin-left: 150px;"> <a th:href="@{/}" class="btn btn-primary">Cerrar sesion</a> <br> <br> </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="1-col" style="margin-left: 150px;"> <a th:href="@{/oficinas}" class="btn btn-primary"> Crear y modificar información de oficinas</a> </div>
+        </div> -->
+
+    </div>

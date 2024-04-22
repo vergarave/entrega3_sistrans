@@ -26,7 +26,7 @@ public class PrestamosController {
   @GetMapping("/prestamos/new")
   public String prestamosForm(Model model) {
     model.addAttribute("prestamo", new Prestamo());
-    return "prestamos";
+    return "prestamosNew";
   }
 
   @PostMapping("/prestamos/new/save")
@@ -53,12 +53,24 @@ public class PrestamosController {
   @PostMapping("/prestamos/{id}/edit/save")
   public String prestamosditSave(@PathVariable("id") long id,
       @ModelAttribute Prestamo prestamo) {
-    prestamoRepository.actualizarPrestamo(id, prestamo.getEstado(), prestamo.getTipo(), prestamo.getMonto(),
+        if(prestamo.getEstado().equals("Pagado")){
+          if(prestamo.getSaldo_pendiente() == 0){
+          prestamoRepository.actualizarPrestamo(id, prestamo.getEstado(), prestamo.getTipo(), prestamo.getMonto(),
+          prestamo.getInteres(),
+          prestamo.getNumero_cuotas(),
+          prestamo.getDia_mes_pagar_cuota(), prestamo.getValor_cuota(), prestamo.getCliente().getId(),
+          prestamo.getGerente_creador(), prestamo.getSaldo_pendiente());
+          return "redirect:/prestamos";
+          }else{
+            return "noEliminarPrestamo";
+          }
+        }
+        prestamoRepository.actualizarPrestamo(id, prestamo.getEstado(), prestamo.getTipo(), prestamo.getMonto(),
         prestamo.getInteres(),
         prestamo.getNumero_cuotas(),
         prestamo.getDia_mes_pagar_cuota(), prestamo.getValor_cuota(), prestamo.getCliente().getId(),
         prestamo.getGerente_creador(), prestamo.getSaldo_pendiente());
-    return "redirect:/prestamos";
+        return "redirect:/prestamos";
   }
 
   @GetMapping("/prestamos/{id}/delete")
