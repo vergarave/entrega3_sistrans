@@ -22,10 +22,25 @@ public class ClientesController {
     private ClienteRepository clienteRepository;
 
     @GetMapping("/clientes")
-    public String clientes(Model model,Integer numMes,Integer  numCuenta, Integer anio) {
+    public String clientes(Model model,Integer numMes,Integer  numCuenta, Integer anio, String numero_documento) {
 
-        if(numMes == null|| numCuenta== null || anio==null)
+        if(numMes == null && numCuenta== null && anio==null && numero_documento == null )
         {
+            model.addAttribute("clientes", clienteRepository.darClientes());
+        }else if(numero_documento != null)
+        {
+            Integer id = clienteRepository.obtenerIdDadoDoc(numero_documento);
+            if(id != null)
+            {
+                model.addAttribute("cliente", clienteRepository.darCliente(id));
+                model.addAttribute("cuentas", clienteRepository.obtenerCuentasCliente(id));
+                model.addAttribute("prestamos", clienteRepository.obtenerPrestamosCliente(id));
+                model.addAttribute("oficinas", clienteRepository.obtenerOficinasDelCliente(id));
+                return "consultaDeCliente";
+            }
+
+
+
             model.addAttribute("clientes", clienteRepository.darClientes());
         }
         else

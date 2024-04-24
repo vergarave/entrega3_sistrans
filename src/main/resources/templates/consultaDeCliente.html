@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Extracto</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <script th:src="@{/css/jquery.min.js}"></script>
+    <script th:src="@{/css/bootstrap.min.js}"></script>
+</head>
+
+<body>
+    <div class="text-center">
+        <h3>Tu informacion</h3>
+
+        <div class="row">
+
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>NUMERO DOCUMENTO</th>
+                    <th>TIPO</th>
+                    <th>TIPO DOCUMENTO</th>
+                    <th>NOMBRE</th>
+                    <th>NACIONALIDAD</th>
+                    <th>DIRECCION FISICA </th>
+                    <th>DIRECCION ELECTRONICA</th>
+                    <th>TELEFONO</th>
+                    <th>CODIGO POSTAL</th>
+                    <th>CIUDAD</th>
+                    <th>DEPARTAMENTO</th>
+                </tr>
+            </thead>
+            <th:block th:each="cliente : ${cliente}">
+                <tr>
+                    <td th:text="${cliente.id}"></td>
+                    <td th:text="${cliente.numero_documento}"></td>
+                    <td th:text="${cliente.tipo}"></td>
+                    <td th:text="${cliente.tipo_documento}"></td>
+                    <td th:text="${cliente.nombre}"></td>
+                    <td th:text="${cliente.nacionalidad}"></td>
+                    <td th:text="${cliente.direccion_fisica}"></td>
+                    <td th:text="${cliente.direccion_electronica}"></td>
+                    <td th:text="${cliente.telefono}"></td>
+                    <td th:text="${cliente.codigo_postal}"></td>
+                    <td th:text="${cliente.ciudad}"></td>
+                    <td th:text="${cliente.departamento}"></td>
+                </tr>
+            </th:block>
+        </table>
+        </div>
+
+        <h3>Tus cuentas</h3>
+
+        <div class="row">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>NUMERO CUENTA</th>
+                        <th>ESTADO</th>
+                        <th>SALDO</th>
+                        <th>TIPO</th>
+                        <th>CLIENTE/th>
+                        <th>ULTIMA_TRANSACCION</th>
+                        <th>GERENTE OFICINA CREADOR</th>
+                        <th>FECHA CREACION</th>
+                    </tr>
+                </thead>
+                <th:block th:each="cuenta : ${cuentas}">
+                    <tr>
+                        <td th:text="${cuenta.NUMERO_CUENTA}"></td>
+                        <td th:text="${cuenta.ESTADO}"></td>
+                        <td th:text="${cuenta.SALDO}"></td>
+                        <td th:text="${cuenta.TIPO}"></td>
+                        <td th:text="${cuenta.CLIENTE}"></td>
+                        <td th:text="${cuenta.ULTIMA_TRANSACCION}"></td>
+                        <td th:text="${cuenta.GERENTE_OFICINA_CREADOR}"></td>
+                        <td th:text="${cuenta.FECHA_CREACION}"></td>
+                    </tr>
+                </th:block>
+            </table>
+
+        </div>
+
+        <h3>Tus prestamos</h3>
+
+        <div class="row">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+
+                        <th>NUMERO PRESTAMO</th>
+                        <th>ESTADO</th>
+                        <th>TIPO</th>
+                        <th>MONTO</th>
+                        <th>INTERES</th>
+                        <th>NUMERO_CUOTAS</th>
+                        <th>DIA DE PAGO</th>
+                        <th>VALOR DE LA CUOTA</th>
+                        <th>CLIENTE</th>
+                        <th>GERENTE CREADOR</th>
+                        <th>SALDO PENDIENTE</th>
+                    </tr>
+                </thead>
+                <th:block th:each="prestamo : ${prestamos}">
+                    <tr>
+                        <td th:text="${prestamo.ID}"></td>
+                        <td th:text="${prestamo.ESTADO}"></td>
+                        <td th:text="${prestamo.TIPO}"></td>
+                        <td th:text="${prestamo.MONTO}"></td>
+                        <td th:text="${prestamo.INTERES}"></td>
+                        <td th:text="${prestamo.NUMERO_CUOTAS}"></td>
+                        <td th:text="${prestamo.DIA_MES_PAGAR_CUOTA}"></td>
+                        <td th:text="${prestamo.VALOR_CUOTA}"></td>
+                        <td th:text="${prestamo.CLIENTE}"></td>
+                        <td th:text="${prestamo.GERENTE_CREADOR}"></td>
+                        <td th:text="${prestamo.SALDO_PENDIENTE}"></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+
+        <h3>Oficinas en las que has operado</h3>
+
+        <div class="row">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>NOMBRE</th>
+                        <th>DIRECCION</th>
+                        <th>NUMERO PUNTOS ATENCION</th>
+                        <th>GERENTE</th>
+                        <th>CIUDAD</th>
+                    </tr>
+                </thead>
+                <th:block th:each="oficina : ${oficinas}">
+                    <tr>
+                        <td th:text="${oficina.NOMBRE}"></td>
+                        <td th:text="${oficina.DIRECCION}"></td>
+                        <td th:text="${oficina.NUMERO_PUNTOS_ATENCION}"></td>
+                        <td th:text="${oficina.GERENTE}"></td>
+                        <td th:text="${oficina.CIUDAD}"></td>
+                    </tr>
+                </th:block>
+            </table>
+
+        </div>
+
+
+        <div>
+            <a th:href='@{/clientes}' class="btn btn-primary">Volver Atrás</a>
+        </div>
+        <br />
+
+    </div>
+</body>
+
+</html>

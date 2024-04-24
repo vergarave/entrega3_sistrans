@@ -6,6 +6,7 @@
     <title>Cliente</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src='main.js'></script>
 </head>
 <body>
@@ -15,14 +16,23 @@
         </div>
         <div class="row" style="margin-left: 140px; font-size: 30px; font-family: 'Aptos Black';"><br><br><br>Panel de funcionalidades<br><br></div>
   
-        <div>
+        <div class="row" >
+            <div class="col-2">
             <form action="#" th:action="@{/clientes}" method="get">
                 <div th:replace="~{fragments/extracBancarioForm :: extracBancarioForm(titulo='Consultar extracto bancario')}"></div>
             </form>
+            </div>
+
+            <div class="col-3">
+                <form action="#" th:action="@{/clientes}" method="get">
+                    <div th:replace="~{fragments/consultaDeClienteForm :: consultaDeClienteForm(titulo='Consultar mi informacion')}"></div>
+                </form>
+            </div>
 
         </div>
 
         <div class="row">
+            <br>
             <div class="1-col" style="margin-left: 150px;"> <a th:href="@{/}" class="btn btn-primary">Cerrar sesión</a> <br> <br> </div>
         </div>
 

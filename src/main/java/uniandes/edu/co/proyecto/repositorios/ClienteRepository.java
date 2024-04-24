@@ -20,6 +20,42 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
         Timestamp getFECHA();
       }
 
+      public interface CuentasCliente {
+
+        String getNUMERO_CUENTA();
+        String getESTADO();
+        double getSALDO();
+        String getTIPO();
+        Integer getCLIENTE();
+        Timestamp getULTIMA_TRANSACCION();
+        Integer getGERENTE_OFICINA_CREADOR();
+        Timestamp getFECHA_CREACION();
+      }
+
+      public interface PrestamosCliente {
+
+        Integer getID();
+        String getESTADO();
+        String getTIPO();
+        double getMONTO();
+        double getINTERES();
+        Integer getNUMERO_CUOTAS();
+        String getDIA_MES_PAGAR_CUOTA();
+        double getVALOR_CUOTA();
+        Integer getCLIENTE();
+        Integer getGERENTE_CREADOR();
+        double getSALDO_PENDIENTE();
+      }
+
+      public interface Oficinas {
+
+        String getNOMBRE();
+        String getDIRECCION();
+        Integer getNUMERO_PUNTOS_ATENCION();
+        String getGERENTE();
+        String getCIUDAD();
+      }
+
 
 
 
@@ -74,5 +110,27 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
           "WHERE EXTRACT(MONTH FROM operaciones_cuentas.fecha) = :numMes AND EXTRACT(YEAR FROM operaciones_cuentas.fecha) = :anio AND cuentas.numero_cuenta = :numCuenta\r\n" + //
           "ORDER BY operaciones_cuentas.fecha ASC", nativeQuery = true)
   Collection<RespuestaExtracto>  infoExtracto(@Param("numMes") Integer  numMes,@Param("numCuenta") Integer  numCuenta, @Param("anio") Integer  anio);
+
+  @Query(value = "SELECT id FROM clientes WHERE numero_documento=:numero_documento", nativeQuery = true)
+  Integer obtenerIdDadoDoc(@Param("numero_documento") String numero_documento);
+
+  //Del cliente toda la informacion
+  //De cuentas todo
+  //De oficinas donde tiene cuentas nombre, direccion y ciudad
+  //De prestamos 
+
+  @Query(value = "SELECT * FROM CUENTAS WHERE cliente= :cliente", nativeQuery = true)
+  Collection<CuentasCliente>  obtenerCuentasCliente(@Param("cliente") Integer  cliente);
+
+  @Query(value = "SELECT * FROM PRESTAMOS WHERE cliente= :cliente", nativeQuery = true)
+  Collection<PrestamosCliente>  obtenerPrestamosCliente(@Param("cliente") Integer  cliente);
+
+    @Query(value = "SELECT oficinas.nombre, oficinas.direccion,oficinas.numero_puntos_atencion ,oficinas.gerente, oficinas.ciudad\r\n" + //
+          "FROM CUENTAS \r\n" + //
+          "INNER JOIN empleados on empleados.id = cuentas.gerente_oficina_creador\r\n" + //
+          "inner join oficinas on oficinas.id = empleados.id_oficina\r\n" + //
+          "where cuentas.cliente= :cliente", nativeQuery = true)
+  Collection<Oficinas>  obtenerOficinasDelCliente(@Param("cliente") Integer  cliente);
+
 
 }
