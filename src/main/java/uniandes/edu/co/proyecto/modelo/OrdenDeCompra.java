@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,7 +21,13 @@ public class OrdenDeCompra {
     private LocalDate fechaEntrega;
     private String estado;
     private LocalDate fechaCreacion;
+
+    @ManyToOne
+    @JoinColumn(name="id_sucursal", referencedColumnName="id")
     private Sucursal idSucursal;
+
+    @ManyToOne
+    @JoinColumn(name="nit_proveedor", referencedColumnName="nit")
     private Proveedor nitProveedor;
 
     public OrdenDeCompra(LocalDate fechaEntrega, String estado, LocalDate fechaCreacion, Sucursal idSucursal, Proveedor nitProveedor){
