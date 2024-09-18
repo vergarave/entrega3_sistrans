@@ -24,7 +24,7 @@ public class Sucursal {
     private String telefono;
 
     @ManyToOne
-    @JoinColumn(name="codigo_Ciudad", referencedColumnName="id")
+    @JoinColumn(name="codigo_ciudad", referencedColumnName="codigo")
     private Ciudad codigoCiudad;
     
     public Sucursal(String nombre, Double tamanio, String direccion,
