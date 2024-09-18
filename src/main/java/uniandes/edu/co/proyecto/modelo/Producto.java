@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="productos")
+@Table(name="producto")
 public class Producto {
 
     @Id
@@ -23,12 +25,17 @@ public class Producto {
     private String unidadMedida;
     private String volumenEmpaque;
     private String pesoEmpaque;
-    private String fechaExpiracion;
+    private LocalDate fechaExpiracion;
     private String codigoDeBarras;
+
+    @ManyToOne
+    @JoinColumn(name="clasificacionCategoria", referencedColumnName = "codigo")
+    private Categoria clasificacionCategoria;
 
     public Producto(String nombre, Double costoEnBodega, String presentacion, 
         Double cantidadPresentacion, String unidadMedida, String volumenEmpaque,
-        String pesoEmpaque, String fechaExpiracion, String codigoDeBarras
+        String pesoEmpaque, LocalDate fechaExpiracion, String codigoDeBarras, 
+        Categoria clasificacionCategoria
     ) {
         this.nombre = nombre;
         this.costoEnBodega = costoEnBodega;
@@ -39,6 +46,7 @@ public class Producto {
         this.pesoEmpaque = pesoEmpaque;
         this.fechaExpiracion = fechaExpiracion;
         this.codigoDeBarras = codigoDeBarras;
+        this.clasificacionCategoria = clasificacionCategoria;
     }
 
     public Producto()
@@ -76,12 +84,16 @@ public class Producto {
         return pesoEmpaque;
     }
 
-    public String getFechaExpiracion() {
+    public LocalDate getFechaExpiracion() {
         return fechaExpiracion;
     }
 
     public String getCodigoDeBarras() {
         return codigoDeBarras;
+    }
+
+    public Categoria getClasificacionCategoria() {
+        return clasificacionCategoria;
     }
 
     public void setIdentificador(Integer identificador) {
@@ -116,7 +128,7 @@ public class Producto {
         this.pesoEmpaque = pesoEmpaque;
     }
 
-    public void setFechaExpiracion(String fechaExpiracion) {
+    public void setFechaExpiracion(LocalDate fechaExpiracion) {
         this.fechaExpiracion = fechaExpiracion;
     }
 
@@ -124,9 +136,8 @@ public class Producto {
         this.codigoDeBarras = codigoDeBarras;
     }
 
-    @ManyToOne
-    @JoinColumn(name="clasificacionCategoria", referencedColumnName = "codigo")
-    private Categoria clasificacionCategoria;
-
+    public void setClasificacionCategoria(Categoria clasificacionCategoria) {
+        this.clasificacionCategoria = clasificacionCategoria;
+    }
 
 }
