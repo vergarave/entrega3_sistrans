@@ -21,9 +21,12 @@ public class ProyectoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String...arg){
+
+		bodegaRepository.eliminarBodega(5);
+
 		Collection<Bodega> bodegas = bodegaRepository.darBodegas();
 		for(Bodega b: bodegas){
-			System.out.println(b);
+			System.out.println(b.getId());
 		}
 	}
 }
