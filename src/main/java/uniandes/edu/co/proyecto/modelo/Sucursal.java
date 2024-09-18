@@ -28,7 +28,7 @@ public class Sucursal {
     private Ciudad codigoCiudad;
     
     public Sucursal(String nombre, Double tamanio, String direccion,
-                     String telefono, Integer codigoCiudad)
+                     String telefono, Ciudad codigoCiudad)
     {
         this.nombre = nombre;
         this.tamanio = tamanio;
@@ -80,11 +80,11 @@ public class Sucursal {
         this.telefono = telefono;
     }
 
-    public Integer getCodigoCiudad() {
+    public Ciudad getCodigoCiudad() {
         return codigoCiudad;
     }
 
-    public void setCodigoCiudad(Integer codigoCiudad) {
+    public void setCodigoCiudad(Ciudad codigoCiudad) {
         this.codigoCiudad = codigoCiudad;
     }
 
