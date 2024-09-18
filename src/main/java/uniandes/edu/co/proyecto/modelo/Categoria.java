@@ -24,6 +24,9 @@ public class Categoria {
         this.caracteristicasAlmacenamiento = caracteristicasAlmacenamiento;
     }
 
+    public Categoria()
+    {;}
+
     public Integer getCodigo() {
         return codigo;
     }

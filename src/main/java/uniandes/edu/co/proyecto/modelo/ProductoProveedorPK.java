@@ -9,14 +9,15 @@ import jakarta.persistence.ManyToOne;
 @Embeddable
 public class ProductoProveedorPK implements Serializable{
     @ManyToOne
-    @JoinColumn(name="identificadorProducto", referencedColumnName = "identificador")
+    @JoinColumn(name="identificador_producto", referencedColumnName = "identificador")
     private Producto identificadorProducto;
 
     @ManyToOne
-    @JoinColumn(name="nitProveedor", referencedColumnName = "nit")
+    @JoinColumn(name="nit_proveedor", referencedColumnName = "nit")
     private Proveedor nitProveedor;
 
     public ProductoProveedorPK(Producto identificadorProducto, Proveedor nitProveedor){
+        super();
         this.identificadorProducto = identificadorProducto;
         this.nitProveedor = nitProveedor;
     }

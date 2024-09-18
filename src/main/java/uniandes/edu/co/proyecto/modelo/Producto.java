@@ -29,7 +29,7 @@ public class Producto {
     private String codigoDeBarras;
 
     @ManyToOne
-    @JoinColumn(name="clasificacionCategoria", referencedColumnName = "codigo")
+    @JoinColumn(name="clasificacion_categoria", referencedColumnName = "codigo")
     private Categoria clasificacionCategoria;
 
     public Producto(String nombre, Double costoEnBodega, String presentacion, 
@@ -92,7 +92,7 @@ public class Producto {
         return codigoDeBarras;
     }
 
-    public Categoria getClasificacionCategoria() {
+        public Categoria getClasificacionCategoria() {
         return clasificacionCategoria;
     }
 
