@@ -28,12 +28,9 @@ public class CiudadController {
 
     //Este no dicen como hacerlo xd
     @GetMapping("/ciudades/{id}")
-    public ResponseEntity<Ciudad> obtenerCiudad(@PathVariable Long id){
-
-        // Tocó pasar de long a int
-        int idInt = Math.toIntExact(id);
+    public ResponseEntity<Ciudad> obtenerCiudad(@PathVariable int codigo){
         
-        Ciudad ciudad = ciudadRepository.darCiudad(idInt);
+        Ciudad ciudad = ciudadRepository.darCiudad(codigo);
 
         //Devolver si existe :)
         if (ciudad != null) {

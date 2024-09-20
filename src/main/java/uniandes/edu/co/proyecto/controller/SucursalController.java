@@ -28,12 +28,9 @@ public class SucursalController {
 
      //Este no dicen como hacerlo xd
     @GetMapping("/sucursales/{id}")
-    public ResponseEntity<Sucursal> obtenerSucursal(@PathVariable Long id){
-
-        // Tocó pasar de long a int
-        int idInt = Math.toIntExact(id);
+    public ResponseEntity<Sucursal> obtenerSucursal(@PathVariable int id){
         
-        Sucursal sucursal = sucursalRepository.darSucursal(idInt);
+        Sucursal sucursal = sucursalRepository.darSucursal(id);
 
         //Devolver si existe :)
         if (sucursal != null) {

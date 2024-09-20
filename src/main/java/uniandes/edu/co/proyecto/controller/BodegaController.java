@@ -28,12 +28,9 @@ public class BodegaController {
 
     //Este no dicen como hacerlo xd
     @GetMapping("/bodegas/{id}")
-    public ResponseEntity<Bodega> obtenerBodega(@PathVariable Long id){
+    public ResponseEntity<Bodega> obtenerBodega(@PathVariable int id){
 
-        // Tocó pasar de long a int
-        int idInt = Math.toIntExact(id);
-        
-        Bodega bodega = bodegaRepository.darBodega(idInt);
+        Bodega bodega = bodegaRepository.darBodega(id);
 
         //Devolver si existe :)
         if (bodega != null) {
@@ -56,12 +53,9 @@ public class BodegaController {
     }
 
     @GetMapping("/bodegas/{id}/delete")
-    public ResponseEntity<String> bodegaEliminar(@PathVariable("id") long id) {
+    public ResponseEntity<String> bodegaEliminar(@PathVariable("id") int id) {
 
-        // Tocó pasar de long a int
-        int idInt = Math.toIntExact(id);
-
-        bodegaRepository.eliminarBodega(idInt);
+        bodegaRepository.eliminarBodega(id);
         return new ResponseEntity<>("Bodega eliminada exitosamente", HttpStatus.OK);
     }
     
