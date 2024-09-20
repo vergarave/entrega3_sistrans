@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Bodega;
 import uniandes.edu.co.proyecto.modelo.Sucursal;
 
 public interface SucursalRepository extends JpaRepository<Sucursal,Integer>{
@@ -17,7 +16,7 @@ public interface SucursalRepository extends JpaRepository<Sucursal,Integer>{
     Collection<Sucursal> darSucursales();
 
 @Query(value = "SELECT * FROM sucursal WHERE id= :id", nativeQuery=true)
-    Bodega darSucursal(@Param("id") int id);
+    Sucursal darSucursal(@Param("id") int id);
 
 @Modifying
 @Transactional
