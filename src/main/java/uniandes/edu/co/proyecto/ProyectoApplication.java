@@ -7,14 +7,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import uniandes.edu.co.proyecto.modelo.Bodega;
-import uniandes.edu.co.proyecto.repositorio.BodegaRepository;
+import uniandes.edu.co.proyecto.modelo.Categoria;
+import uniandes.edu.co.proyecto.repositorio.CategoriaRepository;
 
 @SpringBootApplication
 public class ProyectoApplication implements CommandLineRunner{
 	
 	@Autowired
-	private BodegaRepository bodegaRepository;
+	private CategoriaRepository categoriaRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoApplication.class, args);
 	}
@@ -22,11 +22,12 @@ public class ProyectoApplication implements CommandLineRunner{
 	@Override
 	public void run(String...arg){
 
-		bodegaRepository.eliminarBodega(5);
+		categoriaRepository.insertarCategoria("PERECEDEROU", "descripcion", "caracteristicasAlmacenamiento");
+		System.out.println(2);
 
-		Collection<Bodega> bodegas = bodegaRepository.darBodegas();
-		for(Bodega b: bodegas){
-			System.out.println(b.getId());
+		Collection<Categoria> categorias = categoriaRepository.darCategorias();
+		for(Categoria b: categorias){
+		System.out.println(b.getCodigo());
 		}
 	}
 }
