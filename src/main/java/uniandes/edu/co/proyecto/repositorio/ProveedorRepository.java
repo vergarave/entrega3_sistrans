@@ -21,12 +21,12 @@ Collection<Proveedor> darProveedores();
 
 @Modifying
 @Transactional
-@Query(value = "INSERT INTO proveedor(nit, nombre, direccion, nombre_persona_contacto, telefono_persona_contacto) VALUES(:nit, :nombre, :direccion, :nombre_persona_contacto :telefono_persona_contacto)", nativeQuery = true)
+@Query(value = "INSERT INTO proveedor(nit, nombre, direccion, nombre_persona_contacto, telefono_persona_contacto) VALUES(:nit, :nombre, :direccion, :nombre_persona_contacto, :telefono_persona_contacto)", nativeQuery = true)
 void insertarProveedor(@Param("nit") String nit, @Param("nombre") String nombre, @Param("direccion") String direccion, @Param("nombre_persona_contacto") String nombrePersonaContacto, @Param("telefono_persona_contacto") String telefonoPersonaContacto);
 
 @Modifying
 @Transactional
-@Query(value = "UPDATE proveedor SET nombre=:nombre, direccion=:direccion, nombre_persona_contacto=:nombrePersonaContacto, telefono_persona_contacto=:telefonoPersonaContacto WHERE nit=:nit", nativeQuery= true)
+@Query(value = "UPDATE proveedor SET nombre=:nombre, direccion=:direccion, nombre_persona_contacto=:nombre_persona_contacto, telefono_persona_contacto=:telefono_persona_contacto WHERE nit=:nit", nativeQuery= true)
 void actualizarProveedor(@Param("nit") String nit, @Param("nombre") String nombre, @Param("direccion") String direccion, @Param("nombre_persona_contacto") String nombrePersonaContacto, @Param("telefono_persona_contacto") String telefonoPersonaContacto);
 
 }
