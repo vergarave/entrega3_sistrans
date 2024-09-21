@@ -23,4 +23,10 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Integer>{
     @Transactional
     @Query(value = "INSERT INTO categoria(codigo, nombre, descripcion, caracteristicas_almacenamiento) VALUES(secuencia_categoria.nextval, :nombre, :descripcion, :caracteristicas_almacenamiento)", nativeQuery = true)
     void insertarCategoria(@Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("caracteristicas_almacenamiento") String caracteristicasAlmacenamiento);
+
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE from categoria WHERE codigo = :codigo", nativeQuery= true)
+    void eliminarCategoria(@Param("codigo") int codigo);
 }
