@@ -27,7 +27,7 @@ public class CategoriaController {
     }
 
      //Este no dicen como hacerlo xd
-    @GetMapping("/categoria/{codigo}")
+    @GetMapping("/categorias/{codigo}")
     public ResponseEntity<Categoria> obtenerCategoria(@PathVariable int codigo){
         Categoria categoria = categoriaRepository.darCategoria(codigo);
 
@@ -47,7 +47,7 @@ public class CategoriaController {
             return new ResponseEntity<>("Categoria creada exitosamente", HttpStatus.CREATED);
         }
         catch (Exception e){
-            return new ResponseEntity<>("Error al crear el proveedor", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al crear la categoria", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -27,7 +27,7 @@ public class CiudadController {
     }
 
     //Este no dicen como hacerlo xd
-    @GetMapping("/ciudades/{id}")
+    @GetMapping("/ciudades/{codigo}")
     public ResponseEntity<Ciudad> obtenerCiudad(@PathVariable int codigo){
         
         Ciudad ciudad = ciudadRepository.darCiudad(codigo);
