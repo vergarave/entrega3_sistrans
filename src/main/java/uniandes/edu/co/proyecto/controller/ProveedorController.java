@@ -26,7 +26,7 @@ public class ProveedorController {
     }
 
     //Este no dicen como hacerlo xd
-    @GetMapping("/proveedores/{NIT}")
+    @GetMapping("/proveedores/{nit}")
     public ResponseEntity<Proveedor> obtenerProveedor(@PathVariable String nit){
         
         Proveedor proveedor = proveedorRepository.darProveedor(nit);
