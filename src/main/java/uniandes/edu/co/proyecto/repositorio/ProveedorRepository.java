@@ -15,7 +15,7 @@ public interface ProveedorRepository extends JpaRepository<Proveedor, String>{
 @Query(value = "SELECT * FROM proveedor", nativeQuery=true)
 Collection<Proveedor> darProveedores();
 
-@Query(value = "SELECT * FROM sucursal WHERE nit= :nit", nativeQuery=true)
+@Query(value = "SELECT * FROM proveedor WHERE nit= :nit", nativeQuery=true)
     Proveedor darProveedor(@Param("nit") String nit);
 
 @Modifying
