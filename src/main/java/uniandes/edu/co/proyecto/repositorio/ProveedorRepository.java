@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Bodega;
 import uniandes.edu.co.proyecto.modelo.Proveedor;
 
 public interface ProveedorRepository extends JpaRepository<Proveedor, String>{
@@ -17,7 +16,7 @@ public interface ProveedorRepository extends JpaRepository<Proveedor, String>{
 Collection<Proveedor> darProveedores();
 
 @Query(value = "SELECT * FROM sucursal WHERE nit= :nit", nativeQuery=true)
-    Bodega darProveedor(@Param("nit") String nit);
+    Proveedor darProveedor(@Param("nit") String nit);
 
 @Modifying
 @Transactional
