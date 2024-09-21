@@ -20,7 +20,7 @@ public interface SucursalRepository extends JpaRepository<Sucursal,Integer>{
 
 @Modifying
 @Transactional
-@Query(value = "INSERT INTO sucursal(id, nombre, tamanio, direccion, telefono, codigo_ciudad) VALUES(secuencia_bodega.nextval, :nombre, :tamanio, :direccion, :telefono, :codigo_ciudad)", nativeQuery = true)
+@Query(value = "INSERT INTO sucursal(id, nombre, tamanio, direccion, telefono, codigo_ciudad) VALUES(secuencia_sucursal.nextval, :nombre, :tamanio, :direccion, :telefono, :codigo_ciudad)", nativeQuery = true)
 void insertarSucursal(@Param("nombre") String nombre, @Param("tamanio") Double tamanio, @Param("direccion") String direccion, @Param("telefono") String telefono, @Param("codigo_ciudad") Integer codigoCiudad);
 
 
