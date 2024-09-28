@@ -18,7 +18,6 @@ public class Bodega {
     private Integer id;
     private String nombre;
     private Double tamanio;
-    private Double porcentajeOcupacion;
     private Integer capacidad;
 
     @ManyToOne
