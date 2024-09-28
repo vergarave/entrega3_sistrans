@@ -21,6 +21,7 @@ public interface OrdenDeCompraRepository extends JpaRepository<OrdenDeCompra, In
     @Query(value = "SELECT * FROM orden_de_compra WHERE numero= :numero", nativeQuery=true)
         OrdenDeCompra darOrdenDeCompra(@Param("numero") Integer numero);
 
+        
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO orden_de_compra(numero, fechaEntrega, estado, fechaCreacion, nitProveedor) VALUES(secuencia_orden_de_compra.nextval, :fechaEntrega, :estado, :fechaCreacion, :nitProveedor)", nativeQuery = true)
