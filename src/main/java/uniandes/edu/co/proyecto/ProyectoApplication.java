@@ -23,9 +23,6 @@ public class ProyectoApplication implements CommandLineRunner{
 
 	public void run(String...arg) {
 		Collection<Producto> productos = productoRepository.darProductos();
-		for (Producto p: productos) {
-			System.out.println(p);
-		}
 	}
 
 }
