@@ -45,7 +45,7 @@ public class OrdenDeCompraController {
         if (orden != null && "VIGENTE".equals(orden.getEstado())) {
             ordenDeCompraRepository.actualizarEstadoOrdenDeCompra(numero, "ANULADA");
             return new ResponseEntity<>("Orden de compra anulada exitosamente", HttpStatus.OK);
-        } else if (orden != null && "entregada".equals(orden.getEstado())) {
+        } else if (orden != null && "ENTREGADA".equals(orden.getEstado())) {
             return new ResponseEntity<>("No se puede anular una orden de compra entregada", HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>("Orden de compra no encontrada", HttpStatus.NOT_FOUND);
