@@ -1,15 +1,20 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.time.LocalDate;
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.modelo.OrdenDeCompra;
 import uniandes.edu.co.proyecto.repositorio.OrdenDeCompraRepository;
-
-import java.time.LocalDate;
-import java.util.Collection;
 
 @RestController
 @RequestMapping("/ordenes")
@@ -51,7 +56,7 @@ public class OrdenDeCompraController {
 
     // Este si debe estar bien pero no sé, revisen pliss, es el RF9
     @GetMapping("/ordenesDeCompra")
-    public Collection<OrdenDeCompra> ordeneDeCompra() {
+    public Collection<OrdenDeCompra> ordenesDeCompra() {
         return ordenDeCompraRepository.darOrdenesDeCompra();
     }
 }
