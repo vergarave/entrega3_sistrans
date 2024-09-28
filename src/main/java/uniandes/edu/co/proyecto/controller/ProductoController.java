@@ -43,7 +43,7 @@ public class ProductoController {
     public ResponseEntity<String> productoGuardar(@RequestBody Producto producto){
         
         try{
-            productoRepository.insertarProducto(producto.getNombre(), producto.getCostoEnBodega(), producto.getPresentacion(), producto.getCantidadPresentacion(), producto.getUnidadMedida(), producto.getVolumenEmpaque(), producto.getPesoEmpaque(), producto.getFechaExpiracion(), producto.getCodigoDeBarras(), producto.getClasificacionCategoria());
+            productoRepository.insertarProducto(producto.getNombre(), producto.getCostoEnBodega(), producto.getPresentacion(), producto.getCantidadPresentacion(), producto.getUnidadMedida(), producto.getVolumenEmpaque(), producto.getPesoEmpaque(), producto.getFechaExpiracion(), producto.getCodigoDeBarras(), producto.getClasificacionCategoria().getCodigo());
             return new ResponseEntity<>("Producto creado exitosamente", HttpStatus.CREATED);
         }
         catch (Exception e){

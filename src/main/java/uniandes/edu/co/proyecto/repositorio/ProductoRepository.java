@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Categoria;
 import uniandes.edu.co.proyecto.modelo.Producto;
 
 public interface ProductoRepository extends JpaRepository<Producto, Integer>{
@@ -25,7 +24,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
     @Transactional
     @Query(value = "INSERT INTO producto( identificador, nombre, costo_en_bodega, presentacion, cantidad_presentacion, unidad_medida, volumen_empaque, peso_empaque, fecha_expiracion, codigo_de_barras, clasificacion_categoria) VALUES(secuencia_producto.nextval, :nombre, :costo_en_bodega, :presentacion, :cantidad_presentacion, :unidad_medida, :volumen_empaque, :peso_empaque, :fecha_expiracion, :codigo_de_barras, :clasificacion_categoria)", nativeQuery = true)
     void insertarProducto(@Param("nombre") String nombre, @Param("costo_en_bodega") Double costoEnBodega, @Param("presentacion") String presentacion, @Param("cantidad_presentacion") Double cantidadPresentacion, @Param("unidad_medida") String unidadMedida, 
-                          @Param("volumen_empaque") String volumenEmpaque, @Param("peso_empaque") String pesoEmpaque, @Param("fecha_expiracion")LocalDate fechaExpiracion, @Param("codigo_de_barras") String codigoDeBarras, @Param("clasificacion_categoria") Categoria clasificacionCategoria);
+                          @Param("volumen_empaque") String volumenEmpaque, @Param("peso_empaque") String pesoEmpaque, @Param("fecha_expiracion")LocalDate fechaExpiracion, @Param("codigo_de_barras") String codigoDeBarras, @Param("clasificacion_categoria") Integer clasificacionCategoria);
 
     @Modifying
     @Transactional
