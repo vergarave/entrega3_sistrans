@@ -45,7 +45,7 @@ public class BodegaController {
     public ResponseEntity<String> bodegaGuardar(@RequestBody Bodega bodega){
         
         try{
-            bodegaRepository.insertarBodega(bodega.getNombre(), bodega.getTamanio(), bodega.getPorcentajeOcupacion(), bodega.getCapacidad(), bodega.getIdSucursal().getId());
+            bodegaRepository.insertarBodega(bodega.getNombre(), bodega.getTamanio(), bodega.getCapacidad(), bodega.getIdSucursal().getId());
             return new ResponseEntity<>("Bodega creada exitosamente", HttpStatus.CREATED);
         }
         catch (Exception e){

@@ -25,10 +25,9 @@ public class Bodega {
     @JoinColumn(name="id_sucursal", referencedColumnName="id")
     private Sucursal idSucursal;
 
-    public Bodega(String nombre, Double tamanio, Double porcentajeOcupacion, Integer capacidad, Sucursal idSucursal){
+    public Bodega(String nombre, Double tamanio, Integer capacidad, Sucursal idSucursal){
         this.nombre = nombre;
         this.tamanio = tamanio;
-        this.porcentajeOcupacion = porcentajeOcupacion;
         this.capacidad = capacidad;
         this.idSucursal = idSucursal;
     }
@@ -46,10 +45,6 @@ public class Bodega {
 
     public Double getTamanio() {
         return tamanio;
-    }
-
-    public Double getPorcentajeOcupacion() {
-        return porcentajeOcupacion;
     }
 
     public Integer getCapacidad() {
@@ -70,10 +65,6 @@ public class Bodega {
 
     public void setTamanio(Double tamanio) {
         this.tamanio = tamanio;
-    }
-
-    public void setPorcentajeOcupacion(Double porcentajeOcupacion) {
-        this.porcentajeOcupacion = porcentajeOcupacion;
     }
 
     public void setCapacidad(Integer capacidad) {
