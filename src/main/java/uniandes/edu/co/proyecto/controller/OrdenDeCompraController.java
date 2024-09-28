@@ -31,8 +31,8 @@ public class OrdenDeCompraController {
                 ordenDeCompra.getFechaEntrega(),
                 "VIGENTE",
                 LocalDate.now(),
-                ordenDeCompra.getIdSucursal(),
-                ordenDeCompra.getNitProveedor()
+                ordenDeCompra.getIdSucursal().getId(),
+                ordenDeCompra.getNitProveedor().getNit()
             );
             return new ResponseEntity<>("Orden de compra creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
