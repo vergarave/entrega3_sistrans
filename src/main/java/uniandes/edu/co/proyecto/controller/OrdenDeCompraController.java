@@ -47,7 +47,10 @@ public class OrdenDeCompraController {
             return new ResponseEntity<>("Orden de compra anulada exitosamente", HttpStatus.OK);
         } else if (orden != null && "ENTREGADA".equals(orden.getEstado())) {
             return new ResponseEntity<>("No se puede anular una orden de compra entregada", HttpStatus.BAD_REQUEST);
-        } else {
+        } else if (orden != null && "ANULADA".equals(orden.getEstado())) {
+            return new ResponseEntity<>("La orden de compra ya se encuentra anulada", HttpStatus.BAD_REQUEST);
+        }
+        else {
             return new ResponseEntity<>("Orden de compra no encontrada", HttpStatus.NOT_FOUND);
         }
     }
