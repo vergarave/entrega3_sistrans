@@ -29,7 +29,7 @@ public class OrdenDeCompraController {
         try {
             ordenDeCompraRepository.insertarOrdenDeCompra(
                 ordenDeCompra.getFechaEntrega(),
-                "vigente",
+                "VIGENTE",
                 LocalDate.now(),
                 ordenDeCompra.getIdSucursal(),
                 ordenDeCompra.getNitProveedor()
