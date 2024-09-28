@@ -31,7 +31,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
     @Transactional
     @Query(value = "UPDATE producto SET nombre = :nombre, costo_en_bodega = :costo_en_bodega, presentacion = :presentacion,cantidad_presentacion = :cantidad_presentacion,unidad_medida = :unidad_medida,volumen_empaque = :volumen_empaque, peso_empaque = :peso_empaque, fecha_expiracion = :fecha_expiracion, codigo_de_barras = :codigo_de_barras, clasificacion_categoria = :clasificacion_categoria WHERE identificador = :identificador", nativeQuery = true)
     void actualizarProducto(@Param("identificador")Integer identificador, @Param("nombre") String nombre, @Param("costo_en_bodega") Double costoEnBodega, @Param("presentacion") String presentacion, @Param("cantidad_presentacion") Double cantidadPresentacion, 
-                          @Param("unidad_medida") String unidadMedida, @Param("volumen_empaque") String volumenEmpaque, @Param("peso_empaque") String pesoEmpaque, @Param("fecha_expiracion")LocalDate fechaExpiracion, @Param("codigo_de_barras") String codigoDeBarras, @Param("clasificacion_categoria") Categoria clasificacionCategoria);                      
+                          @Param("unidad_medida") String unidadMedida, @Param("volumen_empaque") String volumenEmpaque, @Param("peso_empaque") String pesoEmpaque, @Param("fecha_expiracion")LocalDate fechaExpiracion, @Param("codigo_de_barras") String codigoDeBarras, @Param("clasificacion_categoria") Integer clasificacionCategoria);                      
     @Modifying
     @Transactional
     @Query(value = "DELETE from producto WHERE identificador = :identificador", nativeQuery= true)
