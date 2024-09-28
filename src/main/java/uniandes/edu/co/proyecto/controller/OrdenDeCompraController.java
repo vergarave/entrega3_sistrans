@@ -42,8 +42,8 @@ public class OrdenDeCompraController {
     @PostMapping("/ordenesDeCompra/{numero}/edit/save")
     public ResponseEntity<String> ordenDeCompraEditarGuardar(@PathVariable Integer numero) {
         OrdenDeCompra orden = ordenDeCompraRepository.darOrdenDeCompra(numero);
-        if (orden != null && "vigente".equals(orden.getEstado())) {
-            ordenDeCompraRepository.actualizarEstadoOrdenDeCompra(numero, "anulada");
+        if (orden != null && "VIGENTE".equals(orden.getEstado())) {
+            ordenDeCompraRepository.actualizarEstadoOrdenDeCompra(numero, "ANULADA");
             return new ResponseEntity<>("Orden de compra anulada exitosamente", HttpStatus.OK);
         } else if (orden != null && "entregada".equals(orden.getEstado())) {
             return new ResponseEntity<>("No se puede anular una orden de compra entregada", HttpStatus.BAD_REQUEST);
