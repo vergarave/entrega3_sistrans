@@ -14,20 +14,10 @@ import uniandes.edu.co.proyecto.repositorio.ProductoRepository;
 
 
 @SpringBootApplication
-public class ProyectoApplication implements CommandLineRunner{
-	
-	@Autowired
-	private OrdenDeCompraRepository ordenDeCompraRepository;
+public class ProyectoApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoApplication.class, args);
-	}
-
-	public void run(String...arg) {
-		Collection<OrdenDeCompra> ordenes = ordenDeCompraRepository.darOrdenesDeCompra();
-		for (OrdenDeCompra o: ordenes) {
-			System.out.println(o);
-		}
 	}
 
 }
