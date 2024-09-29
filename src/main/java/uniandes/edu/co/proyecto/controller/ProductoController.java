@@ -1,6 +1,10 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.modelo.Producto;
 import uniandes.edu.co.proyecto.repositorio.ProductoRepository;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -75,6 +80,25 @@ public class ProductoController {
     ){
         return productoRepository.darProductosFiltrados(precioMinU, precioMaxU, fechaSuperiorU, fechaInferiorU, sucursalIdU, categoriaNombreU);
     }
-    
+
+    @GetMapping("/productos/productosEnBodega")
+    public Collection<Map<String, Object>> obtenerProductosEnBodega(
+            @RequestParam Integer idSucursal,
+            @RequestParam Integer idBodega) {
+        Collection<Object[]> resultado = productoRepository.darProductosBodega(idSucursal, idBodega);
+        
+        Collection<Map<String, Object>> listaproductos = new ArrayList<>();
+        for (Object[] fila : resultado) {
+            Map<String, Object> productos = new HashMap<>();
+            productos.put("id", fila[0]);
+            productos.put("nombre", fila[1]);
+            productos.put("nivel minimo reorden", fila[2]);
+            productos.put("costo promedio", fila[3]);
+            productos.put("cantidad en bodega", fila[4]);
+            listaproductos.add(productos);
+        }
+        return listaproductos;
+    }
+
 
 }

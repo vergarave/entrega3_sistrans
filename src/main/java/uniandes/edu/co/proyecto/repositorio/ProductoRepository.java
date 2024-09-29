@@ -51,4 +51,14 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
     "AND (:categoriaNombreU IS NULL OR Categoria.nombre = :categoriaNombreU)", 
     nativeQuery = true)
     Collection<Producto> darProductosFiltrados(@Param("precioMinU") Double precioMinU, @Param("precioMaxU") Double precioMaxU, @Param("fechaSuperiorU") String fechaSuperiorU, @Param("fechaInferiorU") String fechaInferiorU, @Param("sucursalIdU") Integer sucursalIdU, @Param("categoriaNombreU") String categoriaNombreU);
+
+    //Consulta Avanzada No. 3
+    @Query(value = "SELECT PRODUCTO.IDENTIFICADOR, PRODUCTO.NOMBRE, PRODUCTO_EN_BODEGA.NIVEL_MINIMO_REORDEN, PRODUCTO_EN_BODEGA.COSTO_PROMEDIO, PRODUCTO_EN_BODEGA.CANTIDAD_EN_BODEGA\r\n" +
+    "FROM PRODUCTO\r\n" +
+    "INNER JOIN PRODUCTO_EN_BODEGA ON PRODUCTO_EN_BODEGA.IDENTIFICADOR_PRODUCTO = PRODUCTO.IDENTIFICADOR\r\n" +
+    "INNER JOIN BODEGA ON BODEGA.ID = PRODUCTO_EN_BODEGA.ID_BODEGA\r\n" +
+    "INNER JOIN SUCURSAL ON SUCURSAL.ID = BODEGA.ID_SUCURSAL\r\n" +
+    "WHERE SUCURSAL.ID =:idSucursal\r\n" +
+    "AND BODEGA.id = :idBodega", nativeQuery = true)
+    Collection<Object[]> darProductosBodega(@Param("idSucursal") Integer idSucursal, @Param("idBodega") Integer idBodega);
 }
