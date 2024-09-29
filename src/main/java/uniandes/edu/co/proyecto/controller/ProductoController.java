@@ -90,9 +90,9 @@ public class ProductoController {
             Map<String, Object> productos = new HashMap<>();
             productos.put("id", fila[0]);
             productos.put("nombre", fila[1]);
-            productos.put("nivel minimo reorden", fila[2]);
-            productos.put("costo promedio", fila[3]);
-            productos.put("cantidad en bodega", fila[4]);
+            productos.put("nivelMinimoReorden", fila[2]);
+            productos.put("costoPromedio", fila[3]);
+            productos.put("cantidadEnBodega", fila[4]);
             listaproductos.add(productos);
         }
         return listaproductos;
