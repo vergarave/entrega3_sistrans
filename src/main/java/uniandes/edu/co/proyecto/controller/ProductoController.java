@@ -32,17 +32,17 @@ public class ProductoController {
     }
 
      //Este no dicen como hacerlo xd
-    @GetMapping("/productos/{identificador}")
-    public ResponseEntity<Producto> obtenerProducto(@PathVariable int identificador){
-        Producto producto = productoRepository.darProducto(identificador);
-
-        //Devolver si existe :)
-        if (producto != null) {
-            return new ResponseEntity<>(producto, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+     @GetMapping("/productos/{identificador}")
+     public ResponseEntity<?> obtenerProducto(@PathVariable int identificador) {
+         Producto producto = productoRepository.darProducto(identificador);
+     
+         // Devolver si existe el producto
+         if (producto != null) {
+             return new ResponseEntity<>(producto, HttpStatus.OK);
+         } else {
+             return new ResponseEntity<>("Producto con identificador " + identificador + " no encontrado.", HttpStatus.NOT_FOUND);
+         }
+     }
 
     @PostMapping("/productos/new/save")
     public ResponseEntity<String> productoGuardar(@RequestBody Producto producto){
