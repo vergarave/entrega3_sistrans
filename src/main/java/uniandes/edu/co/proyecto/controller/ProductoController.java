@@ -109,10 +109,10 @@ public class ProductoController {
         Map<String, Object> producto = new HashMap<>();
         producto.put("identificador", fila[0]);
         producto.put("nombreProducto", fila[1]);
-        producto.put("nombreBodega", fila[2]);
-        producto.put("nombreSucursal", fila[3]);
-        producto.put("nombreProveedor", fila[4]);
-        producto.put("cantidadEnBodega", fila[5]);
+        producto.put("nombreBodegaNivelBajo", fila[2]);
+        producto.put("nombreSucursalAsociada", fila[3]);
+        producto.put("nombrePosibleProveedor", fila[4]);
+        producto.put("cantidadActualEnBodega", fila[5]);
         producto.put("nivelMinimoReorden", fila[6]);
         productosParaOrdenCompra.add(producto);
     }
