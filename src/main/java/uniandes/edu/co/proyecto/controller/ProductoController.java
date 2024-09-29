@@ -57,15 +57,36 @@ public class ProductoController {
     }
 
     @PostMapping("/productos/{identificador}/edit/save")
-    public ResponseEntity<String> productoEditarGuardar(@PathVariable("identificador") Integer identificador, @RequestBody Producto producto){
+    public ResponseEntity<String> productoEditarGuardar(@PathVariable("identificador") Integer identificador, @RequestBody Producto producto) {
         try {
-            productoRepository.actualizarProducto(producto.getIdentificador(), producto.getNombre(), producto.getCostoEnBodega(), producto.getPresentacion(), producto.getCantidadPresentacion(), producto.getUnidadMedida(), producto.getVolumenEmpaque(), producto.getPesoEmpaque(), producto.getFechaExpiracion(), producto.getCodigoDeBarras(), producto.getClasificacionCategoria().getCodigo());
+            // Verificar si el producto con el identificador existe
+            if (!productoRepository.existeProducto(identificador)) {
+                return new ResponseEntity<>("El producto con identificador " + identificador + " no existe", HttpStatus.NOT_FOUND);
+            }
+    
+            // Verificar que ninguno de los campos obligatorios sea null
+            if (producto.getNombre() == null || producto.getCostoEnBodega() == null || producto.getPresentacion() == null ||
+                producto.getCantidadPresentacion() == null || producto.getUnidadMedida() == null || 
+                producto.getVolumenEmpaque() == null || producto.getPesoEmpaque() == null ||
+                producto.getFechaExpiracion() == null || producto.getCodigoDeBarras() == null ||
+                producto.getClasificacionCategoria() == null || producto.getClasificacionCategoria().getCodigo() == null) {
+    
+                return new ResponseEntity<>("Uno o más campos obligatorios están vacíos o nulos.", HttpStatus.BAD_REQUEST);
+            }
+    
+            // Actualizar el producto
+            productoRepository.actualizarProducto(identificador, producto.getNombre(), producto.getCostoEnBodega(), 
+                                                  producto.getPresentacion(), producto.getCantidadPresentacion(), 
+                                                  producto.getUnidadMedida(), producto.getVolumenEmpaque(), 
+                                                  producto.getPesoEmpaque(), producto.getFechaExpiracion(), 
+                                                  producto.getCodigoDeBarras(), producto.getClasificacionCategoria().getCodigo());
+    
             return new ResponseEntity<>("Producto actualizado exitosamente", HttpStatus.OK);
-       }
-       catch (Exception e){
-        return new ResponseEntity<>("Error al actualizar el producto", HttpStatus.INTERNAL_SERVER_ERROR);
-       }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el producto", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+    
 
     @GetMapping("productos/filtrados")
     public Collection<Producto> productosfiltrados(

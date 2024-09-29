@@ -18,7 +18,7 @@ import uniandes.edu.co.proyecto.repositorio.CategoriaRepository;
 @RestController
 public class CategoriaController {
 
-      @Autowired
+    @Autowired
     private CategoriaRepository categoriaRepository;
 
     

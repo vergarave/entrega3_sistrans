@@ -14,6 +14,9 @@ import uniandes.edu.co.proyecto.modelo.Producto;
 
 public interface ProductoRepository extends JpaRepository<Producto, Integer>{
 
+    @Query("SELECT COUNT(p) > 0 FROM Producto p WHERE p.identificador = :identificador")
+    boolean existeProducto(@Param("identificador") Integer identificador);
+
     @Query(value = "SELECT * FROM producto", nativeQuery=true)
     Collection<Producto> darProductos();
 
