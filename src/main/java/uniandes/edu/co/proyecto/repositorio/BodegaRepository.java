@@ -36,12 +36,12 @@ public interface BodegaRepository extends JpaRepository<Bodega, Integer>{
     void eliminarBodega(@Param("id") int id);
 
     //Consulta avanzada No. 1
-    @Query(value = "SELECT Bodega.id, Bodega.nombre, (SUM(Producto_En_Bodega.cantidadEnBodega) / Bodega.capacidad) AS porcentajeOcupacion FROM Bodega\r\n" +
+    @Query(value = "SELECT Bodega.id, Bodega.nombre, (SUM(Producto_En_Bodega.cantidad_En_Bodega) / Bodega.capacidad) AS porcentajeOcupacion FROM Bodega\r\n" +
     "INNER JOIN Producto_En_Bodega ON Producto_En_Bodega.id_Bodega = Bodega.id\r\n" +
     "INNER JOIN Producto ON Producto.identificador = Producto_En_Bodega.identificador_Producto\r\n" +
     "WHERE Bodega.id_sucursal = :idSucursalU\r\n" +
     "AND Producto.identificador IN :listaProductosU\r\n" +
-    "GROUP BY Bodega.id, Bodega.nombre", nativeQuery = true)
+    "GROUP BY Bodega.id, Bodega.nombre, Bodega.capacidad", nativeQuery = true)
     Collection<Object[]> obtenerOcupacionBodegas(@Param("idSucursalU") Integer idSucursalU, @Param("listaProductosU") Collection<Integer> listaProductosU);
 
 }
