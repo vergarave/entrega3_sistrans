@@ -66,8 +66,7 @@ public class ProductoController {
             // Verificar que ninguno de los campos obligatorios sea null
             if (producto.getNombre() == null || producto.getCostoEnBodega() == null || producto.getPresentacion() == null ||
                 producto.getCantidadPresentacion() == null || producto.getUnidadMedida() == null || 
-                producto.getVolumenEmpaque() == null || producto.getPesoEmpaque() == null ||
-                producto.getFechaExpiracion() == null || producto.getCodigoDeBarras() == null ||
+                producto.getVolumenEmpaque() == null || producto.getPesoEmpaque() == null || producto.getCodigoDeBarras() == null ||
                 producto.getClasificacionCategoria() == null || producto.getClasificacionCategoria().getCodigo() == null) {
     
                 return new ResponseEntity<>("Uno o más campos obligatorios están vacíos o nulos.", HttpStatus.BAD_REQUEST);
