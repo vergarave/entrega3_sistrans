@@ -3,7 +3,6 @@ package uniandes.edu.co.proyecto.controller;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.modelo.Producto;
 import uniandes.edu.co.proyecto.repositorio.ProductoRepository;
-
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -98,6 +96,27 @@ public class ProductoController {
             listaproductos.add(productos);
         }
         return listaproductos;
+    }
+
+    //Para RCF5:
+    @GetMapping("/productosParaOrdenDeCompra")
+    public Collection<Map<String, Object>> obtenerProductosParaOrdenDeCompra() {
+    Collection<Object[]> resultado = productoRepository.obtenerProductosBajoNivelReorden();
+    
+    // Convertir los resultados en una colección de Map<String, Object> para mayor claridad en el retorno.
+    Collection<Map<String, Object>> productosParaOrdenCompra = new ArrayList<>();
+    for (Object[] fila : resultado) {
+        Map<String, Object> producto = new HashMap<>();
+        producto.put("identificador", fila[0]);
+        producto.put("nombreProducto", fila[1]);
+        producto.put("nombreBodegaNivelBajo", fila[2]);
+        producto.put("nombreSucursalAsociada", fila[3]);
+        producto.put("nombrePosibleProveedor", fila[4]);
+        producto.put("cantidadActualEnBodega", fila[5]);
+        producto.put("nivelMinimoReorden", fila[6]);
+        productosParaOrdenCompra.add(producto);
+    }
+    return productosParaOrdenCompra;
     }
 
 
