@@ -27,10 +27,9 @@ public class CategoriaController {
         return categoriaRepository.darCategorias();
     }
 
-     //Este no dicen como hacerlo xd
-    @GetMapping("/categorias/{codigo}")
-    public ResponseEntity<?> obtenerCategoria(@PathVariable int codigo){
-        Categoria categoria = categoriaRepository.darCategoria(codigo);
+    @GetMapping("/categorias/codigo/{codigo}")
+    public ResponseEntity<?> obtenerCategoriaCodigo(@PathVariable int codigo){
+        Categoria categoria = categoriaRepository.darCategoriaPorCodigo(codigo);
 
         // Devolver si existe
         if (categoria != null) {
@@ -38,6 +37,20 @@ public class CategoriaController {
         } else {
         // Mensaje personalizado cuando la categoría no existe
             String mensajeError = "Error: La categoría con el código " + codigo + " no existe.";
+        return new ResponseEntity<>(mensajeError, HttpStatus.NOT_FOUND);
+    }
+    }
+
+    @GetMapping("/categorias/nombre/{nombre}")
+    public ResponseEntity<?> obtenerCategoriaNombre(@PathVariable String nombre){
+        Categoria categoria = categoriaRepository.darCategoriaPorNombre(nombre);
+
+        // Devolver si existe
+        if (categoria != null) {
+            return new ResponseEntity<>(categoria, HttpStatus.OK);
+        } else {
+        // Mensaje personalizado cuando la categoría no existe
+            String mensajeError = "Error: La categoría con el nombre " + nombre + " no existe.";
         return new ResponseEntity<>(mensajeError, HttpStatus.NOT_FOUND);
     }
     }
