@@ -31,7 +31,6 @@ public class ProductoController {
         return productoRepository.darProductos();
     }
 
-     //Este no dicen como hacerlo xd
      @GetMapping("/productos/{identificador}")
      public ResponseEntity<?> obtenerProducto(@PathVariable int identificador) {
          Producto producto = productoRepository.darProducto(identificador);
