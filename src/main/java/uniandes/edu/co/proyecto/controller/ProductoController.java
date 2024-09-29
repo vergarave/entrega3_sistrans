@@ -81,7 +81,7 @@ public class ProductoController {
         return productoRepository.darProductosFiltrados(precioMinU, precioMaxU, fechaSuperiorU, fechaInferiorU, sucursalIdU, categoriaNombreU);
     }
 
-    @GetMapping("/productos/productosEnBodega/{idSucursal}/{idBodega}")
+    @GetMapping("/productos/productosEnBodega")
     public Collection<Map<String, Object>> obtenerProductosEnBodega(
             @RequestParam Integer idSucursal,
             @RequestParam Integer idBodega) {
