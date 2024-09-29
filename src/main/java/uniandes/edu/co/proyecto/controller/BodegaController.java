@@ -82,4 +82,5 @@ public class BodegaController {
         return ocupacionBodegas;
     }
     
+
 }
