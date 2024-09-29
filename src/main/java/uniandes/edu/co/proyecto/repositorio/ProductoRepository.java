@@ -35,4 +35,20 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
     @Transactional
     @Query(value = "DELETE from producto WHERE identificador = :identificador", nativeQuery= true)
     void eliminarProducto(@Param("identificador") int identificador);
+
+    //Consulta Avanzada No. 2
+
+    @Query(value = "SELECT DISTINCT Producto.* FROM Producto\r\n " +
+    "INNER JOIN Producto_En_Bodega ON Producto_En_Bodega.identificador_Producto = Producto.identificador\r\n " +
+    "INNER JOIN Bodega ON Bodega.id = Producto_En_Bodega.id_Bodega\r\n " +
+    "INNER JOIN Sucursal ON Sucursal.id = Bodega.id_sucursal\r\n " +
+    "INNER JOIN Categoria ON Categoria.codigo = Producto.clasificacion_categoria\r\n " +
+    "WHERE (:precioMinU IS NULL OR Producto.costo_en_bodega >= :precioMinU)\r\n " +
+    "AND (:precioMaxU IS NULL OR Producto.costo_en_bodega <= :precioMaxU)\r\n " +
+    "AND (:fechaSuperiorU IS NULL OR Producto.fecha_expiracion < TO_DATE(:fechaSuperiorU, 'YYYY-MM-DD'))\r\n " +
+    "AND (:fechaInferiorU IS NULL OR Producto.fecha_expiracion > TO_DATE(:fechaInferiorU, 'YYYY-MM-DD'))\r\n " +
+    "AND (:sucursalIdU IS NULL OR Bodega.id_sucursal = :sucursalIdU)\r\n " +
+    "AND (:categoriaNombreU IS NULL OR Categoria.nombre = :categoriaNombreU)", 
+    nativeQuery = true)
+    Collection<Producto> darProductosFiltrados(@Param("precioMinU") Double precioMinU, @Param("precioMaxU") Double precioMaxU, @Param("fechaSuperiorU") String fechaSuperiorU, @Param("fechaInferiorU") String fechaInferiorU, @Param("sucursalIdU") Integer sucursalIdU, @Param("categoriaNombreU") String categoriaNombreU);
 }

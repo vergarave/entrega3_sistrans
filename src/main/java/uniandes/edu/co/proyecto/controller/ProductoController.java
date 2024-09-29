@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.modelo.Producto;
 import uniandes.edu.co.proyecto.repositorio.ProductoRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class ProductoController {
@@ -61,5 +63,18 @@ public class ProductoController {
         return new ResponseEntity<>("Error al actualizar el producto", HttpStatus.INTERNAL_SERVER_ERROR);
        }
     }
+
+    @GetMapping("productos/filtrados")
+    public Collection<Producto> productosfiltrados(
+        @RequestParam(required = false) Double precioMinU,
+        @RequestParam(required = false) Double precioMaxU,
+        @RequestParam(required = false) String fechaSuperiorU,
+        @RequestParam(required = false) String fechaInferiorU,
+        @RequestParam(required = false) Integer sucursalIdU,
+        @RequestParam(required = false) String categoriaNombreU
+    ){
+        return productoRepository.darProductosFiltrados(precioMinU, precioMaxU, fechaSuperiorU, fechaInferiorU, sucursalIdU, categoriaNombreU);
+    }
+    
 
 }
