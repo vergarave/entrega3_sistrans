@@ -60,6 +60,10 @@ public class BodegaController {
     @DeleteMapping("/bodegas/{id}/delete")
     public ResponseEntity<String> bodegaEliminar(@PathVariable("id") int id) {
 
+        if (!bodegaRepository.existsById(id)) {
+            return new ResponseEntity<>("Error: La bodega con ID " + id + " no existe.", HttpStatus.NOT_FOUND);
+        }
+
         bodegaRepository.eliminarBodega(id);
         return new ResponseEntity<>("Bodega eliminada exitosamente", HttpStatus.OK);
     }

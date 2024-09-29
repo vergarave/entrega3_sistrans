@@ -29,15 +29,17 @@ public class CategoriaController {
 
      //Este no dicen como hacerlo xd
     @GetMapping("/categorias/{codigo}")
-    public ResponseEntity<Categoria> obtenerCategoria(@PathVariable int codigo){
+    public ResponseEntity<?> obtenerCategoria(@PathVariable int codigo){
         Categoria categoria = categoriaRepository.darCategoria(codigo);
 
-        //Devolver si existe :)
+        // Devolver si existe
         if (categoria != null) {
             return new ResponseEntity<>(categoria, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        // Mensaje personalizado cuando la categoría no existe
+            String mensajeError = "Error: La categoría con el código " + codigo + " no existe.";
+        return new ResponseEntity<>(mensajeError, HttpStatus.NOT_FOUND);
+    }
     }
 
     @PostMapping("/categorias/new/save")

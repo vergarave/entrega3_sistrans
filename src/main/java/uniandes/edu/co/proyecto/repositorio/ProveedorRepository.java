@@ -12,6 +12,8 @@ import uniandes.edu.co.proyecto.modelo.Proveedor;
 
 public interface ProveedorRepository extends JpaRepository<Proveedor, String>{
 
+boolean existsByNit(String nit);
+
 @Query(value = "SELECT * FROM proveedor", nativeQuery=true)
 Collection<Proveedor> darProveedores();
 

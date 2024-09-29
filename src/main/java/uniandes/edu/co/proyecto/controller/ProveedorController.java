@@ -55,6 +55,11 @@ public class ProveedorController {
     @PostMapping("/proveedores/{nit}/edit/save")
     public ResponseEntity<String> proveedorEditarGuardar(@PathVariable("nit") String nit, @RequestBody Proveedor proveedor){
         try {
+            
+        if (!proveedorRepository.existsByNit(nit)) {
+            return new ResponseEntity<>("Error: El proveedor con NIT " + nit + " no existe.", HttpStatus.NOT_FOUND);
+        }
+
         proveedorRepository.actualizarProveedor(nit, proveedor.getNombre(), proveedor.getDireccion(), proveedor.getNombrePersonaContacto(), proveedor.getTelefonoPersonaContacto());
         return new ResponseEntity<>("Proveedor actualizado exitosamente", HttpStatus.OK);
        }
