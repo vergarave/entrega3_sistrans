@@ -10,22 +10,27 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+//Clase que mapea la tabla OrdenDeCompra en la base de datos
 @Entity
 @Table(name="orden_de_compra")
 public class OrdenDeCompra {
     
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id //Indica que es la llave primaria
+    @GeneratedValue(strategy=GenerationType.AUTO) //Genera automaticamente el valor de la llave primaria
     private Integer numero;
 
+    //Atributos de la clase
     private LocalDate fechaEntrega;
     private String estado;
     private LocalDate fechaCreacion;
 
+
+    //Relacion con la tabla Sucursal
     @ManyToOne
     @JoinColumn(name="id_sucursal", referencedColumnName="id")
     private Sucursal idSucursal;
 
+    //Relacion con la tabla Proveedor
     @ManyToOne
     @JoinColumn(name="nit_proveedor", referencedColumnName="nit")
     private Proveedor nitProveedor;

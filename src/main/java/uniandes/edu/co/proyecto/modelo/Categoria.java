@@ -6,13 +6,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+//Clase que mapea la tabla Categoria en la base de datos
 @Entity
 @Table(name="categoria")
 public class Categoria {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id //Indica que es la llave primaria
+    @GeneratedValue(strategy = GenerationType.AUTO) //Genera automaticamente el valor de la llave primaria
     
+    //Atributos de la clase
     private Integer codigo;
     private String nombre;
     private String descripcion;

@@ -15,20 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 import uniandes.edu.co.proyecto.modelo.Categoria;
 import uniandes.edu.co.proyecto.repositorio.CategoriaRepository;
 
+//Controlador de la entidad Categoria que se encarga de realizar las peticiones HTTP
 @RestController
 public class CategoriaController {
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
+    //Inyeccion de dependencias
+    @Autowired //Inyecta el bean que se encarga de la logica de la aplicacion
+    private CategoriaRepository categoriaRepository; //Bean de la interfaz CategoriaRepository
 
-    
-    @GetMapping("/categorias")
+    //Metodo que se encarga de devolver todas las categorias
+    @GetMapping("/categorias") //Indica que el metodo se activa cuando se hace una peticion GET a la URL /categorias
     public Collection<Categoria> categoria(){
         return categoriaRepository.darCategorias();
     }
 
-    @GetMapping("/categorias/codigo/{codigo}")
-    public ResponseEntity<?> obtenerCategoriaCodigo(@PathVariable int codigo){
+    //Metodo que se encarga de devolver una categoria por su codigo
+    @GetMapping("/categorias/codigo/{codigo}") //Indica que el metodo se activa cuando se hace una peticion GET a la URL /categorias/codigo/{codigo}
+    public ResponseEntity<?> obtenerCategoriaCodigo(@PathVariable int codigo){ //Indica que el parametro se obtiene de la URL
         Categoria categoria = categoriaRepository.darCategoriaPorCodigo(codigo);
 
         // Devolver si existe
@@ -41,7 +44,8 @@ public class CategoriaController {
     }
     }
 
-    @GetMapping("/categorias/nombre/{nombre}")
+    //Metodo que se encarga de devolver una categoria por su nombre
+    @GetMapping("/categorias/nombre/{nombre}") //Indica que el metodo se activa cuando se hace una peticion GET a la URL /categorias/nombre/{nombre}
     public ResponseEntity<?> obtenerCategoriaNombre(@PathVariable String nombre){
         Categoria categoria = categoriaRepository.darCategoriaPorNombre(nombre);
 
@@ -55,10 +59,12 @@ public class CategoriaController {
     }
     }
 
-    @PostMapping("/categorias/new/save")
+    //Metodo que se encarga de crear una categoria
+    @PostMapping("/categorias/new/save") //Indica que el metodo se activa cuando se hace una peticion POST a la URL /categorias/new/save
     public ResponseEntity<String> categoriaGuardar(@RequestBody Categoria categoria){
         
         try{
+            //Insertar la categoria en la base de datos
             categoriaRepository.insertarCategoria(categoria.getNombre(), categoria.getDescripcion(), categoria.getCaracteristicasAlmacenamiento());
             return new ResponseEntity<>("Categoria creada exitosamente", HttpStatus.CREATED);
         }
@@ -67,7 +73,8 @@ public class CategoriaController {
         }
     }
 
-    @DeleteMapping("/categorias/{codigo}/delete")
+    //Metodo que se encarga de eliminar una categoria
+    @DeleteMapping("/categorias/{codigo}/delete") //Indica que el metodo se activa cuando se hace una peticion DELETE a la URL /categorias/{codigo}/delete
     public ResponseEntity<String> categoriaEliminar(@PathVariable("codigo") int codigo) {
 
         categoriaRepository.eliminarCategoria(codigo);

@@ -4,12 +4,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+//Clase que mapea la tabla Proveedor en la base de datos
 @Entity
 @Table(name="proveedor")
 public class Proveedor {
 
+    //Atributos de la clase
     @Id
-    private String nit;
+    private String nit; //Indica que es la llave primaria asignada por el usuario
+
+    //Atributos de la clase
     private String nombre;
     private String direccion;
     private String nombrePersonaContacto;

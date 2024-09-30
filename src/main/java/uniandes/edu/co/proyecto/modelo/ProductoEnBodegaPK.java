@@ -6,13 +6,16 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Embeddable
-public class ProductoEnBodegaPK implements Serializable{
+//Clase que mapea la llave primaria de la tabla ProductoEnBodega en la base de datos
+@Embeddable //Indica que es una llave primaria compuesta
+public class ProductoEnBodegaPK implements Serializable{ 
     
+    //Relacion con la tabla Producto
     @ManyToOne
     @JoinColumn(name="identificador_producto", referencedColumnName="identificador")
     private Producto idProducto;
     
+    //Relacion con la tabla Bodega
     @ManyToOne
     @JoinColumn(name="id_bodega", referencedColumnName="id")
     private Bodega idBodega;

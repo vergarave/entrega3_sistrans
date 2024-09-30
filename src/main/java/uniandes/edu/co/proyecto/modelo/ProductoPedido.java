@@ -5,13 +5,16 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+//Clase que mapea la tabla ProductoPedido en la base de datos
 @Entity
 @Table(name="producto_pedido")
 public class ProductoPedido {
     
+    //Llave primaria compuesta
     @EmbeddedId
     private ProductoPedidoPK pk;
 
+    //Atributos de la clase
     private Integer cantidadEnOrden;
 
     public ProductoPedido(Producto identificadorProducto, OrdenDeCompra numeroOrdenDeCompra, Integer cantidadEnOrden){

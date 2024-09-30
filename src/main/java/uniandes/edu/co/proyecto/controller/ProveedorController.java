@@ -14,24 +14,27 @@ import org.springframework.web.bind.annotation.RestController;
 import uniandes.edu.co.proyecto.modelo.Proveedor;
 import uniandes.edu.co.proyecto.repositorio.ProveedorRepository;
 
+//Controlador de la entidad Proveedor que se encarga de realizar las peticiones HTTP
 @RestController
 public class ProveedorController {
 
-    @Autowired
-    private ProveedorRepository proveedorRepository;
+    //Inyeccion de dependencias
+    @Autowired //Inyecta el bean que se encarga de la logica de la aplicacion
+    private ProveedorRepository proveedorRepository; //Bean de la interfaz ProveedorRepository
 
-    @GetMapping("/proveedores")
+    //Metodo que se encarga de devolver todos los proveedores
+    @GetMapping("/proveedores") //Indica que el metodo se activa cuando se hace una peticion GET a la URL /proveedores
     public Collection<Proveedor> proveedores(){
         return proveedorRepository.darProveedores();
     }
 
-    //Este no dicen como hacerlo xd
+    //Metodo que se encarga de devolver un proveedor por su NIT
     @GetMapping("/proveedores/{nit}")
     public ResponseEntity<Proveedor> obtenerProveedor(@PathVariable String nit){
         
         Proveedor proveedor = proveedorRepository.darProveedor(nit);
 
-        //Devolver si existe :)
+        //Devolver si existe
         if (proveedor != null) {
             return new ResponseEntity<>(proveedor, HttpStatus.OK);
         } else {
@@ -39,8 +42,8 @@ public class ProveedorController {
         }
     }
 
-
-    @PostMapping("/proveedores/new/save")
+    //Metodo que se encarga de crear un proveedor
+    @PostMapping("/proveedores/new/save") //Indica que el metodo se activa cuando se hace una peticion POST a la URL /proveedores/new/save
     public ResponseEntity<String> proveedorGuardar(@RequestBody Proveedor proveedor){
         
         try{
@@ -52,14 +55,16 @@ public class ProveedorController {
         }
     }
 
-    @PostMapping("/proveedores/{nit}/edit/save")
+    //Metodo que se encarga de editar un proveedor
+    @PostMapping("/proveedores/{nit}/edit/save") //Indica que el metodo se activa cuando se hace una peticion POST a la URL /proveedores/{nit}/edit/save
     public ResponseEntity<String> proveedorEditarGuardar(@PathVariable("nit") String nit, @RequestBody Proveedor proveedor){
         try {
             
+        // Verificar si el proveedor con el NIT existe    
         if (!proveedorRepository.existsByNit(nit)) {
             return new ResponseEntity<>("Error: El proveedor con NIT " + nit + " no existe.", HttpStatus.NOT_FOUND);
         }
-
+        //Actualizar el proveedor
         proveedorRepository.actualizarProveedor(nit, proveedor.getNombre(), proveedor.getDireccion(), proveedor.getNombrePersonaContacto(), proveedor.getTelefonoPersonaContacto());
         return new ResponseEntity<>("Proveedor actualizado exitosamente", HttpStatus.OK);
        }

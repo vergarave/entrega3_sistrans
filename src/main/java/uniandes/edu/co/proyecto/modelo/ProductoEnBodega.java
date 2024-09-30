@@ -4,13 +4,16 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+//Clase que mapea la tabla ProductoEnBodega en la base de datos
 @Entity
 @Table(name="producto_en_bodega")
 public class ProductoEnBodega {
 
-    @EmbeddedId
+    //Llave primaria compuesta
+    @EmbeddedId //Indica que es una llave primaria compuesta
     private ProductoEnBodegaPK pk;
 
+    //Atributos de la clase
     private Integer nivelMinimoReorden;
     private Double costoPromedio;
     private Integer capacidadAlmacenarProducto;

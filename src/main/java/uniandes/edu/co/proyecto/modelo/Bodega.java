@@ -9,17 +9,21 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+
+//Clase que mapea la tabla Bodega en la base de datos
 @Entity
 @Table(name="bodega")
 public class Bodega {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id //Indica que es la llave primaria
+    @GeneratedValue(strategy=GenerationType.AUTO) //Genera automaticamente el valor de la llave primaria
 
+    //Atributos de la clase
     private Integer id;
     private String nombre;
     private Double tamanio;
     private Integer capacidad;
 
+    //Relacion con la tabla Sucursal
     @ManyToOne
     @JoinColumn(name="id_sucursal", referencedColumnName="id")
     private Sucursal idSucursal;
