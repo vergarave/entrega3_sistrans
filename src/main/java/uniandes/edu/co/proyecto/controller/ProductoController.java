@@ -58,37 +58,48 @@ public class ProductoController {
         }
     }
 
-    //Metodo que se encarga de editar un producto
+    // Metodo que se encarga de editar un producto y lanza error si el usuario intenta modificar la fecha de expiración
     @PostMapping("/productos/{identificador}/edit/save")
     public ResponseEntity<String> productoEditarGuardar(@PathVariable("identificador") Integer identificador, @RequestBody Producto producto) {
-        try {
-            // Verificar si el producto con el identificador existe
-            if (!productoRepository.existeProducto(identificador)) {
-                return new ResponseEntity<>("El producto con identificador " + identificador + " no existe", HttpStatus.NOT_FOUND);
-            }
-    
-            // Verificar que ninguno de los campos obligatorios sea null
-            if (producto.getNombre() == null || producto.getCostoEnBodega() == null || producto.getPresentacion() == null ||
-                producto.getCantidadPresentacion() == null || producto.getUnidadMedida() == null || 
-                producto.getVolumenEmpaque() == null || producto.getPesoEmpaque() == null || producto.getCodigoDeBarras() == null ||
-                producto.getClasificacionCategoria() == null || producto.getClasificacionCategoria().getCodigo() == null) {
-    
-                return new ResponseEntity<>("Uno o más campos obligatorios están vacíos o nulos.", HttpStatus.BAD_REQUEST);
-            }
-    
-            // Actualizar el producto
-            productoRepository.actualizarProducto(identificador, producto.getNombre(), producto.getCostoEnBodega(), 
-                                                  producto.getPresentacion(), producto.getCantidadPresentacion(), 
-                                                  producto.getUnidadMedida(), producto.getVolumenEmpaque(), 
-                                                  producto.getPesoEmpaque(), producto.getFechaExpiracion(), 
-                                                  producto.getCodigoDeBarras(), producto.getClasificacionCategoria().getCodigo());
-    
-            return new ResponseEntity<>("Producto actualizado exitosamente", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Error al actualizar el producto", HttpStatus.INTERNAL_SERVER_ERROR);
+    try {
+        // Verificar si el producto con el identificador existe
+        if (!productoRepository.existeProducto(identificador)) {
+            return new ResponseEntity<>("El producto con identificador " + identificador + " no existe", HttpStatus.NOT_FOUND);
         }
+
+        // Verificar que ninguno de los campos obligatorios sea null (sin verificar fecha de expiración)
+        if (producto.getNombre() == null || producto.getCostoEnBodega() == null || producto.getPresentacion() == null ||
+            producto.getCantidadPresentacion() == null || producto.getUnidadMedida() == null || 
+            producto.getVolumenEmpaque() == null || producto.getPesoEmpaque() == null || producto.getCodigoDeBarras() == null ||
+            producto.getClasificacionCategoria() == null || producto.getClasificacionCategoria().getCodigo() == null) {
+
+            return new ResponseEntity<>("Uno o más campos obligatorios están vacíos o nulos.", HttpStatus.BAD_REQUEST);
+        }
+
+        // Obtener el producto actual desde la base de datos
+        Producto productoActual = productoRepository.darProducto(identificador);
+        if (productoActual == null) {
+            return new ResponseEntity<>("El producto con identificador " + identificador + " no existe", HttpStatus.NOT_FOUND);
+        }
+
+        // Verificar si el usuario está intentando modificar la fecha de expiración
+        if (producto.getFechaExpiracion() != null && !producto.getFechaExpiracion().equals(productoActual.getFechaExpiracion())) {
+            return new ResponseEntity<>("No está permitido modificar la fecha de expiración del producto.", HttpStatus.BAD_REQUEST);
+        }
+
+        // Actualizar el producto sin modificar la fecha de expiración
+        productoRepository.actualizarProducto(identificador, producto.getNombre(), producto.getCostoEnBodega(), 
+                                              producto.getPresentacion(), producto.getCantidadPresentacion(), 
+                                              producto.getUnidadMedida(), producto.getVolumenEmpaque(), 
+                                              producto.getPesoEmpaque(), productoActual.getFechaExpiracion(), 
+                                              producto.getCodigoDeBarras(), producto.getClasificacionCategoria().getCodigo());
+
+        return new ResponseEntity<>("Producto actualizado exitosamente", HttpStatus.OK);
+    } catch (Exception e) {
+        return new ResponseEntity<>("Error al actualizar el producto", HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    
+}
+
     //Metodo que se encarga de obtener los productos filtrados por precio, fecha de expiracion, sucursal o categoria
     @GetMapping("productos/filtrados")
     public Collection<Producto> productosfiltrados(
