@@ -10,14 +10,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+//Clase que mapea la tabla Producto en la base de datos
 @Entity
 @Table(name="producto")
 public class Producto {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id //Indica que es la llave primaria
+    @GeneratedValue(strategy=GenerationType.AUTO) //Genera automaticamente el valor de la llave primaria
     private Integer identificador;
     
+    //Atributos de la clase
     private String nombre;
     private Double costoEnBodega;
     private String presentacion;
@@ -28,6 +30,7 @@ public class Producto {
     private LocalDate fechaExpiracion;
     private String codigoDeBarras;
 
+    //Relacion con la tabla Categoria
     @ManyToOne
     @JoinColumn(name="clasificacion_categoria", referencedColumnName = "codigo")
     private Categoria clasificacionCategoria;

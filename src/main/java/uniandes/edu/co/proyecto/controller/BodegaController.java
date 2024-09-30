@@ -19,36 +19,41 @@ import org.springframework.web.bind.annotation.RestController;
 import uniandes.edu.co.proyecto.modelo.Bodega;
 import uniandes.edu.co.proyecto.repositorio.BodegaRepository;
 
-
+//Controlador de la entidad Bodega que se encarga de realizar las peticiones HTTP
 @RestController
 public class BodegaController {
 
-    @Autowired
-    private BodegaRepository bodegaRepository;
+    //Inyeccion de dependencias
+    @Autowired //Inyecta el bean que se encarga de la logica de la aplicacion
+    private BodegaRepository bodegaRepository; //Bean de la interfaz BodegaRepository
 
-    @GetMapping("/bodegas")
+    //Metodo que se encarga de devolver todas las bodegas
+    @GetMapping("/bodegas") //Indica que el metodo se activa cuando se hace una peticion GET a la URL /bodegas
     public Collection<Bodega> bodegas(){
         return bodegaRepository.darBodegas();
     }
 
-    //Este no dicen como hacerlo xd
-    @GetMapping("/bodegas/{id}")
-    public ResponseEntity<Bodega> obtenerBodega(@PathVariable int id){
+    //Metodo que se encarga de devolver una bodega por su ID
+    @GetMapping("/bodegas/{id}") //Indica que el metodo se activa cuando se hace una peticion GET a la URL /bodegas/{id}
+    public ResponseEntity<Bodega> obtenerBodega(@PathVariable int id){ 
 
         Bodega bodega = bodegaRepository.darBodega(id);
 
-        //Devolver si existe :)
+        // Devolver si existe la bodega
         if (bodega != null) {
             return new ResponseEntity<>(bodega, HttpStatus.OK);
+        // Devolver si no existe la bodega
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @PostMapping("/bodegas/new/save")
+    //Metodo que se encarga de crear una bodega
+    @PostMapping("/bodegas/new/save") //Indica que el metodo se activa cuando se hace una peticion POST a la URL /bodegas/new/save
     public ResponseEntity<String> bodegaGuardar(@RequestBody Bodega bodega){
         
         try{
+            //Insertar la bodega en la base de datos
             bodegaRepository.insertarBodega(bodega.getNombre(), bodega.getTamanio(), bodega.getCapacidad(), bodega.getIdSucursal().getId());
             return new ResponseEntity<>("Bodega creada exitosamente", HttpStatus.CREATED);
         }
@@ -57,24 +62,30 @@ public class BodegaController {
         }
     }
 
-    @DeleteMapping("/bodegas/{id}/delete")
+    //Metodo que se encarga de eliminar una bodega
+    @DeleteMapping("/bodegas/{id}/delete") //Indica que el metodo se activa cuando se hace una peticion DELETE a la URL /bodegas/{id}/delete
     public ResponseEntity<String> bodegaEliminar(@PathVariable("id") int id) {
 
+        // Verificar si la bodega con el ID existe
         if (!bodegaRepository.existsById(id)) {
+            // Devolver un mensaje de error si la bodega no existe
             return new ResponseEntity<>("Error: La bodega con ID " + id + " no existe.", HttpStatus.NOT_FOUND);
         }
 
+        // Eliminar la bodega
         bodegaRepository.eliminarBodega(id);
         return new ResponseEntity<>("Bodega eliminada exitosamente", HttpStatus.OK);
     }
 
-    @GetMapping("/bodegas/ocupacion")
+    //Metodo que se encarga de obtener la ocupacion de las bodegas de una sucursal dados unos productos
+    @GetMapping("/bodegas/ocupacion") //Indica que el metodo se activa cuando se hace una peticion GET a la URL /bodegas/ocupacion
     public Collection<Map<String, Object>> obtenerOcupacionBodegas(
-            @RequestParam Integer idSucursalU,
+            @RequestParam Integer idSucursalU, //Parametro de la peticion HTTP
             @RequestParam Collection<Integer> listaProductosU) {
+        //Realizar la consulta a la base de datos
         Collection<Object[]> resultado = bodegaRepository.obtenerOcupacionBodegas(idSucursalU, listaProductosU);
         
-        // Convertir los resultados en una colección de Map<String, Object> para mayor claridad en el retorno.
+        //Convertir el resultado de la consulta a un formato JSON
         Collection<Map<String, Object>> ocupacionBodegas = new ArrayList<>();
         for (Object[] fila : resultado) {
             Map<String, Object> bodega = new HashMap<>();

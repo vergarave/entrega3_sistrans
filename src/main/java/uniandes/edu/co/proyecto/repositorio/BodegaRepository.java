@@ -10,31 +10,31 @@ import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.Bodega;
 
-public interface BodegaRepository extends JpaRepository<Bodega, Integer>{
+//Repositorio de la entidad Bodega que se encarga de realizar las consultas a la base de datos
+public interface BodegaRepository extends JpaRepository<Bodega, Integer>{  
 
-    public interface RespuestaPorcentajeOcupacion{
-        int getID_BODEGA();
-        String getNOMBRE_BODEGA();
-        double getPORCENTAJE_OCUPACION();
-    }
-    
+    //Consulta CRUD de getBodegas
     @Query(value = "SELECT * FROM bodega", nativeQuery=true)
     Collection<Bodega> darBodegas();
 
+    //Consulta CRUD de getBodega
     @Query(value = "SELECT * FROM bodega WHERE id= :id", nativeQuery=true)
     Bodega darBodega(@Param("id") int id);
 
-    @Modifying
-    @Transactional
+    //Consulta CRUD de insertarBodega
+    @Modifying //Indica que se va a realizar una modificacion en la base de datos
+    @Transactional //Indica que es una transaccion
     @Query(value = "INSERT INTO bodega(id, nombre, tamanio, capacidad, id_sucursal) VALUES(secuencia_bodega.nextval, :nombre, :tamanio, :capacidad, :id_sucursal)", nativeQuery = true)
     void insertarBodega(@Param("nombre") String nombre, @Param("tamanio") Double tamanio, @Param("capacidad") Integer capacidad, @Param("id_sucursal") Integer idSucursal);
 
-    @Modifying
-    @Transactional
+    //Consulta CRUD de eliminarBodega
+    @Modifying //Indica que se va a realizar una modificacion en la base de datos
+    @Transactional //Indica que es una transaccion
     @Query(value = "DELETE from bodega WHERE id = :id", nativeQuery= true)
     void eliminarBodega(@Param("id") int id);
 
-    //Consulta avanzada No. 1
+    //Consulta Avanzada No. 1
+    //Consulta que permite obtener la ocupacion de las bodegas de una sucursal dados unos productos
     @Query(value = "SELECT Bodega.id, Bodega.nombre, (SUM(Producto_En_Bodega.cantidad_En_Bodega) / Bodega.capacidad) AS porcentajeOcupacion FROM Bodega\r\n" +
     "INNER JOIN Producto_En_Bodega ON Producto_En_Bodega.id_Bodega = Bodega.id\r\n" +
     "INNER JOIN Producto ON Producto.identificador = Producto_En_Bodega.identificador_Producto\r\n" +

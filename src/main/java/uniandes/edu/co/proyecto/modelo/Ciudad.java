@@ -6,14 +6,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+//Clase que mapea la tabla Ciudad en la base de datos
 @Entity
 @Table(name="ciudad")
 public class Ciudad {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id //Indica que es la llave primaria
+    @GeneratedValue(strategy=GenerationType.AUTO) //Genera automaticamente el valor de la llave primaria
     private Integer codigo;
 
+    //Atributos de la clase
     private String nombre;
     
 

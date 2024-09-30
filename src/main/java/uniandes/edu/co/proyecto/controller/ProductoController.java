@@ -18,32 +18,35 @@ import org.springframework.web.bind.annotation.RestController;
 import uniandes.edu.co.proyecto.modelo.Producto;
 import uniandes.edu.co.proyecto.repositorio.ProductoRepository;
 
-
+//Controlador de la entidad Producto que se encarga de realizar las peticiones HTTP
 @RestController
 public class ProductoController {
 
-    @Autowired
-    private ProductoRepository productoRepository;
+    //Inyeccion de dependencias
+    @Autowired //Inyecta el bean que se encarga de la logica de la aplicacion
+    private ProductoRepository productoRepository; //Bean de la interfaz ProductoRepository
 
-    
-    @GetMapping("/productos")
+    //Metodo que se encarga de devolver todos los productos
+    @GetMapping("/productos") //Indica que el metodo se activa cuando se hace una peticion GET a la URL /productos
     public Collection<Producto> producto(){
         return productoRepository.darProductos();
     }
 
-     @GetMapping("/productos/{identificador}")
-     public ResponseEntity<?> obtenerProducto(@PathVariable int identificador) {
-         Producto producto = productoRepository.darProducto(identificador);
-     
-         // Devolver si existe el producto
-         if (producto != null) {
-             return new ResponseEntity<>(producto, HttpStatus.OK);
-         } else {
-             return new ResponseEntity<>("Producto con identificador " + identificador + " no encontrado.", HttpStatus.NOT_FOUND);
-         }
-     }
+    //Metodo que se encarga de devolver un producto por su identificador
+    @GetMapping("/productos/{identificador}")
+    public ResponseEntity<?> obtenerProducto(@PathVariable int identificador) {
+        Producto producto = productoRepository.darProducto(identificador);
+    
+        // Devolver si existe el producto
+        if (producto != null) {
+            return new ResponseEntity<>(producto, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Producto con identificador " + identificador + " no encontrado.", HttpStatus.NOT_FOUND);
+        }
+    }
 
-    @PostMapping("/productos/new/save")
+    //Metodo que se encarga de crear un producto
+    @PostMapping("/productos/new/save") //Indica que el metodo se activa cuando se hace una peticion POST a la URL /productos/new/save
     public ResponseEntity<String> productoGuardar(@RequestBody Producto producto){
         
         try{
@@ -55,6 +58,7 @@ public class ProductoController {
         }
     }
 
+    //Metodo que se encarga de editar un producto
     @PostMapping("/productos/{identificador}/edit/save")
     public ResponseEntity<String> productoEditarGuardar(@PathVariable("identificador") Integer identificador, @RequestBody Producto producto) {
         try {
@@ -85,10 +89,10 @@ public class ProductoController {
         }
     }
     
-
+    //Metodo que se encarga de obtener los productos filtrados por precio, fecha de expiracion, sucursal o categoria
     @GetMapping("productos/filtrados")
     public Collection<Producto> productosfiltrados(
-        @RequestParam(required = false) Double precioMinU,
+        @RequestParam(required = false) Double precioMinU, 
         @RequestParam(required = false) Double precioMaxU,
         @RequestParam(required = false) String fechaSuperiorU,
         @RequestParam(required = false) String fechaInferiorU,
@@ -98,12 +102,15 @@ public class ProductoController {
         return productoRepository.darProductosFiltrados(precioMinU, precioMaxU, fechaSuperiorU, fechaInferiorU, sucursalIdU, categoriaNombreU);
     }
 
+    //Para RCF4:
+    //Metodo que se encarga de obtener los productos en una bodega dada de una sucursal dada
     @GetMapping("/productos/productosEnBodega")
     public Collection<Map<String, Object>> obtenerProductosEnBodega(
             @RequestParam Integer idSucursal,
             @RequestParam Integer idBodega) {
         Collection<Object[]> resultado = productoRepository.darProductosBodega(idSucursal, idBodega);
         
+        // Convertir los resultados en una colección de Map<String, Object> para mayor claridad en el retorno.
         Collection<Map<String, Object>> listaproductos = new ArrayList<>();
         for (Object[] fila : resultado) {
             Map<String, Object> productos = new HashMap<>();
@@ -118,6 +125,7 @@ public class ProductoController {
     }
 
     //Para RCF5:
+    //Metodo que se encarga de obtener los productos para orden de compra
     @GetMapping("/productosParaOrdenDeCompra")
     public Collection<Map<String, Object>> obtenerProductosParaOrdenDeCompra() {
     Collection<Object[]> resultado = productoRepository.obtenerProductosBajoNivelReorden();
