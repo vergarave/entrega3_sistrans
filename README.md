@@ -7,6 +7,14 @@ Realizada por el **Grupo 1** de la sección 06 de **Sistemas Transaccionales**:
 - **Vanesa Montaño**
 
 ---
+### ORDEN DEL REPOSITORIO GITHUB
+
+Existe la carpeta Archivos P1 Entrega Implementación. Allí encontrará dos subcarpetas: docs y entregables sql.
+1. En docs se hallan los modelos relacional y conceptual. Igualmente está la documentación del código.
+2. En entregables sql están los scripts de creación de tablas, poblar datos, hacer pruebas y las consultas usadas para pensar y desarrollar los RFC en la aplicación.
+3. Por último, en Archivos P1 Entrega Implementación > Entrega 1 - Implementación - G1.pdf, está el contenido del archivo principal. El documento principal para esta entrega, que guía y muestra todo lo realizado.
+ 
+---
 
 ## 🛠️ Instrucciones de instalación
 
@@ -45,3 +53,5 @@ http://localhost:8080
 
 ### 7️⃣ Probar con Postman
 Puede usar herramientas como Postman para realizar las solicitudes HTTP (GET, POST, PUT, DELETE) y probar las funcionalidades del proyecto.
+
+
