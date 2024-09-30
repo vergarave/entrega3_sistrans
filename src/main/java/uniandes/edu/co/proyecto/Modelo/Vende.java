@@ -15,7 +15,7 @@ public class Vende
     @EmbeddedId
     private VendePK pk;
 
-    public Vende(Integer reorden, Integer cantidad,Producto producto_id, Sucursal sucursal_id)
+    public Vende(Sucursal sucursal_id,Producto producto_id ,Integer reorden, Integer cantidad)
     {
         this.reorden = reorden;
         this.cantidad = cantidad;

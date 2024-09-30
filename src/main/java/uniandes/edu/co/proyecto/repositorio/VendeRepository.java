@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import uniandes.edu.co.proyecto.modelo.Sucursal;
 import uniandes.edu.co.proyecto.modelo.Vende;
 
 public interface VendeRepository extends JpaRepository<Vende,Integer>
@@ -32,4 +33,7 @@ public interface VendeRepository extends JpaRepository<Vende,Integer>
     @Transactional
     @Query(value = "INSERT INTO vende (sucursal_id, producto_codigo_de_barras, reorden, cantidad) VALUES (:sucursal_id, :producto_codigo_de_barras, :reorden, :cantidad)", nativeQuery = true)
     void insertarVende(@Param("sucursal_id") Integer sucursal_id, @Param("producto_codigo_de_barras") Integer producto_codigo_de_barras,@Param("reorden") Integer reorden, @Param("cantidad") Integer cantidad);
+
+    @Query(value = "SELECT sucursales.* FROM sucursales INNER JOIN vende on (sucursales.id=vende.sucursal_id) WHERE vende.cantidad > 0 AND vende.producto_codigo_de_barras = :codigo_de_barras", nativeQuery = true)
+    Collection<Sucursal> darSucursalesPorProducto(@Param("codigo_de_barras") Integer codigo_de_barras);
 }
