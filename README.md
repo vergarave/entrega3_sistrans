@@ -1,8 +1,11 @@
 ¡Bienvenida a la Entrega 1 - Implementación!
 
 Realizada por el Grupo 1 de la sección 06 de Sistemas Transaccionales:
+
 Julian Mondragon
+
 Ana Hernández
+
 Vanesa Montaño
 
 A continuación se encuentran los pasos a seguir para instalar la aplicación:
