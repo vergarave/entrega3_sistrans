@@ -9,15 +9,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.Bodega;
-import uniandes.edu.co.proyecto.modelo.Ciudad;
 
-public interface BodegaRepository extends JpaRepository<Bodega, Integer>
+public interface BodegaRepository extends JpaRepository<Bodega, Long>
 {
-    @Query(value = "SELET * FROM bodegas",nativeQuery = true)
-    Collection<Ciudad> darBodegas();
+    @Query(value = "SELECT * FROM bodegas",nativeQuery = true)
+    Collection<Bodega> darBodegas();
 
     @Query(value = "SELECT * FROM bodegas WHERE id= :id",nativeQuery = true)
-    Ciudad darBodega(@Param("id") Integer id);
+    Bodega darBodega(@Param("id") Integer id);
 
     @Modifying
     @Transactional
@@ -26,8 +25,8 @@ public interface BodegaRepository extends JpaRepository<Bodega, Integer>
 
     @Modifying
     @Transactional
-    @Query(value="UPDATE bodegas SET nombre = :nombre, tamaño= :tamaño WHERE id = :id",nativeQuery = true)
-    void actualizarBodega(@Param("id") Integer id,@Param("nombre") String nombre,@Param("tamaño") Integer tamaño);
+    @Query(value="UPDATE bodegas SET nombre = :nombre, tamaño= :tamaño, sucursal_id = :sucursal_id WHERE id = :id",nativeQuery = true)
+    void actualizarBodega(@Param("id") Integer id,@Param("nombre") String nombre,@Param("tamaño") Integer tamaño, @Param("sucursal_id") Integer sucursal_id);
 
     @Query(value="DELETE FROM bodegas WHERE id= :id",nativeQuery = true)
     void eliminarBodega(@Param("id") Integer id);

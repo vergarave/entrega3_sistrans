@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.modelo.Ciudad;
-import uniandes.edu.co.proyecto.repositorio.CiudadReposiory;
+import uniandes.edu.co.proyecto.repositorio.CiudadRepository;
 
 @RestController
 public class CiudadesController 
 {
     @Autowired
-    private CiudadReposiory ciudadReposiory;
+    private CiudadRepository ciudadReposiory;
 
     @PostMapping("/ciudades/new/save")
     public ResponseEntity<String> ciudadGuardar(@RequestBody Ciudad ciudad)
