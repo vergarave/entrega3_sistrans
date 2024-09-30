@@ -1,4 +1,4 @@
-package uniandes.edu.co.proyecto.Modelo;
+package uniandes.edu.co.proyecto.modelo;
 
 import java.io.Serializable;
 
