@@ -19,3 +19,6 @@ Finalmente, ejecute el siguiente comando para clonar el repositorio desde GitHub
 
 ```bash
 git clone https://github.com/MonDragoNJU/ProyectoSuperAlpes.git
+
+### 2️⃣ Ingresar al directorio del proyecto
+Después de clonar el repositorio, ingrese al directorio del proyecto con el siguiente comando:
