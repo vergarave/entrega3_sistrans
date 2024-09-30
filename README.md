@@ -7,12 +7,21 @@ Realizada por el **Grupo 1** de la sección 06 de **Sistemas Transaccionales**:
 - **Vanesa Montaño**
 
 ---
-### ORDEN DEL REPOSITORIO GITHUB
+## 📁 **Orden del Repositorio GitHub**
 
-Existe la carpeta Archivos P1 Entrega Implementación. Allí encontrará dos subcarpetas: docs y entregables sql.
-1. En docs se hallan los modelos relacional y conceptual. Igualmente está la documentación del código.
-2. En entregables sql están los scripts de creación de tablas, poblar datos, hacer pruebas y las consultas usadas para pensar y desarrollar los RFC en la aplicación.
-3. Por último, en Archivos P1 Entrega Implementación > Entrega 1 - Implementación - G1.pdf, está el contenido del archivo principal. El documento principal para esta entrega, que guía y muestra todo lo realizado.
+En el repositorio, encontrará la carpeta principal llamada **Archivos P1 Entrega Implementación**, que contiene dos subcarpetas muy importantes:
+
+### 1️⃣ **Carpeta `docs`:**
+   - **Modelos Relacional y Conceptual:** Aquí se encuentran los modelos modificados.
+   - **Documentación del Código:** Incluye toda la documentación relacionada con la implementación del código desarrollado.
+
+### 2️⃣ **Carpeta `entregables sql`:**
+   - **Script de creación de tablas:** Contiene los archivos SQL necesarios para crear las tablas de la base de datos.
+   - **Script para poblar datos:** Archivo para insertar datos en las tablas.
+   - **Pruebas y consultas:** Incluye los scripts utilizados para hacer pruebas y ejecutar consultas SQL que fueron claves para desarrollar los RFC en la aplicación.
+
+### 📄 **Documento Principal:**
+   - En **Archivos P1 Entrega Implementación > Entrega 1 - Implementación - G1.pdf**, encontrará el documento principal para esta entrega. Este documento guía y muestra todo lo realizado, siendo el eje central de la presentación del proyecto.
  
 ---
 
