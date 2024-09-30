@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "categorías")
-public class Categorias {
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,11 +19,11 @@ public class Categorias {
     private String descripcion;
     private String almacenamiento;
 
-    public Categorias() {
+    public Categoria() {
         ;
     }
 
-    public Categorias(Integer codigo, String nombre, String descripcion, String almacenamiento) {
+    public Categoria(Integer codigo, String nombre, String descripcion, String almacenamiento) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
