@@ -22,15 +22,15 @@ public class Bodega {
 
     @ManyToOne
     @JoinColumn(name = "id_sucursal", referencedColumnName = "id")
-    private Sucursal id_Sucursal;
+    private Sucursal id_sucursal;
 
     public Bodega() {
     }
 
-    public Bodega(String nombre, String tamanio, Sucursal id_Sucursal) {
+    public Bodega(String nombre, String tamanio, Sucursal id_sucursal) {
         this.nombre = nombre;
         this.tamanio = tamanio;
-        this.id_Sucursal = id_Sucursal;
+        this.id_sucursal = id_sucursal;
     }
 
     public Integer getId() {
@@ -58,11 +58,11 @@ public class Bodega {
     }
 
     public Sucursal getId_Sucursal() {
-        return id_Sucursal;
+        return id_sucursal;
     }
 
-    public void setId_Sucursal(Sucursal id_Sucursal) {
-        this.id_Sucursal = id_Sucursal;
+    public void setId_sucursal(Sucursal id_sucursal) {
+        this.id_sucursal = id_sucursal;
     }
     
 }

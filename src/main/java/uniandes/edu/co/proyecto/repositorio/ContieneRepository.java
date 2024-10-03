@@ -1,5 +1,10 @@
 package uniandes.edu.co.proyecto.repositorio;
 
-public interface ContieneRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import uniandes.edu.co.proyecto.modelo.Contiene;
+import uniandes.edu.co.proyecto.modelo.ContienePK;
+
+public interface ContieneRepository extends JpaRepository<Contiene,ContienePK>{
 
 }
