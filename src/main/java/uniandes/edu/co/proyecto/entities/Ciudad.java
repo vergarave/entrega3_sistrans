@@ -7,15 +7,10 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "categoria")
-public class Categoria extends BaseEntity {
+@Table(name = "ciudad")
+public class Ciudad extends BaseEntity {
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
-
-    @Column(name = "descripcion", nullable = false)
-    private String descripcion;
-
-    @Column(name = "caracteristicas", nullable = false)
-    private String caracteristicas;
 }
+
