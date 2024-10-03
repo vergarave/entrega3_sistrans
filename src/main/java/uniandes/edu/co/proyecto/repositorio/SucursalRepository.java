@@ -10,13 +10,16 @@ import uniandes.edu.co.proyecto.modelo.Sucursal;
 
 public interface SucursalRepository extends JpaRepository<Sucursal,Integer>{
 
-    // RF2 : Crear una sucursal
     /**
-     * @param nombre
-     * @param tamanio
-     * @param telefono
-     * @param direccion
-     * @param id_ciudad
+     * RF2 : Crear una sucursal
+     * SQL : -- Inserta una nueva sucursal en la tabla 'sucursales' con un ID generado
+     *              automáticamente y valores específicos para nombre, tamaño, teléfono,
+     *              dirección y ciudad.
+     * @param nombre nombre de la sucursal
+     * @param tamanio tamanio de la sucursal en mts cuadrados
+     * @param telefono numero de telefono
+     * @param direccion ubicacion de la sucursal
+     * @param id_ciudad identificador de la ciudad donde se encuentra la sucursal
      */
     @Modifying
     @Transactional

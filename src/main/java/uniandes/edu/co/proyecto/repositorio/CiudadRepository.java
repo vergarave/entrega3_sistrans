@@ -10,7 +10,6 @@ import uniandes.edu.co.proyecto.modelo.Ciudad;
 
 public interface CiudadRepository extends JpaRepository<Ciudad,Integer>{
 
-    // 
     /**
      * RF1 : Crear una ciudad
      * SQL : Inserta un nuevo registro en la tabla 'ciudades'
