@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,5 +23,13 @@ public interface CiudadRepository extends JpaRepository<Ciudad,Integer>{
     @Transactional
     @Query(value = "insert into ciudades (id,nombre) values (ids_ciudad.nextval, :nombre)", nativeQuery = true)
     void insertarCiudad(@Param("nombre") String nombre);
+
+    /**
+     * Obtener la ultima ciudad creada
+     * @return collection con un unico elemento que sera el ultimo id creado
+     */
+    @Query(value = "SELECT * FROM ciudades WHERE id = (SELECT MAX(id) FROM ciudades)", nativeQuery = true)
+    Collection<Ciudad> getLast();
+
 
 }

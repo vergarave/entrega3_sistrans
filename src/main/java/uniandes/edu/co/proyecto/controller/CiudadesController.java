@@ -29,7 +29,7 @@ public class CiudadesController {
     public Collection<Ciudad> darCiudades() {
         return ciudadRepository.findAll();
     }
-
+    
     /**
      * Aniade una ciudad a la tabla ciudades dad su informacion
      * @param ciudad ciudad que se quiere crear
@@ -38,8 +38,17 @@ public class CiudadesController {
     @PostMapping("/ciudades/new/save")
     public ResponseEntity<Map<String,Object>> ciudadGuardar(@RequestBody Ciudad ciudad) {
         ciudadRepository.insertarCiudad(ciudad.getNombre());
+        ciudad.setId(getLast().getId());
         Map<String,Object> response = MS.response("ok","create",ciudad);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    /**
+     * Devuelve la ultima instancia creada
+     * @return ultima fila aniadida
+     */
+    public Ciudad getLast(){
+        return ciudadRepository.getLast().iterator().next();
     }
 
 }

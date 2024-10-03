@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -39,5 +41,12 @@ public interface ProveedorRepository extends JpaRepository<Proveedor,Integer>{
     @Transactional
     @Query(value = "update proveedores set nombre = :nombre, telefono = :telefono, direccion = :direccion WHERE id = :id", nativeQuery = true)
     void actualizarProveedor(@Param("id") Integer id, @Param("nombre") String nombre, @Param("telefono") String telefono, @Param("direccion") String direccion);
+
+    /**
+     * Obtener el ultimo proveedor creado
+     * @return collection con un unico elemento que sera el ultimo id creado
+     */
+    @Query(value = "SELECT * FROM proveedores WHERE id = (SELECT MAX(id) FROM proveedores)", nativeQuery = true)
+    Collection<Proveedor> getLast();
 
 }

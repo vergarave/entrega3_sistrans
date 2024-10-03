@@ -21,6 +21,7 @@ public class Orden_compra {
     private Date fecha_creacion;
 
     private Date fecha_esperada;
+    
     private String estado;
 
     @ManyToOne

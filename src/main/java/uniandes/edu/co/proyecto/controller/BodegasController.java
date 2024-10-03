@@ -42,6 +42,7 @@ public class BodegasController {
             bodegaRepository.insertarBodega(bodega.getNombre(),
                                             bodega.getTamanio(),
                                             bodega.getId_Sucursal().getId());
+            bodega.setId(getLast().getId());
             Map<String,Object> response = MS.response("ok","create",bodega);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -65,6 +66,14 @@ public class BodegasController {
             Map<String,Object> response = MS.response("not ok","delete","Bodega no eliminada correctamente");
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    /**
+     * Devuelve la ultima instancia creada
+     * @return ultima fila aniadida
+     */
+    public Bodega getLast(){
+        return bodegaRepository.getLast().iterator().next();
     }
 
 }

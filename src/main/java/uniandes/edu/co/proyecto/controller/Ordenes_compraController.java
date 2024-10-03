@@ -54,6 +54,7 @@ public class Ordenes_compraController {
                                                         orden_compra.getEstado(),
                                                         orden_compra.getId_bodega().getId(),
                                                         orden_compra.getId_proveedor().getId());
+            orden_compra.setId(__getLast().getId());
             Map<String,Object> response = MS.response("ok","create",orden_compra);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -82,4 +83,12 @@ public class Ordenes_compraController {
         }
     }
 
+    /**
+     * Devuelve la ultima instancia creada
+     * @return ultima fila aniadida
+     */
+    public Orden_compra __getLast(){
+        return orden_compraRepository.getLast().iterator().next();
+    }
+    
 }
