@@ -19,9 +19,6 @@ public interface Tipo_categoriaRepository extends JpaRepository<Tipo_categoria,I
     void insertarTipo_categoria(@Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("caracteristicas") String caracteristicas);
 
     // RF5.2 : Leer una categoria por id o nombre
-    @Query(value = "SELECT * FROM tipos_categoria WHERE id = :id", nativeQuery = true)
-    Tipo_categoria darTipo_categoria(@Param("id") long id);
-
-    @Query(value = "SELECT * FROM tipos_categoria b WHERE b.nombre LIKE '%' || :nombre || '%'", nativeQuery=true)
-    Collection<Tipo_categoria> darTipo_categoriaPorNombre(@Param("nombre") String nombre);
+    @Query(value = "SELECT * FROM tipos_categoria WHERE id = :id or nombre = :nombre", nativeQuery = true)
+    Collection<Tipo_categoria> darTipo_categoriaPorIdONombre(@Param("id") Integer id, @Param("nombre") String nombre);
 }
