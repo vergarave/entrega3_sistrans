@@ -135,6 +135,35 @@ ALTER TABLE proveedorsucursal ADD CONSTRAINT proveedorsucursal_proveedor_fk FORE
 ALTER TABLE proveedorsucursal ADD CONSTRAINT proveedorsucursal_sucursal_fk FOREIGN KEY ( sucursal_id ) REFERENCES sucursal ( id );
 ALTER TABLE sucursal ADD CONSTRAINT sucursal_ciudad_fk FOREIGN KEY ( ciudad_id ) REFERENCES ciudad ( id );
 
+-- Restricciones de las tablas
+-- Unique
+ALTER TABLE bodega
+ADD CONSTRAINT unique_bodega_nombre UNIQUE (nombre);
+
+ALTER TABLE categoria
+ADD CONSTRAINT unique_categoria_nombre UNIQUE (nombre);
+
+ALTER TABLE ciudad
+ADD CONSTRAINT unique_ciudad_nombre UNIQUE (nombre);
+
+ALTER TABLE producto
+ADD CONSTRAINT unique_producto_nombre UNIQUE (nombre);
+
+ALTER TABLE producto
+ADD CONSTRAINT unique_producto_codigobarras UNIQUE (codigobarras);
+
+ALTER TABLE proveedor
+ADD CONSTRAINT unique_proveedor_nit UNIQUE (nit);
+
+ALTER TABLE proveedor
+ADD CONSTRAINT unique_proveedor_nombre UNIQUE (nombre);
+
+ALTER TABLE proveedor
+ADD CONSTRAINT unique_proveedor_telefonocontacto UNIQUE (telefonocontacto);
+
+ALTER TABLE sucursal
+ADD CONSTRAINT unique_sucursal_telefono UNIQUE (telefono);
+
 -- Poblacion de tabla categoria
 INSERT INTO categoria (nombre, descripcion, caracteristicas)
 VALUES ('Perecederos', 'Perecederos, tienen fecha de vencimiento', 'Almacenamiento en fr�o, con fecha de caducidad');
@@ -272,6 +301,7 @@ VALUES ('Bucaramanga');
 INSERT INTO ciudad (nombre) 
 VALUES ('Bogot�');
 
+-- Poblacion tabla sucursal
 -- Poblaci�n tabla sucursal en Bucaramanga
 INSERT INTO sucursal (nombre, direccion, telefono, tamano, ciudad_id) 
 VALUES ('Sucursal Norte', 'Calle 1 #2-3', 1234567, 1200, (SELECT id FROM ciudad WHERE nombre = 'Bucaramanga'));
@@ -279,7 +309,6 @@ VALUES ('Sucursal Norte', 'Calle 1 #2-3', 1234567, 1200, (SELECT id FROM ciudad 
 INSERT INTO sucursal (nombre, direccion, telefono, tamano, ciudad_id) 
 VALUES ('Sucursal Sur', 'Calle 4 #5-6', 7654321, 800, (SELECT id FROM ciudad WHERE nombre = 'Bucaramanga'));
 
--- Poblacion tabla sucursal
 -- Poblaci�n tabla sucursal en Bogot�
 INSERT INTO sucursal (nombre, direccion, telefono, tamano, ciudad_id) 
 VALUES ('Sucursal Occidente', 'Carrera 7 #8-9', 1112222, 1500, (SELECT id FROM ciudad WHERE nombre = 'Bogot�'));
