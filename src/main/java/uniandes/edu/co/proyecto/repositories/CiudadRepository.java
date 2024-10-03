@@ -25,14 +25,7 @@ public interface CiudadRepository extends JpaRepository<Ciudad, Long>
     void insertCiudad(
         @Param ("nombre") String nombre
     );
-//--------------------------------------------------------------------------------------------------------------------------------------------
-    @Modifying
-    @Transactional
-    @Query(value = "UPDATE ciudad SET nombre = :nombre WHERE id = :idCiudad", nativeQuery = true)
-    void updateCiudad(
-        @Param("idCiudad") Long idCiudad,
-        @Param("nombre") String nombre
-    );
+
 //--------------------------------------------------------------------------------------------------------------------------------------------
     @Modifying
     @Transactional

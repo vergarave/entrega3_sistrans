@@ -32,10 +32,9 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long>
 //--------------------------------------------------------------------------------------------------------------------------------------------
     @Modifying
     @Transactional
-    @Query(value = "UPDATE categoria SET nombre = :nombre, descripcion = :descripcion, caracteristicas = :caracteristicas WHERE id = :idCategoria", nativeQuery = true)
+    @Query(value = "UPDATE categoria SET descripcion = :descripcion, caracteristicas = :caracteristicas WHERE id = :idCategoria", nativeQuery = true)
     void updateCategoria(
         @Param("idCategoria") Long idCategoria,
-        @Param("nombre") String nombre,
         @Param("descripcion") String descripcion,
         @Param("caracteristicas") String caracteristicas
     );

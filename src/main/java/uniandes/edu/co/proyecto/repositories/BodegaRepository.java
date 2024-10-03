@@ -19,8 +19,8 @@ public interface BodegaRepository extends JpaRepository<Bodega, Long>
     @Query(value = "SELECT * FROM bodega WHERE id = :idBodega", nativeQuery = true)
     Bodega findBodegaById(Long idBodega);
 
-    @Query(value = "SELECT * FROM bodega WHERE sucursal_id = :idSucursal", nativeQuery = true)
-    List<Bodega> findBodegasBySucursal(Long idSucursal);
+    // @Query(value = "SELECT * FROM bodega WHERE sucursal_id = :idSucursal", nativeQuery = true)
+    // List<Bodega> findBodegasBySucursal(Long idSucursal);
 //--------------------------------------------------------------------------------------------------------------------------------------------
     @Modifying
     @Transactional

@@ -16,6 +16,12 @@ public interface BodegaProductoRepository extends JpaRepository<BodegaProducto, 
     @Query(value = "SELECT * FROM bodegaproducto", nativeQuery = true)
     List<BodegaProducto> findAllBodegaProductos();
 
+    @Query(value = "SELECT * FROM bodegaproducto WHERE bodega_id = :idBodega AND producto_id = :idProducto", nativeQuery = true)
+    BodegaProducto findBodegaProductoById(
+        @Param("idBodega") Long idBodega,
+        @Param("idProducto") Long idProducto
+    );
+
 //--------------------------------------------------------------------------------------------------------------------------------------------
     @Modifying
     @Transactional
