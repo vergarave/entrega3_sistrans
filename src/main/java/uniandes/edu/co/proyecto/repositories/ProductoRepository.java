@@ -19,9 +19,6 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     @Query(value = "SELECT * FROM producto WHERE id = :idProducto", nativeQuery = true)  
     Producto findProductoById(@Param("id") Long idProducto);
 
-    @Query(value = "SELECT * FROM producto WHERE nombre = :nombreProducto", nativeQuery = true)
-    Producto findProductoByNombre(@Param("nombre") String nombreProducto);
-
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO producto (nombre, costobodega, preciounitario, presentacion, cantidad, unidadmedida, volumenempaque, pesoempaque, fechaexpiracion, codigobarras, categoria_id) VALUES (:nombre, :costoBodega, :precioUnitario, :presentacion, :cantidad, :unidadMedida, :volumenEmpaque, :pesoEmpaque, :fechaVencimiento, :codigoBarras, :idCategoria)", nativeQuery = true)
