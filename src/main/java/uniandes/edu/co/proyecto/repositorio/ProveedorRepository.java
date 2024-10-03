@@ -19,6 +19,7 @@ public interface ProveedorRepository extends JpaRepository<Proveedor,Integer>{
     // RF4.2 : Actualizar un proveedor
     @Modifying
     @Transactional
-    @Query(value = "update proveedore set nombre = :nombre, telefono = :telefono, direccion = :direccions WHERE id = :id", nativeQuery = true)
+    @Query(value = "update proveedores set nombre = :nombre, telefono = :telefono, direccion = :direccion WHERE id = :id", nativeQuery = true)
     void actualizarProveedor(@Param("id") Integer id, @Param("nombre") String nombre, @Param("telefono") String telefono, @Param("direccion") String direccion);
+
 }
