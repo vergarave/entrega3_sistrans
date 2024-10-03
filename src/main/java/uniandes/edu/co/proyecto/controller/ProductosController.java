@@ -18,18 +18,27 @@ import uniandes.edu.co.proyecto.MS;
 import uniandes.edu.co.proyecto.modelo.Producto;
 import uniandes.edu.co.proyecto.repositorio.ProductoRepository;
 
-
 @RestController
 public class ProductosController {
 
     @Autowired
     private ProductoRepository productoRepository;
 
+    /**
+     * Extrae los productos de la tabla productos
+     * @return collection de productos
+     */
     @GetMapping("/productos")
     public Collection<Producto> darProductos() {
         return productoRepository.findAll();
     }
 
+    /**
+     * Extrae un producto dado su id o nombre
+     * @param id identificador del producto que se quiere actulizar
+     * @param nombre nombre del producto que se quiere actulizar
+     * @return resultado de la transaccion
+     */
     @GetMapping("/productos/consulta")
     public ResponseEntity<?> darProducto(@RequestParam (required = false)Integer id,
                                          @RequestParam (required = false)String nombre) {
@@ -38,7 +47,8 @@ public class ProductosController {
             if(id == null && nombre == null) {
                 throw new Exception("No se recibió ningun parametro");
             }else{
-                Collection<Producto> tipos = productoRepository.darproductoPorIdONombre(id, nombre);
+                Collection<Producto> tipos = productoRepository.darproductoPorIdONombre(id, 
+                                                                                        nombre);
                 if(tipos.isEmpty()){
                     throw new Exception("No se encontraron resultados");
                 }
@@ -52,6 +62,11 @@ public class ProductosController {
         }
     }
     
+    /**
+     * Anide un producto a la tabla productos dada su informacion
+     * @param producto producto que se quiere crear
+     * @return resultado de la transaccion
+     */
     @PostMapping("/productos/new/save")
     public ResponseEntity<Map<String,Object>> productoGuardar(@RequestBody Producto producto) {
         try {
@@ -69,8 +84,15 @@ public class ProductosController {
         }
     }
 
+    /**
+     * Actuliza la informacion de un producto, este se úbica con su id y se actuliza con la informacion nueva
+     * @param id identificador de el producto que se quiere actualizar
+     * @param producto informacion actualizada del producto
+     * @return resultado de la transaccion
+     */
     @PostMapping("/productos/{id}/edit/save")
-    public ResponseEntity<Map<String,Object>> productoEditarGuardar(@PathVariable("id") Integer id, @RequestBody Producto producto) {
+    public ResponseEntity<Map<String,Object>> productoEditarGuardar(@PathVariable("id") Integer id,
+                                                                    @RequestBody Producto producto) {
         try {
             productoRepository.actualizarProducto(id,
                                                   producto.getNombre(),
@@ -86,4 +108,5 @@ public class ProductosController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

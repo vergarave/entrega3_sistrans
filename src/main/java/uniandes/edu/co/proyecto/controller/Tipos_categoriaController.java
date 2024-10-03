@@ -17,18 +17,27 @@ import uniandes.edu.co.proyecto.MS;
 import uniandes.edu.co.proyecto.modelo.Tipo_categoria;
 import uniandes.edu.co.proyecto.repositorio.Tipo_categoriaRepository;
 
-
 @RestController
 public class Tipos_categoriaController {
 
     @Autowired
     private Tipo_categoriaRepository tipo_categoriaRepository;
 
+    /**
+     * Extrae las categorias de la tabla tipos_categoria
+     * @return collection de categorias encontradas
+     */
     @GetMapping("/tipos_categoria")
     public Collection<Tipo_categoria> darTipos_categoria() {
         return tipo_categoriaRepository.findAll();
     }
 
+    /**
+     * Extrae una categoria dado su id o nombre
+     * @param id identificador de la categoria que se quiere encontrar
+     * @param nombre nombre de la categoria que se quiere encontrar
+     * @return resultado de la transaccion
+     */
     @GetMapping("/tipos_categoria/consulta")
     public ResponseEntity<?> darTipo_categoria(@RequestParam (required = false)Integer id,
                                                @RequestParam (required = false)String nombre) {
@@ -51,7 +60,11 @@ public class Tipos_categoriaController {
         }
     }
     
-
+    /**
+     * Aniade una categoria a la tabla tipos_categoria dada su informacion
+     * @param tipo_categoria informacion de la categoria que se quiere crear
+     * @return resultado de la transaccion
+     */
     @PostMapping("/tipos_categoria/new/save")
     public ResponseEntity<Map<String,Object>> tipo_categoriaGuardar(@RequestBody Tipo_categoria tipo_categoria) {
         tipo_categoriaRepository.insertarTipo_categoria(tipo_categoria.getNombre(),
@@ -60,4 +73,5 @@ public class Tipos_categoriaController {
         Map<String,Object> response = MS.response("ok","create",tipo_categoria);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
 }

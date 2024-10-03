@@ -22,11 +22,20 @@ public class BodegasController {
     @Autowired
     private BodegaRepository bodegaRepository;
 
+    /**
+     * Extrae las bodegas de la tabla bodegas
+     * @return collection de bodegas encontradas
+     */
     @GetMapping("/bodegas")
     public Collection<Bodega> darBodegas() {
         return bodegaRepository.findAll();
     }
 
+    /**
+     * Aniade una bodega ala tabla bodegas dada su informacion
+     * @param bodega bodega que se quiere crear
+     * @return resultado de la transaccion
+     */
     @PostMapping("/bodegas/new/save")
     public ResponseEntity<Map<String,Object>> bodegaGuardar(@RequestBody Bodega bodega) {
         try {
@@ -41,6 +50,11 @@ public class BodegasController {
         }
     }
 
+    /**
+     * Elimina una bodega dado su id
+     * @param id identificador unico de una bodega proxima a ser eliminada
+     * @return resultado de la transaccion
+     */
     @GetMapping("/bodegas/{id}/delete")
     public ResponseEntity<Map<String,Object>> bodegaEliminar(@PathVariable("id") Integer id) {
         try {
@@ -52,5 +66,5 @@ public class BodegasController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
 }

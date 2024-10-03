@@ -21,11 +21,20 @@ public class SucursalesController {
     @Autowired
     private SucursalRepository sucursalRepository;
 
+    /**
+     * Extrae las sucursales de la tabla sucursales
+     * @return collection de las sucursales encontradas
+     */
     @GetMapping("/sucursales")
     public Collection<Sucursal> darSucursales() {
         return sucursalRepository.findAll();
     }
 
+    /**
+     * Aniade una sucursal a la tabla sucursales dada su informacion
+     * @param sucursal sucursal que se quiere crear
+     * @return resultado de la transaccion
+     */
     @PostMapping("/sucursales/new/save")
     public ResponseEntity<Map<String,Object>> sucursalGuardar(@RequestBody Sucursal sucursal) {
         try {
@@ -40,7 +49,6 @@ public class SucursalesController {
             Map<String,Object> response = MS.response("not ok","create",e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        
     }
     
 }

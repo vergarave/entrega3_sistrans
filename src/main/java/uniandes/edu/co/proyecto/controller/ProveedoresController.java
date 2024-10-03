@@ -22,11 +22,20 @@ public class ProveedoresController {
     @Autowired
     private ProveedorRepository proveedorRepository;
 
+    /**
+     * Extrae los proveedores de la tabla proveedores
+     * @return collection de los proveedores encontrados
+     */
     @GetMapping("/proveedores")
     public Collection<Proveedor> darProveedores() {
         return proveedorRepository.findAll();
     }
 
+    /**
+     * Aniade un proveedor a la tabla roveedores dad su informacion
+     * @param proveedor proveedor que se quiere crear
+     * @return resultado de la transaccion
+     */
     @PostMapping("/proveedores/new/save")
     public ResponseEntity<Map<String,Object>> proveedorGuardar(@RequestBody Proveedor proveedor) {
         proveedorRepository.insertarProveedor(proveedor.getNombre(),
@@ -36,8 +45,15 @@ public class ProveedoresController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    /**
+     * Actualiza la informacion de un proveedor, se ubica con su id y se le cambia la informacion
+     * @param id identificador del proveedor proximo a actualizar
+     * @param proveedor informacion actualizada de un roveedor
+     * @return resultado de la transaccion
+     */
     @PostMapping("/proveedores/{id}/edit/save")
-    public ResponseEntity<Map<String,Object>> proveedorEditarGuardar(@PathVariable("id") Integer id, @RequestBody Proveedor proveedor) {
+    public ResponseEntity<Map<String,Object>> proveedorEditarGuardar(@PathVariable("id") Integer id, 
+                                                                     @RequestBody Proveedor proveedor) {
         try {
             proveedorRepository.actualizarProveedor(id,
                                                     proveedor.getNombre(),
@@ -50,4 +66,5 @@ public class ProveedoresController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }
