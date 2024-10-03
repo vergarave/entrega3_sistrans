@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,5 +27,12 @@ public interface SucursalRepository extends JpaRepository<Sucursal,Integer>{
     @Transactional
     @Query(value = "insert into sucursales (id,nombre,tamanio,telefono,direccion,id_ciudad) values (ids_sucursal.nextval, :nombre, :tamanio, :telefono, :direccion, :id_ciudad)", nativeQuery = true)
     void insertarSucursal(@Param("nombre") String nombre, @Param("tamanio") String tamanio, @Param("telefono") String telefono,@Param("direccion") String direccion, @Param("id_ciudad") Integer id_ciudad);
+
+    /**
+     * Obtener la ultima sucursal creada
+     * @return collection con un unico elemento que sera el ultimo id creado
+     */
+    @Query(value = "SELECT * FROM sucursales WHERE id = (SELECT MAX(id) FROM sucursales)", nativeQuery = true)
+    Collection<Sucursal> getLast();
 
 }

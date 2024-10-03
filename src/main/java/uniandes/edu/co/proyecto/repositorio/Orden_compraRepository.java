@@ -56,4 +56,13 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra,Integ
      */
     @Query(value = "SELECT * FROM ordenes_compra where id = :id", nativeQuery=true)
     Collection<Orden_compra> darOrden_compra(@Param("id")Integer id);
+
+    /**
+     * Obtener la ultima orden de compra creada
+     * @return collection con un unico elemento que sera el ultimo id creado
+     */
+    @Query(value = "SELECT * FROM ordenes_compra WHERE id = (SELECT MAX(id) FROM ordenes_compra)", nativeQuery = true)
+    Collection<Orden_compra> getLast();
+
+
 }

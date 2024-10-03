@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -34,5 +36,12 @@ public interface BodegaRepository extends JpaRepository<Bodega,Integer>{
     @Transactional
     @Query(value = "DELETE FROM bodegas WHERE id = :id", nativeQuery = true)
     void eliminarBodega(@Param("id") Integer id);
+
+    /**
+     * Obtener la ultima bodega creada
+     * @return collection con un unico elemento que sera el ultimo id creado
+     */
+    @Query(value = "SELECT * FROM bodegas WHERE id = (SELECT MAX(id) FROM bodegas)", nativeQuery = true)
+    Collection<Bodega> getLast();
 
 }

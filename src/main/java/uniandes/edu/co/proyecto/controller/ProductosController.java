@@ -76,10 +76,11 @@ public class ProductosController {
                                                 producto.getVolumen(),
                                                 producto.getPeso(),
                                                 producto.getId_tipo_categoria().getId());
+            producto.setId(getLast().getId());
             Map<String,Object> response = MS.response("ok","create",producto);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
-            Map<String,Object> response = MS.response("not ok","create",producto);
+            Map<String,Object> response = MS.response("not ok","create",e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -107,6 +108,14 @@ public class ProductosController {
             Map<String,Object> response = MS.response("not_ok","update",e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    /**
+     * Devuelve la ultima instancia creada
+     * @return ultima fila aniadida
+     */
+    public Producto getLast(){
+        return productoRepository.getLast().iterator().next();
     }
 
 }

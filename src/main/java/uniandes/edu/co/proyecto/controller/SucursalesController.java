@@ -43,6 +43,7 @@ public class SucursalesController {
                                                 sucursal.getDireccion(),
                                                 sucursal.getDireccion(),
                                                 sucursal.getId_ciudad().getId());
+            sucursal.setId(getLast().getId());
             Map<String,Object> response = MS.response("ok","create",sucursal);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -51,4 +52,12 @@ public class SucursalesController {
         }
     }
     
+    /**
+     * Devuelve la ultima instancia creada
+     * @return ultima fila aniadida
+     */
+    public Sucursal getLast(){
+        return sucursalRepository.getLast().iterator().next();
+    }
+
 }

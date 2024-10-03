@@ -41,6 +41,7 @@ public class ProveedoresController {
         proveedorRepository.insertarProveedor(proveedor.getNombre(),
                                               proveedor.getTelefono(),
                                               proveedor.getDireccion());
+        proveedor.setId(getLast().getId());
         Map<String,Object> response = MS.response("ok","create",proveedor);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -59,12 +60,21 @@ public class ProveedoresController {
                                                     proveedor.getNombre(),
                                                     proveedor.getTelefono(),
                                                     proveedor.getDireccion());
+            proveedor.setId(id);
             Map<String,Object> response = MS.response("ok","update",proveedor);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             Map<String,Object> response = MS.response("not_ok","update",e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    /**
+     * Devuelve la ultima instancia creada
+     * @return ultima fila aniadida
+     */
+    public Proveedor getLast(){
+        return proveedorRepository.getLast().iterator().next();
     }
 
 }

@@ -70,8 +70,17 @@ public class Tipos_categoriaController {
         tipo_categoriaRepository.insertarTipo_categoria(tipo_categoria.getNombre(),
                                                         tipo_categoria.getDescripcion(),
                                                         tipo_categoria.getCaracteristicas());
+        tipo_categoria.setId(getLast().getId());
         Map<String,Object> response = MS.response("ok","create",tipo_categoria);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    /**
+     * Devuelve la ultima instancia creada
+     * @return ultima fila aniadida
+     */
+    public Tipo_categoria getLast(){
+        return tipo_categoriaRepository.getLast().iterator().next();
     }
 
 }

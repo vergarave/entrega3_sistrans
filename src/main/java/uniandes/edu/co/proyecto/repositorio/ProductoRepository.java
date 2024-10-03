@@ -58,4 +58,11 @@ public interface ProductoRepository extends JpaRepository<Producto,Integer>{
     @Query(value = "UPDATE productos SET nombre = :nombre, fecha_expiracion = :fecha_expiracion, codigo_barras = :codigo_barras, volumen = :volumen, peso = :peso, id_tipo_categoria = :id_tipo_categoria WHERE id = :id", nativeQuery = true)
     void actualizarProducto(@Param("id") Integer id, @Param("nombre") String nombre, @Param("fecha_expiracion") Date fecha_expiracion, @Param("codigo_barras") Integer codigo_barras,@Param("volumen") Float volumen, @Param("peso") Float peso, @Param("id_tipo_categoria") Integer id_tipo_categoria);
 
+    /**
+     * Obtener el ultimo producto creado
+     * @return collection con un unico elemento que sera el ultimo id creado
+     */
+    @Query(value = "SELECT * FROM productos WHERE id = (SELECT MAX(id) FROM productos)", nativeQuery = true)
+    Collection<Producto> getLast();
+
 }

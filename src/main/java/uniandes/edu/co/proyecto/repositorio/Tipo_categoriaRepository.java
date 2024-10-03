@@ -37,4 +37,11 @@ public interface Tipo_categoriaRepository extends JpaRepository<Tipo_categoria,I
     @Query(value = "SELECT * FROM tipos_categoria WHERE id = :id or nombre = :nombre", nativeQuery = true)
     Collection<Tipo_categoria> darTipo_categoriaPorIdONombre(@Param("id") Integer id, @Param("nombre") String nombre);
 
+    /**
+     * Obtener la ultima categoria creada
+     * @return collection con un unico elemento que sera el ultimo id creado
+     */
+    @Query(value = "SELECT * FROM tipos_categoria WHERE id = (SELECT MAX(id) FROM tipos_categoria)", nativeQuery = true)
+    Collection<Tipo_categoria> getLast();
+
 }

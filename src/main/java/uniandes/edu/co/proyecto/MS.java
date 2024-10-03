@@ -7,10 +7,11 @@ import java.util.Map;
 public class MS {
 
     /**
-     * @param resultado
-     * @param accion
-     * @param object
-     * @return
+     * Crea un mapa con la respuesta dado sus resultados, este será incluido como argumento principal en una ResponseEntity
+     * @param resultado ok o not ok dependiendo si se pudo hacer la accion o no
+     * @param accion accion que se ejecuto (create, get, update, delete)
+     * @param object objeto importante ara la respuesta, puede ser una clase del modelo o un string
+     * @return mapa con la respuesta de a transaccion
      */
     public static Map<String, Object> response(String resultado, String accion, Object object){
         if(object == null){
