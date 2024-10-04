@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.controller;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +42,19 @@ public class ProductosController {
      */
     @GetMapping("/productos/consulta")
     public ResponseEntity<?> darProducto(@RequestParam (required = false)Integer id,
-                                         @RequestParam (required = false)String nombre) {
+                                         @RequestParam (required = false)String nombre,
+                                         @RequestBody (required = false) Map<String,List<Integer>> mapa_json) {
         try {
-            
-            if(id == null && nombre == null) {
+            List<Integer> lista_ids = mapa_json.get("ids_productos");
+            if(id == null && nombre == null && (lista_ids == null || lista_ids.isEmpty())) {
                 throw new Exception("No se recibió ningun parametro");
             }else{
-                Collection<Producto> tipos = productoRepository.darproductoPorIdONombre(id, 
+                if(id == null && nombre == null){
+                    Collection<Object[]> resultado = productoRepository.darPorcentajeOcupacion(lista_ids);
+                    if(resultado == null || resultado.isEmpty()) throw new Exception("No se encontraron resultados");
+                    return ResponseEntity.ok(resultado);
+                }else{
+                    Collection<Producto> tipos = productoRepository.darproductoPorIdONombre(id, 
                                                                                         nombre);
                 if(tipos.isEmpty()){
                     throw new Exception("No se encontraron resultados");
@@ -55,6 +62,7 @@ public class ProductosController {
                 Map<String,Object> response = new HashMap<>();
                 response.put("tipos", tipos);
                 return ResponseEntity.ok(response);
+                }
             }
         } catch (Exception e) {
             Map<String,Object> response = MS.response("not ok","get",e.getMessage());
@@ -117,5 +125,5 @@ public class ProductosController {
     public Producto getLast(){
         return productoRepository.getLast().iterator().next();
     }
-
+    
 }

@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.repositorio;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -64,5 +65,13 @@ public interface ProductoRepository extends JpaRepository<Producto,Integer>{
      */
     @Query(value = "SELECT * FROM productos WHERE id = (SELECT MAX(id) FROM productos)", nativeQuery = true)
     Collection<Producto> getLast();
+
+    /**
+     * RFC1 : Mostrar el indice de ocupacion de cada una de las bodegas
+     * @param lista_productos lista con los ids de los productos que se quieren consultar
+     * @return collection con el resultado de la consulta
+     */
+    @Query(value = "SELECT co.id_bodega, pr.id id_producto, (SUM(pr.volumen*co.cantidad)/co.capacidad)*100 porcentaje_ocupacion FROM contiene co JOIN productos pr ON co.id_producto = pr.id WHERE pr.id IN (:lista_productos) GROUP BY co.id_bodega, pr.id, co.capacidad", nativeQuery = true)
+    Collection<Object[]> darPorcentajeOcupacion(@Param("lista_productos") List<Integer> lista_productos);
 
 }
