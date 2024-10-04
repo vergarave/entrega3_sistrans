@@ -1,5 +1,8 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -34,61 +37,106 @@ public class ProductosController {
         return productoRepository.findAll();
     }
 
-    /**
-     * Extrae un producto dado su id o nombre
-     * @param id identificador del producto que se quiere actulizar
-     * @param nombre nombre del producto que se quiere actulizar
-     * @param mapa_json mapa de entrada con una unica tupla, cullo valor es una lista con ids
-     * @return resultado de la transaccion
-     */
+    
     @GetMapping("/productos/consulta")
     public ResponseEntity<?> darProducto(@RequestParam (required = false)Integer id,
                                          @RequestParam (required = false)String nombre,
-                                         @RequestBody (required = false) Map<String,List<Integer>> mapa_json,
-                                         @RequestParam(required = false) Float minPrice,
-                                         @RequestParam(required = false) Float maxPrice){
+                                         @RequestParam (required = false) List<Integer> ids,
+                                         @RequestParam (required = false) Float minPrice,
+                                         @RequestParam (required = false) Float maxPrice,
+                                         @RequestParam (required = false) String fechaPosteriorA,
+                                         @RequestParam (required = false) String fechaInferiorA){
 
-        List<Integer> lista_ids;
-        try {
-            lista_ids = mapa_json.get("ids_productos");
-        } catch (Exception e) {
-            lista_ids = null;
-        }
         try {
             if(id != null || nombre != null){
                 /*
                  * Caso en el que se quiere consultar un producto por id o nombre
                  */
-                if (!(lista_ids != null))throw new Exception("demasidas entradas");
-                if (!(minPrice != null && maxPrice != null))throw new Exception("demasidas entradas");
+                if (ids != null)throw new Exception("demasidas entradas");
+                if (minPrice != null && maxPrice != null)throw new Exception("demasidas entradas");
+                if (fechaInferiorA != null || fechaPosteriorA != null) throw new Exception("demasiadas entradas");
+
                 Collection<Producto> tipos = productoRepository.darproductoPorIdONombre(id, nombre);
                 if(tipos.isEmpty())throw new Exception("No se encontraron resultados");
                 Map<String,Object> response = new HashMap<>();
                 response.put("tipos", tipos);
                 return ResponseEntity.ok(response);
-            }else if (lista_ids != null){
+
+            }else if (ids != null){
                 /*
                  * Caso en el que se quiere obtener el indice de ocupacion de una bodega dada una lista de ids de productos
                  */
-                if (!(minPrice != null && maxPrice != null))throw new Exception("demasidas entradas");
-                if(lista_ids.isEmpty()) throw new Exception("Se dió una lista vacia :(");
-                Collection<Object[]> resultado = productoRepository.darPorcentajeOcupacion(lista_ids);
-                    if(resultado == null || resultado.isEmpty()) throw new Exception("No se encontraron resultados");
-                    return ResponseEntity.ok(resultado);
+                if (minPrice != null && maxPrice != null)throw new Exception("demasidas entradas");
+                if (fechaInferiorA != null || fechaPosteriorA != null) throw new Exception("demasiadas entradas");
+
+                if (ids.isEmpty()) throw new Exception("Se dió una lista vacia :(");
+                Collection<Object[]> resultado = productoRepository.darPorcentajeOcupacion(ids);
+                if (fechaInferiorA != null || fechaPosteriorA != null) throw new Exception("demasiadas entradas");
+                if(resultado == null || resultado.isEmpty()) throw new Exception("No se encontraron resultados");
+                return ResponseEntity.ok(resultado);
+
             }else if(minPrice != null && maxPrice != null){
                 /*
                  * Caso en el que se quiere consultar los productos por un rango de precios
                  */
+                if (fechaInferiorA != null || fechaPosteriorA != null) throw new Exception("deasiadas entradas");
+
                 Collection<Object[]> resultado = productoRepository.darProductosEnRangoDePrecios(minPrice,maxPrice);
                 if(resultado == null || resultado.isEmpty()) throw new Exception("No se encontraron resultados");
                 return ResponseEntity.ok(resultado);
+
+            }else if(fechaInferiorA != null || fechaPosteriorA != null){
+                /*
+                 * Caso en el que se quiere consultar productos con fecha de venciminto posterior o inferior a una fecha dada
+                 */
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate maximaLocalDate = LocalDate.parse("4000-01-01", formatter);
+                Date maximaSqlDate = Date.valueOf(maximaLocalDate);
+                LocalDate minimaLocalDate = LocalDate.parse("0001-01-01", formatter);
+                Date minimaSqlDate = Date.valueOf(minimaLocalDate);
+                if ( fechaPosteriorA == null){
+                    /*
+                     * Cuando se da solo la fecha maxima
+                     */
+                    LocalDate inferiorLocaldate = LocalDate.parse(fechaInferiorA, formatter);
+                    Date inferiorSqlDate = Date.valueOf(inferiorLocaldate);
+                    Collection<Producto> respuesta = productoRepository.darProductosEnRangoDeFechaDeVencimiento(minimaSqlDate,inferiorSqlDate);
+                    if (respuesta.isEmpty()) throw new Exception("No se encontraron resultados");
+                    return ResponseEntity.ok(respuesta);
+
+                }else if (fechaInferiorA == null) {
+                    /*
+                     * Cuando se da solo la fecha minima
+                     */
+                    LocalDate posteriorLocalDate = LocalDate.parse(fechaPosteriorA, formatter);
+                    Date posteriorSqlDate = Date.valueOf(posteriorLocalDate);
+                    Collection<Producto> respuesta = productoRepository.darProductosEnRangoDeFechaDeVencimiento(posteriorSqlDate,maximaSqlDate);
+                    if (respuesta.isEmpty()) throw new Exception("No se encontraron resultados");
+                    return ResponseEntity.ok(respuesta);
+
+                }else{
+                    /*
+                     * Cuando se dan ambas fechas
+                     */
+                    LocalDate inferiorLocaldate = LocalDate.parse(fechaInferiorA, formatter);
+                    Date inferiorSqlDate = Date.valueOf(inferiorLocaldate);
+                    LocalDate posteriorLocalDate = LocalDate.parse(fechaPosteriorA, formatter);
+                    Date posteriorSqlDate = Date.valueOf(posteriorLocalDate);
+                    Collection<Producto> respuesta = productoRepository.darProductosEnRangoDeFechaDeVencimiento(posteriorSqlDate,inferiorSqlDate);
+                    //Collection<Producto> respuesta = productoRepository.darProductosEnRangoDeFechaDeVencimiento(inferiorSqlDate, posteriorSqlDate);
+                    if (respuesta.isEmpty()) throw new Exception("No se encontraron resultados");
+                    return ResponseEntity.ok(respuesta);
+
+                }
             }
             else{
-                /*
+                 /*
                  * Caso en el que no se recibio ningun parametro para consultar
                  */
                 throw new Exception("No se recibió ningun parametro");
             }
+            
         } catch (Exception e) {
             Map<String,Object> response = MS.response("not ok","get",e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -175,6 +223,10 @@ public class ProductosController {
         }
     }
 
+    /**
+     * Devuelve la ultima instancia creada
+     * @return ultima fila aniadida
+     */
     /**
      * Devuelve la ultima instancia creada
      * @return ultima fila aniadida

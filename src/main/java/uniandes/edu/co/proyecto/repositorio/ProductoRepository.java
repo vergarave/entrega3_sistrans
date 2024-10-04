@@ -83,4 +83,12 @@ public interface ProductoRepository extends JpaRepository<Producto,Integer>{
     @Query(value = "select co.id_bodega, bo.nombre, pr.*, co.costo_promedio precio, tc.nombre from contiene co join productos pr on co.id_producto = pr.id join bodegas bo on co.id_bodega = bo.id join tipos_categoria tc on pr.id_tipo_categoria = tc.id where co.costo_promedio between :minPrice and :maxPrice order by pr.id ASC, co.costo_promedio DESC", nativeQuery = true)
     Collection<Object[]> darProductosEnRangoDePrecios(@Param("minPrice") Float minPrice, @Param("maxPrice") Float maxPrice);
 
+    /**
+     * RFC2.2 Mostrar los producotscon fecha de vencimiento posterior o inferior a una fecha dada
+     * @param minFecha rango inferior de la busqueda
+     * @param maxFecha rango superior de la busqueda
+     * @return collection con los productos encontrados
+     */
+    @Query(value = "select * from productos where fecha_expiracion between :minFecha and :maxFecha", nativeQuery = true)
+    Collection<Producto> darProductosEnRangoDeFechaDeVencimiento(@Param("minFecha") Date minFecha, @Param("maxFecha") Date maxFecha);
 }
