@@ -71,7 +71,7 @@ public interface ProductoRepository extends JpaRepository<Producto,Integer>{
      * @param lista_productos lista con los ids de los productos que se quieren consultar
      * @return collection con el resultado de la consulta
      */
-    @Query(value = "SELECT co.id_bodega, pr.id id_producto, (SUM(pr.volumen*co.cantidad)/co.capacidad)*100 porcentaje_ocupacion FROM contiene co JOIN productos pr ON co.id_producto = pr.id WHERE pr.id IN (:lista_productos) GROUP BY co.id_bodega, pr.id, co.capacidad", nativeQuery = true)
+    @Query(value = "SELECT co.id_bodega, pr.id id_producto, (SUM(co.cantidad)/co.capacidad) porcentaje_ocupacion FROM contiene co JOIN productos pr ON co.id_producto = pr.id WHERE pr.id IN (:lista_productos) GROUP BY co.id_bodega, pr.id, co.capacidad ORDER BY pr.id ASC, co.id_bodega ASC", nativeQuery = true)
     Collection<Object[]> darPorcentajeOcupacion(@Param("lista_productos") List<Integer> lista_productos);
 
 }

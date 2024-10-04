@@ -45,7 +45,12 @@ public class ProductosController {
                                          @RequestParam (required = false)String nombre,
                                          @RequestBody (required = false) Map<String,List<Integer>> mapa_json) {
         try {
-            List<Integer> lista_ids = mapa_json.get("ids_productos");
+            List<Integer> lista_ids;
+            try {
+                lista_ids = mapa_json.get("ids_productos");
+            } catch (Exception e) {
+                lista_ids = null;
+            }
             if(id == null && nombre == null && (lista_ids == null || lista_ids.isEmpty())) {
                 throw new Exception("No se recibió ningun parametro");
             }else{
