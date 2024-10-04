@@ -38,12 +38,42 @@ public class ProductosController {
      * Extrae un producto dado su id o nombre
      * @param id identificador del producto que se quiere actulizar
      * @param nombre nombre del producto que se quiere actulizar
+     * @param mapa_json mapa de entrada con una unica tupla, cullo valor es una lista con ids
      * @return resultado de la transaccion
      */
     @GetMapping("/productos/consulta")
     public ResponseEntity<?> darProducto(@RequestParam (required = false)Integer id,
                                          @RequestParam (required = false)String nombre,
                                          @RequestBody (required = false) Map<String,List<Integer>> mapa_json) {
+
+        List<Integer> lista_ids;
+        try {
+            lista_ids = mapa_json.get("ids_productos");
+        } catch (Exception e) {
+            lista_ids = null;
+        }
+        try {
+            if(id != null || nombre != null){
+                if (!(lista_ids == null || lista_ids.isEmpty()))throw new Exception("demasidas entradas");
+                Collection<Producto> tipos = productoRepository.darproductoPorIdONombre(id, nombre);
+                if(tipos.isEmpty())throw new Exception("No se encontraron resultados");
+                Map<String,Object> response = new HashMap<>();
+                response.put("tipos", tipos);
+                return ResponseEntity.ok(response);
+            }else if (lista_ids != null){
+                if(lista_ids.isEmpty()) throw new Exception("Se dió una lista vacia :(");
+                Collection<Object[]> resultado = productoRepository.darPorcentajeOcupacion(lista_ids);
+                    if(resultado == null || resultado.isEmpty()) throw new Exception("No se encontraron resultados");
+                    return ResponseEntity.ok(resultado);
+            }else{
+                throw new Exception("No se recibió ningun parametro");
+            }
+        } catch (Exception e) {
+            Map<String,Object> response = MS.response("not ok","get",e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+/*
         try {
             List<Integer> lista_ids;
             try {
@@ -73,6 +103,7 @@ public class ProductosController {
             Map<String,Object> response = MS.response("not ok","get",e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+*/
     }
     
     /**
