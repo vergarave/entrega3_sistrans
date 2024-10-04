@@ -74,4 +74,13 @@ public interface ProductoRepository extends JpaRepository<Producto,Integer>{
     @Query(value = "SELECT co.id_bodega, pr.id id_producto, (SUM(co.cantidad)/co.capacidad) porcentaje_ocupacion FROM contiene co JOIN productos pr ON co.id_producto = pr.id WHERE pr.id IN (:lista_productos) GROUP BY co.id_bodega, pr.id, co.capacidad ORDER BY pr.id ASC, co.id_bodega ASC", nativeQuery = true)
     Collection<Object[]> darPorcentajeOcupacion(@Param("lista_productos") List<Integer> lista_productos);
 
+    /**
+     * RFC2.1 : Mostrar los productos que cumplen con estar en un rango de precios
+     * @param minPrice valor inferior del rango
+     * @param maxPrice valor superior del rango
+     * @return
+     */
+    @Query(value = "select co.id_bodega, bo.nombre, pr.*, co.costo_promedio precio, tc.nombre from contiene co join productos pr on co.id_producto = pr.id join bodegas bo on co.id_bodega = bo.id join tipos_categoria tc on pr.id_tipo_categoria = tc.id where co.costo_promedio between :minPrice and :maxPrice order by pr.id ASC, co.costo_promedio DESC", nativeQuery = true)
+    Collection<Object[]> darProductosEnRangoDePrecios(@Param("minPrice") Float minPrice, @Param("maxPrice") Float maxPrice);
+
 }

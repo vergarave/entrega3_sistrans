@@ -44,7 +44,9 @@ public class ProductosController {
     @GetMapping("/productos/consulta")
     public ResponseEntity<?> darProducto(@RequestParam (required = false)Integer id,
                                          @RequestParam (required = false)String nombre,
-                                         @RequestBody (required = false) Map<String,List<Integer>> mapa_json) {
+                                         @RequestBody (required = false) Map<String,List<Integer>> mapa_json,
+                                         @RequestParam(required = false) Float minPrice,
+                                         @RequestParam(required = false) Float maxPrice){
 
         List<Integer> lista_ids;
         try {
@@ -54,18 +56,37 @@ public class ProductosController {
         }
         try {
             if(id != null || nombre != null){
-                if (!(lista_ids == null || lista_ids.isEmpty()))throw new Exception("demasidas entradas");
+                /*
+                 * Caso en el que se quiere consultar un producto por id o nombre
+                 */
+                if (!(lista_ids != null))throw new Exception("demasidas entradas");
+                if (!(minPrice != null && maxPrice != null))throw new Exception("demasidas entradas");
                 Collection<Producto> tipos = productoRepository.darproductoPorIdONombre(id, nombre);
                 if(tipos.isEmpty())throw new Exception("No se encontraron resultados");
                 Map<String,Object> response = new HashMap<>();
                 response.put("tipos", tipos);
                 return ResponseEntity.ok(response);
             }else if (lista_ids != null){
+                /*
+                 * Caso en el que se quiere obtener el indice de ocupacion de una bodega dada una lista de ids de productos
+                 */
+                if (!(minPrice != null && maxPrice != null))throw new Exception("demasidas entradas");
                 if(lista_ids.isEmpty()) throw new Exception("Se dió una lista vacia :(");
                 Collection<Object[]> resultado = productoRepository.darPorcentajeOcupacion(lista_ids);
                     if(resultado == null || resultado.isEmpty()) throw new Exception("No se encontraron resultados");
                     return ResponseEntity.ok(resultado);
-            }else{
+            }else if(minPrice != null && maxPrice != null){
+                /*
+                 * Caso en el que se quiere consultar los productos por un rango de precios
+                 */
+                Collection<Object[]> resultado = productoRepository.darProductosEnRangoDePrecios(minPrice,maxPrice);
+                if(resultado == null || resultado.isEmpty()) throw new Exception("No se encontraron resultados");
+                return ResponseEntity.ok(resultado);
+            }
+            else{
+                /*
+                 * Caso en el que no se recibio ningun parametro para consultar
+                 */
                 throw new Exception("No se recibió ningun parametro");
             }
         } catch (Exception e) {
