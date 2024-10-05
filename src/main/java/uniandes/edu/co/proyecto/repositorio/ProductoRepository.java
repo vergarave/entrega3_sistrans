@@ -107,4 +107,14 @@ public interface ProductoRepository extends JpaRepository<Producto,Integer>{
      */
     @Query(value = "select * from productos pr where pr.id_tipo_categoria = :id_tipo_categoria", nativeQuery = true)
     Collection<Producto> darProductosPertenecientesATipoCategoria(@Param("id_tipo_categoria") Integer id_tipo_categoria);
+
+    /**
+     * RFC3 : Mostrar el inventario de productos en bodega
+     * @param id_sucursal identificador de la sucursal
+     * @param id_bodega identificador de la bodega
+     * @return collection con el id, nommbre, cantidad, cantidad_minima y costo_promedio del producto en la bodega
+     */
+    @Query(value = "select pr.id, pr.nombre, co.cantidad, co.cantidad_minima, co.costo_promedio, bo.id, bo.id_sucursal from productos pr join contiene co on pr.id = co.id_producto join bodegas bo on co.id_bodega = bo.id where bo.id = :id_bodega and bo.id_sucursal = :id_sucursal", nativeQuery = true)
+    Collection<Object[]> darInventarioDeBodega(@Param("id_sucursal") Integer id_sucursal, @Param("id_bodega") Integer id_bodega);
+
 }
