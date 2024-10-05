@@ -35,4 +35,13 @@ public interface SucursalRepository extends JpaRepository<Sucursal,Integer>{
     @Query(value = "SELECT * FROM sucursales WHERE id = (SELECT MAX(id) FROM sucursales)", nativeQuery = true)
     Collection<Sucursal> getLast();
 
+    /**
+     * RFC4 : Mostrar las sucursales en las que hay un producto dado su id o nombre
+     * @param id identificador del producto a buscar
+     * @param nombre nombre del producto a buscar
+     * @return collection con las bodegas encontradas
+     */
+    @Query(value = "select su.*, pr.id, pr.nombre from sucursales su join bodegas bo on su.id = bo.id_sucursal join contiene co on bo.id = co.id_bodega join productos pr on co.id_producto = pr.id where pr.id = :id or pr.nombre = :nombre", nativeQuery = true)
+    Collection<Object[]> darSucursalesConProducto(@Param("id") Integer id, @Param("nombre") String nombre);
+
 }
