@@ -37,7 +37,7 @@ public class ProductosController {
         return productoRepository.findAll();
     }
 
-    
+    //javadoc ---
     @GetMapping("/productos/consulta")
     public ResponseEntity<?> darProducto(@RequestParam (required = false)Integer id,
                                          @RequestParam (required = false)String nombre,
@@ -45,7 +45,9 @@ public class ProductosController {
                                          @RequestParam (required = false) Float minPrice,
                                          @RequestParam (required = false) Float maxPrice,
                                          @RequestParam (required = false) String fechaPosteriorA,
-                                         @RequestParam (required = false) String fechaInferiorA){
+                                         @RequestParam (required = false) String fechaInferiorA,
+                                         @RequestParam (required = false) Integer id_sucursal,
+                                         @RequestParam (required = false) Integer id_tipo_categoria){
 
         try {
             if(id != null || nombre != null){
@@ -55,6 +57,8 @@ public class ProductosController {
                 if (ids != null)throw new Exception("demasidas entradas");
                 if (minPrice != null && maxPrice != null)throw new Exception("demasidas entradas");
                 if (fechaInferiorA != null || fechaPosteriorA != null) throw new Exception("demasiadas entradas");
+                if (id_sucursal != null) throw new Exception("demasiadas entradas");
+                if (id_tipo_categoria != null) throw new Exception("demasiadas entradas");
 
                 Collection<Producto> tipos = productoRepository.darproductoPorIdONombre(id, nombre);
                 if(tipos.isEmpty())throw new Exception("No se encontraron resultados");
@@ -68,6 +72,8 @@ public class ProductosController {
                  */
                 if (minPrice != null && maxPrice != null)throw new Exception("demasidas entradas");
                 if (fechaInferiorA != null || fechaPosteriorA != null) throw new Exception("demasiadas entradas");
+                if (id_sucursal != null) throw new Exception("demasiadas entradas");
+                if (id_tipo_categoria != null) throw new Exception("demasiadas entradas");
 
                 if (ids.isEmpty()) throw new Exception("Se dió una lista vacia :(");
                 Collection<Object[]> resultado = productoRepository.darPorcentajeOcupacion(ids);
@@ -80,6 +86,8 @@ public class ProductosController {
                  * Caso en el que se quiere consultar los productos por un rango de precios
                  */
                 if (fechaInferiorA != null || fechaPosteriorA != null) throw new Exception("deasiadas entradas");
+                if (id_sucursal != null) throw new Exception("demasiadas entradas");
+                if (id_tipo_categoria != null) throw new Exception("demasiadas entradas");
 
                 Collection<Object[]> resultado = productoRepository.darProductosEnRangoDePrecios(minPrice,maxPrice);
                 if(resultado == null || resultado.isEmpty()) throw new Exception("No se encontraron resultados");
@@ -89,6 +97,8 @@ public class ProductosController {
                 /*
                  * Caso en el que se quiere consultar productos con fecha de venciminto posterior o inferior a una fecha dada
                  */
+                if (id_sucursal != null) throw new Exception("demasiadas entradas");
+                if (id_tipo_categoria != null) throw new Exception("demasiadas entradas");
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate maximaLocalDate = LocalDate.parse("4000-01-01", formatter);
@@ -119,27 +129,48 @@ public class ProductosController {
                     /*
                      * Cuando se dan ambas fechas
                      */
+
                     LocalDate inferiorLocaldate = LocalDate.parse(fechaInferiorA, formatter);
                     Date inferiorSqlDate = Date.valueOf(inferiorLocaldate);
                     LocalDate posteriorLocalDate = LocalDate.parse(fechaPosteriorA, formatter);
                     Date posteriorSqlDate = Date.valueOf(posteriorLocalDate);
                     Collection<Producto> respuesta = productoRepository.darProductosEnRangoDeFechaDeVencimiento(posteriorSqlDate,inferiorSqlDate);
-                    //Collection<Producto> respuesta = productoRepository.darProductosEnRangoDeFechaDeVencimiento(inferiorSqlDate, posteriorSqlDate);
                     if (respuesta.isEmpty()) throw new Exception("No se encontraron resultados");
                     return ResponseEntity.ok(respuesta);
 
                 }
+            }else if(id_sucursal != null){
+                /*
+                 * Caso en el que se quieren consultar los productos disponibles en una sucursal dado su id
+                 */
+                if (id_tipo_categoria != null) throw new Exception("demasiadas entradas");
+
+                Collection<Object[]> respuesta = productoRepository.darProductosPertenecientesASucursal(id_sucursal);
+                if (respuesta.isEmpty()) throw new Exception("No se encontraron resultados");
+                return ResponseEntity.ok(respuesta);
+
+            }else if(id_tipo_categoria != null){
+                /*
+                 * Caso en el que se quiere consultar los productos pertenecientes a una categoria dado su id
+                 */
+
+                Collection<Producto> respuesta = productoRepository.darProductosPertenecientesATipoCategoria(id_tipo_categoria);
+                if (respuesta.isEmpty()) throw new Exception("No se encontraron resultados");
+                return ResponseEntity.ok(respuesta);
+
             }
             else{
-                 /*
+                /*
                  * Caso en el que no se recibio ningun parametro para consultar
                  */
+
                 throw new Exception("No se recibió ningun parametro");
             }
             
         } catch (Exception e) {
             Map<String,Object> response = MS.response("not ok","get",e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            
         }
 
 /*

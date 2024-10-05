@@ -91,4 +91,20 @@ public interface ProductoRepository extends JpaRepository<Producto,Integer>{
      */
     @Query(value = "select * from productos where fecha_expiracion between :minFecha and :maxFecha", nativeQuery = true)
     Collection<Producto> darProductosEnRangoDeFechaDeVencimiento(@Param("minFecha") Date minFecha, @Param("maxFecha") Date maxFecha);
+
+    /**
+     * RFC2.3 : Mostrar los productos pertenientes a una sucursal dado su id
+     * @param id_sucursal identificador de la sucursal de la que se quieren extrarer los productos
+     * @return collection con los datos de los productos pertenecientes a la sucursal
+     */
+    @Query(value = "select pr.*, bo.id_sucursal sucursal from productos pr join contiene co on pr.id = co.id_producto join bodegas bo on co.id_bodega = bo.id where bo.id_sucursal = :id_sucursal", nativeQuery = true)
+    Collection<Object[]> darProductosPertenecientesASucursal(@Param("id_sucursal") Integer id_sucursal);
+
+    /**
+     * RFC2.4 : Mostrar los productos pertenecientes a un tipo de categoria
+     * @param id_tipo_categoria identificador de la categoria a la que se le quieren extraer los productos
+     * @return collection con los productos encontrados
+     */
+    @Query(value = "select * from productos pr where pr.id_tipo_categoria = :id_tipo_categoria", nativeQuery = true)
+    Collection<Producto> darProductosPertenecientesATipoCategoria(@Param("id_tipo_categoria") Integer id_tipo_categoria);
 }
