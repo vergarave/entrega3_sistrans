@@ -117,4 +117,11 @@ public interface ProductoRepository extends JpaRepository<Producto,Integer>{
     @Query(value = "select pr.id, pr.nombre, co.cantidad, co.cantidad_minima, co.costo_promedio, bo.id, bo.id_sucursal from productos pr join contiene co on pr.id = co.id_producto join bodegas bo on co.id_bodega = bo.id where bo.id = :id_bodega and bo.id_sucursal = :id_sucursal", nativeQuery = true)
     Collection<Object[]> darInventarioDeBodega(@Param("id_sucursal") Integer id_sucursal, @Param("id_bodega") Integer id_bodega);
 
+    /**
+     * RFC5 : Mostrar todos los productos que requieren una orden de compra
+     * @return collection de productos y demas datos
+     */
+    @Query(value ="select pr.id, pr.nombre producto, bo.id bodega, bo.id_sucursal sucursal, co.cantidad, co.cantidad_minima, ofr.id_proveedor proveedor from productos pr join contiene co on pr.id = co.id_producto join bodegas bo on co.id_bodega = bo.id join ofrece ofr on pr.id = ofr.id_producto where co.cantidad < co.cantidad_minima", nativeQuery = true)
+    Collection<Object[]> darProductosQueRequierenOrdenCompra();
+
 }

@@ -37,7 +37,21 @@ public class ProductosController {
         return productoRepository.findAll();
     }
 
-    //javadoc ---
+    
+    /**
+     * Consulta los productos que cumplen con una condicion
+     * @param id identificador del producto
+     * @param nombre nombre del producto
+     * @param ids lista de identificadores de productos
+     * @param minPrice rango inferior de precio de producto
+     * @param maxPrice rango superior de precio de producto
+     * @param fechaPosteriorA rango inferior de fecha_expiracion de producto
+     * @param fechaInferiorA rango superior de fecha_expiracion de producto
+     * @param id_sucursal identificador de la sucursal de consulta
+     * @param id_tipo_categoria identificador de la categoria de consulta
+     * @param id_bodega identificador de la bodega de consulta
+     * @return resultado de la transaccion
+     */
     @GetMapping("/productos/consulta")
     public ResponseEntity<?> darProducto(@RequestParam (required = false)Integer id,
                                          @RequestParam (required = false)String nombre,
@@ -186,6 +200,19 @@ public class ProductosController {
 
         }
     }
+
+    @GetMapping("/productos/consulta/reqOrdenCompra")
+    public ResponseEntity<?> darProductosRequierenOrdenCompra() {
+        try {
+            Collection<Object[]> resultado = productoRepository.darProductosQueRequierenOrdenCompra();
+            if (resultado.isEmpty()) throw new Exception("No se encontraron resultados");
+            return ResponseEntity.ok(resultado);
+        } catch (Exception e) {
+            Map<String,Object> response = MS.response("not ok","get",e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
     
     /**
      * Anide un producto a la tabla productos dada su informacion
