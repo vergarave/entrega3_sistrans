@@ -23,8 +23,9 @@ public class ProveedoresController {
     private ProveedorRepository proveedorRepository;
 
     /**
-     * Extrae los proveedores de la tabla proveedores
-     * @return collection de los proveedores encontrados
+     * Extrae los proveedores de la tabla proveedores.
+     *
+     * @return Collection<Proveedor> de los proveedores encontrados.
      */
     @GetMapping("/proveedores")
     public Collection<Proveedor> darProveedores() {
@@ -32,28 +33,30 @@ public class ProveedoresController {
     }
 
     /**
-     * Aniade un proveedor a la tabla roveedores dad su informacion
-     * @param proveedor proveedor que se quiere crear
-     * @return resultado de la transaccion
+     * Añade un proveedor a la tabla proveedores dada su información.
+     *
+     * @param proveedor Proveedor que se quiere crear.
+     * @return ResponseEntity<Map<String, Object>> Resultado de la transacción.
      */
     @PostMapping("/proveedores/new/save")
-    public ResponseEntity<Map<String,Object>> proveedorGuardar(@RequestBody Proveedor proveedor) {
+    public ResponseEntity<Map<String, Object>> proveedorGuardar(@RequestBody Proveedor proveedor) {
         proveedorRepository.insertarProveedor(proveedor.getNombre(),
                                               proveedor.getTelefono(),
                                               proveedor.getDireccion());
         proveedor.setId(getLast().getId());
-        Map<String,Object> response = MS.response("ok","create",proveedor);
+        Map<String, Object> response = MS.response("ok", "create", proveedor);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     /**
-     * Actualiza la informacion de un proveedor, se ubica con su id y se le cambia la informacion
-     * @param id identificador del proveedor proximo a actualizar
-     * @param proveedor informacion actualizada de un roveedor
-     * @return resultado de la transaccion
+     * Actualiza la información de un proveedor, se ubica con su id y se le cambia la información.
+     *
+     * @param id        Identificador del proveedor próximo a actualizar.
+     * @param proveedor Información actualizada de un proveedor.
+     * @return ResponseEntity<Map<String, Object>> Resultado de la transacción.
      */
     @PostMapping("/proveedores/{id}/edit/save")
-    public ResponseEntity<Map<String,Object>> proveedorEditarGuardar(@PathVariable("id") Integer id, 
+    public ResponseEntity<Map<String, Object>> proveedorEditarGuardar(@PathVariable("id") Integer id,
                                                                      @RequestBody Proveedor proveedor) {
         try {
             proveedorRepository.actualizarProveedor(id,
@@ -61,20 +64,20 @@ public class ProveedoresController {
                                                     proveedor.getTelefono(),
                                                     proveedor.getDireccion());
             proveedor.setId(id);
-            Map<String,Object> response = MS.response("ok","update",proveedor);
+            Map<String, Object> response = MS.response("ok", "update", proveedor);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
-            Map<String,Object> response = MS.response("not_ok","update",e.getMessage());
+            Map<String, Object> response = MS.response("not_ok", "update", e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     /**
-     * Devuelve la ultima instancia creada
-     * @return ultima fila aniadida
+     * Devuelve la última instancia creada.
+     *
+     * @return Proveedor Última fila añadida.
      */
-    public Proveedor getLast(){
+    public Proveedor getLast() {
         return proveedorRepository.getLast().iterator().next();
     }
-
 }

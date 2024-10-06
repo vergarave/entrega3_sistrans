@@ -10,26 +10,35 @@ import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.Ciudad;
 
-public interface CiudadRepository extends JpaRepository<Ciudad,Integer>{
+public interface CiudadRepository extends JpaRepository<Ciudad, Integer> {
 
     /**
-     * RF1 : Crear una ciudad
+     * RF1 : Crea una ciudad.
      * SQL : Inserta un nuevo registro en la tabla 'ciudades'
-     *          con un ID generado automáticamente y un nombre
-     *          especificado.
-     * @param nombre nombre de la ciudad
+     *       con un ID generado automáticamente y un nombre
+     *       especificado.
+     *
+     * @param nombre Nombre de la ciudad.
      */
     @Modifying
     @Transactional
-    @Query(value = "insert into ciudades (id,nombre) values (ids_ciudad.nextval, :nombre)", nativeQuery = true)
+    @Query(
+        value = "INSERT INTO ciudades (id, nombre) " +
+                "VALUES (ids_ciudad.NEXTVAL, :nombre)",
+        nativeQuery = true
+    )
     void insertarCiudad(@Param("nombre") String nombre);
 
     /**
-     * Obtener la ultima ciudad creada
-     * @return collection con un unico elemento que sera el ultimo id creado
+     * Obtiene la última ciudad creada.
+     *
+     * @return Collection<Ciudad> con un único elemento que será el último ID creado.
      */
-    @Query(value = "SELECT * FROM ciudades WHERE id = (SELECT MAX(id) FROM ciudades)", nativeQuery = true)
+    @Query(
+        value = "SELECT * FROM ciudades " +
+                "WHERE id = (SELECT MAX(id) FROM ciudades)",
+        nativeQuery = true
+    )
     Collection<Ciudad> getLast();
-
 
 }
