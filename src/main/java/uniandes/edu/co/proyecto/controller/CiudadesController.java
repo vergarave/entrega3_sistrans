@@ -22,33 +22,36 @@ public class CiudadesController {
     private CiudadRepository ciudadRepository;
 
     /**
-     * Extrae las instancias de la tabla ciudades
-     * @return collection de instacias de la clase Ciudad
+     * Extrae las instancias de la tabla ciudades.
+     * 
+     * @return Collection<Ciudad> de instancias de la clase Ciudad.
      */
     @GetMapping("/ciudades")
     public Collection<Ciudad> darCiudades() {
         return ciudadRepository.findAll();
     }
-    
+
     /**
-     * Aniade una ciudad a la tabla ciudades dad su informacion
-     * @param ciudad ciudad que se quiere crear
-     * @return resultado de la transaccion
+     * Añade una ciudad a la tabla ciudades dada su información.
+     * 
+     * @param ciudad Ciudad que se quiere crear.
+     * @return ResponseEntity<Map<String,Object>> resultado de la transacción.
      */
     @PostMapping("/ciudades/new/save")
     public ResponseEntity<Map<String,Object>> ciudadGuardar(@RequestBody Ciudad ciudad) {
         ciudadRepository.insertarCiudad(ciudad.getNombre());
         ciudad.setId(getLast().getId());
-        Map<String,Object> response = MS.response("ok","create",ciudad);
+        
+        Map<String,Object> response = MS.response("ok", "create", ciudad);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     /**
-     * Devuelve la ultima instancia creada
-     * @return ultima fila aniadida
+     * Devuelve la última instancia creada.
+     * 
+     * @return Ciudad última fila añadida.
      */
-    public Ciudad getLast(){
+    public Ciudad getLast() {
         return ciudadRepository.getLast().iterator().next();
     }
-
 }

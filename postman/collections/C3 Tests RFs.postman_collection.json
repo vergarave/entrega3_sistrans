@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Ciudad",
+			"name": "RF1 Ciudad",
 			"item": [
 				{
 					"name": "Crear",
@@ -56,6 +56,47 @@
 				},
 				{
 					"name": "Consultar todas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>Nombre</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each response}}\r",
+									"        <tr>\r",
+									"            <td>{{this.id}}</td>   <!-- ID de la ciudad -->\r",
+									"            <td>{{this.nombre}}</td> <!-- Nombre de la ciudad -->\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }; // Obtener la respuesta JSON sin modificaciones\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -74,7 +115,7 @@
 			]
 		},
 		{
-			"name": "Sucursal",
+			"name": "RF2 Sucursal",
 			"item": [
 				{
 					"name": "Crear",
@@ -176,6 +217,55 @@
 				},
 				{
 					"name": "Consultar todas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>Nombre</th>\r",
+									"        <th>Tamaño</th>\r",
+									"        <th>Teléfono</th>\r",
+									"        <th>Dirección</th>\r",
+									"        <th>Ciudad</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each response}}\r",
+									"        <tr>\r",
+									"            <td>{{this.id}}</td>                   <!-- ID de la sucursal -->\r",
+									"            <td>{{this.nombre}}</td>               <!-- Nombre de la sucursal -->\r",
+									"            <td>{{this.tamanio}}</td>              <!-- Tamaño de la sucursal -->\r",
+									"            <td>{{this.telefono}}</td>             <!-- Teléfono de la sucursal -->\r",
+									"            <td>{{this.direccion}}</td>            <!-- Dirección de la sucursal -->\r",
+									"            <td>{{this.id_ciudad.id}} | {{this.id_ciudad.nombre}}</td> <!-- ID y Nombre de la ciudad -->\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }; // Obtener la respuesta JSON sin modificaciones\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -194,7 +284,7 @@
 			]
 		},
 		{
-			"name": "Bodega",
+			"name": "RF3 Bodega",
 			"item": [
 				{
 					"name": "Crear",
@@ -331,6 +421,51 @@
 				},
 				{
 					"name": "Consultar todas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>Nombre</th>\r",
+									"        <th>Tamaño</th>\r",
+									"        <th>Sucursal</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each response}}\r",
+									"        <tr>\r",
+									"            <td>{{this.id}}</td>                             <!-- ID de la bodega -->\r",
+									"            <td>{{this.nombre}}</td>                         <!-- Nombre de la bodega -->\r",
+									"            <td>{{this.tamanio}}</td>                        <!-- Tamaño de la bodega -->\r",
+									"            <td>{{this.id_Sucursal.id}} | {{this.id_Sucursal.nombre}}</td>  <!-- ID y Nombre de la sucursal -->\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }; // Obtener la respuesta JSON sin modificaciones\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -395,7 +530,7 @@
 			]
 		},
 		{
-			"name": "Proveedor",
+			"name": "RF4 Proveedor",
 			"item": [
 				{
 					"name": "Crear",
@@ -450,6 +585,39 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>Nombre</th>\r",
+									"        <th>Teléfono</th>\r",
+									"        <th>Dirección</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each this}} <!-- Iterar sobre cada fila de la respuesta -->\r",
+									"        <tr>\r",
+									"            <td>{{this.id}}</td> <!-- ID -->\r",
+									"            <td>{{this.nombre}}</td> <!-- Nombre -->\r",
+									"            <td>{{this.telefono}}</td> <!-- Teléfono -->\r",
+									"            <td>{{this.direccion}}</td> <!-- Dirección -->\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return pm.response.json(); // Obtener la respuesta JSON directamente\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
 									""
 								],
 								"type": "text/javascript",
@@ -494,7 +662,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Proveedor Test acctualizado\",\r\n    \"telefono\": \"Test actualizado\",\r\n    \"direccion\": \"Test actualizado\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Proveedor Test actualizado\",\r\n    \"telefono\": \"Test actualizado\",\r\n    \"direccion\": \"Test actualizado\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -519,7 +687,7 @@
 			]
 		},
 		{
-			"name": "Tipo Categoria",
+			"name": "RF5 Tipo Categoria",
 			"item": [
 				{
 					"name": "Crear",
@@ -571,6 +739,51 @@
 				},
 				{
 					"name": "Consultar - todas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>Nombre</th>\r",
+									"        <th>Descripción</th>\r",
+									"        <th>Características</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each response}}\r",
+									"        <tr>\r",
+									"            <td>{{this.id}}</td>                             <!-- ID de la categoría -->\r",
+									"            <td>{{this.nombre}}</td>                         <!-- Nombre de la categoría -->\r",
+									"            <td>{{this.descripcion}}</td>                    <!-- Descripción de la categoría -->\r",
+									"            <td>{{this.caracteristicas}}</td>                <!-- Características de la categoría -->\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }; // Obtener la respuesta JSON sin modificaciones\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -595,7 +808,42 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});"
+									"});\r",
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>Nombre</th>\r",
+									"        <th>Descripción</th>\r",
+									"        <th>Características</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each tipos}} <!-- Iterar sobre la propiedad \"tipos\" -->\r",
+									"        <tr>\r",
+									"            <td>{{this.id}}</td>                             <!-- ID de la categoría -->\r",
+									"            <td>{{this.nombre}}</td>                         <!-- Nombre de la categoría -->\r",
+									"            <td>{{this.descripcion}}</td>                    <!-- Descripción de la categoría -->\r",
+									"            <td>{{this.caracteristicas}}</td>                <!-- Características de la categoría -->\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return pm.response.json(); // Obtener la respuesta JSON directamente\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
+									"\r",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -671,7 +919,42 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});"
+									"});\r",
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>Nombre</th>\r",
+									"        <th>Descripción</th>\r",
+									"        <th>Características</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each tipos}} <!-- Iterar sobre la propiedad \"tipos\" -->\r",
+									"        <tr>\r",
+									"            <td>{{this.id}}</td>                             <!-- ID de la categoría -->\r",
+									"            <td>{{this.nombre}}</td>                         <!-- Nombre de la categoría -->\r",
+									"            <td>{{this.descripcion}}</td>                    <!-- Descripción de la categoría -->\r",
+									"            <td>{{this.caracteristicas}}</td>                <!-- Características de la categoría -->\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return pm.response.json(); // Obtener la respuesta JSON directamente\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
+									"\r",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -773,7 +1056,7 @@
 			]
 		},
 		{
-			"name": "Producto",
+			"name": "RF6 Producto",
 			"item": [
 				{
 					"name": "Crear",
@@ -867,6 +1150,57 @@
 				},
 				{
 					"name": "Consultar - todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>Nombre</th>\r",
+									"        <th>Fecha de Expiración</th>\r",
+									"        <th>Código de Barras</th>\r",
+									"        <th>Volumen</th>\r",
+									"        <th>Peso</th>\r",
+									"        <th>Tipo de Categoría</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each response}} <!-- Iterar sobre la respuesta -->\r",
+									"        <tr>\r",
+									"            <td>{{this.id}}</td>                             <!-- ID del producto -->\r",
+									"            <td>{{this.nombre}}</td>                         <!-- Nombre del producto -->\r",
+									"            <td>{{this.fecha_expiracion}}</td>              <!-- Fecha de expiración -->\r",
+									"            <td>{{this.codigo_barras}}</td>                 <!-- Código de barras -->\r",
+									"            <td>{{this.volumen}}</td>                        <!-- Volumen -->\r",
+									"            <td>{{this.peso}}</td>                           <!-- Peso -->\r",
+									"            <td>{{this.id_tipo_categoria.id}} | {{this.id_tipo_categoria.nombre}}</td>  <!-- ID y Nombre del tipo de categoría -->\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }; // Obtener la respuesta JSON sin modificaciones\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -891,7 +1225,47 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});"
+									"});\r",
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>Nombre</th>\r",
+									"        <th>Fecha de Expiración</th>\r",
+									"        <th>Código de Barras</th>\r",
+									"        <th>Volumen</th>\r",
+									"        <th>Peso</th>\r",
+									"        <th>Tipo de Categoría</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each tipos}} <!-- Iterar sobre la propiedad \"tipos\" -->\r",
+									"        <tr>\r",
+									"            <td>{{this.id}}</td>                             <!-- ID del producto -->\r",
+									"            <td>{{this.nombre}}</td>                         <!-- Nombre del producto -->\r",
+									"            <td>{{this.fecha_expiracion}}</td>              <!-- Fecha de expiración -->\r",
+									"            <td>{{this.codigo_barras}}</td>                 <!-- Código de barras -->\r",
+									"            <td>{{this.volumen}}</td>                        <!-- Volumen -->\r",
+									"            <td>{{this.peso}}</td>                           <!-- Peso -->\r",
+									"            <td>{{this.id_tipo_categoria.id}} | {{this.id_tipo_categoria.nombre}}</td>  <!-- ID y Nombre del tipo de categoría -->\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return pm.response.json(); // Obtener la respuesta JSON directamente\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -967,7 +1341,47 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});"
+									"});\r",
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>Nombre</th>\r",
+									"        <th>Fecha de Expiración</th>\r",
+									"        <th>Código de Barras</th>\r",
+									"        <th>Volumen</th>\r",
+									"        <th>Peso</th>\r",
+									"        <th>Tipo de Categoría</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each tipos}} <!-- Iterar sobre la propiedad \"tipos\" -->\r",
+									"        <tr>\r",
+									"            <td>{{this.id}}</td>                             <!-- ID del producto -->\r",
+									"            <td>{{this.nombre}}</td>                         <!-- Nombre del producto -->\r",
+									"            <td>{{this.fecha_expiracion}}</td>              <!-- Fecha de expiración -->\r",
+									"            <td>{{this.codigo_barras}}</td>                 <!-- Código de barras -->\r",
+									"            <td>{{this.volumen}}</td>                        <!-- Volumen -->\r",
+									"            <td>{{this.peso}}</td>                           <!-- Peso -->\r",
+									"            <td>{{this.id_tipo_categoria.id}} | {{this.id_tipo_categoria.nombre}}</td>  <!-- ID y Nombre del tipo de categoría -->\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return pm.response.json(); // Obtener la respuesta JSON directamente\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1157,7 +1571,7 @@
 			]
 		},
 		{
-			"name": "Orden Compra",
+			"name": "RF7 Orden Compra",
 			"item": [
 				{
 					"name": "Crear",
@@ -1332,24 +1746,12 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Consultar - todas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/ordenes_compra",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"ordenes_compra"
-							]
-						}
-					},
-					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "RF8 Orden Compra",
+			"item": [
 				{
 					"name": "Actulizar - estado a anulada",
 					"event": [
@@ -1437,6 +1839,80 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "RF9 Orden Compra",
+			"item": [
+				{
+					"name": "Consultar - todas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>Estado</th>\r",
+									"        <th>ID de Proveedor</th>\r",
+									"        <th>Fecha Esperada</th>\r",
+									"        <th>Fecha de Creación</th>\r",
+									"        <th>ID de Bodega</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each this}} <!-- Iterar sobre cada elemento de la respuesta -->\r",
+									"        <tr>\r",
+									"            <td>{{id}}</td>  <!-- ID de la orden de compra -->\r",
+									"            <td>{{estado}}</td>  <!-- Estado -->\r",
+									"            <td>{{id_proveedor.id}} | {{id_proveedor.nombre}}</td>  <!-- ID y Nombre del proveedor -->\r",
+									"            <td>{{fecha_esperada}}</td>  <!-- Fecha esperada -->\r",
+									"            <td>{{fecha_creacion}}</td>  <!-- Fecha de creación -->\r",
+									"            <td>{{id_bodega.id}} | {{id_bodega.nombre}}</td>  <!-- ID y Nombre de la bodega -->\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return pm.response.json(); // Obtener la respuesta JSON directamente\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ordenes_compra",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ordenes_compra"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -1501,6 +1977,10 @@
 		},
 		{
 			"key": "orden_compra_test",
+			"value": ""
+		},
+		{
+			"key": "bodega_eliminar_test",
 			"value": ""
 		}
 	]

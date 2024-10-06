@@ -24,8 +24,9 @@ public class Tipos_categoriaController {
     private Tipo_categoriaRepository tipo_categoriaRepository;
 
     /**
-     * Extrae las categorias de la tabla tipos_categoria
-     * @return collection de categorias encontradas
+     * Extrae las categorías de la tabla tipos_categoria.
+     *
+     * @return Collection<Tipo_categoria> de las categorías encontradas.
      */
     @GetMapping("/tipos_categoria")
     public Collection<Tipo_categoria> darTipos_categoria() {
@@ -33,54 +34,56 @@ public class Tipos_categoriaController {
     }
 
     /**
-     * Extrae una categoria dado su id o nombre
-     * @param id identificador de la categoria que se quiere encontrar
-     * @param nombre nombre de la categoria que se quiere encontrar
-     * @return resultado de la transaccion
+     * Extrae una categoría dada su id o nombre.
+     *
+     * @param id     Identificador de la categoría que se quiere encontrar.
+     * @param nombre Nombre de la categoría que se quiere encontrar.
+     * @return ResponseEntity<?> Resultado de la transacción.
      */
     @GetMapping("/tipos_categoria/consulta")
-    public ResponseEntity<?> darTipo_categoria(@RequestParam (required = false)Integer id,
-                                               @RequestParam (required = false)String nombre) {
+    public ResponseEntity<?> darTipo_categoria(@RequestParam(required = false) Integer id,
+                                               @RequestParam(required = false) String nombre) {
         try {
-            
-            if(id == null && nombre == null) {
-                throw new Exception("No se recibió ningun parametro");
-            }else{
-                Collection<Tipo_categoria> tipos = tipo_categoriaRepository.darTipo_categoriaPorIdONombre(id, nombre);
-                if(tipos.isEmpty()){
-                    throw new Exception("No se encontraron resultados");
+            if (id == null && nombre == null) {
+                throw new Exception(MS.SIN_PARAMETROS_EXCEPTION);
+            } else {
+                Collection<Tipo_categoria> tipos = tipo_categoriaRepository.darTipo_categoriaPorIdONombre(id, 
+                                                                                                          nombre);
+                if (tipos.isEmpty()) {
+                    throw new Exception(MS.SIN_RESULTADOS_EXCEPTION);
                 }
-                Map<String,Object> response = new HashMap<>();
+                Map<String, Object> response = new HashMap<>();
                 response.put("tipos", tipos);
                 return ResponseEntity.ok(response);
             }
         } catch (Exception e) {
-            Map<String,Object> response = MS.response("not ok","get",e.getMessage());
+            Map<String, Object> response = MS.response("not ok", "get", e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     /**
-     * Aniade una categoria a la tabla tipos_categoria dada su informacion
-     * @param tipo_categoria informacion de la categoria que se quiere crear
-     * @return resultado de la transaccion
+     * Añade una categoría a la tabla tipos_categoria dada su información.
+     *
+     * @param tipo_categoria Información de la categoría que se quiere crear.
+     * @return ResponseEntity<Map<String, Object>> Resultado de la transacción.
      */
     @PostMapping("/tipos_categoria/new/save")
-    public ResponseEntity<Map<String,Object>> tipo_categoriaGuardar(@RequestBody Tipo_categoria tipo_categoria) {
+    public ResponseEntity<Map<String, Object>> tipo_categoriaGuardar(@RequestBody Tipo_categoria tipo_categoria) {
         tipo_categoriaRepository.insertarTipo_categoria(tipo_categoria.getNombre(),
                                                         tipo_categoria.getDescripcion(),
                                                         tipo_categoria.getCaracteristicas());
         tipo_categoria.setId(getLast().getId());
-        Map<String,Object> response = MS.response("ok","create",tipo_categoria);
+        Map<String, Object> response = MS.response("ok", "create", tipo_categoria);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     /**
-     * Devuelve la ultima instancia creada
-     * @return ultima fila aniadida
+     * Devuelve la última instancia creada.
+     *
+     * @return Tipo_categoria Última fila añadida.
      */
-    public Tipo_categoria getLast(){
+    public Tipo_categoria getLast() {
         return tipo_categoriaRepository.getLast().iterator().next();
     }
-
 }

@@ -23,8 +23,9 @@ public class BodegasController {
     private BodegaRepository bodegaRepository;
 
     /**
-     * Extrae las bodegas de la tabla bodegas
-     * @return collection de bodegas encontradas
+     * Extrae las bodegas de la tabla bodegas.
+     * 
+     * @return Collection<Bodega> de bodegas encontradas.
      */
     @GetMapping("/bodegas")
     public Collection<Bodega> darBodegas() {
@@ -32,9 +33,10 @@ public class BodegasController {
     }
 
     /**
-     * Aniade una bodega ala tabla bodegas dada su informacion
-     * @param bodega bodega que se quiere crear
-     * @return resultado de la transaccion
+     * Añade una bodega a la tabla bodegas dada su información.
+     * 
+     * @param bodega Bodega que se quiere crear.
+     * @return ResponseEntity<Map<String,Object>> resultado de la transacción.
      */
     @PostMapping("/bodegas/new/save")
     public ResponseEntity<Map<String,Object>> bodegaGuardar(@RequestBody Bodega bodega) {
@@ -43,37 +45,38 @@ public class BodegasController {
                                             bodega.getTamanio(),
                                             bodega.getId_Sucursal().getId());
             bodega.setId(getLast().getId());
-            Map<String,Object> response = MS.response("ok","create",bodega);
+            Map<String,Object> response = MS.response("ok", "create", bodega);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
-            Map<String,Object> response = MS.response("not ok","create",e.getMessage());
+            Map<String,Object> response = MS.response("not ok", "create", e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     /**
-     * Elimina una bodega dado su id
-     * @param id identificador unico de una bodega proxima a ser eliminada
-     * @return resultado de la transaccion
+     * Elimina una bodega dado su id.
+     * 
+     * @param id Identificador único de una bodega próxima a ser eliminada.
+     * @return ResponseEntity<Map<String,Object>> resultado de la transacción.
      */
     @GetMapping("/bodegas/{id}/delete")
     public ResponseEntity<Map<String,Object>> bodegaEliminar(@PathVariable("id") Integer id) {
         try {
             bodegaRepository.eliminarBodega(id);
-            Map<String,Object> response = MS.response("ok","delete","Bodega eliminada correctamente");
+            Map<String,Object> response = MS.response("ok", "delete", MS.BODEGA_ELIMINADA);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
-            Map<String,Object> response = MS.response("not ok","delete","Bodega no eliminada correctamente");
+            Map<String,Object> response = MS.response("not ok", "delete", e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     /**
-     * Devuelve la ultima instancia creada
-     * @return ultima fila aniadida
+     * Devuelve la última instancia creada.
+     * 
+     * @return Bodega última fila añadida.
      */
-    public Bodega getLast(){
+    public Bodega getLast() {
         return bodegaRepository.getLast().iterator().next();
     }
-
 }
