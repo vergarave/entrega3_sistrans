@@ -33,7 +33,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\" : \"Ciudad Test\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Ciudad Test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -355,7 +355,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Bodega Test\",\r\n    \"tamanio\": \"Test\",\r\n    \"id_sucursal\": {\r\n        \"id\": {{sucursal_test}}\r\n    }\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Bodega Test copy\",\r\n    \"tamanio\": \"Test\",\r\n    \"id_sucursal\": {\r\n        \"id\": {{sucursal_test}}\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -398,7 +398,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Bodega Test\",\r\n    \"tamanio\": \"Test\",\r\n    \"id_sucursal\": {\r\n        \"id\": 1000\r\n    }\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Bodega Test copy suc inv\",\r\n    \"tamanio\": \"Test\",\r\n    \"id_sucursal\": {\r\n        \"id\": 1000\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1084,7 +1084,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Producto Test\",\r\n    \"fecha_expiracion\": \"2000-01-01\",\r\n    \"codigo_barras\": 0,\r\n    \"volumen\": 0.0,\r\n    \"peso\": 0.0,\r\n    \"id_tipo_categoria\": {\r\n        \"id\": {{tipo_categoria_test}}\r\n    }\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Producto Test\",\r\n    \"fecha_expiracion\": \"2000-01-01\",\r\n    \"codigo_barras\": \"FFFFFF\",\r\n    \"volumen\": 0.1,\r\n    \"peso\": 0.1,\r\n    \"id_tipo_categoria\": {\r\n        \"id\": {{tipo_categoria_test}}\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1127,7 +1127,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Producto Test\",\r\n    \"fecha_expiracion\": \"2000-01-01\",\r\n    \"codigo_barras\": 0,\r\n    \"volumen\": 0.0,\r\n    \"peso\": 0.0,\r\n    \"id_tipo_categoria\": {\r\n        \"id\": 1000\r\n    }\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Producto Test cate inv\",\r\n    \"fecha_expiracion\": \"2000-01-01\",\r\n    \"codigo_barras\": \"FFFFF0\",\r\n    \"volumen\": 0.1,\r\n    \"peso\": 0.1,\r\n    \"id_tipo_categoria\": {\r\n        \"id\": 1000\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1554,13 +1554,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/productos/0/edit/save",
+							"raw": "{{baseUrl}}/productos/{{producto_test}}/edit/save",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"productos",
-								"0",
+								"{{producto_test}}",
 								"edit",
 								"save"
 							]
