@@ -22,7 +22,7 @@ public class Producto {
 
     private Date fecha_expiracion;
 
-    private Integer codigo_barras;
+    private String codigo_barras;
 
     private Float volumen;
 
@@ -35,7 +35,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre, Date fecha_expiracion, Integer codigo_barras, Float volumen, Float peso,
+    public Producto(String nombre, Date fecha_expiracion, String codigo_barras, Float volumen, Float peso,
             Tipo_categoria id_tipo_categoria) {
         this.nombre = nombre;
         this.fecha_expiracion = fecha_expiracion;
@@ -69,11 +69,11 @@ public class Producto {
         this.fecha_expiracion = fecha_expiracion;
     }
 
-    public Integer getCodigo_barras() {
+    public String getCodigo_barras() {
         return codigo_barras;
     }
 
-    public void setCodigo_barras(Integer codigo_barras) {
+    public void setCodigo_barras(String codigo_barras) {
         this.codigo_barras = codigo_barras;
     }
 

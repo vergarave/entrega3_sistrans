@@ -12,8 +12,11 @@ public class Contiene {
     private ContienePK pk;
 
     private Integer cantidad;
+
     private Integer capacidad;
+
     private Float costo_promedio;
+    
     private Integer cantidad_minima;
     
     public Contiene() {

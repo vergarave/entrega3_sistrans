@@ -25,8 +25,8 @@ public interface ProveedorRepository extends JpaRepository<Proveedor, Integer> {
     @Modifying
     @Transactional
     @Query(
-        value = "INSERT INTO proveedores (id, nombre, telefono, direccion) " +
-                "VALUES (ids_proveedor.NEXTVAL, :nombre, :telefono, :direccion)",
+        value = "INSERT INTO proveedores (nombre, telefono, direccion) " +
+                "VALUES (:nombre, :telefono, :direccion)",
         nativeQuery = true
     )
     void insertarProveedor(@Param("nombre") String nombre, 

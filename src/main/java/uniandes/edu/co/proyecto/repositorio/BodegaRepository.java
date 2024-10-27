@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.Bodega;
 public interface BodegaRepository extends JpaRepository<Bodega, Integer> {
 
     /**
-     * RF#.1 : Crea una bodega dada su información.
+     * RF1.1 : Crea una bodega dada su información.
      * SQL   : Inserta un nuevo registro en la tabla 'bodegas'
      *         con un ID generado automáticamente y valores
      *         específicos para nombre, tamaño y sucursal.
@@ -25,8 +25,8 @@ public interface BodegaRepository extends JpaRepository<Bodega, Integer> {
     @Modifying
     @Transactional
     @Query(
-        value = "INSERT INTO bodegas (id, nombre, tamanio, id_sucursal) " +
-                "VALUES (ids_bodega.NEXTVAL, :nombre, :tamanio, :id_sucursal)",
+        value = "INSERT INTO bodegas (nombre, tamanio, id_sucursal) " +
+                "VALUES (:nombre, :tamanio, :id_sucursal)",
         nativeQuery = true
     )
     void insertarBodega(@Param("nombre") String nombre,

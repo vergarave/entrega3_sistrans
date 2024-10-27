@@ -25,8 +25,8 @@ public interface Tipo_categoriaRepository extends JpaRepository<Tipo_categoria, 
     @Modifying
     @Transactional
     @Query(
-        value = "INSERT INTO tipos_categoria (id, nombre, descripcion, caracteristicas) " +
-                "VALUES (ids_tipo_categoria.NEXTVAL, :nombre, :descripcion, :caracteristicas)",
+        value = "INSERT INTO tipos_categoria (nombre, descripcion, caracteristicas) " +
+                "VALUES (:nombre, :descripcion, :caracteristicas)",
         nativeQuery = true
     )
     void insertarTipo_categoria(@Param("nombre") String nombre, 

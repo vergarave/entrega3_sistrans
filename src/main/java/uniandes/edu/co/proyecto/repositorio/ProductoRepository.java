@@ -30,13 +30,13 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
     @Modifying
     @Transactional
     @Query(
-        value = "INSERT INTO productos (id, nombre, fecha_expiracion, codigo_barras, volumen, peso, id_tipo_categoria) " +
-                "VALUES (ids_producto.NEXTVAL, :nombre, :fecha_expiracion, :codigo_barras, :volumen, :peso, :id_tipo_categoria)",
+        value = "INSERT INTO productos (nombre, fecha_expiracion, codigo_barras, volumen, peso, id_tipo_categoria) " +
+                "VALUES (:nombre, :fecha_expiracion, :codigo_barras, :volumen, :peso, :id_tipo_categoria)",
         nativeQuery = true
     )
     void insertarProducto(@Param("nombre") String nombre, 
                           @Param("fecha_expiracion") Date fecha_expiracion, 
-                          @Param("codigo_barras") Integer codigo_barras, 
+                          @Param("codigo_barras") String codigo_barras, 
                           @Param("volumen") Float volumen, 
                           @Param("peso") Float peso, 
                           @Param("id_tipo_categoria") Integer id_tipo_categoria);
@@ -87,7 +87,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
     void actualizarProducto(@Param("id") Integer id, 
                             @Param("nombre") String nombre, 
                             @Param("fecha_expiracion") Date fecha_expiracion, 
-                            @Param("codigo_barras") Integer codigo_barras, 
+                            @Param("codigo_barras") String codigo_barras, 
                             @Param("volumen") Float volumen, 
                             @Param("peso") Float peso, 
                             @Param("id_tipo_categoria") Integer id_tipo_categoria);
