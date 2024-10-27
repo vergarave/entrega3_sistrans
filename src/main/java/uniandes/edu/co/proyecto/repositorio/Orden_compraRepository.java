@@ -90,4 +90,5 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
         nativeQuery = true
     )
     Collection<Orden_compra> getLast();
+
 }

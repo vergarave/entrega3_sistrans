@@ -79,4 +79,5 @@ public class BodegasController {
     public Bodega getLast() {
         return bodegaRepository.getLast().iterator().next();
     }
+
 }

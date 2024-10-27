@@ -86,4 +86,5 @@ public class Tipos_categoriaController {
     public Tipo_categoria getLast() {
         return tipo_categoriaRepository.getLast().iterator().next();
     }
+
 }

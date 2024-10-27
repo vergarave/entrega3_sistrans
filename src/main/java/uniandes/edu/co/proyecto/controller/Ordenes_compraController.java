@@ -97,4 +97,5 @@ public class Ordenes_compraController {
     public Orden_compra __getLast() {
         return orden_compraRepository.getLast().iterator().next();
     }
+
 }

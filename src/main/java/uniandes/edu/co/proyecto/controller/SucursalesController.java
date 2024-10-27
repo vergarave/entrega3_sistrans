@@ -91,4 +91,5 @@ public class SucursalesController {
     public Sucursal getLast() {
         return sucursalRepository.getLast().iterator().next();
     }
+
 }

@@ -224,4 +224,5 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
         nativeQuery = true
     )
     Collection<Object[]> darProductosQueRequierenOrdenCompra();
+
 }

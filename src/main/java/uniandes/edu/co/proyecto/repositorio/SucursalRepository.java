@@ -65,6 +65,7 @@ public interface SucursalRepository extends JpaRepository<Sucursal, Integer> {
                 "WHERE pr.id = :id OR pr.nombre = :nombre",
         nativeQuery = true
     )
-        Collection<Object[]> darSucursalesConProducto(@Param("id") Integer id, @Param("nombre") String nombre);
+    Collection<Object[]> darSucursalesConProducto(@Param("id") Integer id, @Param("nombre") String nombre);
+
 
 }

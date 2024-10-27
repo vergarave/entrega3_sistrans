@@ -80,4 +80,5 @@ public class ProveedoresController {
     public Proveedor getLast() {
         return proveedorRepository.getLast().iterator().next();
     }
+
 }

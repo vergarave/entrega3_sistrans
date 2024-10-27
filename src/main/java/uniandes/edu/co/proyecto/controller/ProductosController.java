@@ -272,5 +272,5 @@ public class ProductosController {
     public Producto getLast(){
         return productoRepository.getLast().iterator().next();
     }
-    
+
 }
