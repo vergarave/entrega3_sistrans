@@ -96,7 +96,7 @@ public class IngresoProductoService {
                 productoEnBodega.setCostoPromedio(nuevoCostoPromedio);
             } else {
                 // Crear un nuevo registro si el producto no está en la bodega
-                productoEnBodega = new ProductoEnBodega(producto, bodega, 0, producto.getCostoEnBodega(), 0, cantidadIngresada);
+                productoEnBodega = new ProductoEnBodega(producto, bodega, 1, producto.getCostoEnBodega(), 1, cantidadIngresada);
             }
 
             // Guardar el producto en la bodega
