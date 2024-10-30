@@ -1,8 +1,10 @@
 package uniandes.edu.co.proyecto.servicios;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +78,9 @@ public class IngresoProductoService {
         // Obtener los productos y cantidades de la orden de compra
         Collection<ProductoPedido> productosPedido = productoPedidoRepository.obtenerProductosYCantidadPorOrdenDeCompra(idOrdenCompra);
 
+        // Lista para almacenar la información detallada de cada producto
+        List<Map<String, Object>> productos = new ArrayList<>();
+
         // Procesar cada producto en la orden de compra
         for (ProductoPedido productoPedido : productosPedido) {
             Producto producto = productoPedido.getPk().getIdentificadorProducto();
@@ -101,7 +106,26 @@ public class IngresoProductoService {
 
             // Guardar el producto en la bodega
             productoEnBodegaRepository.save(productoEnBodega);
+
+            // Agregar la información del producto al JSON de respuesta
+            Map<String, Object> productoData = new HashMap<>();
+            productoData.put("identificador", producto.getIdentificador());
+            productoData.put("nombre", producto.getNombre());
+            productoData.put("cantidadPresentacion", producto.getCantidadPresentacion());
+            productoData.put("codigoDeBarras", producto.getCodigoDeBarras());
+            productoData.put("costoEnBodega", producto.getCostoEnBodega());
+            productoData.put("fechaExpiracion", producto.getFechaExpiracion());
+            productoData.put("pesoEmpaque", producto.getPesoEmpaque());
+            productoData.put("presentacion", producto.getPresentacion());
+            productoData.put("unidadMedida", producto.getUnidadMedida());
+            productoData.put("volumenEmpaque", producto.getVolumenEmpaque());
+            productoData.put("cantidad", cantidadIngresada);
+
+            productos.add(productoData);
         }
+
+        // Añadir la lista de productos al JSON de respuesta
+        response.put("productos", productos);
 
         // Cambiar el estado de la orden de compra a ENTREGADA
         ordenDeCompra.setEstado("ENTREGADA");
@@ -109,7 +133,6 @@ public class IngresoProductoService {
 
         // Preparar el mensaje de éxito
         response.put("message", "Ingreso de productos registrado exitosamente.");
-        response.put("fechaIngreso", fechaIngreso);
         return response;
     }
 
