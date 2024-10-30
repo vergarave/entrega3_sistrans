@@ -85,23 +85,29 @@ public class IngresoProductoService {
         for (ProductoPedido productoPedido : productosPedido) {
             Producto producto = productoPedido.getPk().getIdentificadorProducto();
             int cantidadIngresada = productoPedido.getCantidadEnOrden();
+            double precioUnitario = producto.getCostoEnBodega();
 
             // Buscar el producto en la bodega específica
             ProductoEnBodega productoEnBodega = productoEnBodegaRepository.findByProductoYBodega(producto.getIdentificador(), idBodega);
 
+            double nuevoCostoPromedio;
+            int nuevaCantidadEnBodega;
             if (productoEnBodega != null) {
-                // Actualizar la cantidad y el costo promedio
-                double nuevoCostoPromedio = calcularNuevoCostoPromedio(
+                // Calcular el nuevo costo promedio
+                nuevoCostoPromedio = calcularNuevoCostoPromedio(
                     productoEnBodega.getCostoPromedio(),
                     productoEnBodega.getCantidadEnBodega(),
-                    producto.getCostoEnBodega(),
+                    precioUnitario,
                     cantidadIngresada
                 );
-                productoEnBodega.setCantidadEnBodega(productoEnBodega.getCantidadEnBodega() + cantidadIngresada);
+                nuevaCantidadEnBodega = productoEnBodega.getCantidadEnBodega() + cantidadIngresada;
+                productoEnBodega.setCantidadEnBodega(nuevaCantidadEnBodega);
                 productoEnBodega.setCostoPromedio(nuevoCostoPromedio);
             } else {
                 // Crear un nuevo registro si el producto no está en la bodega
-                productoEnBodega = new ProductoEnBodega(producto, bodega, 1, producto.getCostoEnBodega(), 1, cantidadIngresada);
+                nuevoCostoPromedio = precioUnitario;
+                nuevaCantidadEnBodega = cantidadIngresada;
+                productoEnBodega = new ProductoEnBodega(producto, bodega, 1, nuevoCostoPromedio, 1, nuevaCantidadEnBodega);
             }
 
             // Guardar el producto en la bodega
@@ -111,15 +117,10 @@ public class IngresoProductoService {
             Map<String, Object> productoData = new HashMap<>();
             productoData.put("identificador", producto.getIdentificador());
             productoData.put("nombre", producto.getNombre());
-            productoData.put("cantidadPresentacion", producto.getCantidadPresentacion());
-            productoData.put("codigoDeBarras", producto.getCodigoDeBarras());
-            productoData.put("costoEnBodega", producto.getCostoEnBodega());
-            productoData.put("fechaExpiracion", producto.getFechaExpiracion());
-            productoData.put("pesoEmpaque", producto.getPesoEmpaque());
-            productoData.put("presentacion", producto.getPresentacion());
-            productoData.put("unidadMedida", producto.getUnidadMedida());
-            productoData.put("volumenEmpaque", producto.getVolumenEmpaque());
-            productoData.put("cantidad", cantidadIngresada);
+            productoData.put("precioUnitario", precioUnitario);
+            productoData.put("cantidadIngresada", cantidadIngresada);
+            productoData.put("nuevaCantidadEnBodega", nuevaCantidadEnBodega);
+            productoData.put("costoPromedio", nuevoCostoPromedio);
 
             productos.add(productoData);
         }
