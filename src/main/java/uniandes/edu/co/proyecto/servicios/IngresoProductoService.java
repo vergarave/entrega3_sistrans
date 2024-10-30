@@ -20,7 +20,6 @@ import uniandes.edu.co.proyecto.repositorio.OrdenDeCompraRepository;
 import uniandes.edu.co.proyecto.repositorio.ProductoEnBodegaRepository;
 import uniandes.edu.co.proyecto.repositorio.ProductoPedidoRepository;
 
-
 @Service
 public class IngresoProductoService {
 
@@ -38,35 +37,41 @@ public class IngresoProductoService {
 
     @Transactional
     public Map<String, Object> registrarIngresoProductos(Integer idOrdenCompra, Integer idBodega) {
+        Map<String, Object> response = new HashMap<>();
+
         // Captura la fecha del día de ingreso
         LocalDate fechaIngreso = LocalDate.now();
 
         // Obtener la orden de compra
         OrdenDeCompra ordenDeCompra = ordenDeCompraRepository.darOrdenDeCompra(idOrdenCompra);
-        
+
         if (ordenDeCompra == null || !"VIGENTE".equals(ordenDeCompra.getEstado())) {
-            throw new RuntimeException("La orden de compra no es válida para ingreso de productos.");
+            response.put("message", "La orden de compra no es válida para ingreso de productos.");
+            return response;
         }
 
-        // La bodega debe existir; si no, lanzará una excepción NoSuchElementException
-        Bodega bodega = bodegaRepository.findById(idBodega).get();
-
+        // La bodega debe existir
+        Bodega bodega = bodegaRepository.findById(idBodega).orElse(null);
+        if (bodega == null) {
+            response.put("message", "La bodega seleccionada no existe.");
+            return response;
+        }
 
         // Validar que la bodega pertenezca a la misma sucursal de la orden de compra
         if (!bodega.getIdSucursal().equals(ordenDeCompra.getIdSucursal())) {
-            throw new RuntimeException("La bodega seleccionada no pertenece a la sucursal de la orden de compra.");
+            response.put("message", "La bodega seleccionada no pertenece a la sucursal de la orden de compra.");
+            return response;
         }
 
         // Obtener el proveedor asociado a la orden de compra
         Proveedor proveedor = ordenDeCompra.getNitProveedor();
 
         // Crear un mapa para almacenar toda la información del ingreso
-        Map<String, Object> infoIngresoProductos = new HashMap<>();
-        infoIngresoProductos.put("fechaIngreso", fechaIngreso);
-        infoIngresoProductos.put("sucursal", ordenDeCompra.getIdSucursal());
-        infoIngresoProductos.put("bodega", bodega);
-        infoIngresoProductos.put("proveedorNit", proveedor.getNit());
-        infoIngresoProductos.put("proveedorNombre", proveedor.getNombre());
+        response.put("fechaIngreso", fechaIngreso);
+        response.put("sucursal", ordenDeCompra.getIdSucursal());
+        response.put("bodega", bodega);
+        response.put("proveedorNit", proveedor.getNit());
+        response.put("proveedorNombre", proveedor.getNombre());
 
         // Obtener los productos y cantidades de la orden de compra
         Collection<ProductoPedido> productosPedido = productoPedidoRepository.obtenerProductosYCantidadPorOrdenDeCompra(idOrdenCompra);
@@ -102,10 +107,10 @@ public class IngresoProductoService {
         ordenDeCompra.setEstado("ENTREGADA");
         ordenDeCompraRepository.save(ordenDeCompra);
 
-        // Información detallada de los productos y cantidades para devolver en el resumen
-        infoIngresoProductos.put("productos pedido", productosPedido);
-        
-        return infoIngresoProductos;
+        // Preparar el mensaje de éxito
+        response.put("message", "Ingreso de productos registrado exitosamente.");
+        response.put("fechaIngreso", fechaIngreso);
+        return response;
     }
 
     private Double calcularNuevoCostoPromedio(Double costoPromedioAnterior, Integer cantidadAnterior,
@@ -113,5 +118,4 @@ public class IngresoProductoService {
         return ((costoPromedioAnterior * cantidadAnterior) + (precioUnitario * cantidadIngresada))
                 / (cantidadAnterior + cantidadIngresada);
     }
-
 }
