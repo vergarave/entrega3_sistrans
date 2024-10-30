@@ -22,6 +22,7 @@ import uniandes.edu.co.proyecto.repositorio.OrdenDeCompraRepository;
 import uniandes.edu.co.proyecto.repositorio.ProductoEnBodegaRepository;
 import uniandes.edu.co.proyecto.repositorio.ProductoPedidoRepository;
 
+//NEW NEW NEW 
 @Service
 public class IngresoProductoService {
 
@@ -41,60 +42,59 @@ public class IngresoProductoService {
     public Map<String, Object> registrarIngresoProductos(Integer idOrdenCompra, Integer idBodega) {
         Map<String, Object> response = new HashMap<>();
 
-        // Captura la fecha del día de ingreso
+        //Capturando la fecha de ingreso de los productos, porque esto debe ser legal xd
         LocalDate fechaIngreso = LocalDate.now();
 
         try {
-
-            // Obtener la orden de compra
+            //Vamos a buscar la orden de compra con el ID que nos pasaron
             OrdenDeCompra ordenDeCompra = ordenDeCompraRepository.darOrdenDeCompra(idOrdenCompra);
             if (ordenDeCompra == null || !"VIGENTE".equals(ordenDeCompra.getEstado())) {
-                response.put("message", "La orden de compra no es válida para ingreso de productos.");
+                response.put("message", "La orden de compra no es valida para ingreso de productos.");
                 return response;
             }
 
-            // La bodega debe existir
+            //A ver, ¿la bodega existe o estamos inventando?
             Bodega bodega = bodegaRepository.findById(idBodega).orElse(null);
             if (bodega == null) {
                 response.put("message", "La bodega seleccionada no existe.");
                 return response;
             }
 
-            // Validar que la bodega pertenezca a la misma sucursal de la orden de compra
+            //Vemos que la bodega esté en la misma sucursal que la orden de compra, porque no queremos sorpresas
             if (!bodega.getIdSucursal().equals(ordenDeCompra.getIdSucursal())) {
                 response.put("message", "La bodega seleccionada no pertenece a la sucursal de la orden de compra.");
                 return response;
             }
 
-            // Obtener el proveedor asociado a la orden de compra
+            //Ahora buscamos la info del proveedor que envió la orden de compra
             Proveedor proveedor = ordenDeCompra.getNitProveedor();
 
-            // Crear un mapa para almacenar toda la información del ingreso
+            //Guardamos los datos de la transacción en la respuesta (los que nos piden)
             response.put("fechaIngreso", fechaIngreso);
             response.put("sucursal", ordenDeCompra.getIdSucursal());
             response.put("bodega", bodega);
             response.put("proveedorNit", proveedor.getNit());
             response.put("proveedorNombre", proveedor.getNombre());
 
-            // Obtener los productos y cantidades de la orden de compra
+            //Conseguimos la lista de productos y las cantidades de la orden
             Collection<ProductoPedido> productosPedido = productoPedidoRepository.obtenerProductosYCantidadPorOrdenDeCompra(idOrdenCompra);
 
-            // Lista para almacenar la información detallada de cada producto
+            //Esta lista guardará toda la info detallada de cada producto que se ingresará
             List<Map<String, Object>> productos = new ArrayList<>();
 
-            // Procesar cada producto en la orden de compra
+            //Ahora, iteramos por cada producto en la orden (literal nuestro ciclo for que resuelve)
             for (ProductoPedido productoPedido : productosPedido) {
                 Producto producto = productoPedido.getPk().getIdentificadorProducto();
                 int cantidadIngresada = productoPedido.getCantidadEnOrden();
                 double precioUnitario = producto.getCostoEnBodega();
 
-                // Buscar el producto en la bodega específica
+                //Revisamos si el producto ya está en la bodega
                 ProductoEnBodega productoEnBodega = productoEnBodegaRepository.findByProductoYBodega(producto.getIdentificador(), idBodega);
 
                 double nuevoCostoPromedio;
                 int nuevaCantidadEnBodega;
                 if (productoEnBodega != null) {
-                    // Calcular el nuevo costo promedio
+                    //VAMOOOS, el producto ya existe, vamos a recalcular el costo promedio
                     nuevoCostoPromedio = calcularNuevoCostoPromedio(
                         productoEnBodega.getCostoPromedio(),
                         productoEnBodega.getCantidadEnBodega(),
@@ -105,16 +105,16 @@ public class IngresoProductoService {
                     productoEnBodega.setCantidadEnBodega(nuevaCantidadEnBodega);
                     productoEnBodega.setCostoPromedio(nuevoCostoPromedio);
                 } else {
-                    // Crear un nuevo registro si el producto no está en la bodega
+                    //Si el producto no estaba en la bodega, lo agregamos como nuevo
                     nuevoCostoPromedio = precioUnitario;
                     nuevaCantidadEnBodega = cantidadIngresada;
                     productoEnBodega = new ProductoEnBodega(producto, bodega, 1, nuevoCostoPromedio, 1, nuevaCantidadEnBodega);
                 }
 
-                // Guardar el producto en la bodega
+                //Guardamos el producto en la bodega
                 productoEnBodegaRepository.save(productoEnBodega);
 
-                // Agregar la información del producto al JSON de respuesta
+                //Preparamos la info del producto para mostrar en la respuesta
                 Map<String, Object> productoData = new HashMap<>();
                 productoData.put("identificador", producto.getIdentificador());
                 productoData.put("nombre", producto.getNombre());
@@ -126,25 +126,26 @@ public class IngresoProductoService {
                 productos.add(productoData);
             }
 
-            // Añadir la lista de productos al JSON de respuesta
+            //Añadimos la lista de productos a la respuesta final (para que todo esté bonito y ordenado)
             response.put("productos", productos);
 
-            // Cambiar el estado de la orden de compra a ENTREGADA
+            //Cambiamos el estado de la orden a "ENTREGADA" 
             ordenDeCompra.setEstado("ENTREGADA");
             ordenDeCompraRepository.save(ordenDeCompra);
 
-            // Preparar el mensaje de éxito
-            response.put("message", "Ingreso de productos registrado exitosamente.");
+            //Se logróooo
+            response.put("message", "Ingreso de productos exitoso.");
 
         } catch (Exception e) {
-            // Si ocurre cualquier excepción, Spring realiza rollback automáticamente
+            //Algo salió mal, AHÍ se hace rollback automáticamente
             response.put("message", "Error durante el ingreso de productos: " + e.getMessage());
-            throw new RuntimeException("Se produjo un error y se ha realizado un rollback.", e);
+            throw new RuntimeException("Se produjo un error, por lo que se hizo un rollback.", e);
         }
 
         return response;
     }
 
+    // Método para calcular el nuevo costo promedio (sí, hay que hacer matemáticas aquí también)
     private Double calcularNuevoCostoPromedio(Double costoPromedioAnterior, Integer cantidadAnterior,
                                               Double precioUnitario, Integer cantidadIngresada) {
         return ((costoPromedioAnterior * cantidadAnterior) + (precioUnitario * cantidadIngresada))
