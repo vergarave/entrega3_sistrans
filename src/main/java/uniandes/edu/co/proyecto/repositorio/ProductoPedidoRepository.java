@@ -27,5 +27,5 @@ public interface ProductoPedidoRepository extends JpaRepository<ProductoPedido, 
     //Aquí vemos la tabla PRODUCTO_PEDIDO para obtener los productos y cantidades asociados a una orden de compra específica
     //Esto básicamente devuelve todas las filas de PRODUCTO_PEDIDO que coinciden con el número de la orden de compra proporcionado
     @Query(value = "SELECT * FROM PRODUCTO_PEDIDO WHERE NUMERO_ORDEN_DE_COMPRA = :numeroOrdenCompra", nativeQuery = true)
-    Collection<ProductoPedido> obtenerProductosYCantidadPorOrdenDeCompra(@Param("numeroOrdenCompra") Integer numeroOrdenCompra);
+    Collection<ProductoPedido> obtenerProductosySuCantidadPorOrdenDeCompra(@Param("numeroOrdenCompra") Integer numeroOrdenCompra);
 }
