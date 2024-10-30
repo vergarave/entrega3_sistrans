@@ -26,6 +26,9 @@ public class ProductoEnBodegaPK implements Serializable{
         this.idBodega = idBodega;
     }
 
+    public ProductoEnBodegaPK() {
+    }
+
     public Producto getIdProducto() {
         return idProducto;
     }
