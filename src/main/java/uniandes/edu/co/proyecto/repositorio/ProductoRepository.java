@@ -87,4 +87,14 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
     "ORDER BY PRODUCTO.NOMBRE, BODEGA.NOMBRE", nativeQuery = true)
     Collection<Object[]> obtenerProductosBajoNivelReorden();
 
+
+    //NEW NEW NEW 
+   // Consulta para obtener los productos asociados a una orden de compra específica
+   @Query(value = "SELECT * " +
+   "FROM PRODUCTO " +
+   "INNER JOIN PRODUCTO_PEDIDO ON PRODUCTO.IDENTIFICADOR = PRODUCTO_PEDIDO.IDENTIFICADOR_PRODUCTO " +
+   "WHERE PRODUCTO_PEDIDO.NUMERO_ORDEN_DE_COMPRA = :numeroOrdenCompra", nativeQuery = true)
+    Collection<Producto> obtenerProductosPorOrdenDeCompra(@Param("numeroOrdenCompra") Integer numeroOrdenCompra);
+    
+
 }
