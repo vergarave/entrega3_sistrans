@@ -45,8 +45,6 @@ public class IngresoProductoService {
         LocalDate fechaIngreso = LocalDate.now();
 
         try {
-            // Simulación de una operación de larga duración (30 segundos)
-            Thread.sleep(30000);
 
             // Obtener la orden de compra
             OrdenDeCompra ordenDeCompra = ordenDeCompraRepository.darOrdenDeCompra(idOrdenCompra);
