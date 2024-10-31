@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 public class DocumentoIngreso {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO) //Genera automaticamente el valor de 
     private Long id;
 
     private LocalDate fechaIngreso;
