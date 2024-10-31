@@ -17,7 +17,7 @@ public class DocumentoIngreso {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO) //Genera automaticamente el valor de la llave primaria
-    private Long id;
+    private Integer id;
 
     private LocalDate fechaIngreso;
 
@@ -41,11 +41,11 @@ public class DocumentoIngreso {
 
     // Getters y Setters
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
