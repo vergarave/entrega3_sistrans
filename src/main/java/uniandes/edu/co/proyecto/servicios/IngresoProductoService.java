@@ -121,7 +121,8 @@ public class IngresoProductoService {
                     //Reemplazar valores para el producto
                     productoEnBodega.setCantidadEnBodega(nuevaCantidadEnBodega);
                     productoEnBodega.setCostoPromedio(nuevoCostoPromedio);
-                } else {
+                } 
+                else {
                     // Si el producto no estaba en la bodega, lo agregamos como nuevo
                     nuevoCostoPromedio = precioUnitario;
                     nuevaCantidadEnBodega = cantidadIngresada;

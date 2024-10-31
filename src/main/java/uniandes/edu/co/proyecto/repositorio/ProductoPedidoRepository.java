@@ -16,9 +16,9 @@ public interface ProductoPedidoRepository extends JpaRepository<ProductoPedido, 
     //Esta consulta es para obtener todos los productos relacionados con una orden de compra específica
     //Básicamente hace un join entre las tablas PRODUCTO y PRODUCTO_PEDIDO 
     //Luego filtra los resultados para que solo incluya productos de la orden de compra que se nos dio
-    @Query(value = "SELECT * " +
-                   "FROM PRODUCTO " +
-                   "INNER JOIN PRODUCTO_PEDIDO ON PRODUCTO.IDENTIFICADOR = PRODUCTO_PEDIDO.IDENTIFICADOR_PRODUCTO " +
+    @Query(value = "SELECT * \r\n" +
+                   "FROM PRODUCTO \r\n" +
+                   "INNER JOIN PRODUCTO_PEDIDO ON PRODUCTO.IDENTIFICADOR = PRODUCTO_PEDIDO.IDENTIFICADOR_PRODUCTO \r\n" +
                    "WHERE PRODUCTO_PEDIDO.NUMERO_ORDEN_DE_COMPRA = :numeroOrdenCompra", 
            nativeQuery = true)
     Collection<Producto> obtenerProductosPorOrdenDeCompra(@Param("numeroOrdenCompra") Integer numeroOrdenCompra);
