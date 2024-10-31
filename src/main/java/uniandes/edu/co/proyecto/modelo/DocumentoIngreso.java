@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 public class DocumentoIngreso {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "documento_ingreso_seq")
+    @GeneratedValue(strategy=GenerationType.AUTO) //Genera automaticamente el valor de la llave primaria
     private Long id;
 
     private LocalDate fechaIngreso;
