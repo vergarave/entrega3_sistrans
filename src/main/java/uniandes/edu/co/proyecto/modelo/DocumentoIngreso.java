@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,7 +17,8 @@ import jakarta.persistence.Table;
 public class DocumentoIngreso {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO) //Genera automaticamente el valor de la llave primaria
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "documento_ingreso_seq")
+    @SequenceGenerator(name = "documento_ingreso_seq", sequenceName = "SECUENCIA_DOCUMENTO_INGRESO", allocationSize = 1)
     private Integer id;
 
     private LocalDate fechaIngreso;
