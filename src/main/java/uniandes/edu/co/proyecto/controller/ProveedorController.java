@@ -73,4 +73,18 @@ public class ProveedorController {
        }
     }
     
+
+    //Metodos para el HTML
+    
+    @GetMapping("/proveedores/nuevo")
+    public String mostrarFormularioNuevoProveedor() {
+        return "nuevoProveedor";
+    }
+
+    @GetMapping("/proveedores/editar")
+    public String mostrarFormularioEditarProveedor() {
+        return "editarProveedor";
+    }
+
+
 }
