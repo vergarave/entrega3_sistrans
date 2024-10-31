@@ -20,8 +20,6 @@ import uniandes.edu.co.proyecto.modelo.OrdenDeCompra;
 import uniandes.edu.co.proyecto.modelo.Producto;
 import uniandes.edu.co.proyecto.modelo.ProductoEnBodega;
 import uniandes.edu.co.proyecto.modelo.ProductoPedido;
-import uniandes.edu.co.proyecto.modelo.Proveedor;
-import uniandes.edu.co.proyecto.modelo.Sucursal;
 import uniandes.edu.co.proyecto.repositorio.BodegaRepository;
 import uniandes.edu.co.proyecto.repositorio.DocumentoIngresoRepository;
 import uniandes.edu.co.proyecto.repositorio.OrdenDeCompraRepository;
@@ -71,16 +69,10 @@ public class IngresoProductoService {
                 return new ResponseEntity<>("La bodega seleccionada no hace parte de la sucursal de la orden de compra dada", HttpStatus.BAD_REQUEST);
             }
 
-            //Obtener proveedor y sucursal como "objetos"
-            Proveedor proveedor = ordenDeCompra.getNitProveedor();
-            Sucursal sucursal = ordenDeCompra.getIdSucursal();
-
             //Crear un nuevo DocumentoIngreso yey
             DocumentoIngreso documentoIngreso = new DocumentoIngreso();
             documentoIngreso.setFechaIngreso(fechaIngreso); //Aca ya habiamos dicho que era la fecha actual
-            documentoIngreso.setSucursal(sucursal);
             documentoIngreso.setBodega(bodega);
-            documentoIngreso.setProveedor(proveedor);
             documentoIngreso.setOrdenCompra(ordenDeCompra);
 
             //Persistimos el doc en la BD
@@ -151,11 +143,9 @@ public class IngresoProductoService {
 
             //Añadir los datos del encabezado
             respuesta.put("fechaIngreso", fechaIngreso);
-            respuesta.put("sucursal", sucursal.getNombre()); 
+            respuesta.put("sucursal", ordenDeCompra.getIdSucursal().getNombre()); 
             respuesta.put("bodega", bodega.getNombre()); 
-            respuesta.put("proveedor", proveedor.getNombre());
-
-
+            respuesta.put("proveedor", ordenDeCompra.getNitProveedor().getNombre());
 
             respuesta.put("productos", productos);
             return new ResponseEntity<>(respuesta, HttpStatus.OK);
