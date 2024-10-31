@@ -148,6 +148,15 @@ public class IngresoProductoService {
             // Retornamos la respuesta completa si todo salió bien
             Map<String, Object> respuesta= new HashMap<>();
             respuesta.put("message", "Ingreso de productos registrado exitosamente");
+
+            //Añadir los datos del encabezado
+            respuesta.put("fechaIngreso", fechaIngreso);
+            respuesta.put("sucursal", sucursal.getNombre()); 
+            respuesta.put("bodega", bodega.getNombre()); 
+            respuesta.put("proveedor", proveedor.getNombre());
+
+
+
             respuesta.put("productos", productos);
             return new ResponseEntity<>(respuesta, HttpStatus.OK);
 

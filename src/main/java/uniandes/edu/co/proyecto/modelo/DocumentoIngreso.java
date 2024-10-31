@@ -16,6 +16,9 @@ import jakarta.persistence.Table;
 @Table(name = "documento_ingreso")
 public class DocumentoIngreso {
 
+    
+    //Esto ayuda a que, como recien añadimos la secuencia, no se pierda nada
+    //Sin esto, hibernate podria llegar a perder cual secuencia usar, entonces como buena practica es mejor ponerlo
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "documento_ingreso_seq")
     @SequenceGenerator(name = "documento_ingreso_seq", sequenceName = "SECUENCIA_DOCUMENTO_INGRESO", allocationSize = 1)
