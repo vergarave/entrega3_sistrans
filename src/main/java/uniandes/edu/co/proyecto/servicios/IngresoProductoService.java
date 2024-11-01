@@ -105,21 +105,22 @@ public class IngresoProductoService {
 
                 
                 if (productoEnBodega != null) {
-                    // Calcular el nuevo costo promedio (funcion de abajo)
-                    nuevoCostoPromedio = calcularNuevoCostoPromedio(productoEnBodega.getCostoPromedio(), productoEnBodega.getCantidadEnBodega(), precioUnitario, cantidadIngresada);
-                    // Calcular el nueva cantidad (sumar actual con nueva)
-                    nuevaCantidadEnBodega = productoEnBodega.getCantidadEnBodega() + cantidadIngresada;
+                    // Actualizar costo promedio y cantidad usando el query SQL
+                    productoEnBodegaRepository.actualizarCostoPromedioyCantidad(producto.getIdentificador(), idBodega, precioUnitario, cantidadIngresada);
 
-                    //Reemplazar valores para el producto
-                    productoEnBodega.setCantidadEnBodega(nuevaCantidadEnBodega);
-                    productoEnBodega.setCostoPromedio(nuevoCostoPromedio);
+                    // Volver a consultar el producto actualizado
+                    productoEnBodega = productoEnBodegaRepository.findByProductoYBodega(producto.getIdentificador(), idBodega);
                 } 
                 else {
                     // Si el producto no estaba en la bodega, lo agregamos como nuevo
-                    nuevoCostoPromedio = precioUnitario;
-                    nuevaCantidadEnBodega = cantidadIngresada;
+                    // Datos de nivel minimo de reorden 1 por defecto, capacidad 1000 por defecto
+                    // Costo promedio es precio unitario por defecto
+                    // Cantidad actual es cantidad ingresada por defecto
+                    productoEnBodega = new ProductoEnBodega(producto, bodega, 1, precioUnitario, 1000, cantidadIngresada);
+
+                    
                     //El minimo de reorden y la capacidad de almacenar seran 1 por defecto
-                    productoEnBodega = new ProductoEnBodega(producto, bodega, 1, nuevoCostoPromedio, 1, nuevaCantidadEnBodega);
+                    productoEnBodegaRepository.save(productoEnBodega);
                 }
 
                 //Persistir el producto modificado o creado en la bodega (en BD)
@@ -131,8 +132,8 @@ public class IngresoProductoService {
                 productoDatos.put("nombre", producto.getNombre());
                 productoDatos.put("precioUnitario", precioUnitario);
                 productoDatos.put("cantidadIngresada", cantidadIngresada);
-                productoDatos.put("nuevaCantidadEnBodega", nuevaCantidadEnBodega);
-                productoDatos.put("costoPromedio", nuevoCostoPromedio);
+                productoDatos.put("nuevaCantidadEnBodega", productoEnBodega.getCantidadEnBodega());
+                productoDatos.put("costoPromedio", productoEnBodega.getCostoPromedio());
 
                 productos.add(productoDatos);
             }
@@ -156,9 +157,5 @@ public class IngresoProductoService {
         }
     }
 
-    //Calcular el nuevo costo promedio
-    private Double calcularNuevoCostoPromedio(Double costoPromedioAnterior, Integer cantidadAnterior,
-                                              Double precioUnitario, Integer cantidadIngresada) {
-        return ((costoPromedioAnterior * cantidadAnterior) + (precioUnitario * cantidadIngresada)) / (cantidadAnterior + cantidadIngresada);
-    }
+
 }
