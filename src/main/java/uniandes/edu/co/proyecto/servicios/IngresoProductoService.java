@@ -109,8 +109,6 @@ public class IngresoProductoService {
                     // Luego actualizamos la cantidad en bodega
                     productoEnBodegaRepository.actualizarCantidadEnBodega(idProducto, idBodega, cantidadIngresada);
 
-                    // Recargamos el producto actualizado
-                    productoEnBodega = productoEnBodegaRepository.findByProductoYBodega(producto.getIdentificador(), idBodega);
 
                 } else {
                     // Si el producto no estaba en la bodega, lo agregamos como nuevo
@@ -129,11 +127,13 @@ public class IngresoProductoService {
                 productoDatos.put("nombre", producto.getNombre());
                 productoDatos.put("precioUnitario", precioUnitario);
                 productoDatos.put("cantidadIngresada", cantidadIngresada);
-                productoDatos.put("nuevaCantidadEnBodega", productoEnBodega.getCantidadEnBodega());
-                productoDatos.put("costoPromedio", productoEnBodega.getCostoPromedio());
 
                 productos.add(productoDatos);
             }
+
+            //Cambiamos el estado de la orden de compra a ENTREGADA
+            ordenDeCompra.setEstado("ENTREGADA");
+            ordenDeCompraRepository.save(ordenDeCompra);
 
             // Retornamos la respuesta completa si todo salió bien
             Map<String, Object> respuesta = new HashMap<>();
