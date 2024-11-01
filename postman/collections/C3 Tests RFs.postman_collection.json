@@ -1919,6 +1919,47 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "RF10 Contiene",
+			"item": [
+				{
+					"name": "Crear",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contiene/1/1/new/save",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contiene",
+								"1",
+								"1",
+								"new",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Registra el ingreso de productos a una bodega"
 		}
 	],
 	"event": [
