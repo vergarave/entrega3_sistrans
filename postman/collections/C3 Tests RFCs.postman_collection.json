@@ -1498,7 +1498,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/sucursales/consulta?id_producto=3",
+							"raw": "{{baseUrl}}/sucursales/consulta?id_producto=7",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1509,7 +1509,7 @@
 							"query": [
 								{
 									"key": "id_producto",
-									"value": "3"
+									"value": "7"
 								}
 							]
 						}
