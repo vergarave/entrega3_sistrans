@@ -29,8 +29,8 @@ public class Ordenes_compraController {
      * @return Collection<Orden_compra> de instancias de la clase Orden_compra.
      */
     @GetMapping("/ordenes_compra")
-    public Collection<Orden_compra> darOrdens_compra() {
-        return orden_compraRepository.getAll();
+    public ResponseEntity<?> darOrdens_compra() {
+        return ResponseEntity.ok(orden_compraRepository.getAll());
     }
 
     /**

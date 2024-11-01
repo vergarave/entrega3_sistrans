@@ -61,10 +61,15 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
      * @return Collection de las órdenes de compra encontradas.
      */
     @Query(
-        value = "SELECT * FROM ordenes_compra",
-        nativeQuery = true
+        value = "select oc.*, " +
+                "c.cantidad, " +
+                "c.precio_unitario, " +
+                "c.id_producto " +
+                "from ordenes_compra oc, compra c " +
+                "where c.id_orden_compra = oc.id",
+        nativeQuery=true
     )
-    Collection<Orden_compra> getAll();
+    Collection<Object> getAll();
 
     /**
      * SQL : Recupera el registro de la tabla 'ordenes_compra' cuyo ID coincide con el valor especificado.
