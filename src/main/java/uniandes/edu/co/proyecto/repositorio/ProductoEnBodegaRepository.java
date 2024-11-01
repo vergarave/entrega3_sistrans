@@ -15,12 +15,18 @@ public interface ProductoEnBodegaRepository extends JpaRepository<ProductoEnBode
     @Query(value = "SELECT * FROM PRODUCTO_EN_BODEGA WHERE IDENTIFICADOR_PRODUCTO = :idProducto AND ID_BODEGA = :idBodega", nativeQuery = true)
     ProductoEnBodega findByProductoYBodega(@Param("idProducto") Integer idProducto, @Param("idBodega") Integer idBodega);
 
-    //Consulta para hacer el recalculo de costo promedio y cantidad en bodega
     @Modifying
-    @Transactional
-    @Query(value = "UPDATE PRODUCTO_EN_BODEGA \r\n" +
-                   "SET CANTIDAD_EN_BODEGA = CANTIDAD_EN_BODEGA + :cantidadIngresada, \r\n" +
-                   "COSTO_PROMEDIO = ((COSTO_PROMEDIO * CANTIDAD_EN_BODEGA) + (:precioUnitario * :cantidadIngresada)) / (CANTIDAD_EN_BODEGA + :cantidadIngresada) \r\n" +
-                   "WHERE IDENTIFICADOR_PRODUCTO = :idProducto AND ID_BODEGA = :idBodega", nativeQuery = true)
-    void actualizarCostoPromedioYCantidad(@Param("idProducto") Integer idProducto, @Param("idBodega") Integer idBodega, @Param("precioUnitario") Double precioUnitario, @Param("cantidadIngresada") Integer cantidadIngresada);
+@Transactional
+@Query(value = "UPDATE PRODUCTO_EN_BODEGA \r\n" +
+               "SET COSTO_PROMEDIO = ((COSTO_PROMEDIO * CANTIDAD_EN_BODEGA) + (:precioUnitario * :cantidadIngresada)) / (CANTIDAD_EN_BODEGA + :cantidadIngresada) \r\n" +
+               "WHERE IDENTIFICADOR_PRODUCTO = :idProducto AND ID_BODEGA = :idBodega", nativeQuery = true)
+void actualizarCostoPromedio(@Param("idProducto") Integer idProducto, @Param("idBodega") Integer idBodega, @Param("precioUnitario") Double precioUnitario, @Param("cantidadIngresada") Integer cantidadIngresada);
+
+@Modifying
+@Transactional
+@Query(value = "UPDATE PRODUCTO_EN_BODEGA \r\n" +
+               "SET CANTIDAD_EN_BODEGA = CANTIDAD_EN_BODEGA + :cantidadIngresada \r\n" +
+               "WHERE IDENTIFICADOR_PRODUCTO = :idProducto AND ID_BODEGA = :idBodega", nativeQuery = true)
+void actualizarCantidadEnBodega(@Param("idProducto") Integer idProducto, @Param("idBodega") Integer idBodega, @Param("cantidadIngresada") Integer cantidadIngresada);
 }
+

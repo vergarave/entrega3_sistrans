@@ -46,87 +46,84 @@ public class IngresoProductoService {
 
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<?> registrarIngresoProductos(Integer idOrdenCompra, Integer idBodega) {
-        
-        //La fecha de ingreso es hoy
+
+        // La fecha de ingreso es hoy
         LocalDate fechaIngreso = LocalDate.now();
 
         try {
-            //¿Existe o no existe la orden de compra que mandaron?
+            // ¿Existe o no existe la orden de compra que mandaron?
             OrdenDeCompra ordenDeCompra = ordenDeCompraRepository.darOrdenDeCompra(idOrdenCompra);
             if (ordenDeCompra == null || !"VIGENTE".equals(ordenDeCompra.getEstado())) {
                 return new ResponseEntity<>("La orden de compra no es válida para documento de ingreso de productos", HttpStatus.BAD_REQUEST);
             }
 
-            //¿Existe o no existe la bodega que mandaron?
+            // ¿Existe o no existe la bodega que mandaron?
             Optional<Bodega> optionalBodega = bodegaRepository.findById(idBodega);
             if (optionalBodega.isEmpty()) {
                 return new ResponseEntity<>("La bodega ingresada no existe", HttpStatus.BAD_REQUEST);
             }
             Bodega bodega = optionalBodega.get();
 
-            //¿La bodega pertenece a la misma sucursal de la orden de compra?
+            // ¿La bodega pertenece a la misma sucursal de la orden de compra?
             if (!bodega.getIdSucursal().equals(ordenDeCompra.getIdSucursal())) {
                 return new ResponseEntity<>("La bodega seleccionada no hace parte de la sucursal de la orden de compra dada", HttpStatus.BAD_REQUEST);
             }
 
-            //Crear un nuevo DocumentoIngreso yey
+            // Crear un nuevo DocumentoIngreso yey
             DocumentoIngreso documentoIngreso = new DocumentoIngreso();
-            documentoIngreso.setFechaIngreso(fechaIngreso); //Aca ya habiamos dicho que era la fecha actual
+            documentoIngreso.setFechaIngreso(fechaIngreso); // Aca ya habiamos dicho que era la fecha actual
             documentoIngreso.setBodega(bodega);
             documentoIngreso.setOrdenCompra(ordenDeCompra);
 
-            //Persistimos el doc en la BD
+            // Persistimos el doc en la BD
             documentoIngresoRepository.save(documentoIngreso);
 
-            //Guardamos en una collecion los productos y sus cantidades (de la orden de compra) 
-            //Luego los vamos metiendo un array a medida que los vamos modificando como nos decia el enunciado
+            // Guardamos en una collecion los productos y sus cantidades (de la orden de compra)
             Collection<ProductoPedido> productosPedido = productoPedidoRepository.obtenerProductosySuCantidadPorOrdenDeCompra(idOrdenCompra);
-            
-            //El array
+
+            // El array
             List<Map<String, Object>> productos = new ArrayList<>();
 
-            //Iterar por cada producto pedido en la orden
+            // Iterar por cada producto pedido en la orden
             for (ProductoPedido productoPedido : productosPedido) {
 
-                //Obtenemos el objeto "producto" que hace de producto en la llave primaria del producto pedido 
+                // Obtenemos el objeto "producto" que hace de producto en la llave primaria del producto pedido
                 Producto producto = productoPedido.getPk().getIdentificadorProducto();
-               
-                //Obtenemos la cantidad existente
-                //Obtenemos el precio unitario (el costo en bodega)
+
+                // Obtenemos la cantidad existente
+                // Obtenemos el precio unitario (el costo en bodega)
                 int cantidadIngresada = productoPedido.getCantidadEnOrden();
                 double precioUnitario = producto.getCostoEnBodega();
 
-                //Verificar si el producto ya está en la bodega o no, segun eso se crea o se suma la cantidad
+                // Verificar si el producto ya está en la bodega o no, segun eso se crea o se suma la cantidad
                 ProductoEnBodega productoEnBodega = productoEnBodegaRepository.findByProductoYBodega(producto.getIdentificador(), idBodega);
 
-                //Con estas variables haremos calculos
-                double nuevoCostoPromedio;
-                int nuevaCantidadEnBodega;
-
-                
                 if (productoEnBodega != null) {
-                    // Actualizar costo promedio y cantidad usando el query SQL
-                    productoEnBodegaRepository.actualizarCostoPromedioyCantidad(producto.getIdentificador(), idBodega, precioUnitario, cantidadIngresada);
 
-                    // Volver a consultar el producto actualizado
+                    // Tomamos el id del producto
+                    int idProducto = producto.getIdentificador();
+
+                    // Primero actualizamos el costo promedio
+                    productoEnBodegaRepository.actualizarCostoPromedio(idProducto, idBodega, precioUnitario, cantidadIngresada);
+                    
+                    // Luego actualizamos la cantidad en bodega
+                    productoEnBodegaRepository.actualizarCantidadEnBodega(idProducto, idBodega, cantidadIngresada);
+
+                    // Recargamos el producto actualizado
                     productoEnBodega = productoEnBodegaRepository.findByProductoYBodega(producto.getIdentificador(), idBodega);
-                } 
-                else {
+
+                } else {
                     // Si el producto no estaba en la bodega, lo agregamos como nuevo
                     // Datos de nivel minimo de reorden 1 por defecto, capacidad 1000 por defecto
                     // Costo promedio es precio unitario por defecto
                     // Cantidad actual es cantidad ingresada por defecto
                     productoEnBodega = new ProductoEnBodega(producto, bodega, 1, precioUnitario, 1000, cantidadIngresada);
 
-                    
-                    //El minimo de reorden y la capacidad de almacenar seran 1 por defecto
+                    // Persistimos el producto creado en la bodega
                     productoEnBodegaRepository.save(productoEnBodega);
                 }
 
-                //Persistir el producto modificado o creado en la bodega (en BD)
-                productoEnBodegaRepository.save(productoEnBodega);
-
-                //Preparamos la info del producto para añadir a la lista de productos de la rta
+                // Preparamos la info del producto para añadir a la lista de productos de la rta
                 Map<String, Object> productoDatos = new HashMap<>();
                 productoDatos.put("identificador", producto.getIdentificador());
                 productoDatos.put("nombre", producto.getNombre());
@@ -139,13 +136,13 @@ public class IngresoProductoService {
             }
 
             // Retornamos la respuesta completa si todo salió bien
-            Map<String, Object> respuesta= new HashMap<>();
+            Map<String, Object> respuesta = new HashMap<>();
             respuesta.put("message", "Ingreso de productos registrado exitosamente");
 
-            //Añadir los datos del encabezado
+            // Añadir los datos del encabezado
             respuesta.put("fechaIngreso", fechaIngreso);
-            respuesta.put("sucursal", ordenDeCompra.getIdSucursal().getNombre()); 
-            respuesta.put("bodega", bodega.getNombre()); 
+            respuesta.put("sucursal", ordenDeCompra.getIdSucursal().getNombre());
+            respuesta.put("bodega", bodega.getNombre());
             respuesta.put("proveedor", ordenDeCompra.getNitProveedor().getNombre());
 
             respuesta.put("productos", productos);
@@ -156,6 +153,4 @@ public class IngresoProductoService {
             return new ResponseEntity<>("Error durante el ingreso de productos: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
 }
