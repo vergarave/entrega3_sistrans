@@ -10,35 +10,23 @@ import uniandes.edu.co.proyecto.modelo.Documento;
 
 public interface DocumentoRepository extends JpaRepository<Documento,Integer>{
 
+    /** RNF1: Agregar un documento a la tabla documentos
+     *
+     * @param id_orden_compra orden de compra asociada al nuevo documento
+     */
     @Modifying
     @Transactional
     @Query(
-        value="insert into documentos (id_orden_compra) values(:id_orden_compra)",
-        nativeQuery=true
+        value = """
+            INSERT INTO documentos (
+                id_orden_compra
+            )
+            VALUES (
+                :id_orden_compra
+            )
+            """,
+        nativeQuery = true
     )
     void addDocumento(@Param("id_orden_compra")Integer id_orden_compra);
 
-    @Modifying
-    @Transactional
-    @Query(
-        value = "set autocomit = 0",
-        nativeQuery=true
-    )
-    void setAutocommit_0();
-
-    @Modifying
-    @Transactional
-    @Query(
-        value = "commit",
-        nativeQuery=true
-    )
-    Object[] commit();
-
-    @Modifying
-    @Transactional
-    @Query(
-        value = "rollback",
-        nativeQuery=true
-    )
-    Object[] rollback();
 }

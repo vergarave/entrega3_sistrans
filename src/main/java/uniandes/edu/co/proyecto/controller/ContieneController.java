@@ -38,10 +38,18 @@ public class ContieneController {
 
     public ContieneController(PlatformTransactionManager transactionManager) {
         this.transactionTemplate = new TransactionTemplate(transactionManager);
- 
     }
+
+    /**
+     * Transacción de registrar el ingreso de productos a una bodega
+     *
+     * @param id_bodega           Bodega a la que se le ingresaran productos.
+     * @param id_orden_compra     Orden de compra la cual se va a registrar dentor de la bodega.
+     * @return ResponseEntity<?>  Resultado de la transacción.
+     */
     @PostMapping("/contiene/{id_bodega}/{id_orden_compra}/new/save")
-    public ResponseEntity<?> registrarIngresoProductoEnBodegaDadaOrdenCompra(@PathVariable("id_bodega") Integer id_bodega, @PathVariable("id_orden_compra") Integer id_orden_compra) {
+    public ResponseEntity<?> registrarIngresoProductoEnBodegaDadaOrdenCompra(   @PathVariable("id_bodega") Integer id_bodega,
+                                                                                @PathVariable("id_orden_compra") Integer id_orden_compra) {
         Map<String, Object> response;
 
         try {
@@ -57,14 +65,19 @@ public class ContieneController {
 
                         //Recorre todos los productos presentes en la orden de compra
                         for (Integer id_producto : productos){
-                            Collection<Contiene> contiene_list = contieneRepository.getPorPK(id_bodega, id_producto);
+                            Collection<Contiene> contiene_list = contieneRepository.getPorPK(   id_bodega,
+                                                                                                id_producto);
                             if(contiene_list.isEmpty()){
                                 //Si el producto aún no está en la bodega, se debe añadir
                                 //por defecto, la cantidad máxima será de 3 veces la cantidad ingresada y la cantidad minima será de 1
-                                contieneRepository.createFila(id_bodega, id_producto, id_orden_compra);
+                                contieneRepository.createFila(  id_bodega,
+                                                                id_producto,
+                                                                id_orden_compra);
                             }else{
                                 //Si el producto, ya está en la bodega, se actualizará la fila
-                                contieneRepository.actualizarFila(id_bodega, id_producto, id_orden_compra);
+                                contieneRepository.actualizarFila(  id_bodega,
+                                                                    id_producto,
+                                                                    id_orden_compra);
                             }
                         //En este punto, ya se aniadieron los productos de la orden de compra a la bodega
 

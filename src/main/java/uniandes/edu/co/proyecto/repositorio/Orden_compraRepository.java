@@ -28,15 +28,29 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
     @Modifying
     @Transactional
     @Query(
-        value = "INSERT INTO ordenes_compra (fecha_creacion, fecha_esperada, estado, id_bodega, id_proveedor) " +
-                "VALUES (:fecha_creacion, :fecha_esperada, :estado, :id_bodega, :id_proveedor)",
+        value = """
+            INSERT INTO ordenes_compra (
+                fecha_creacion,
+                fecha_esperada,
+                estado,
+                id_bodega,
+                id_proveedor
+            )
+            VALUES (
+                :fecha_creacion,
+                :fecha_esperada,
+                :estado,
+                :id_bodega,
+                :id_proveedor
+            )
+            """,
         nativeQuery = true
     )
-    void insertarOrden_compra(@Param("fecha_creacion") Date fecha_creacion,
-                              @Param("fecha_esperada") Date fecha_esperada,
-                              @Param("estado") String estado,
-                              @Param("id_bodega") Integer id_bodega,
-                              @Param("id_proveedor") Integer id_proveedor);
+    void insertarOrden_compra(  @Param("fecha_creacion") Date fecha_creacion,
+                                @Param("fecha_esperada") Date fecha_esperada,
+                                @Param("estado") String estado,
+                                @Param("id_bodega") Integer id_bodega,
+                                @Param("id_proveedor") Integer id_proveedor);
 
     /**
      * RF8 : Actualiza el estado de una orden de compra a 'anulada'.
@@ -48,9 +62,11 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
     @Modifying
     @Transactional
     @Query(
-        value = "UPDATE ordenes_compra " +
-                "SET estado = 'anulada' " +
-                "WHERE id = :id",
+        value = """
+            UPDATE ordenes_compra
+            SET estado = 'anulada'
+            WHERE id = :id
+            """,
         nativeQuery = true
     )
     void anularOrden_compra(@Param("id") Integer id);
@@ -61,13 +77,15 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
      * @return Collection de las órdenes de compra encontradas.
      */
     @Query(
-        value = "select oc.*, " +
-                "c.cantidad, " +
-                "c.precio_unitario, " +
-                "c.id_producto " +
-                "from ordenes_compra oc, compra c " +
-                "where c.id_orden_compra = oc.id",
-        nativeQuery=true
+        value = """
+            SELECT oc.*,
+                c.cantidad,
+                c.precio_unitario,
+                c.id_producto
+            FROM ordenes_compra oc
+            JOIN compra c ON c.id_orden_compra = oc.id
+            """,
+        nativeQuery = true
     )
     Collection<Object> getAll();
 
@@ -78,8 +96,11 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
      * @return Collection con la orden de compra encontrada.
      */
     @Query(
-        value = "SELECT * FROM ordenes_compra " +
-                "WHERE id = :id",
+        value = """
+            SELECT *
+            FROM ordenes_compra
+            WHERE id = :id
+            """,
         nativeQuery = true
     )
     Collection<Orden_compra> darOrden_compra(@Param("id") Integer id);
@@ -90,15 +111,30 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
      * @return Collection con un único elemento que será el último ID creado.
      */
     @Query(
-        value = "SELECT * FROM ordenes_compra " +
-                "WHERE id = (SELECT MAX(id) FROM ordenes_compra)",
+        value = """
+            SELECT *
+            FROM ordenes_compra
+            WHERE id = (
+                SELECT MAX(id)
+                FROM ordenes_compra
+            )
+            """,
         nativeQuery = true
     )
     Collection<Orden_compra> getLast();
 
+    /**RNF2: Leer los ids de los productos que se compran en una orden de compra
+     *
+     * @param id_orden_compra orden de compra que se quiere observas
+     * @return Collection<Integer> Collecton con los productos encontrados asociados a la ordend de compra
+     */
     @Query(
-        value="select co.id_producto from compra co where co.id_orden_compra = :id_orden_compra",
-        nativeQuery=true
+        value = """
+            SELECT co.id_producto
+            FROM compra co
+            WHERE co.id_orden_compra = :id_orden_compra
+            """,
+        nativeQuery = true
     )
     Collection<Integer> getProductos(@Param("id_orden_compra")Integer id_orden_compra);
 
@@ -112,9 +148,11 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
     @Modifying
     @Transactional
     @Query(
-        value = "UPDATE ordenes_compra " +
-                "SET estado = 'entregada' " +
-                "WHERE id = :id",
+        value = """
+            UPDATE ordenes_compra
+            SET estado = 'entregada'
+            WHERE id = :id
+            """,
         nativeQuery = true
     )
     void actualizarEstadoAEntregado(@Param("id") Integer id);
