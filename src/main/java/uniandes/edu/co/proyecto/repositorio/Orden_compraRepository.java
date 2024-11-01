@@ -96,4 +96,27 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
     )
     Collection<Orden_compra> getLast();
 
+    @Query(
+        value="select co.id_producto from compra co where co.id_orden_compra = :id_orden_compra",
+        nativeQuery=true
+    )
+    Collection<Integer> getProductos(@Param("id_orden_compra")Integer id_orden_compra);
+
+    /**
+     * RF8 : Actualiza el estado de una orden de compra a 'anulada'.
+     * SQL : Actualiza el estado de la orden de compra para
+     *       el registro con el ID especificado.
+     *
+     * @param id Identificador de la orden de compra cuya estado va a cambiar.
+     */
+    @Modifying
+    @Transactional
+    @Query(
+        value = "UPDATE ordenes_compra " +
+                "SET estado = 'entregada' " +
+                "WHERE id = :id",
+        nativeQuery = true
+    )
+    void actualizarEstadoAEntregado(@Param("id") Integer id);
+
 }

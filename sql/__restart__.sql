@@ -37,12 +37,14 @@ CREATE TABLE contiene (
     costo_promedio  FLOAT NOT NULL CHECK(costo_promedio >= 0),
     cantidad_minima INTEGER NOT NULL CHECK(cantidad_minima >= 0),
     check (cantidad_minima <= capacidad),
+    check (cantidad<= capacidad),
     PRIMARY KEY ( id_bodega, id_producto )
 );
 
 CREATE TABLE documentos (
     id              INTEGER GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
-    id_orden_compra INTEGER NOT NULL
+    id_orden_compra INTEGER NOT NULL,
+    fecha_creación  Date DEFAULT SYSDATE
 );
 
 CREATE TABLE ofrece (

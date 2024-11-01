@@ -25,7 +25,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
      * @param codigo_barras      Número entero que representa el código de barras.
      * @param volumen            Volumen del producto en metros cúbicos.
      * @param peso               Peso del producto en gramos.
-     * @param id_tipo_categoria   Identificador de la categoría del producto.
+     * @param id_tipo_categoria  Identificador de la categoría del producto.
      */
     @Modifying
     @Transactional
@@ -56,7 +56,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
         nativeQuery = true
     )
     Collection<Producto> darProductoPorIdONombre(@Param("id") Integer id, 
-                                                  @Param("nombre") String nombre);
+                                                 @Param("nombre") String nombre);
 
     /**
      * RF6.3 : Actualiza un producto.
