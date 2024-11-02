@@ -34,6 +34,19 @@ public class ProductoController {
         return productoRepository.darProductos();
     }
 
+    @GetMapping("/productos/nombre/{nombre}")
+    public ResponseEntity<?> obtenerProductoNombre(@PathVariable String nombre) {
+        Producto producto = productoRepository.darProductoNombre(nombre);
+    
+        // Devolver si existe el producto
+        if (producto != null) {
+            return new ResponseEntity<>(producto, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Producto con nombre " + nombre + " no encontrado.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+
     //Metodo que se encarga de devolver un producto por su identificador
     @GetMapping("/productos/{identificador}")
     public ResponseEntity<?> obtenerProducto(@PathVariable int identificador) {
@@ -166,4 +179,20 @@ public class ProductoController {
     }
 
 
+    //Metodo para el HTML
+
+    @GetMapping("/menuProductos")
+    public String menuProducto() {
+        return "menuProductos";
+    }
+
+    @GetMapping("/productos/nuevo")
+    public String mostrarFormularioCreacionProducto() {
+        return "nuevoProducto";
+    }
+
+    @GetMapping("/productos/buscar")
+    public String mostrarFormularioBusquedaProducto() {
+        return "buscarProducto";
+    }
 }

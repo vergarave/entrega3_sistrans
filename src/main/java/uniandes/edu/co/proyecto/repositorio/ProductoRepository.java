@@ -23,9 +23,13 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
     @Query(value = "SELECT * FROM producto", nativeQuery=true)
     Collection<Producto> darProductos();
 
-    //Consulta CRUD de darProducto
+    //Consulta CRUD de darProducto POR IDENTIFICADOR
     @Query(value = "SELECT * FROM producto WHERE identificador= :identificador", nativeQuery=true)
     Producto darProducto(@Param("identificador") int identificador);
+
+    //Consulta CRUD de darProducto POR NOMBRE
+    @Query(value = "SELECT * FROM producto WHERE nombre= :nombre", nativeQuery=true)
+    Producto darProductoNombre(@Param("nombre") String nombre);
 
     //Consulta CRUD de insertarProducto
     @Modifying //Indica que se va a realizar una modificacion en la base de datos
