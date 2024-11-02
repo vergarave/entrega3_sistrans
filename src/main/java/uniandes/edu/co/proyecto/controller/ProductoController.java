@@ -8,18 +8,20 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import uniandes.edu.co.proyecto.modelo.Producto;
 import uniandes.edu.co.proyecto.repositorio.ProductoRepository;
+import org.springframework.stereotype.Controller;
 
 //Controlador de la entidad Producto que se encarga de realizar las peticiones HTTP
-@RestController
+@Controller
 public class ProductoController {
 
     //Inyeccion de dependencias
@@ -31,6 +33,19 @@ public class ProductoController {
     public Collection<Producto> producto(){
         return productoRepository.darProductos();
     }
+
+    @GetMapping("/productos/nombre/{nombre}")
+    public ResponseEntity<?> obtenerProductoNombre(@PathVariable String nombre) {
+        Producto producto = productoRepository.darProductoNombre(nombre);
+    
+        // Devolver si existe el producto
+        if (producto != null) {
+            return new ResponseEntity<>(producto, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Producto con nombre " + nombre + " no encontrado.", HttpStatus.NOT_FOUND);
+        }
+    }
+
 
     //Metodo que se encarga de devolver un producto por su identificador
     @GetMapping("/productos/{identificador}")
@@ -46,17 +61,34 @@ public class ProductoController {
     }
 
     //Metodo que se encarga de crear un producto
-    @PostMapping("/productos/new/save") //Indica que el metodo se activa cuando se hace una peticion POST a la URL /productos/new/save
-    public ResponseEntity<String> productoGuardar(@RequestBody Producto producto){
-        
-        try{
-            productoRepository.insertarProducto(producto.getNombre(), producto.getCostoEnBodega(), producto.getPresentacion(), producto.getCantidadPresentacion(), producto.getUnidadMedida(), producto.getVolumenEmpaque(), producto.getPesoEmpaque(), producto.getFechaExpiracion(), producto.getCodigoDeBarras(), producto.getClasificacionCategoria().getCodigo());
+    @PostMapping("/productos/new/save") // Indica que el método se activa cuando se hace una petición POST a la URL /productos/new/save
+    public ResponseEntity<String> productoGuardar(@RequestBody Producto producto) {
+        try {
+            // Inserta el producto en la base de datos usando la consulta en el repositorio
+            productoRepository.insertarProducto(
+                producto.getNombre(),
+                producto.getCostoEnBodega(),
+                producto.getPresentacion(),
+                producto.getCantidadPresentacion(),
+                producto.getUnidadMedida(),
+                producto.getVolumenEmpaque(),
+                producto.getPesoEmpaque(),
+                producto.getFechaExpiracion(),
+                producto.getCodigoDeBarras(),
+                producto.getClasificacionCategoria().getCodigo()
+            );
             return new ResponseEntity<>("Producto creado exitosamente", HttpStatus.CREATED);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>("Error al crear el producto", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            e.printStackTrace(); // Imprime el error en la consola para ver detalles
+            return new ResponseEntity<>("Error al crear el producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/productos/filtro")
+    public String mrpdoctosfiltro() {
+        return "filtrarProductos";
+    }
+
 
     // Metodo que se encarga de editar un producto y lanza error si el usuario intenta modificar la fecha de expiración
     @PostMapping("/productos/{identificador}/edit/save")
@@ -102,6 +134,7 @@ public class ProductoController {
 
     //Metodo que se encarga de obtener los productos filtrados por precio, fecha de expiracion, sucursal o categoria
     @GetMapping("productos/filtrados")
+    @ResponseBody       
     public Collection<Producto> productosfiltrados(
         @RequestParam(required = false) Double precioMinU, 
         @RequestParam(required = false) Double precioMaxU,
@@ -113,9 +146,15 @@ public class ProductoController {
         return productoRepository.darProductosFiltrados(precioMinU, precioMaxU, fechaSuperiorU, fechaInferiorU, sucursalIdU, categoriaNombreU);
     }
 
+    @GetMapping("/productos/productosEnBodega/formulario")
+    public String menuBodega(Model model) {
+        return "inventario";
+    }
+
     //Para RCF4:
     //Metodo que se encarga de obtener los productos en una bodega dada de una sucursal dada
     @GetMapping("/productos/productosEnBodega")
+    @ResponseBody
     public Collection<Map<String, Object>> obtenerProductosEnBodega(
             @RequestParam Integer idSucursal,
             @RequestParam Integer idBodega) {
@@ -135,9 +174,15 @@ public class ProductoController {
         return listaproductos;
     }
 
+    @GetMapping("/productos/bajoNivelReorden")
+    public String mostrarProductosBajoNivelReorden(Model model) {
+        return "productosBajoNivelReorden"; // Nombre del archivo HTML que mostraría la lista de productos
+    }
+
     //Para RCF5:
     //Metodo que se encarga de obtener los productos para orden de compra
     @GetMapping("/productosParaOrdenDeCompra")
+    @ResponseBody
     public Collection<Map<String, Object>> obtenerProductosParaOrdenDeCompra() {
     Collection<Object[]> resultado = productoRepository.obtenerProductosBajoNivelReorden();
     
@@ -158,4 +203,26 @@ public class ProductoController {
     }
 
 
+    //Metodo para el HTML
+
+    @GetMapping("/menuProductos")
+    public String menuProducto() {
+        return "menuProductos";
+    }
+
+    @GetMapping("/productos/nuevo")
+    public String mostrarFormularioCreacionProducto() {
+        return "nuevoProducto";
+    }
+
+    @GetMapping("/productos/buscar")
+    public String mostrarFormularioBusquedaProducto() {
+        return "buscarProducto";
+    }
+
+    @GetMapping("/productos/editar")
+    public String mostrarFormularioEdicionProducto() {
+        return "editarProducto";
+    }
+    
 }

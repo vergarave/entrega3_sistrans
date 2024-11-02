@@ -5,17 +5,18 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.modelo.Proveedor;
 import uniandes.edu.co.proyecto.repositorio.ProveedorRepository;
 
 //Controlador de la entidad Proveedor que se encarga de realizar las peticiones HTTP
-@RestController
+@Controller
 public class ProveedorController {
 
     //Inyeccion de dependencias
@@ -73,4 +74,23 @@ public class ProveedorController {
        }
     }
     
+
+    //Metodos para el HTML
+
+    @GetMapping("/menuProveedor")
+    public String menuProveedor() {
+        return "menuProveedor";
+    }
+    
+    @GetMapping("/proveedores/nuevo")
+    public String mostrarFormularioNuevoProveedor() {
+        return "nuevoProveedor";
+    }
+
+    @GetMapping("/proveedores/editar")
+    public String mostrarFormularioEditarProveedor() {
+        return "editarProveedor";
+    }
+
+
 }
