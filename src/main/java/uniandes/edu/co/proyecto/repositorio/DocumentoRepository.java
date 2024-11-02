@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -29,5 +31,13 @@ public interface DocumentoRepository extends JpaRepository<Documento,Integer>{
         nativeQuery = true
     )
     void addDocumento(@Param("id_orden_compra")Integer id_orden_compra);
+
+    @Query(
+        value="""
+                select * from documentos
+                """,
+        nativeQuery=true
+    )
+    Collection<Documento> getAll();
 
 }
