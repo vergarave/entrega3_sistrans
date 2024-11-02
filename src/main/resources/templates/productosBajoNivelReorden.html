@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Productos Bajo Nivel de Reorden - SuperAndes</title>
+    <style>
+        :root {
+            --verde-pastel: #b3e5b3;
+            --verde-pastel-oscuro: #8ac48a;
+            --gris-oscuro: #4a4a4a;
+            --gris-claro: #f7f7f7;
+            --blanco: #ffffff;
+        }
+
+        body {
+            background-color: var(--gris-claro);
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: var(--verde-pastel-oscuro);
+        }
+
+        .navbar-brand {
+            color: var(--blanco) !important;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 30px;
+            max-width: 800px;
+        }
+
+        .card {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: var(--verde-pastel);
+            color: var(--gris-oscuro);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        footer {
+            background-color: var(--verde-pastel-oscuro);
+            color: var(--blanco);
+            padding: 10px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">SuperAndes</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="text-center my-4">
+            <h1 class="display-6 text-primary">Productos Bajo Nivel de Reorden</h1>
+        </header>
+
+        <!-- Botón para cargar productos -->
+        <div class="text-center mb-4">
+            <button id="cargarProductos" class="btn btn-primary">Cargar Productos</button>
+        </div>
+
+        <!-- Tarjeta para mostrar los productos -->
+        <div class="card">
+            <div class="card-header">
+                Lista de Productos
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered mt-3">
+                        <thead class="table-success">
+                            <tr>
+                                <th>Identificador</th>
+                                <th>Nombre del Producto</th>
+                                <th>Bodega</th>
+                                <th>Sucursal</th>
+                                <th>Proveedor</th>
+                                <th>Cantidad en Bodega</th>
+                                <th>Nivel Mínimo de Reorden</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productosTableBody">
+                            <!-- Las filas de la tabla se generarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SuperAndes. Hecho por el increíble Grupo 1.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('cargarProductos').addEventListener('click', function() {
+            fetch('/productosParaOrdenDeCompra')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al obtener productos');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const tableBody = document.getElementById('productosTableBody');
+                    tableBody.innerHTML = ''; // Limpiar contenido previo
+                    if (data.length > 0) {
+                        data.forEach(producto => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${producto.identificador}</td>
+                                <td>${producto.nombreProducto}</td>
+                                <td>${producto.nombreBodegaNivelBajo}</td>
+                                <td>${producto.nombreSucursalAsociada}</td>
+                                <td>${producto.nombrePosibleProveedor}</td>
+                                <td>${producto.cantidadActualEnBodega}</td>
+                                <td>${producto.nivelMinimoReorden}</td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                    } else {
+                        tableBody.innerHTML = `<tr><td colspan="7" class="text-center">No hay productos bajo nivel de reorden.</td></tr>`;
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    alert("Error al cargar productos.");
+                });
+        });
+    </script>
+</body>
+</html>

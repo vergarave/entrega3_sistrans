@@ -174,9 +174,15 @@ public class ProductoController {
         return listaproductos;
     }
 
+    @GetMapping("/productos/bajoNivelReorden")
+    public String mostrarProductosBajoNivelReorden(Model model) {
+        return "productosBajoNivelReorden"; // Nombre del archivo HTML que mostraría la lista de productos
+    }
+
     //Para RCF5:
     //Metodo que se encarga de obtener los productos para orden de compra
     @GetMapping("/productosParaOrdenDeCompra")
+    @ResponseBody
     public Collection<Map<String, Object>> obtenerProductosParaOrdenDeCompra() {
     Collection<Object[]> resultado = productoRepository.obtenerProductosBajoNivelReorden();
     
