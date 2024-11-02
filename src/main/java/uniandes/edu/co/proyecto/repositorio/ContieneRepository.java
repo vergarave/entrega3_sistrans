@@ -33,6 +33,7 @@ public interface ContieneRepository extends JpaRepository<Contiene,Integer>{
                                     @Param("id_producto")Integer id_producto);
 
     /** RNF4: Crear una fila de la tabla contiene
+     *
      * @param id_bodega        identificador de la bodega
      * @param id_producto      identificador del producto
      * @param id_orden_compra  identificador de la orden de compra
@@ -73,6 +74,12 @@ public interface ContieneRepository extends JpaRepository<Contiene,Integer>{
                     @Param("id_producto")Integer id_producto,
                     @Param("id_orden_compra")Integer id_orden_compra);
 
+    /**RNF5: actualiza una fila de la tabla contiene
+     *
+     * @param id_bodega        identificador de la bodega
+     * @param id_producto      identificador del producto
+     * @param id_orden_compra  identificador de la orden de compra
+     */
     @Modifying
     @Transactional
     @Query(
@@ -107,8 +114,8 @@ public interface ContieneRepository extends JpaRepository<Contiene,Integer>{
             """,
         nativeQuery = true
     )
-    void actualizarFila(Integer id_bodega,
-                        Integer id_producto,
-                        Integer id_orden_compra);
+    void actualizarFila(@Param("id_bodega")Integer id_bodega,
+                        @Param("id_producto")Integer id_producto,
+                        @Param("id_orden_compra")Integer id_orden_compra);
     
 }
