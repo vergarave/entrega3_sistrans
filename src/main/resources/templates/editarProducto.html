@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -106,7 +105,7 @@
                 </form>
 
                 <!-- Formulario para editar datos del producto -->
-                <form id="editarProveedorForm" action="/productos/{identificador}/edit/save" method="post" style="display: none;">
+                <form id="editarProductoForm" action="" method="post" style="display: none;">
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre del Producto:</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -143,10 +142,10 @@
                         <label for="codigoDeBarras" class="form-label">Código de Barras:</label>
                         <input type="text" class="form-control" id="codigoDeBarras" name="codigoDeBarras" required>
                     </div>
-                    <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                 </form>
 
-                <!-- Mensaje de error si el proveedor no se encuentra -->
+                <!-- Mensaje de error si el producto no se encuentra -->
                 <div id="mensajeError" class="alert alert-danger mt-3" style="display: none;">
                     Producto no encontrado. Por favor, verifique el Identificador ingresado.
                 </div>
@@ -165,12 +164,10 @@
     </footer>
 
     <script>
-        // JavaScript para mostrar u ocultar formularios según el resultado de la búsqueda
         document.getElementById('buscarProductoForm').onsubmit = function (event) {
             event.preventDefault();
             const identificador = document.getElementById('identificador').value;
 
-            // Realizar solicitud AJAX para obtener el producto por identificador
             fetch(`/productos/${identificador}`)
                 .then(response => {
                     if (response.ok) {
@@ -180,7 +177,6 @@
                     }
                 })
                 .then(producto => {
-                    // Rellenar el formulario con los datos del proveedor
                     document.getElementById('nombre').value = producto.nombre;
                     document.getElementById('costoEnBodega').value = producto.costoEnBodega;
                     document.getElementById('presentacion').value = producto.presentacion;
@@ -191,18 +187,15 @@
                     document.getElementById('fechaExpiracion').value = producto.fechaExpiracion;
                     document.getElementById('codigoDeBarras').value = producto.codigoDeBarras;
 
-
-                    // Mostrar el formulario de edición y ocultar el mensaje de error
-                    document.getElementById('editarProveedorForm').style.display = 'block';
+                    document.getElementById('editarProductoForm').action = `/productos/${identificador}/edit/save`;
+                    document.getElementById('editarProductoForm').style.display = 'block';
                     document.getElementById('mensajeError').style.display = 'none';
                 })
                 .catch(error => {
-                    // Mostrar el mensaje de error si el proveedor no se encuentra
-                    document.getElementById('editarProveedorForm').style.display = 'none';
+                    document.getElementById('editarProductoForm').style.display = 'none';
                     document.getElementById('mensajeError').style.display = 'block';
                 });
         };
     </script>
 </body>
-
 </html>

@@ -195,4 +195,10 @@ public class ProductoController {
     public String mostrarFormularioBusquedaProducto() {
         return "buscarProducto";
     }
+
+    @GetMapping("/productos/editar")
+    public String mostrarFormularioEdicionProducto() {
+        return "editarProducto";
+    }
+    
 }
