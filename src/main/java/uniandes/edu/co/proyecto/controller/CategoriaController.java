@@ -5,18 +5,20 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.modelo.Categoria;
 import uniandes.edu.co.proyecto.repositorio.CategoriaRepository;
 
 //Controlador de la entidad Categoria que se encarga de realizar las peticiones HTTP
-@RestController
+@Controller
 public class CategoriaController {
 
     //Inyeccion de dependencias
@@ -79,6 +81,22 @@ public class CategoriaController {
 
         categoriaRepository.eliminarCategoria(codigo);
         return new ResponseEntity<>("Categoria eliminada exitosamente", HttpStatus.OK);
+    }
+
+    //Metodos nuevos para le HTML
+    @GetMapping("/menuCategoria")
+    public String menuCategoria() {
+        return "menuCategoria"; //Nombre del archivo HTML
+    }
+
+    @GetMapping("/categorias/nueva")
+    public String mostrarFormularioNuevaCategoria() {
+        return "nuevaCategoria"; //Nombre del archivo HTML
+    }
+
+    @GetMapping("/categorias/buscar")
+    public String mostrarFormularioBuscarCategoria() {
+        return "buscarCategoria"; //Nombre del archivo HTML
     }
 
 }

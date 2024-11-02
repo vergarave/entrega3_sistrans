@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>SuperAndes - Página Principal</title>
+    <title>Menú de Categorías - SuperAndes</title>
     <style>
         /* Paleta de colores en tonos verdes pastel */
         :root {
@@ -37,6 +37,8 @@
             background-color: var(--blanco);
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .card-header {
@@ -45,30 +47,18 @@
             font-weight: bold;
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
+            text-align: center;
         }
 
-        .card-body p {
-            color: var(--gris-oscuro);
-        }
-
-        .btn-success {
+        .btn-primary, .btn-secondary {
             background-color: var(--verde-pastel-oscuro);
             border: none;
+            width: 100%;
+            margin-top: 10px;
         }
 
-        .btn-success:hover {
+        .btn-primary:hover, .btn-secondary:hover {
             background-color: var(--verde-pastel);
-        }
-
-        .btn-info {
-            background-color: var(--verde-pastel);
-            border: none;
-            color: var(--gris-oscuro);
-        }
-
-        .btn-info:hover {
-            background-color: var(--verde-pastel-oscuro);
-            color: var(--blanco);
         }
 
         footer {
@@ -76,6 +66,7 @@
             color: var(--blanco);
             padding: 10px 0;
             font-size: 0.9em;
+            text-align: center;
         }
     </style>
 </head>
@@ -88,39 +79,37 @@
     </nav>
 
     <div class="container">
-        <!-- Encabezado de bienvenida -->
-        <div class="text-center mb-4">
-            <h1 class="display-5 text-primary">Bienvenido a SuperAndes</h1>
-            <p class="lead text-muted">Tu supermercado de confianza. Aquí encontrarás productos frescos y de la mejor calidad.</p>
-        </div>
+        <!-- Encabezado del Menú de Bodega -->
+        <header class="text-center my-4">
+            <h1 class="display-6 text-primary">Menú de Categorías</h1>
+        </header>
 
-        <!-- Tarjeta de opciones de gestión -->
-        <div class="card mx-auto" style="max-width: 600px;">
-            <div class="card-header text-center">
-                Opciones de Gestión
+        <!-- Tarjeta con opciones de gestión de bodegas -->
+        <div class="card">
+            <div class="card-header">
+                Opciones de Categorías de productos
             </div>
             <div class="card-body text-center">
-                <p>Elige una de las opciones a continuación para gestionar nuestras ciudades, productos y sucursales.</p>
-                <div class="d-grid gap-3">
-                    <a href="/ciudades/nueva" class="btn btn-success btn-lg">Crear Nueva Ciudad</a>
-                    <a href="/menusucursales" class="btn btn-info btn-lg">Menú de Sucursales</a>
-                    <a href="/menuBodega" class="btn btn-info btn-lg">Menú de Bodegas</a>
-                    <a href="/menuProveedor" class="btn btn-info btn-lg">Menú de Proveedores</a>
-                    <a href="/menuCategoria" class="btn btn-info btn-lg">Menú de Categorías de Productos</a>
-                    <a href="/menuProductos" class="btn btn-info btn-lg">Menú de Productos</a>
-                    <a href="/MenuOrdenesDeCompra" class="btn btn-info btn-lg">Menú de Ordenes de Compra</a>
-                </div>
+                <!-- Crear Categoría -->
+                <a href="/categorias/nueva" class="btn btn-primary btn-lg my-2">Crear Nueva Categoría</a>
+
+                <!-- Buscar Categoría por Nombre o Código-->
+                <a href="/categorias/buscar" class="btn btn-secondary btn-lg my-2">Buscar Categoría</a>
+                
             </div>
+        </div>
+
+        <!-- Botón de regreso al inicio -->
+        <div class="text-center my-4">
+            <a href="/" class="btn btn-secondary">Volver al Inicio</a>
         </div>
     </div>
 
     <!-- Pie de página -->
-    <footer class="text-center mt-5">
+    <footer>
         <div class="container">
             <p>&copy; 2024 SuperAndes. Hecho por el increíble Grupo 1.</p>
         </div>
     </footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

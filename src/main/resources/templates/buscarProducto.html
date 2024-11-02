@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Consultar Categoría - SuperAndes</title>
+    <style>
+        :root {
+            --verde-pastel: #b3e5b3;
+            --verde-pastel-oscuro: #8ac48a;
+            --gris-oscuro: #4a4a4a;
+            --gris-claro: #f7f7f7;
+            --blanco: #ffffff;
+        }
+
+        body {
+            background-color: var(--gris-claro);
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: var(--verde-pastel-oscuro);
+        }
+
+        .navbar-brand {
+            color: var(--blanco) !important;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 30px;
+            max-width: 600px;
+        }
+
+        .card {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: var(--verde-pastel);
+            color: var(--verde-pastel-oscuro);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--verde-pastel);
+            border: none;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--verde-pastel);
+        }
+
+        footer {
+            background-color: var(--verde-pastel-oscuro);
+            color: var(--blanco);
+            padding: 10px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        hr {
+            border: 1px solid var(--verde-pastel-oscuro);
+            margin: 20px 0; 
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">SuperAndes</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="text-center my-4">
+            <h1 class="display-6 text-primary">Consultar Producto</h1>
+        </header>
+
+        <!-- Tarjeta del formulario -->
+        <div class="card">
+            <div class="card-header">
+                Buscar Producto por Identificador o Nombre
+            </div>
+            <div class="card-body">
+                <!-- Formulario para buscar una categoría -->
+                <form id="buscarProductoForm" action="/productos/buscar" method="get" class="mb-4">
+                    <div class="mb-3">
+                        <label for="identificador" class="form-label">Identificador del Producto:</label>
+                        <input type="number" class="form-control" id="identificador" name="identificador" placeholder="Ejemplo: 1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre del Producto:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Por ejemplo: Leche">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="buscarProducto()">Buscar Producto</button>
+                </form>
+
+                <!-- Div para mostrar la información del producto -->
+                <div id="productoInfo" class="alert alert-success" style="display: none;">
+                    <p><strong>Identificador:</strong> <span id="identificadorProducto"></span></p>
+                    <p><strong>Nombre:</strong> <span id="nombreProducto"></span></p>
+                    <p><strong>Costo en Bodega:</strong> <span id="costoEnBodegaProducto"></span></p>
+                    <p><strong>Presentación:</strong> <span id="presentacionProducto"></span></p>
+                    <p><strong>Cantidad Presentación:</strong> <span id="cantidadPresentacionProducto"></span></p>
+                    <p><strong>Unidad de Medida:</strong> <span id="unidadMedidaProducto"></span></p>
+                    <p><strong>Volumen Empaque:</strong> <span id="volumenEmpaqueProducto"></span></p>
+                    <p><strong>Código de Barras:</strong> <span id="codigoDeBarrasProducto"></span></p>
+                    <p><strong>Fecha de Expiración:</strong> <span id="fechaExpiracionProducto"></span></p>
+                    <p><strong>Peso Empaque:</strong> <span id="pesoEmpaqueProducto"></span></p>
+                
+                    <!-- Línea divisoria -->
+                    <hr>
+                
+                    <p><strong>Categoría:</strong> <span id="categoriaProducto"></span></p>
+                    <p><strong>Categoría Código:</strong> <span id="codigoCategoria"></span></p>
+                    <p><strong>Descripción de la Categoría:</strong> <span id="descripcionCategoria"></span></p>
+                    <p><strong>Características de Almacenamiento:</strong> <span id="caracteristicasAlmacenamientoCategoria"></span></p>
+
+
+                <!-- Mensaje de error si el producto no se encuentra -->
+                <div id="mensajeError" class="alert alert-danger mt-3" style="display: none;">
+                    Categoría no encontrada. Por favor, verifique el código o el nombre ingresado.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SuperAndes. Hecho por el increíble Grupo 1.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Función para buscar un producto por identificador o nombre
+        function buscarProducto() {
+            const identificador = document.getElementById('identificador').value;
+            const nombre = document.getElementById('nombre').value;
+            let url = '';
+
+            if (identificador) {
+                url = `/productos/${identificador}`;
+            } else if (nombre) {
+                url = `/productos/nombre/${nombre}`;
+            } else {
+                alert('Por favor, ingrese el identificador o el nombre del producto.');
+                return;
+            }
+
+            // Realizar solicitud AJAX para obtener el producto
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Producto no encontrado');
+                    }
+                })
+                .then(producto => {
+                    // Rellenar el div con la información del producto
+                    document.getElementById('identificadorProducto').textContent = producto.identificador;
+                    document.getElementById('nombreProducto').textContent = producto.nombre;
+                    document.getElementById('costoEnBodegaProducto').textContent = producto.costoEnBodega;
+                    document.getElementById('presentacionProducto').textContent = producto.presentacion;
+                    document.getElementById('cantidadPresentacionProducto').textContent = producto.cantidadPresentacion;
+                    document.getElementById('unidadMedidaProducto').textContent = producto.unidadMedida;
+                    document.getElementById('volumenEmpaqueProducto').textContent = producto.volumenEmpaque;
+                    document.getElementById('codigoDeBarrasProducto').textContent = producto.codigoDeBarras;
+                    document.getElementById('fechaExpiracionProducto').textContent = producto.fechaExpiracion;
+                    document.getElementById('pesoEmpaqueProducto').textContent = producto.pesoEmpaque;
+
+                    document.getElementById('categoriaProducto').textContent = producto.clasificacionCategoria.nombre;
+                    document.getElementById('codigoCategoria').textContent = producto.clasificacionCategoria.codigo;
+                    document.getElementById('descripcionCategoria').textContent = producto.clasificacionCategoria.descripcion;
+                    document.getElementById('caracteristicasAlmacenamientoCategoria').textContent = producto.clasificacionCategoria.caracteristicasAlmacenamiento;
+                    
+
+                    // Mostrar la información y ocultar el mensaje de error
+                    document.getElementById('productoInfo').style.display = 'block';
+                    document.getElementById('mensajeError').style.display = 'none';
+                })
+                .catch(error => {
+                    // Mostrar el mensaje de error si el producto no se encuentra
+                    document.getElementById('productoInfo').style.display = 'none';
+                    document.getElementById('mensajeError').style.display = 'block';
+                });
+        }
+    </script>
+</body>
+
+</html>

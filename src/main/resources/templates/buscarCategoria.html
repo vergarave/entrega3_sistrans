@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Consultar Categoría - SuperAndes</title>
+    <style>
+        :root {
+            --verde-pastel: #b3e5b3;
+            --verde-pastel-oscuro: #8ac48a;
+            --gris-oscuro: #4a4a4a;
+            --gris-claro: #f7f7f7;
+            --blanco: #ffffff;
+        }
+
+        body {
+            background-color: var(--gris-claro);
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: var(--verde-pastel-oscuro);
+        }
+
+        .navbar-brand {
+            color: var(--blanco) !important;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 30px;
+            max-width: 600px;
+        }
+
+        .card {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: var(--verde-pastel);
+            color: var(--verde-pastel-oscuro);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--verde-pastel-oscuro);
+            border: none;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--verde-pastel);
+        }
+
+        footer {
+            background-color: var(--verde-pastel-oscuro);
+            color: var(--blanco);
+            padding: 10px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">SuperAndes</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="text-center my-4">
+            <h1 class="display-6 text-primary">Consultar Categoría</h1>
+        </header>
+
+        <!-- Tarjeta del formulario -->
+        <div class="card">
+            <div class="card-header">
+                Buscar Categoría por Código o Nombre
+            </div>
+            <div class="card-body">
+                <!-- Formulario para buscar una categoría -->
+                <form id="buscarCategoriaForm" action="/categorias/buscar" method="get" class="mb-4">
+                    <div class="mb-3">
+                        <label for="codigo" class="form-label">Código de la Categoría:</label>
+                        <input type="number" class="form-control" id="codigo" name="codigo" placeholder="Ejemplo: 1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre de la Categoría:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escriba todo en mayúsculas. Por ejemplo: NO_PERECEDERO">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="buscarCategoria()">Buscar Categoría</button>
+                </form>
+
+                <!-- Div para mostrar la información de la categoría -->
+                <div id="categoriaInfo" class="alert alert-success" style="display: none;">
+                    <h5>Información de la Categoría</h5>
+                    <p><strong>Código:</strong> <span id="codigoCategoria"></span></p>
+                    <p><strong>Nombre:</strong> <span id="nombreCategoria"></span></p>
+                    <p><strong>Descripción:</strong> <span id="descripcionCategoria"></span></p>
+                    <p><strong>Características de Almacenamiento:</strong> <span id="caracteristicasCategoria"></span></p>
+                </div>
+
+                <!-- Mensaje de error si la categoría no se encuentra -->
+                <div id="mensajeError" class="alert alert-danger mt-3" style="display: none;">
+                    Categoría no encontrada. Por favor, verifique el código o el nombre ingresado.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SuperAndes. Hecho por el increíble Grupo 1.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Función para buscar una categoría por código o nombre
+        function buscarCategoria() {
+            const codigo = document.getElementById('codigo').value;
+            const nombre = document.getElementById('nombre').value;
+            let url = '';
+
+            if (codigo) {
+                url = `/categorias/codigo/${codigo}`;
+            } else if (nombre) {
+                url = `/categorias/nombre/${nombre}`;
+            } else {
+                alert('Por favor, ingrese el código o el nombre de la categoría.');
+                return;
+            }
+
+            // Realizar solicitud AJAX para obtener la categoría
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Categoría no encontrada');
+                    }
+                })
+                .then(categoria => {
+                    // Rellenar el div con la información de la categoría
+                    document.getElementById('codigoCategoria').textContent = categoria.codigo;
+                    document.getElementById('nombreCategoria').textContent = categoria.nombre;
+                    document.getElementById('descripcionCategoria').textContent = categoria.descripcion;
+                    document.getElementById('caracteristicasCategoria').textContent = categoria.caracteristicasAlmacenamiento;
+
+                    // Mostrar la información y ocultar el mensaje de error
+                    document.getElementById('categoriaInfo').style.display = 'block';
+                    document.getElementById('mensajeError').style.display = 'none';
+                })
+                .catch(error => {
+                    // Mostrar el mensaje de error si la categoría no se encuentra
+                    document.getElementById('categoriaInfo').style.display = 'none';
+                    document.getElementById('mensajeError').style.display = 'block';
+                });
+        }
+    </script>
+</body>
+
+</html>
