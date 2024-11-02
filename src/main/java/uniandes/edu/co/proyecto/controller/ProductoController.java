@@ -61,17 +61,34 @@ public class ProductoController {
     }
 
     //Metodo que se encarga de crear un producto
-    @PostMapping("/productos/new/save") //Indica que el metodo se activa cuando se hace una peticion POST a la URL /productos/new/save
-    public ResponseEntity<String> productoGuardar(@RequestBody Producto producto){
-        
-        try{
-            productoRepository.insertarProducto(producto.getNombre(), producto.getCostoEnBodega(), producto.getPresentacion(), producto.getCantidadPresentacion(), producto.getUnidadMedida(), producto.getVolumenEmpaque(), producto.getPesoEmpaque(), producto.getFechaExpiracion(), producto.getCodigoDeBarras(), producto.getClasificacionCategoria().getCodigo());
+    @PostMapping("/productos/new/save") // Indica que el método se activa cuando se hace una petición POST a la URL /productos/new/save
+    public ResponseEntity<String> productoGuardar(@RequestBody Producto producto) {
+        try {
+            // Inserta el producto en la base de datos usando la consulta en el repositorio
+            productoRepository.insertarProducto(
+                producto.getNombre(),
+                producto.getCostoEnBodega(),
+                producto.getPresentacion(),
+                producto.getCantidadPresentacion(),
+                producto.getUnidadMedida(),
+                producto.getVolumenEmpaque(),
+                producto.getPesoEmpaque(),
+                producto.getFechaExpiracion(),
+                producto.getCodigoDeBarras(),
+                producto.getClasificacionCategoria().getCodigo()
+            );
             return new ResponseEntity<>("Producto creado exitosamente", HttpStatus.CREATED);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>("Error al crear el producto", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            e.printStackTrace(); // Imprime el error en la consola para ver detalles
+            return new ResponseEntity<>("Error al crear el producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/productos/filtro")
+    public String mrpdoctosfiltro() {
+        return "filtrarProductos";
+    }
+
 
     // Metodo que se encarga de editar un producto y lanza error si el usuario intenta modificar la fecha de expiración
     @PostMapping("/productos/{identificador}/edit/save")
@@ -117,6 +134,7 @@ public class ProductoController {
 
     //Metodo que se encarga de obtener los productos filtrados por precio, fecha de expiracion, sucursal o categoria
     @GetMapping("productos/filtrados")
+    @ResponseBody       
     public Collection<Producto> productosfiltrados(
         @RequestParam(required = false) Double precioMinU, 
         @RequestParam(required = false) Double precioMaxU,

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import uniandes.edu.co.proyecto.modelo.Categoria;
 import uniandes.edu.co.proyecto.repositorio.CategoriaRepository;
@@ -26,7 +27,8 @@ public class CategoriaController {
     private CategoriaRepository categoriaRepository; //Bean de la interfaz CategoriaRepository
 
     //Metodo que se encarga de devolver todas las categorias
-    @GetMapping("/categorias") //Indica que el metodo se activa cuando se hace una peticion GET a la URL /categorias
+    @GetMapping("/categorias")
+    @ResponseBody //Indica que el metodo se activa cuando se hace una peticion GET a la URL /categorias
     public Collection<Categoria> categoria(){
         return categoriaRepository.darCategorias();
     }

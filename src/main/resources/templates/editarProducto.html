@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Editar Datos de un Producto - SuperAndes</title>
+    <title>Editar Producto - SuperAndes</title>
     <style>
+        /* Paleta de colores */
         :root {
             --verde-pastel: #b3e5b3;
             --verde-pastel-oscuro: #8ac48a;
@@ -86,61 +87,67 @@
 
     <div class="container">
         <header class="text-center my-4">
-            <h1 class="display-6 text-primary">Editar Datos de un Producto</h1>
+            <h1 class="display-6 text-primary">Editar Producto</h1>
         </header>
 
-        <!-- Tarjeta del formulario -->
+        <!-- Tarjeta para buscar y editar producto -->
         <div class="card">
             <div class="card-header">
-                Consultar Producto según su identificador y editar datos
+                Buscar y Editar Producto
             </div>
             <div class="card-body">
-                <!-- Formulario para buscar un producto por id -->
-                <form id="buscarProductoForm" action="/productos/editar" method="get" class="mb-4">
+                <!-- Formulario para buscar un producto por identificador -->
+                <form id="buscarProductoForm" class="mb-4">
                     <div class="mb-3">
-                        <label for="identificador" class="form-label">Ingrese el identificador del Producto:</label>
-                        <input type="text" class="form-control" id="identificador" name="identificador" required placeholder="Ejemplo: 1">
+                        <label for="identificador" class="form-label">Identificador del Producto</label>
+                        <input type="text" class="form-control" id="identificador" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Buscar Producto</button>
                 </form>
 
-                <!-- Formulario para editar datos del producto -->
-                <form id="editarProductoForm" action="" method="post" style="display: none;">
+                <!-- Formulario para editar el producto -->
+                <form id="editarProductoForm" style="display: none;">
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre del Producto:</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" required>
                     </div>
                     <div class="mb-3">
-                        <label for="costoEnBodega" class="form-label">Costo en Bodega:</label>
-                        <input type="number" step="0.01" class="form-control" id="costoEnBodega" name="costoEnBodega" required>
+                        <label for="costoEnBodega" class="form-label">Costo en Bodega</label>
+                        <input type="number" step="0.01" class="form-control" id="costoEnBodega" required>
                     </div>
                     <div class="mb-3">
-                        <label for="presentacion" class="form-label">Presentación:</label>
-                        <input type="text" class="form-control" id="presentacion" name="presentacion" required>
+                        <label for="presentacion" class="form-label">Presentación</label>
+                        <input type="text" class="form-control" id="presentacion" required>
                     </div>
                     <div class="mb-3">
-                        <label for="cantidadPresentacion" class="form-label">Cantidad Presentación:</label>
-                        <input type="number" step="0.01" class="form-control" id="cantidadPresentacion" name="cantidadPresentacion" required>
+                        <label for="cantidadPresentacion" class="form-label">Cantidad Presentación</label>
+                        <input type="number" step="0.01" class="form-control" id="cantidadPresentacion" required>
                     </div>
                     <div class="mb-3">
-                        <label for="unidadMedida" class="form-label">Unidad de Medida:</label>
-                        <input type="text" class="form-control" id="unidadMedida" name="unidadMedida" required>
+                        <label for="unidadMedida" class="form-label">Unidad de Medida</label>
+                        <input type="text" class="form-control" id="unidadMedida" required>
                     </div>
                     <div class="mb-3">
-                        <label for="volumenEmpaque" class="form-label">Volumen del Empaque:</label>
-                        <input type="text" class="form-control" id="volumenEmpaque" name="volumenEmpaque" required>
+                        <label for="volumenEmpaque" class="form-label">Volumen del Empaque</label>
+                        <input type="text" class="form-control" id="volumenEmpaque" required>
                     </div>
                     <div class="mb-3">
-                        <label for="pesoEmpaque" class="form-label">Peso del Empaque:</label>
-                        <input type="text" class="form-control" id="pesoEmpaque" name="pesoEmpaque" required>
+                        <label for="pesoEmpaque" class="form-label">Peso del Empaque</label>
+                        <input type="text" class="form-control" id="pesoEmpaque" required>
                     </div>
                     <div class="mb-3">
-                        <label for="fechaExpiracion" class="form-label">Fecha de Expiración:</label>
-                        <input type="date" class="form-control" id="fechaExpiracion" name="fechaExpiracion" required>
+                        <label for="fechaExpiracion" class="form-label">Fecha de Expiración</label>
+                        <input type="date" class="form-control" id="fechaExpiracion" required disabled>
                     </div>
                     <div class="mb-3">
-                        <label for="codigoDeBarras" class="form-label">Código de Barras:</label>
-                        <input type="text" class="form-control" id="codigoDeBarras" name="codigoDeBarras" required>
+                        <label for="codigoDeBarras" class="form-label">Código de Barras</label>
+                        <input type="text" class="form-control" id="codigoDeBarras" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Categoría</label>
+                        <select class="form-select" id="categoria" required>
+                            <option value="">Seleccione una categoría</option>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                 </form>
@@ -164,7 +171,27 @@
     </footer>
 
     <script>
-        document.getElementById('buscarProductoForm').onsubmit = function (event) {
+        // Cargar categorías disponibles en el campo select
+        function cargarCategorias() {
+            fetch('/categorias')
+                .then(response => response.json())
+                .then(data => {
+                    const selectCategoria = document.getElementById('categoria');
+                    data.forEach(categoria => {
+                        const option = document.createElement('option');
+                        option.value = categoria.codigo;
+                        option.textContent = categoria.nombre;
+                        selectCategoria.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error al cargar categorías:', error));
+        }
+
+        // Cargar categorías al iniciar la página
+        window.onload = cargarCategorias;
+
+        // Buscar el producto y mostrar en el formulario de edición
+        document.getElementById('buscarProductoForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const identificador = document.getElementById('identificador').value;
 
@@ -186,6 +213,7 @@
                     document.getElementById('pesoEmpaque').value = producto.pesoEmpaque;
                     document.getElementById('fechaExpiracion').value = producto.fechaExpiracion;
                     document.getElementById('codigoDeBarras').value = producto.codigoDeBarras;
+                    document.getElementById('categoria').value = producto.clasificacionCategoria.codigo;
 
                     document.getElementById('editarProductoForm').action = `/productos/${identificador}/edit/save`;
                     document.getElementById('editarProductoForm').style.display = 'block';
@@ -195,7 +223,32 @@
                     document.getElementById('editarProductoForm').style.display = 'none';
                     document.getElementById('mensajeError').style.display = 'block';
                 });
-        };
+        });
+
+        // Guardar cambios en el producto
+        document.getElementById('editarProductoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const identificador = document.getElementById('identificador').value;
+            const producto = {
+                nombre: document.getElementById('nombre').value,
+                costoEnBodega: parseFloat(document.getElementById('costoEnBodega').value),
+                presentacion: document.getElementById('presentacion').value,
+                cantidadPresentacion: parseFloat(document.getElementById('cantidadPresentacion').value),
+                unidadMedida: document.getElementById('unidadMedida').value,
+                volumenEmpaque: document.getElementById('volumenEmpaque').value,
+                pesoEmpaque: document.getElementById('pesoEmpaque').value,
+                codigoDeBarras: document.getElementById('codigoDeBarras').value,
+                clasificacionCategoria: { codigo: parseInt(document.getElementById('categoria').value) }
+            };
+
+            fetch(`/productos/${identificador}/edit/save`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(producto)
+            })
+            .then(response => response.ok ? alert("Producto actualizado exitosamente") : alert("Error al actualizar el producto"))
+            .catch(() => alert("Error de conexión"));
+        });
     </script>
 </body>
 </html>
