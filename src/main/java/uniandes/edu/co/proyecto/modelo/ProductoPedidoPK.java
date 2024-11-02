@@ -26,6 +26,9 @@ public class ProductoPedidoPK implements Serializable {
         this.numeroOrdenDeCompra = numeroOrdenDeCompra;
     }
 
+    public ProductoPedidoPK() {
+    }
+
     public Producto getIdentificadorProducto() {
         return identificadorProducto;
     }
