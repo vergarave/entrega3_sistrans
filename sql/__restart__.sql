@@ -44,7 +44,7 @@ CREATE TABLE contiene (
 CREATE TABLE documentos (
     id              INTEGER GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
     id_orden_compra INTEGER NOT NULL,
-    fecha_creación  Date DEFAULT SYSDATE
+    fecha_creacion  Date DEFAULT SYSDATE
 );
 
 CREATE TABLE ofrece (
@@ -750,5 +750,9 @@ VALUES (11, 22, 70, 450000);
 
 INSERT INTO compra (id_orden_compra, id_producto, cantidad, precio_unitario)
 VALUES (12, 23, 55, 580000);
+
+insert into documentos(id_orden_compra) values(4);
+insert into documentos(id_orden_compra) values(5);
+insert into documentos(id_orden_compra) values(6);
 
 commit;
