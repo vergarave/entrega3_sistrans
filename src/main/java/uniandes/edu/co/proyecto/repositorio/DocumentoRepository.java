@@ -10,7 +10,8 @@ import uniandes.edu.co.proyecto.modelo.Documento;
 
 public interface DocumentoRepository extends JpaRepository<Documento,Integer>{
 
-    /** RNF1: Agregar un documento a la tabla documentos
+    /**
+     * RNF1: Agregar un documento a la tabla documentos
      *
      * @param id_orden_compra orden de compra asociada al nuevo documento
      */

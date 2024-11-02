@@ -72,7 +72,7 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
     void anularOrden_compra(@Param("id") Integer id);
 
     /**
-     * SQL : Recupera todos los registros de la tabla 'ordenes_compra'.
+     * Recupera todos los registros de la tabla 'ordenes_compra'.
      *
      * @return Collection de las órdenes de compra encontradas.
      */
@@ -90,7 +90,7 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
     Collection<Object> getAll();
 
     /**
-     * SQL : Recupera el registro de la tabla 'ordenes_compra' cuyo ID coincide con el valor especificado.
+     * RNF6: Obtiene una orden de compra dado su id
      *
      * @param id Identificador de la orden de compra que se quiere encontrar.
      * @return Collection con la orden de compra encontrada.
@@ -123,7 +123,8 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
     )
     Collection<Orden_compra> getLast();
 
-    /**RNF2: Leer los ids de los productos que se compran en una orden de compra
+    /**
+     * RNF2: Leer los ids de los productos que se compran en una orden de compra
      *
      * @param id_orden_compra orden de compra que se quiere observas
      * @return Collection<Integer> Collecton con los productos encontrados asociados a la ordend de compra
@@ -139,9 +140,7 @@ public interface Orden_compraRepository extends JpaRepository<Orden_compra, Inte
     Collection<Integer> getProductos(@Param("id_orden_compra")Integer id_orden_compra);
 
     /**
-     * RF8 : Actualiza el estado de una orden de compra a 'anulada'.
-     * SQL : Actualiza el estado de la orden de compra para
-     *       el registro con el ID especificado.
+     * RFNF7 : Actualiza el estado de una orden de compra a 'entregada'.
      *
      * @param id Identificador de la orden de compra cuya estado va a cambiar.
      */
