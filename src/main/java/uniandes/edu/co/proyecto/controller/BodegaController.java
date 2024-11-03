@@ -30,7 +30,8 @@ public class BodegaController {
     private BodegaRepository bodegaRepository; //Bean de la interfaz BodegaRepository
 
     //Metodo que se encarga de devolver todas las bodegas
-    @GetMapping("/bodegas") //Indica que el metodo se activa cuando se hace una peticion GET a la URL /bodegas
+    @GetMapping("/bodegas") 
+    @ResponseBody //Indica que el metodo se activa cuando se hace una peticion GET a la URL /bodegas
     public Collection<Bodega> bodegas(){
         return bodegaRepository.darBodegas();
     }

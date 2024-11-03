@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Registrar Ingreso de Productos - SuperAndes</title>
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #8ac48a;
+        }
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: bold;
+        }
+        .container {
+            margin-top: 30px;
+            max-width: 800px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #b3e5b3;
+            color: #4a4a4a;
+            font-weight: bold;
+            text-align: center;
+        }
+        footer {
+            background-color: #8ac48a;
+            color: #ffffff;
+            padding: 10px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">SuperAndes</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="text-center my-4">
+            <h1 class="display-6 text-primary">Registrar Ingreso de Productos</h1>
+        </header>
+
+        <!-- Tarjeta del formulario de registro -->
+        <div class="card">
+            <div class="card-header">
+                Formulario de Ingreso de Productos
+            </div>
+            <div class="card-body">
+                <form id="registroIngresoForm">
+                    <div class="mb-3">
+                        <label for="idOrdenCompra" class="form-label">ID de Orden de Compra</label>
+                        <input type="number" class="form-control" id="idOrdenCompra" name="idOrdenCompra" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="idBodega" class="form-label">ID de Bodega</label>
+                        <input type="number" class="form-control" id="idBodega" name="idBodega" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Registrar Ingreso</button>
+                </form>
+                <div id="responseMessage" class="mt-3"></div>
+            </div>
+        </div>
+
+        <!-- Tarjeta para mostrar el documento de ingreso -->
+        <div class="card mt-4" id="documentoIngreso" style="display:none;">
+            <div class="card-header">
+                Documento de Ingreso de Productos
+            </div>
+            <div class="card-body">
+                <h5>Fecha de Ingreso: <span id="fechaIngresoDoc"></span></h5>
+                <h5>Sucursal: <span id="sucursalDoc"></span></h5>
+                <h5>Bodega: <span id="bodegaDoc"></span></h5>
+                <h5>Proveedor: <span id="proveedorDoc"></span></h5>
+
+                <h6 class="mt-4">Productos Ingresados:</h6>
+                <table class="table table-striped">
+                    <thead class="table-success">
+                        <tr>
+                            <th>Nombre del Producto</th>
+                            <th>Precio Unitario</th>
+                            <th>Cantidad Ingresada</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productosIngresoTableBody">
+                        <!-- Filas de productos se llenarán mediante JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SuperAndes. Hecho por el increíble Grupo 1.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('registroIngresoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const params = new URLSearchParams(formData).toString();
+
+            fetch('/ingresoProductos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(Object.fromEntries(formData)),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al registrar ingreso');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('responseMessage').innerText = data.message || "Ingreso registrado exitosamente.";
+
+                // Mostrar el documento de ingreso
+                document.getElementById('fechaIngresoDoc').innerText = new Date().toLocaleDateString();
+                document.getElementById('sucursalDoc').innerText = data.sucursal; // Asegúrate de que esto venga del backend
+                document.getElementById('bodegaDoc').innerText = data.bodega; // Asegúrate de que esto venga del backend
+                document.getElementById('proveedorDoc').innerText = data.proveedor; // Asegúrate de que esto venga del backend
+
+                const productosIngresoTableBody = document.getElementById('productosIngresoTableBody');
+                productosIngresoTableBody.innerHTML = ''; // Limpiar contenido previo
+                data.productos.forEach(producto => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${producto.nombre}</td>
+                        <td>${producto.precioUnitario}</td>
+                        <td>${producto.cantidadIngresada}</td> <!-- Ajuste aquí para que coincida con el campo en backend -->
+                    `;
+                    productosIngresoTableBody.appendChild(row);
+                });
+
+                document.getElementById('documentoIngreso').style.display = 'block'; // Mostrar el documento
+            })
+            .catch(error => {
+                document.getElementById('responseMessage').innerText = "Error: " + error.message;
+                console.error(error);
+            });
+        });
+    </script>
+</body>
+</html>

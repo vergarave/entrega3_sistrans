@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import uniandes.edu.co.proyecto.modelo.OrdenDeCompra;
 import uniandes.edu.co.proyecto.repositorio.OrdenDeCompraRepository;
@@ -64,9 +65,20 @@ public class OrdenDeCompraController {
 
     //Metodo que se encarga de devolver todas las ordenes de compra
     @GetMapping("/ordenesDeCompra")
+    @ResponseBody
     public ResponseEntity<Collection<OrdenDeCompra>> ordenesDeCompra() {
         Collection<OrdenDeCompra> ordenes = ordenDeCompraRepository.darOrdenesDeCompra();
         return new ResponseEntity<>(ordenes, HttpStatus.OK);
+    }
+
+    @GetMapping("/ordenesDeCompra/{numero}")
+    public ResponseEntity<OrdenDeCompra> obtenerOrdenDeCompra(@PathVariable Integer numero) {
+        OrdenDeCompra orden = ordenDeCompraRepository.darOrdenDeCompra(numero);
+        if (orden != null) {
+            return new ResponseEntity<>(orden, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 
