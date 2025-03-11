@@ -2,6 +2,8 @@ package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -10,17 +12,16 @@ public class Medico {
     
     @Id
     private String registroMedico;
-    private String tipoDoc;
-    private Integer numDoc;
-    private String nombre;
     private String especialidad;
+
+    @ManyToOne
+    @JoinColumn(name = "nitIps", referencedColumnName = "nit")
+    private Ips nitIps;
     
-    public Medico(String registroMedico, String tipoDoc, Integer numDoc, String nombre, String especialidad){
+    public Medico(String registroMedico, String especialidad, Ips nitIps){
             this.registroMedico = registroMedico;
-            this.tipoDoc = tipoDoc;
-            this.numDoc = numDoc;
-            this.nombre = nombre;
             this.especialidad = especialidad;
+            this.nitIps = nitIps;
     }
 
     public Medico()
@@ -34,30 +35,6 @@ public class Medico {
         this.registroMedico = registroMedico;
     }
 
-    public String getTipoDoc() {
-        return tipoDoc;
-    }
-
-    public void setTipoDoc(String tipoDoc) {
-        this.tipoDoc = tipoDoc;
-    }
-
-    public Integer getNumDoc() {
-        return numDoc;
-    }
-
-    public void setNumDoc(Integer numDoc) {
-        this.numDoc = numDoc;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getEspecialidad() {
         return especialidad;
     }
@@ -66,6 +43,12 @@ public class Medico {
         this.especialidad = especialidad;
     }
 
-    
+    public Ips getNitIps() {
+        return nitIps;
+    }
+
+    public void setNitIps(Ips nitIps) {
+        this.nitIps = nitIps;
+    }
 
 }

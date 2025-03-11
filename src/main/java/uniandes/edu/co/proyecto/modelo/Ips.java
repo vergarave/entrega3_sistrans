@@ -2,6 +2,8 @@ package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,12 +17,17 @@ public class Ips {
     private String direccion;
     private Integer telefono;
 
-    public Ips(String nit, String nombre, String ciudad, String direccion, Integer telefono){
+    @ManyToOne
+    @JoinColumn(name = "epsNit", referencedColumnName = "nit")
+    private Eps epsNit;
+
+    public Ips(String nit, String nombre, String ciudad, String direccion, Integer telefono, Eps epsNit){
         this.nit = nit;
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.epsNit = epsNit;
     }
 
     public Ips()
@@ -66,6 +73,12 @@ public class Ips {
         this.telefono = telefono;
     }
 
-    
+    public Eps getEpsNit() {
+        return epsNit;
+    }
+
+    public void setEpsNit(Eps epsNit) {
+        this.epsNit = epsNit;
+    }
 
 }

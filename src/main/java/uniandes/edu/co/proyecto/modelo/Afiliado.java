@@ -4,16 +4,13 @@ import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "afiliados")
 public class Afiliado {
-    
-    enum TipoAfiliado{
-        contribuyente,
-        beneficiario
-    }
 
     @Id
     private String tipoDoc;
@@ -24,10 +21,14 @@ public class Afiliado {
     private String ciudad;
     private String direccion;
     private Integer telefono;
-    private TipoAfiliado tipoAfiliado;
+
+    @ManyToOne
+    @JoinColumn(name = "epsAsociada", referencedColumnName = "nit")
+    private Eps epsAsociada;
+ 
 
     public Afiliado(String tipoDoc, Integer numDoc, String nombre, Date fechaNac, String ciudad, String direccion, 
-                            Integer telefono, TipoAfiliado tipoAfiliado){
+                            Integer telefono, Eps epsAsociada){
         this.tipoDoc = tipoDoc;
         this.numDoc = numDoc;
         this.nombre = nombre;
@@ -35,7 +36,7 @@ public class Afiliado {
         this.ciudad = ciudad;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.tipoAfiliado = tipoAfiliado;
+        this.epsAsociada = epsAsociada;
 
     }
 
@@ -98,13 +99,12 @@ public class Afiliado {
         this.telefono = telefono;
     }
 
-    public TipoAfiliado getTipoAfiliado() {
-        return tipoAfiliado;
+    public Eps getEpsAsociada() {
+        return epsAsociada;
     }
 
-    public void setTipoAfiliado(TipoAfiliado tipoAfiliado) {
-        this.tipoAfiliado = tipoAfiliado;
+    public void setEpsAsociada(Eps epsAsociada) {
+        this.epsAsociada = epsAsociada;
     }
 
-    
 }

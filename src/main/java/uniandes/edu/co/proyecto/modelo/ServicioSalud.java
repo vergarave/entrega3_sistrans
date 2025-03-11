@@ -2,6 +2,8 @@ package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,11 +23,16 @@ public class ServicioSalud {
     private String nombre;
     private String descripcion;
     private TipoServicio tipoServicio;
+    
+    @ManyToOne
+    @JoinColumn(name = "ipsOfrecida", referencedColumnName = "nit")
+    private Ips ipsOfrecida;
 
-    public ServicioSalud(String nombre, String descripcion, TipoServicio tipoServicio){
+    public ServicioSalud(String nombre, String descripcion, TipoServicio tipoServicio, Ips ipsOfrecida){
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipoServicio = tipoServicio;
+        this.ipsOfrecida = ipsOfrecida;
     }
 
     public ServicioSalud()
@@ -53,6 +60,14 @@ public class ServicioSalud {
 
     public void setTipoServicio(TipoServicio tipoServicio) {
         this.tipoServicio = tipoServicio;
+    }
+
+    public Ips getIpsOfrecida() {
+        return ipsOfrecida;
+    }
+
+    public void setIpsOfrecida(Ips ipsOfrecida) {
+        this.ipsOfrecida = ipsOfrecida;
     }
 
     
