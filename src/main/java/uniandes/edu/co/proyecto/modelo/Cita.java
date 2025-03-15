@@ -35,17 +35,17 @@ public class Cita {
 
     @ManyToOne
     @JoinColumn(name = "ordenServicio", referencedColumnName = "numero")
-    private OrdenServicio ordenServicio;
+    private OrdenServicio numOrden;
 
     public Cita(Integer id, Date fecha, Time hora, Ips ipsNit, Afiliado tipoDocAfiliado, Afiliado numDocAfiliado, 
-                OrdenServicio ordenServicio) {
+                OrdenServicio numOrden) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.ipsNit = ipsNit;
         this.tipoDocAfiliado = tipoDocAfiliado;
         this.numDocAfiliado = numDocAfiliado;
-        this.ordenServicio = ordenServicio;
+        this.numOrden = numOrden;
     }
 
     public Cita()
@@ -99,12 +99,12 @@ public class Cita {
         this.numDocAfiliado = numDocAfiliado;
     }
 
-    public OrdenServicio getOrdenServicio() {
-        return ordenServicio;
+    public OrdenServicio getNumOrden() {
+        return numOrden;
     }
 
-    public void setOrdenServicio(OrdenServicio ordenServicio) {
-        this.ordenServicio = ordenServicio;
+    public void setnumOrden(OrdenServicio numOrden) {
+        this.numOrden = numOrden;
     }
 
     

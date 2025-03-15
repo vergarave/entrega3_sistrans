@@ -1,8 +1,9 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -15,48 +16,41 @@ public class AfiliadoRelacion {
         beneficiario
     }
 
-    @Id
+    /*@Id
     private String tipoDoc;
     @Id
-    private Integer numDoc;
+    private Integer numDoc;*/
+    @EmbeddedId
+    private AfiliadoPK pk;
+
     private TipoAfiliado tipoAfiliado;
     private String relacionParentesco;
 
     @ManyToOne
-    @JoinColumn(name = "tipoDocRelacionado", referencedColumnName = "tipoDoc")
-    private Afiliado tipoDocRelacionado;
+    @JoinColumns({
+            @JoinColumn(name = "tipoDoc", referencedColumnName = "tipoDoc"),
+            @JoinColumn(name = "numDoc", referencedColumnName = "numDoc")
+    })
+    private Afiliado pkAfiliadoRel;
 
-    @ManyToOne
-    @JoinColumn(name = "tipoNumRelacionado", referencedColumnName = "numDoc")
-    private Afiliado numDocRelacionado;
 
     public AfiliadoRelacion(String tipoDoc, Integer numDoc, TipoAfiliado tipoAfiliado, String relacionParentesco, 
-                            Afiliado tipoDocRelacionado, Afiliado numDocRelacionado){
-        this.tipoDoc = tipoDoc;
-        this.numDoc = numDoc;
+                            Afiliado pkAfiliadoRel){
+        this.pk = new AfiliadoPK(tipoDoc, numDoc);
         this.tipoAfiliado = tipoAfiliado;
         this.relacionParentesco = relacionParentesco;
-        this.tipoDocRelacionado = tipoDocRelacionado;
-        this.numDocRelacionado = numDocRelacionado;
+        this.pkAfiliadoRel = pkAfiliadoRel;
     }
 
     public AfiliadoRelacion()
     {;}
 
-    public String getTipoDoc() {
-        return tipoDoc;
+    public AfiliadoPK getPK() {
+        return pk;
     }
 
-    public void setTipoDoc(String tipoDoc) {
-        this.tipoDoc = tipoDoc;
-    }
-
-    public Integer getNumDoc() {
-        return numDoc;
-    }
-
-    public void setNumDoc(Integer numDoc) {
-        this.numDoc = numDoc;
+    public void setPK(AfiliadoPK pk) {
+        this.pk = pk;
     }
 
     public TipoAfiliado getTipoAfiliado() {
@@ -75,22 +69,12 @@ public class AfiliadoRelacion {
         this.relacionParentesco = relacionParentesco;
     }
 
-    public Afiliado getTipoDocRelacionado() {
-        return tipoDocRelacionado;
+    public Afiliado getPkAfiliadoRel() {
+        return pkAfiliadoRel;
     }
 
-    public void setTipoDocRelacionado(Afiliado tipoDocRelacionado) {
-        this.tipoDocRelacionado = tipoDocRelacionado;
-    }
-
-    public Afiliado getNumDocRelacionado() {
-        return numDocRelacionado;
-    }
-
-    public void setNumDocRelacionado(Afiliado numDocRelacionado) {
-        this.numDocRelacionado = numDocRelacionado;
-    }
-
-    
+    public void setPkAfiliadoRel(Afiliado pkAfiliadoRel) {
+        this.pkAfiliadoRel = pkAfiliadoRel;
+    }  
 
 }

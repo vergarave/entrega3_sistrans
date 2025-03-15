@@ -2,8 +2,9 @@ package uniandes.edu.co.proyecto.modelo;
 
 import java.util.Date;
 
+
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -12,10 +13,14 @@ import jakarta.persistence.Table;
 @Table(name = "afiliados")
 public class Afiliado {
 
-    @Id
+    /*@Id
     private String tipoDoc;
     @Id
-    private Integer numDoc;
+    private Integer numDoc;*/
+
+    @EmbeddedId
+    private AfiliadoPK pk;
+
     private String nombre;
     private Date fechaNac;
     private String ciudad;
@@ -25,12 +30,11 @@ public class Afiliado {
     @ManyToOne
     @JoinColumn(name = "epsAsociada", referencedColumnName = "nit")
     private Eps epsAsociada;
- 
+
 
     public Afiliado(String tipoDoc, Integer numDoc, String nombre, Date fechaNac, String ciudad, String direccion, 
                             Integer telefono, Eps epsAsociada){
-        this.tipoDoc = tipoDoc;
-        this.numDoc = numDoc;
+        this.pk = new AfiliadoPK(tipoDoc, numDoc);
         this.nombre = nombre;
         this.fechaNac = fechaNac;
         this.ciudad = ciudad;
@@ -43,20 +47,12 @@ public class Afiliado {
     public Afiliado()
     {;}
 
-    public String getTipoDoc() {
-        return tipoDoc;
+    public AfiliadoPK getPK() {
+        return pk;
     }
 
-    public void setTipoDoc(String tipoDoc) {
-        this.tipoDoc = tipoDoc;
-    }
-
-    public Integer getNumDoc() {
-        return numDoc;
-    }
-
-    public void setNumDoc(Integer numDoc) {
-        this.numDoc = numDoc;
+    public void setPK(AfiliadoPK pk) {
+        this.pk = pk;
     }
 
     public String getNombre() {
