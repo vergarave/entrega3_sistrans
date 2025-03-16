@@ -2,8 +2,6 @@ package uniandes.edu.co.proyecto.modelo;
 
 import java.util.Date;
 
-
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
