@@ -1,17 +1,21 @@
 package uniandes.edu.co.proyecto.modelo;
 
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "afiliadosrelaciones")
 public class AfiliadoRelacion {
     
-    enum TipoAfiliado{
+    public enum TipoAfiliado{
         contribuyente,
         beneficiario
     }
@@ -23,10 +27,12 @@ public class AfiliadoRelacion {
     @EmbeddedId
     private AfiliadoPK pk;
 
+    @Enumerated(EnumType.STRING)
     private TipoAfiliado tipoAfiliado;
     private String relacionParentesco;
 
     @ManyToOne
+    @MapsId("pkAfiliadoRel")
     @JoinColumns({
             @JoinColumn(name = "tipoDocAf", referencedColumnName = "tipoDoc"),
             @JoinColumn(name = "numDocAf", referencedColumnName = "numDoc")
@@ -76,5 +82,5 @@ public class AfiliadoRelacion {
     public void setPkAfiliadoRel(Afiliado pkAfiliadoRel) {
         this.pkAfiliadoRel = pkAfiliadoRel;
     }
-
+    
 }
