@@ -21,7 +21,7 @@ public interface MedicoPersonalRepository extends JpaRepository<MedicoPersonal, 
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO medicospersonal (registroMedico, tipoDoc, numDoc, nombre) VALUES (proyecto_sequence.nextval, :registroMedico, :tipoDoc, :numDoc, :nombre)", nativeQuery = true)
+    @Query(value = "INSERT INTO medicospersonal (registroMedico, tipoDoc, numDoc, nombre) VALUES (:registroMedico, :tipoDoc, :numDoc, :nombre)", nativeQuery = true)
     void insertarMedicoPersonal(@Param("registroMedico") String registroMedico, @Param("tipoDoc") String tipoDoc, @Param("numDoc") Integer numDoc, @Param("nombre") String nombre);
 
     @Modifying

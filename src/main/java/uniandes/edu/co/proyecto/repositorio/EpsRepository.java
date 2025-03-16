@@ -20,7 +20,7 @@ public interface EpsRepository extends JpaRepository<Eps, String>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO eps (nit, nombre) VALUES(proyecto_sequence.nextval, :nit, :nombre)", nativeQuery = true)
+    @Query(value = "INSERT INTO eps (nit, nombre) VALUES(:nit, :nombre)", nativeQuery = true)
     void insertarEps(@Param("nit") String nit, @Param("nombre") String nombre);
 
     @Modifying

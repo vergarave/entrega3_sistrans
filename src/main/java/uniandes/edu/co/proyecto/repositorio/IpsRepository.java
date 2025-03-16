@@ -21,7 +21,7 @@ public interface IpsRepository extends JpaRepository<Ips, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO ips (nit, nombre, ciudad, direccion, telefono, epsNit) VALUES(proyecto_sequence.nextval, :nit, :nombre, :ciudad, :direccion, :telefono, :epsNit)", nativeQuery = true)
+    @Query(value = "INSERT INTO ips (nit, nombre, ciudad, direccion, telefono, epsNit) VALUES(:nit, :nombre, :ciudad, :direccion, :telefono, :epsNit)", nativeQuery = true)
     void insertarEps(@Param("nit") String nit, @Param("nombre") String nombre, @Param("ciudad") String ciudad, @Param("direccion") String direccion, @Param("telefono") String telefono, @Param("epsNit") Eps epsNit);
 
     @Modifying

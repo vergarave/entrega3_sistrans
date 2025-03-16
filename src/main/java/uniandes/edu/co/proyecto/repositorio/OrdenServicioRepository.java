@@ -25,7 +25,7 @@ public interface OrdenServicioRepository extends JpaRepository<OrdenServicio, In
     //figure out como importar el enum de estado 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO ordenesdeservicio (numero, fecha, estado, tipoAfiliadoReceptor, numAfiliadoReceptor, medicoRemitente, servicioNombre) VALUES (proyecto_sequence.nextval, :numero, :fecha, :estado, :tipoAfiliadoReceptor, :numAfiliadoReceptor, :medicoRemitente, :servicioNombre)", nativeQuery = true)
+    @Query(value = "INSERT INTO ordenesdeservicio (numero, fecha, estado, tipoAfiliadoReceptor, numAfiliadoReceptor, medicoRemitente, servicioNombre) VALUES (proyecto_sequence.nextval, :fecha, :estado, :tipoAfiliadoReceptor, :numAfiliadoReceptor, :medicoRemitente, :servicioNombre)", nativeQuery = true)
     void insertarOrden(@Param("fecha") Date fecha, @Param("estado") String estado, @Param("tipoAfiliadoReceptor") Afiliado tipoAfiliadoReceptor, @Param("numAfiliadoReceptor") Afiliado numAfiliadoReceptor, @Param("medicoRemitente") Medico medicoRemitente, @Param("servicioNombre") ServicioSalud servicioNombre);
     
     @Modifying
