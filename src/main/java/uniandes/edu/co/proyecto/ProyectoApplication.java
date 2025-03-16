@@ -7,14 +7,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import uniandes.edu.co.proyecto.modelo.MedicoPersonal;
-import uniandes.edu.co.proyecto.repositorio.MedicoPersonalRepository;
+import uniandes.edu.co.proyecto.modelo.Eps;
+import uniandes.edu.co.proyecto.repositorio.EpsRepository;
 
 @SpringBootApplication
 public class ProyectoApplication implements CommandLineRunner{
 
 	@Autowired
-	private MedicoPersonalRepository medsPersonalRepo;
+	private EpsRepository epsRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoApplication.class, args);
@@ -22,9 +22,9 @@ public class ProyectoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... arg){
-		Collection<MedicoPersonal> medsPersonal = medsPersonalRepo.darMedicosPersonal();
-		for(MedicoPersonal mp: medsPersonal){
-			System.out.println(mp);
+		Collection<Eps> eps = epsRepo.darEpses();
+		for(Eps e: eps){
+			System.out.println(e);
 		}
 	}
 

@@ -22,15 +22,15 @@ public interface IpsRepository extends JpaRepository<Ips, String> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO ips (nit, nombre, ciudad, direccion, telefono, epsNit) VALUES(:nit, :nombre, :ciudad, :direccion, :telefono, :epsNit)", nativeQuery = true)
-    void insertarEps(@Param("nit") String nit, @Param("nombre") String nombre, @Param("ciudad") String ciudad, @Param("direccion") String direccion, @Param("telefono") String telefono, @Param("epsNit") Eps epsNit);
+    void insertarIps(@Param("nit") String nit, @Param("nombre") String nombre, @Param("ciudad") String ciudad, @Param("direccion") String direccion, @Param("telefono") Integer telefono, @Param("epsNit") Eps epsNit);
 
     @Modifying
     @Transactional
     @Query(value = "UPDATE ips SET nombre = :nombre, ciudad = :ciudad, direccion = :direccion, telefono = :telefono, epsNit = :epsNit WHERE nit = :nit", nativeQuery = true)
-    void actualizarEps(@Param("nit") String nit, @Param("nombre") String nombre, @Param("ciudad") String ciudad, @Param("direccion") String direccion, @Param("telefono") String telefono, @Param("epsNit") Eps epsNit);
+    void actualizarIps(@Param("nit") String nit, @Param("nombre") String nombre, @Param("ciudad") String ciudad, @Param("direccion") String direccion, @Param("telefono") Integer telefono, @Param("epsNit") Eps epsNit);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM ips WHERE nit = :nit", nativeQuery = true)
-    void eliminarEps(@Param("nit") String nit);
+    void eliminarIps(@Param("nit") String nit);
 }
