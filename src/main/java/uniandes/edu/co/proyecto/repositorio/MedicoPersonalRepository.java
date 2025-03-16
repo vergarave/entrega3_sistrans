@@ -31,6 +31,6 @@ public interface MedicoPersonalRepository extends JpaRepository<MedicoPersonal, 
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM medicospersonal WHERE registroMedico = :registroMedico")
+    @Query(value = "DELETE FROM medicospersonal WHERE registroMedico = :registroMedico", nativeQuery = true)
     void eliminarMedicoPersonal(@Param("registroMedico") String registroMedico);
 }
