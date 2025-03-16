@@ -37,9 +37,8 @@ public class Cita {
     @JoinColumn(name = "ordenServicio", referencedColumnName = "numero")
     private OrdenServicio numOrden;
 
-    public Cita(Integer id, Date fecha, Time hora, Ips ipsNit, Afiliado tipoDocAfiliado, Afiliado numDocAfiliado, 
+    public Cita(Date fecha, Time hora, Ips ipsNit, Afiliado tipoDocAfiliado, Afiliado numDocAfiliado, 
                 OrdenServicio numOrden) {
-        this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.ipsNit = ipsNit;

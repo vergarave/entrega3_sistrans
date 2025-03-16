@@ -28,8 +28,8 @@ public class AfiliadoRelacion {
 
     @ManyToOne
     @JoinColumns({
-            @JoinColumn(name = "tipoDoc", referencedColumnName = "tipoDoc"),
-            @JoinColumn(name = "numDoc", referencedColumnName = "numDoc")
+            @JoinColumn(name = "tipoDocAf", referencedColumnName = "tipoDoc"),
+            @JoinColumn(name = "numDocAf", referencedColumnName = "numDoc")
     })
     private Afiliado pkAfiliadoRel;
 
@@ -75,6 +75,6 @@ public class AfiliadoRelacion {
 
     public void setPkAfiliadoRel(Afiliado pkAfiliadoRel) {
         this.pkAfiliadoRel = pkAfiliadoRel;
-    }  
+    }
 
 }

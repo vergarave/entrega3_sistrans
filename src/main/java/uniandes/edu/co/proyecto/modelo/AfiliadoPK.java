@@ -1,10 +1,11 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class AfiliadoPK {
-    
+public class AfiliadoPK implements Serializable{
 
     private String tipoDoc;
     private Integer numDoc;
