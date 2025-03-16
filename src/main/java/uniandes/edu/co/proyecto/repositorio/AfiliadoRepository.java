@@ -12,10 +12,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.Afiliado;
-import uniandes.edu.co.proyecto.modelo.AfiliadoPK;
 
 @Repository
-public interface AfiliadoRepository extends JpaRepository<Afiliado, AfiliadoPK> {
+public interface AfiliadoRepository extends JpaRepository<Afiliado, Integer> {
 
     @Query(value = "SELECT * FROM afiliados", nativeQuery =true)
     Collection<Afiliado> darAfiliados();

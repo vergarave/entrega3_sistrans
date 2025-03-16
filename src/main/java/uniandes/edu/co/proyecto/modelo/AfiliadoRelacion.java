@@ -1,7 +1,7 @@
 package uniandes.edu.co.proyecto.modelo;
 
 
-import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,25 +24,24 @@ public class AfiliadoRelacion {
     private String tipoDoc;
     @Id
     private Integer numDoc;*/
-    @EmbeddedId
-    private AfiliadoPK pk;
-
+    @Id
+    private Integer numDoc;
+    private String tipoDoc;
     @Enumerated(EnumType.STRING)
     private TipoAfiliado tipoAfiliado;
     private String relacionParentesco;
 
     @ManyToOne
     @MapsId("pkAfiliadoRel")
-    @JoinColumns({
-            @JoinColumn(name = "tipoDocAf", referencedColumnName = "tipoDoc"),
-            @JoinColumn(name = "numDocAf", referencedColumnName = "numDoc")
-    })
+    @JoinColumn(name = "pkAfiliadoRel", referencedColumnName = "numDoc")
     private Afiliado pkAfiliadoRel;
 
 
     public AfiliadoRelacion(String tipoDoc, Integer numDoc, TipoAfiliado tipoAfiliado, String relacionParentesco, 
                             Afiliado pkAfiliadoRel){
-        this.pk = new AfiliadoPK(tipoDoc, numDoc);
+        //this.pk = new AfiliadoPK(tipoDoc, numDoc);
+        this.tipoDoc = tipoDoc;
+        this.numDoc = numDoc;
         this.tipoAfiliado = tipoAfiliado;
         this.relacionParentesco = relacionParentesco;
         this.pkAfiliadoRel = pkAfiliadoRel;
@@ -51,16 +50,33 @@ public class AfiliadoRelacion {
     public AfiliadoRelacion()
     {;}
 
-    public AfiliadoPK getPK() {
+    /*public AfiliadoPK getPK() {
         return pk;
     }
 
     public void setPK(AfiliadoPK pk) {
         this.pk = pk;
-    }
+    }*/
+    
 
     public TipoAfiliado getTipoAfiliado() {
         return tipoAfiliado;
+    }
+
+    public Integer getNumDoc() {
+        return numDoc;
+    }
+
+    public void setNumDoc(Integer numDoc) {
+        this.numDoc = numDoc;
+    }
+
+    public String getTipoDoc() {
+        return tipoDoc;
+    }
+
+    public void setTipoDoc(String tipoDoc) {
+        this.tipoDoc = tipoDoc;
     }
 
     public void setTipoAfiliado(TipoAfiliado tipoAfiliado) {

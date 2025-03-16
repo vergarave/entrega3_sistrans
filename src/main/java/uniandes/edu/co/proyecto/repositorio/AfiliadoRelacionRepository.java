@@ -9,10 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.AfiliadoPK;
 import uniandes.edu.co.proyecto.modelo.AfiliadoRelacion;
 
-public interface AfiliadoRelacionRepository extends JpaRepository<AfiliadoRelacion, AfiliadoPK> {
+public interface AfiliadoRelacionRepository extends JpaRepository<AfiliadoRelacion, Integer> {
 
     @Query(value = "SELECT * FROM afiliadosrelaciones", nativeQuery = true)
     Collection<AfiliadoRelacion> darAfiliadoRelaciones();

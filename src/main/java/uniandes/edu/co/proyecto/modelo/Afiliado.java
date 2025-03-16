@@ -4,6 +4,7 @@ import java.util.Date;
 
 
 import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -18,9 +19,12 @@ public class Afiliado {
     @Id
     private Integer numDoc;*/
 
-    @EmbeddedId
-    private AfiliadoPK pk;
+    //@EmbeddedId
+    //private AfiliadoPK pk;
 
+    private String tipoDoc;
+    @Id
+    private Integer numDoc;
     private String nombre;
     private Date fechaNac;
     private String ciudad;
@@ -34,7 +38,9 @@ public class Afiliado {
 
     public Afiliado(String tipoDoc, Integer numDoc, String nombre, Date fechaNac, String ciudad, String direccion, 
                             Integer telefono, Eps epsAsociada){
-        this.pk = new AfiliadoPK(tipoDoc, numDoc);
+        //this.pk = new AfiliadoPK(tipoDoc, numDoc);
+        this.tipoDoc = tipoDoc;
+        this.numDoc = numDoc;
         this.nombre = nombre;
         this.fechaNac = fechaNac;
         this.ciudad = ciudad;
@@ -47,16 +53,32 @@ public class Afiliado {
     public Afiliado()
     {;}
 
-    public AfiliadoPK getPK() {
+    /*public AfiliadoPK getPK() {
         return pk;
     }
 
     public void setPK(AfiliadoPK pk) {
         this.pk = pk;
-    }
-
+    }*/
+    
     public String getNombre() {
         return nombre;
+    }
+
+    public String getTipoDoc() {
+        return tipoDoc;
+    }
+
+    public void setTipoDoc(String tipoDoc) {
+        this.tipoDoc = tipoDoc;
+    }
+
+    public Integer getNumDoc() {
+        return numDoc;
+    }
+
+    public void setNumDoc(Integer numDoc) {
+        this.numDoc = numDoc;
     }
 
     public void setNombre(String nombre) {
