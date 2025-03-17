@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Table(name = "serviciosdesalud")
 public class ServicioSalud {
     
-    enum TipoServicio{
+    public enum TipoServicio{
         consultaGeneral,
         consultaEspecialista,
         consultaControl,

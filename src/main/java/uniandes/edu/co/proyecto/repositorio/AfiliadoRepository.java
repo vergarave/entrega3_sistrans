@@ -19,8 +19,8 @@ public interface AfiliadoRepository extends JpaRepository<Afiliado, Integer> {
     @Query(value = "SELECT * FROM afiliados", nativeQuery =true)
     Collection<Afiliado> darAfiliados();
 
-    @Query(value = "SELECT * FROM afiliados WHERE tipoDoc = :tipoDoc AND numDoc = :numDoc", nativeQuery = true)
-    Optional<Afiliado> darAfiliado(@Param("tipoDoc") String tipoDoc, @Param("numDoc") Integer numDoc);
+    @Query(value = "SELECT * FROM afiliados numDoc = :numDoc", nativeQuery = true)
+    Optional<Afiliado> darAfiliado(@Param("numDoc") Integer numDoc);
     
     @Modifying
     @Transactional
@@ -39,7 +39,7 @@ public interface AfiliadoRepository extends JpaRepository<Afiliado, Integer> {
     @Transactional
     @Query(value = "UPDATE afiliados SET nombre = :nombre, fecha_nac = :fechaNac, ciudad = :ciudad, direccion = :direccion, " +
                     "telefono = :telefono, nit_eps = :nitEps " +
-                    "WHERE tipo_doc = :tipoDoc AND num_doc = :numDoc", nativeQuery = true)
+                    "WHERE num_doc = :numDoc", nativeQuery = true)
     void actualizarAfiliado(@Param("tipoDoc") String tipoDoc, 
                             @Param("numDoc") Integer numDoc, 
                             @Param("nombre") String nombre, 
@@ -51,6 +51,6 @@ public interface AfiliadoRepository extends JpaRepository<Afiliado, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM afiliados WHERE tipo_doc = :tipoDoc AND num_doc = :numDoc", nativeQuery = true)
-    void eliminarAfiliado(@Param("tipoDoc") String tipoDoc, @Param("numDoc") Integer numDoc);
+    @Query(value = "DELETE FROM afiliados WHERE num_doc = :numDoc", nativeQuery = true)
+    void eliminarAfiliado(@Param("numDoc") Integer numDoc);
 }
