@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.OrdenServicio;
@@ -14,6 +15,7 @@ import uniandes.edu.co.proyecto.modelo.Afiliado;
 import uniandes.edu.co.proyecto.modelo.Medico;
 import uniandes.edu.co.proyecto.modelo.ServicioSalud;
 
+@Repository
 public interface OrdenServicioRepository extends JpaRepository<OrdenServicio, Integer>{
 
     @Query(value = "SELECT * FROM ordenesdeservicio", nativeQuery = true)
