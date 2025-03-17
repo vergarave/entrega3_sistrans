@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import uniandes.edu.co.proyecto.modelo.Eps;
 import uniandes.edu.co.proyecto.repositorio.EpsRepository;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 
 

@@ -27,7 +27,7 @@ public interface MedicoRepository extends JpaRepository<Medico, String> {
     @Modifying
     @Transactional
     @Query(value = "UPDATE medicos SET especialidad = :especialidad, nitIps = :nitIps WHERE registroMedico = :registroMedico", nativeQuery = true)
-    void actualizarMedico(@Param("registroMedico") String registroMedico, @Param("especialidad") String especialidad, @Param("nitIps") String nitIps);
+    void actualizarMedico(@Param("registroMedico") String registroMedico, @Param("especialidad") String especialidad, @Param("nitIps") Ips nitIps);
    
     @Modifying
     @Transactional

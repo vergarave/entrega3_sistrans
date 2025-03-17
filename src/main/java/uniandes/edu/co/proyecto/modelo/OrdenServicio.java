@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name = "ordenesdeservicio")
 public class OrdenServicio {
     
-    enum Estado {
+    public enum Estado {
         vigente,
         cancelada,
         completada

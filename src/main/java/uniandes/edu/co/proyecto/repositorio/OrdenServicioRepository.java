@@ -26,15 +26,15 @@ public interface OrdenServicioRepository extends JpaRepository<OrdenServicio, In
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO ordenesdeservicio (numero, fecha, estado, tipoAfiliadoReceptor, numAfiliadoReceptor, medicoRemitente, servicioNombre) VALUES (proyecto_sequence.nextval, :fecha, :estado, :tipoAfiliadoReceptor, :numAfiliadoReceptor, :medicoRemitente, :servicioNombre)", nativeQuery = true)
-    void insertarOrden(@Param("fecha") Date fecha, @Param("estado") String estado, @Param("tipoAfiliadoReceptor") Afiliado tipoAfiliadoReceptor, @Param("numAfiliadoReceptor") Afiliado numAfiliadoReceptor, @Param("medicoRemitente") Medico medicoRemitente, @Param("servicioNombre") ServicioSalud servicioNombre);
+    void insertarOrden(@Param("fecha") Date fecha, @Param("estado") OrdenServicio.Estado estado, @Param("tipoAfiliadoReceptor") Afiliado tipoAfiliadoReceptor, @Param("numAfiliadoReceptor") Afiliado numAfiliadoReceptor, @Param("medicoRemitente") Medico medicoRemitente, @Param("servicioNombre") ServicioSalud servicioNombre);
     
     @Modifying
     @Transactional
     @Query(value = "UPDATE ordenesdeservicio SET fecha = :fecha, estado = :estado, tipoAfiliadoReceptor = :tipoAfiliadoReceptor, numAfiliadoReceptor = :numAfiliadoReceptor, medicoRemitente = :medicoRemitente, servicioNombre = :servicioNombre WHERE numero = :numero", nativeQuery = true)
-    void actualizarOrden(@Param("numero") Integer numero, @Param("fecha") Date fecha, @Param("estado") String estado, @Param("tipoAfiliadoReceptor") Afiliado tipoAfiliadoReceptor, @Param("numAfiliadoReceptor") Afiliado numAfiliadoReceptor, @Param("medicoRemitente") Medico medicoRemitente, @Param("servicioNombre") ServicioSalud servicioNombre);
+    void actualizarOrden(@Param("numero") Integer numero, @Param("fecha") Date fecha, @Param("estado") OrdenServicio.Estado estado, @Param("tipoAfiliadoReceptor") Afiliado tipoAfiliadoReceptor, @Param("numAfiliadoReceptor") Afiliado numAfiliadoReceptor, @Param("medicoRemitente") Medico medicoRemitente, @Param("servicioNombre") ServicioSalud servicioNombre);
   
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM ordenesdeservicio WHERE numero = :numero", nativeQuery = true)
-    void eliminarorden(@Param("numero") Integer numero);
+    void eliminarOrden(@Param("numero") Integer numero);
 }
