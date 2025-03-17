@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import uniandes.edu.co.proyecto.modelo.Eps;
 import uniandes.edu.co.proyecto.modelo.OrdenServicio;
 import uniandes.edu.co.proyecto.repositorio.OrdenServicioRepository;
 
@@ -54,7 +53,7 @@ public class OrdenServicioController {
     public String epsEditarGuardar(@PathVariable("nit") Integer numero, @ModelAttribute OrdenServicio orden) {
         ordenRepo.actualizarOrden(numero, orden.getFecha(), orden.getEstado(), orden.getTipoAfiliadoReceptor(),
                                     orden.getNumAfiliadoReceptor(), orden.getMedicoRemitente(), orden.getServicioNombre());
-        return "redirect:/epses";
+        return "redirect:/ordenes";
     }
 
     @GetMapping("/ordenes/{numero}/delete")
