@@ -37,7 +37,7 @@ public interface AfiliadoRepository extends JpaRepository<Afiliado, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE afiliados SET nombre = :nombre, fecha_nac = :fechaNac, ciudad = :ciudad, direccion = :direccion, " +
+    @Query(value = "UPDATE afiliados SET tipoDoc = :tipoDoc, nombre = :nombre, fecha_nac = :fechaNac, ciudad = :ciudad, direccion = :direccion, " +
                     "telefono = :telefono, nit_eps = :nitEps " +
                     "WHERE num_doc = :numDoc", nativeQuery = true)
     void actualizarAfiliado(@Param("tipoDoc") String tipoDoc, 
