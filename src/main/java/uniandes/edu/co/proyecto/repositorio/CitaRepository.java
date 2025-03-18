@@ -15,28 +15,28 @@ import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.proyecto.modelo.Cita;
 
 @Repository
-public interface CitaRepository extends JpaRepository<Cita, Integer>{
+public interface CitaRepository extends JpaRepository<Cita, Integer> {
 
-    @Query(value = "SELECT * FROM citas", nativeQuery =true)
+    @Query(value = "SELECT * FROM CITAS", nativeQuery = true)
     Collection<Cita> darCitas();
     
-    @Query(value = "SELECT * FROM citas WHERE id = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM CITAS WHERE ID = :id", nativeQuery = true)
     Optional<Cita> darCita(@Param("id") Integer id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO citas (id, fecha, hora, ipsNit, tipoDocAfiliado, numDocAfiliado, ordenServicio) " +
-               "VALUES (proyecto_sequence.nextval, :fecha, :hora, :ipsNit, :tipoDocAfiliado, :numDocAfiliado, :numOrden)", nativeQuery = true)
+    @Query(value = "INSERT INTO CITAS (ID, FECHA, HORA, ATENDIDA_EN, NUMDOCAFILIADO, ORDENSERVICIO) " +
+                   "VALUES (CITAS_SEQ.nextval, :fecha, :hora, :ipsNit, :numDocAfiliado, :numOrden)", nativeQuery = true)
     void insertarCita(@Param("fecha") Date fecha, 
-                    @Param("hora") Time hora, 
-                    @Param("ipsNit") String ipsNit, 
-                    @Param("tipoDocAfiliado") String tipoDocAfiliado, 
-                    @Param("numDocAfiliado") Integer numDocAfiliado, 
-                    @Param("numOrden") Integer numOrden);
+                      @Param("hora") Time hora, 
+                      @Param("ipsNit") String ipsNit,  
+                      @Param("numDocAfiliado") Integer numDocAfiliado, 
+                      @Param("numOrden") Integer numOrden);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE citas SET fecha = :fecha, hora = :hora, ips_nit = :ipsNit, orden_servicio = :numOrden WHERE id = :id",  nativeQuery = true)
+    @Query(value = "UPDATE CITAS SET FECHA = :fecha, HORA = :hora, ATENDIDA_EN = :ipsNit, ORDENSERVICIO = :numOrden " +
+                   "WHERE ID = :id", nativeQuery = true)
     void actualizarCita(@Param("id") Integer id, 
                         @Param("fecha") Date fecha, 
                         @Param("hora") Time hora, 
@@ -45,7 +45,6 @@ public interface CitaRepository extends JpaRepository<Cita, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM citas WHERE id = :id", nativeQuery = true)
+    @Query(value = "DELETE FROM CITAS WHERE ID = :id", nativeQuery = true)
     void eliminarCita(@Param("id") Integer id);
-    
 }

@@ -1,17 +1,17 @@
 package uniandes.edu.co.proyecto.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.modelo.Medico;
 import uniandes.edu.co.proyecto.repositorio.MedicoRepository;
 
-@Controller
+@RestController
 public class MedicoController {
     
     @Autowired
@@ -37,8 +37,8 @@ public class MedicoController {
         
     }
 
-    @GetMapping("/medicos/{registroMedico}/edit")
-    public String medicoEditarForm(@PathVariable("registroMedico") String registroMedico, Model model) {
+    @GetMapping("/medicos/{REGISTRO_MEDICO}/edit")
+    public String medicoEditarForm(@PathVariable("REGISTRO_MEDICO") String registroMedico, Model model) {
         Medico medico = medicoRepo.darMedico(registroMedico);
         if(medico != null) {
             model.addAttribute("medico", medico);
@@ -49,15 +49,15 @@ public class MedicoController {
         }  
     }
 
-    @PostMapping("/medicos/{registroMedico}/edit/save")
-    public String medicoEditarGuardar(@PathVariable("registroMedico") String registroMedico, @ModelAttribute Medico medico) {
+    @PostMapping("/medicos/{REGISTRO_MEDICO}/edit/save")
+    public String medicoEditarGuardar(@PathVariable("REGISTRO_MEDICO") String registroMedico, @ModelAttribute Medico medico) {
         medicoRepo.actualizarMedico(registroMedico, medico.getEspecialidad(), medico.getNitIps());
         
         return "redirect:/medicos";
     }
 
-    @GetMapping("/medicos/{registroMedico}/delete")
-    public String medicoEliminar(@PathVariable("registroMedico") String registroMedico) {
+    @GetMapping("/medicos/{REGISTRO_MEDICO}/delete")
+    public String medicoEliminar(@PathVariable("REGISTRO_MEDICO") String registroMedico) {
         medicoRepo.eliminarMedico(registroMedico);
         return  "redirect:/medicos";
     }    

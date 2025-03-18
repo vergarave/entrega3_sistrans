@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -7,15 +8,18 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "medicos")
+@Table(name = "MEDICOS")
 public class Medico {
     
     @Id
+    @Column(name = "REGISTRO_MEDICO")
     private String registroMedico;
+
+    @Column(name = "ESPECIALIDAD")
     private String especialidad;
 
     @ManyToOne
-    @JoinColumn(name = "nitIps", referencedColumnName = "nit")
+    @JoinColumn(name = "EMPLEADO_POR", referencedColumnName = "NIT")
     private Ips nitIps;
     
     public Medico(String registroMedico, String especialidad, Ips nitIps){

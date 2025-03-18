@@ -13,26 +13,26 @@ import uniandes.edu.co.proyecto.modelo.ServicioSalud;
 
 public interface ServicioSaludRepository extends JpaRepository<ServicioSalud, String>{
 
-    @Query(value = "SELECT * FROM serviciosdesalud", nativeQuery = true)
+    @Query(value = "SELECT * FROM SERVICIOSSALUD", nativeQuery = true)
     Collection<ServicioSalud> darServiciosSalud();
 
-    @Query(value = "SELECT * FROM serviciosdesalud WHERE nombre = :nombre", nativeQuery = true)
+    @Query(value = "SELECT * FROM SERVICIOSSALUD WHERE NOMBRE = :nombre", nativeQuery = true)
     Optional<ServicioSalud> darServicioSalud(@Param("nombre") String nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO serviciosdesalud (nombre, descripcion, tipo_servicio, ips_ofrecida) VALUES (:nombre, :descripcion, :tipoServicio, :ipsOfrecida)", nativeQuery = true)
+    @Query(value = "INSERT INTO SERVICIOSSALUD (NOMBRE, DESCRIPCION, TIPO, IPS_OFRECIDA) VALUES (:nombre, :descripcion, :tipoServicio, :ipsOfrecida)", nativeQuery = true)
     void insertarServicioSalud(@Param("nombre") String nombre, @Param("descripcion") String descripcion, 
                                @Param("tipoServicio") String tipoServicio, @Param("ipsOfrecida") String ipsOfrecida);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE serviciosdesalud SET descripcion = :descripcion, tipo_servicio = :tipoServicio, ips_ofrecida = :ipsOfrecida WHERE nombre = :nombre", nativeQuery = true)
+    @Query(value = "UPDATE SERVICIOSSALUD SET DESCRIPCION = :descripcion, TIPO = :tipoServicio, IPS_OFRECIDA = :ipsOfrecida WHERE NOMBRE = :nombre", nativeQuery = true)
     void actualizarServicioSalud(@Param("nombre") String nombre, @Param("descripcion") String descripcion, 
                                 @Param("tipoServicio") String tipoServicio, @Param("ipsOfrecida") String ipsOfrecida);
     
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM serviciosdesalud WHERE nombre = :nombre", nativeQuery = true)
+    @Query(value = "DELETE FROM SERVICIOSSALUD WHERE NOMBRE = :nombre", nativeQuery = true)
     void eliminarServicioSalud(@Param("nombre") String nombre);
 }

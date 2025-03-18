@@ -1,14 +1,19 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "eps")
+@Table(name = "EPS")
 public class Eps {
+    
     @Id
+    @Column(name = "NIT")
     private String nit;
+
+    @Column(name = "NOMBRE")
     private String nombre;
 
     public Eps(String nit, String nombre) {

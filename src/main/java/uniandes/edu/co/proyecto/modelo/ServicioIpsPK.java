@@ -3,42 +3,38 @@ package uniandes.edu.co.proyecto.modelo;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Embeddable
 public class ServicioIpsPK implements Serializable{
     
-    @ManyToOne
-    @JoinColumn(name = "nombreServicio", referencedColumnName = "nombre")
-    private ServicioSalud nombreServicio;
+    @Column(name = "NOMBRESERVICIO")
+    private String nombreServicio;
 
-    @ManyToOne
-    @JoinColumn(name = "nitIps", referencedColumnName = "nit")
-    private Ips nitIps;
+    @Column(name = "NITIPS")
+    private String nitIps;
 
-    public ServicioIpsPK() {
-    }
+    public ServicioIpsPK() {;}
 
-    public ServicioIpsPK(ServicioSalud nombreServicio, Ips nitIps) {
+    public ServicioIpsPK(String nombreServicio, String nitIps) {
         this.nombreServicio = nombreServicio;
         this.nitIps = nitIps;
     }
 
-    public ServicioSalud getNombreServicio() {
+    public String getNombreServicio() {
         return nombreServicio;
     }
 
-    public void setNombreServicio(ServicioSalud nombreServicio) {
+    public void setNombreServicio(String nombreServicio) {
         this.nombreServicio = nombreServicio;
     }
 
-    public Ips getNitIps() {
+    public String getNitIps() {
         return nitIps;
     }
 
-    public void setNitIps(Ips nitIps) {
+    public void setNitIps(String nitIps) {
         this.nitIps = nitIps;
     }
 

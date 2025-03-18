@@ -3,34 +3,43 @@ package uniandes.edu.co.proyecto.modelo;
 import java.util.Date;
 
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "afiliados")
+@Table(name = "AFILIADOS")
 public class Afiliado {
 
-    /*@Id
-    private String tipoDoc;
     @Id
-    private Integer numDoc;*/
-
-    //@EmbeddedId
-    //private AfiliadoPK pk;
-
-    private String tipoDoc;
-    @Id
+    @Column(name = "NUMERO_DOCUMENTO")
     private Integer numDoc;
+
+    @Column(name = "TIPO_DOCUMENTO")
+    private String tipoDoc;
+
+    @Column(name = "NOMBRE")
     private String nombre;
+
+    @Column(name = "FECHA_NACIMIENTO")
+    @Temporal(TemporalType.DATE)
     private Date fechaNac;
+    
+    @Column(name = "CIUDAD")
     private String ciudad;
+
+    @Column(name = "DIRECCION")
     private String direccion;
+
+    @Column(name = "TELEFONO")
     private Integer telefono;
 
     @ManyToOne
-    @JoinColumn(name = "epsAsociada", referencedColumnName = "nit")
+    @JoinColumn(name = "EPS", referencedColumnName = "NIT")
     private Eps epsAsociada;
 
 

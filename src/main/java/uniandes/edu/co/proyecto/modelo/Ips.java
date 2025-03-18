@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -7,18 +8,27 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "ips")
+@Table(name = "IPS")
 public class Ips {
     
     @Id
+    @Column(name = "NIT")
     private String nit;
+
+    @Column(name = "NOMBRE")
     private String nombre;
+
+    @Column(name = "CIUDAD")
     private String ciudad;
+
+    @Column(name = "DIRECCION")
     private String direccion;
+
+    @Column(name = "TELEFONO")
     private Integer telefono;
 
     @ManyToOne
-    @JoinColumn(name = "epsNit", referencedColumnName = "nit")
+    @JoinColumn(name = "EPS_NIT", referencedColumnName = "NIT")
     private Eps epsNit;
 
     public Ips(String nit, String nombre, String ciudad, String direccion, Integer telefono, Eps epsNit){

@@ -15,24 +15,24 @@ import uniandes.edu.co.proyecto.modelo.Medico;
 @Repository
 public interface MedicoRepository extends JpaRepository<Medico, String> {
     
-    @Query(value = "SELECT * FROM medicos", nativeQuery = true)
+    @Query(value = "SELECT * FROM MEDICOS", nativeQuery = true)
     Collection<Medico> darMedicos();
 
-    @Query(value = "SELECT * FROM medicos WHERE registroMedico = :registroMedico", nativeQuery = true)
+    @Query(value = "SELECT * FROM MEDICOS WHERE REGISTRO_MEDICO = :registroMedico", nativeQuery = true)
     Medico darMedico(@Param("registroMedico") String registroMedico);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO medicos (registroMedico, especialidad, nitIps) VALUES(:registroMedico, :especialidad, :nitIps)", nativeQuery = true)
+    @Query(value = "INSERT INTO MEDICOS (REGISTRO_MEDICO, ESPECIALIDAD, EMPLEADO_POR) VALUES(:registroMedico, :especialidad, :nitIps)", nativeQuery = true)
     void insertarMedico(@Param("registroMedico") String registroMedico, @Param("especialidad") String especialidad, @Param("nitIps") Ips nitIps);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE medicos SET especialidad = :especialidad, nitIps = :nitIps WHERE registroMedico = :registroMedico", nativeQuery = true)
+    @Query(value = "UPDATE MEDICOS SET ESPECIALIDAD = :especialidad, EMPLEADO_POR = :nitIps WHERE REGISTRO_MEDICO = :registroMedico", nativeQuery = true)
     void actualizarMedico(@Param("registroMedico") String registroMedico, @Param("especialidad") String especialidad, @Param("nitIps") Ips nitIps);
    
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM medicos WHERE registroMedico = :registroMedico", nativeQuery = true)
+    @Query(value = "DELETE FROM MEDICOS WHERE REGISTRO_MEDICO = :registroMedico", nativeQuery = true)
     void eliminarMedico(@Param("registroMedico") String registroMedico);
 }

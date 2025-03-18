@@ -1,0 +1,23 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "sqltools.connections": [
+        {
+            "oracleOptions": {
+                "privilege": "Normal",
+                "thickMode": false,
+                "autoCommit": false,
+                "lowerCase": false,
+                "limitPrefetchRows": false
+            },
+            "previewLimit": 50,
+            "server": "fn4.oracle.virtual.uniandes.edu.co",
+            "port": 1521,
+            "askForPassword": true,
+            "driver": "Oracle",
+            "name": "Oracle-DB",
+            "database": "PROD",
+            "username": "ISIS2304D06202510"
+        }
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
+}

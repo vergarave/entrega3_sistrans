@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Afiliados</title>
+</head>
+<body>
+    <h1>Lista de Afiliados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="afiliado : ${afiliados}">
+                <td th:text="${afiliado.nombre}">Nombre</td>
+                <td th:text="${afiliado.numeroDocumento}">Documento</td>
+                <td th:text="${afiliado.tipo}">Tipo</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

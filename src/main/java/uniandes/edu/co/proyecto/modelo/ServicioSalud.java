@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -7,7 +8,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "serviciosdesalud")
+@Table(name = "SERVICIOSSALUD")
 public class ServicioSalud {
     
     public enum TipoServicio{
@@ -20,10 +21,16 @@ public class ServicioSalud {
     }
 
     @Id
+    @Column(name = "NOMBRE")
     private String nombre;
+
+    @Column(name = "DESCRIPCION")
     private String descripcion;
+
+    @Column(name = "TIPO")
     private TipoServicio tipoServicio;
     
+    //TODO many to one
     @ManyToOne
     @JoinColumn(name = "ipsOfrecida", referencedColumnName = "nit")
     private Ips ipsOfrecida;

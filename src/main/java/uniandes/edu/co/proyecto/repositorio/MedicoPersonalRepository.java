@@ -14,24 +14,24 @@ import uniandes.edu.co.proyecto.modelo.MedicoPersonal;
 @Repository
 public interface MedicoPersonalRepository extends JpaRepository<MedicoPersonal, String>{
 
-    @Query(value = "SELECT * FROM medicospersonal", nativeQuery = true)
+    @Query(value = "SELECT * FROM MEDICOSPERSONAL", nativeQuery = true)
     Collection<MedicoPersonal> darMedicosPersonal();
 
-    @Query(value = "SELECT * FROM medicospersonal WHERE registroMedico = :registroMedico", nativeQuery = true)
+    @Query(value = "SELECT * FROM MEDICOSPERSONAL WHERE REGISTRO_MEDICO = :registroMedico", nativeQuery = true)
     MedicoPersonal darMedicoPersonal(@Param("registroMedico") String registroMedico);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO medicospersonal (registroMedico, tipoDoc, numDoc, nombre) VALUES (:registroMedico, :tipoDoc, :numDoc, :nombre)", nativeQuery = true)
+    @Query(value = "INSERT INTO MEDICOSPERSONAL (REGISTRO_MEDICO, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, NOMBRE) VALUES (:registroMedico, :tipoDoc, :numDoc, :nombre)", nativeQuery = true)
     void insertarMedicoPersonal(@Param("registroMedico") String registroMedico, @Param("tipoDoc") String tipoDoc, @Param("numDoc") Integer numDoc, @Param("nombre") String nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE medicospersonal SET tipoDoc = :tipoDoc, numDoc = :numDoc, nombre = :nombre WHERE registroMedico = :registroMedico", nativeQuery = true)
+    @Query(value = "UPDATE MEDICOSPERSONAL SET TIPO_DOCUMENTO = :tipoDoc, NUMERO_DOCUMENTO = :numDoc, NOMBRE = :nombre WHERE REGISTRO_MEDICO = :registroMedico", nativeQuery = true)
     void actualizarMedicoPersonal(@Param("registroMedico") String registroMedico, @Param("tipoDoc") String tipoDoc, @Param("numDoc") Integer numDoc, @Param("nombre") String nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM medicospersonal WHERE registroMedico = :registroMedico", nativeQuery = true)
+    @Query(value = "DELETE FROM MEDICOSPERSONAL WHERE REGISTRO_MEDICO = :registroMedico", nativeQuery = true)
     void eliminarMedicoPersonal(@Param("registroMedico") String registroMedico);
 }

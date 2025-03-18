@@ -2,7 +2,7 @@ package uniandes.edu.co.proyecto.modelo;
 
 import java.sql.Time;
 import java.util.Date;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,35 +10,41 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "citas")
+@Table(name = "CITAS")
 public class Cita {
-   
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private Integer id;
+
+    @Column(name = "FECHA")
+    @Temporal(TemporalType.DATE)
     private Date fecha;
+
+    @Column(name = "HORA")
     private Time hora;
 
     @ManyToOne
-    @JoinColumn(name = "ipsNit", referencedColumnName = "nit")
+    @JoinColumn(name = "ATENDIDA_EN", referencedColumnName = "NIT")
     private Ips ipsNit;
 
-    @ManyToOne
-    @JoinColumn(name = "tipoDocAfiliado", referencedColumnName = "tipoDoc")
-    private Afiliado tipoDocAfiliado;
+    @Column(name = "TIPODOCAFILIADO")
+    private String tipoDocAfiliado;
 
     @ManyToOne
-    @JoinColumn(name = "numDocAfiliado", referencedColumnName = "numDoc")
+    @JoinColumn(name = "NUMDOCAFILIADO", referencedColumnName = "NUMERO_DOCUMENTO")
     private Afiliado numDocAfiliado;
 
     @ManyToOne
-    @JoinColumn(name = "ordenServicio", referencedColumnName = "numero")
+    @JoinColumn(name = "ORDENSERVICIO", referencedColumnName = "NUMERO")
     private OrdenServicio numOrden;
 
-    public Cita(Date fecha, Time hora, Ips ipsNit, Afiliado tipoDocAfiliado, Afiliado numDocAfiliado, 
-                OrdenServicio numOrden) {
+    public Cita(Date fecha, Time hora, Ips ipsNit, String tipoDocAfiliado, Afiliado numDocAfiliado, OrdenServicio numOrden) {
         this.fecha = fecha;
         this.hora = hora;
         this.ipsNit = ipsNit;
@@ -47,8 +53,9 @@ public class Cita {
         this.numOrden = numOrden;
     }
 
-    public Cita()
-    {;}
+    public Cita() {
+        // Default constructor
+    }
 
     public Integer getId() {
         return id;
@@ -82,11 +89,11 @@ public class Cita {
         this.ipsNit = ipsNit;
     }
 
-    public Afiliado getTipoDocAfiliado() {
+    public String getTipoDocAfiliado() {
         return tipoDocAfiliado;
     }
 
-    public void setTipoDocAfiliado(Afiliado tipoDocAfiliado) {
+    public void setTipoDocAfiliado(String tipoDocAfiliado) {
         this.tipoDocAfiliado = tipoDocAfiliado;
     }
 
@@ -102,9 +109,7 @@ public class Cita {
         return numOrden;
     }
 
-    public void setnumOrden(OrdenServicio numOrden) {
+    public void setNumOrden(OrdenServicio numOrden) {
         this.numOrden = numOrden;
     }
-
-    
 }

@@ -2,16 +2,23 @@ package uniandes.edu.co.proyecto.modelo;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "ordenesdeservicio")
+@SequenceGenerator(name = "ordenServicioSeq", sequenceName = "ORDENESSERVICIO_SEQ", allocationSize = 1)
+@Table(name = "ORDENESSERVICIO")
 public class OrdenServicio {
     
     public enum Estado {
@@ -20,35 +27,42 @@ public class OrdenServicio {
         completada
     }
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ordenServicioSeq")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "NUMERO")
     private Integer numero;
+
+    @Column(name = "FECHA")
+    @Temporal(TemporalType.DATE)
     private Date fecha;
+
+    @Column(name = "ESTADO")
+    @Enumerated(EnumType.STRING)
     private Estado estado;
 
-    @ManyToOne
-    @JoinColumn(name = "tipoAfiliadoReceptor", referencedColumnName = "tipoDoc")
-    private Afiliado tipoAfiliadoReceptor;
+    // @ManyToOne
+    // @JoinColumn(name = "tipoAfiliadoReceptor", referencedColumnName = "tipoDoc")
+    // private Afiliado tipoAfiliadoReceptor;
 
     @ManyToOne
-    @JoinColumn(name = "numAfiliadoReceptor", referencedColumnName = "numDoc")
+    @JoinColumn(name = "AFILIADO_RECEPTOR_NUM", referencedColumnName = "NUMERO_DOCUMENTO")
     private Afiliado numAfiliadoReceptor;
 
     @ManyToOne
-    @JoinColumn(name = "medicoRemitente", referencedColumnName = "registroMedico")
+    @JoinColumn(name = "MEDICO_REMITENTE", referencedColumnName = "REGISTRO_MEDICO")
     private Medico medicoRemitente;
 
     @ManyToOne
-    @JoinColumn(name = "servicioNombre", referencedColumnName = "nombre")
+    @JoinColumn(name = "SERVICIO_SALUD", referencedColumnName = "NOMBRE")
     private ServicioSalud servicioNombre;
 
 
-    public OrdenServicio(Integer numero, Date fecha, Estado estado, Afiliado tipoAfiliadoReceptor, 
+    public OrdenServicio(Date fecha, Estado estado, 
                         Afiliado numAfiliadoReceptor, Medico medicoRemitente, ServicioSalud servicioNombre){
-        this.numero = numero;
+        //this.numero = numero; Eliminado pq la secuencia lo genera automaticamente
         this.fecha = fecha;
         this.estado = estado;
-        this.tipoAfiliadoReceptor = tipoAfiliadoReceptor;
+        // this.tipoAfiliadoReceptor = tipoAfiliadoReceptor;
         this.numAfiliadoReceptor = numAfiliadoReceptor;
         this.medicoRemitente = medicoRemitente;
         this.servicioNombre = servicioNombre;
@@ -81,13 +95,13 @@ public class OrdenServicio {
         this.estado = estado;
     }
 
-    public Afiliado getTipoAfiliadoReceptor() {
-        return tipoAfiliadoReceptor;
-    }
+    // public Afiliado getTipoAfiliadoReceptor() {
+    //     return tipoAfiliadoReceptor;
+    // }
 
-    public void setTipoAfiliadoReceptor(Afiliado tipoAfiliadoReceptor) {
-        this.tipoAfiliadoReceptor = tipoAfiliadoReceptor;
-    }
+    // public void setTipoAfiliadoReceptor(Afiliado tipoAfiliadoReceptor) {
+    //     this.tipoAfiliadoReceptor = tipoAfiliadoReceptor;
+    // }
 
     public Afiliado getNumAfiliadoReceptor() {
         return numAfiliadoReceptor;

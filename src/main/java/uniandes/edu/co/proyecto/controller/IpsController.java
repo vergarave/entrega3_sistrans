@@ -1,7 +1,6 @@
 package uniandes.edu.co.proyecto.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import uniandes.edu.co.proyecto.modelo.Ips;
@@ -10,9 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+@RestController
 public class IpsController {
     
     @Autowired
@@ -36,8 +36,8 @@ public class IpsController {
         return "redirect:/ipses"; 
     }
 
-    @GetMapping("/ipses/{nit}/edit")
-    public String ipsEditarForm(@PathVariable("nit") String nit, Model model) {
+    @GetMapping("/ipses/{NIT}/edit")
+    public String ipsEditarForm(@PathVariable("NIT") String nit, Model model) {
         Ips ips = ipsRepo.darIps(nit);
         if(ips != null) {
             model.addAttribute("ips", ips);
@@ -48,15 +48,15 @@ public class IpsController {
         }  
     }
 
-    @PostMapping("/ipses/{nit}/edit/save")
-    public String ipsEditarGuardar(@PathVariable("nit") String nit, @ModelAttribute Ips ips) {
+    @PostMapping("/ipses/{NIT}/edit/save")
+    public String ipsEditarGuardar(@PathVariable("NIT") String nit, @ModelAttribute Ips ips) {
         ipsRepo.actualizarIps(nit, ips.getNombre(), ips.getCiudad(), ips.getDireccion(), ips.getTelefono(), ips.getEpsNit());
         
         return "redirect:/ipses";
     }
 
-    @GetMapping("/ipses/{nit}/delete")
-    public String epsEliminar(@PathVariable("nit") String nit) {
+    @GetMapping("/ipses/{NIT}/delete")
+    public String epsEliminar(@PathVariable("NIT") String nit) {
         ipsRepo.eliminarIps(nit);
         return  "redirect:/ipses";
     }

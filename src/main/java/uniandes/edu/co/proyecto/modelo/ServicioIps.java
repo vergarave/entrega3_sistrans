@@ -2,17 +2,32 @@ package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "serviciosips")
+@Table(name = "SERVICIOSIPS")
 public class ServicioIps {
     
     @EmbeddedId
     private ServicioIpsPK pk;
     
-    public ServicioIps(ServicioSalud nombreServicio, Ips nitIps){
-        this.pk = new ServicioIpsPK(nombreServicio, nitIps);
+    @ManyToOne
+    @MapsId("nombreServicio")
+    @JoinColumn(name = "NOMBRESERVICIO", referencedColumnName = "NOMBRE")
+    private ServicioSalud servicioSalud;
+
+    @ManyToOne
+    @MapsId("nitIps")
+    @JoinColumn(name = "NITIPS", referencedColumnName = "NIT")
+    private Ips ips;
+
+    public ServicioIps(ServicioSalud servicioSalud, Ips ips) {
+        this.pk = new ServicioIpsPK(servicioSalud.getNombre(), ips.getNit());
+        this.servicioSalud = servicioSalud;
+        this.ips = ips;
     }
 
     public ServicioIps()

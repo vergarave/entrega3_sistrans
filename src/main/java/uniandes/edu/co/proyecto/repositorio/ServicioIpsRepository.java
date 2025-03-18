@@ -16,25 +16,25 @@ import uniandes.edu.co.proyecto.modelo.ServicioIpsPK;
 @Repository
 public interface ServicioIpsRepository extends JpaRepository<ServicioIps, ServicioIpsPK> {
 
-    @Query(value = "SELECT * FROM serviciosips", nativeQuery =true)
+    @Query(value = "SELECT * FROM SERVICIOSIPS", nativeQuery = true)
     Collection<ServicioIps> darServiciosIps();
 
-    @Query(value = "SELECT * FROM serviciosips WHERE nombre_servicio = :nombreServicio AND nit_ips = :nitIps", nativeQuery = true)
+    @Query(value = "SELECT * FROM SERVICIOSIPS WHERE NOMBRESERVICIO = :nombreServicio AND NITIPS = :nitIps", nativeQuery = true)
     Optional<ServicioIps> darServicioIps(@Param("nombreServicio") String nombreServicio, @Param("nitIps") String nitIps);
     
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO serviciosips (nombre_servicio, nit_ips) VALUES (:nombreServicio, :nitIps)", nativeQuery = true)
+    @Query(value = "INSERT INTO SERVICIOSIPS (NOMBRESERVICIO, NITIPS) VALUES (:nombreServicio, :nitIps)", nativeQuery = true)
     void insertarServicioIps(@Param("nombreServicio") String nombreServicio, @Param("nitIps") String nitIps);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM serviciosips WHERE nombre_servicio = :nombreServicio AND nit_ips = :nitIps", nativeQuery = true)
+    @Query(value = "DELETE FROM SERVICIOSIPS WHERE NOMBRESERVICIO = :nombreServicio AND NITIPS = :nitIps", nativeQuery = true)
     void eliminarServicioIps(@Param("nombreServicio") String nombreServicio, @Param("nitIps") String nitIps);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE serviciosips SET nombre_servicio = :nuevoNombreServicio WHERE nombre_servicio = :nombreServicio AND nit_ips = :nitIps", nativeQuery = true)
+    @Query(value = "UPDATE SERVICIOSIPS SET NOMBRESERVICIO = :nuevoNombreServicio WHERE NOMBRESERVICIO = :nombreServicio AND NITIPS = :nitIps", nativeQuery = true)
     void actualizarServicioIps(@Param("nombreServicio") String nombreServicio, @Param("nitIps") String nitIps, @Param("nuevoNombreServicio") String nuevoNombreServicio);
 
 }

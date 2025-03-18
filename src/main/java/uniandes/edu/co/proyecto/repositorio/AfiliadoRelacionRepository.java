@@ -11,37 +11,34 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.AfiliadoRelacion;
+import uniandes.edu.co.proyecto.modelo.AfiliadosRelacionadosPK;
 
 @Repository
-public interface AfiliadoRelacionRepository extends JpaRepository<AfiliadoRelacion, Integer> {
+public interface AfiliadoRelacionRepository extends JpaRepository<AfiliadoRelacion, AfiliadosRelacionadosPK> {
 
-    @Query(value = "SELECT * FROM afiliadosrelaciones", nativeQuery = true)
+    @Query(value = "SELECT * FROM AFILIADOSRELACIONADOS", nativeQuery = true)
     Collection<AfiliadoRelacion> darAfiliadoRelaciones();
 
-    @Query(value = "SELECT * FROM afiliadosrelaciones WHERE numDoc = :numDoc", nativeQuery = true)
-    Optional<AfiliadoRelacion> darAfiliadoRelacion(@Param("numDoc") Integer numDoc);
+    @Query(value = "SELECT * FROM AFILIADOSRELACIONADOS WHERE NUMERO_DOCUMENTO = :numDoc AND AFILIADO_RELACIONADO_NUM = :relacionadoNum", nativeQuery = true)
+    Optional<AfiliadoRelacion> darAfiliadoRelacion(@Param("numDoc") Integer numDoc, @Param("relacionadoNum") Integer relacionadoNum);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO afiliadosrelaciones (tipoDoc, numDoc, tipoAfiliado, relacionParentesco) " +
-               "VALUES (:tipoDoc, :numDoc, :tipoAfiliado, :relacionParentesco)", nativeQuery = true)
-    void insertarAfiliadoRelacion(@Param("tipoDoc") String tipoDoc, 
-                              @Param("numDoc") Integer numDoc, 
-                              @Param("tipoAfiliado") String tipoAfiliado, 
-                              @Param("relacionParentesco") String relacionParentesco);
+    @Query(value = "INSERT INTO AFILIADOSRELACIONADOS (NUMERO_DOCUMENTO, AFILIADO_RELACIONADO_NUM, TIPO, RELACION_PARENTESCO) " +
+               "VALUES (:numDoc, :relacionadoNum, :tipoAfiliado, :relacionParentesco)", nativeQuery = true)
+    void insertarAfiliadoRelacion(@Param("numDoc") Integer numDoc, @Param("relacionadoNum") Integer relacionadoNum,
+               @Param("tipoAfiliado") String tipoAfiliado, @Param("relacionParentesco") String relacionParentesco);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE afiliadosrelaciones SET tipoAfiliado = :tipoAfiliado, relacionParentesco = :relacionParentesco " +
-                  "WHERE numDoc = :numDoc", nativeQuery = true)
-    void actualizarAfiliadoRelacion(@Param("numDoc") Integer numDoc, 
-                                @Param("tipoAfiliado") String tipoAfiliado, 
-                                @Param("relacionParentesco") String relacionParentesco);
+    @Query(value = "UPDATE AFILIADOSRELACIONADOS SET TIPO = :tipoAfiliado, RELACION_PARENTESCO = :relacionParentesco " +
+    "WHERE NUMERO_DOCUMENTO = :numDoc AND AFILIADO_RELACIONADO_NUM = :relacionadoNum", nativeQuery = true)
+    void actualizarAfiliadoRelacion(@Param("numDoc") Integer numDoc, @Param("relacionadoNum") Integer relacionadoNum,
+                      @Param("tipoAfiliado") String tipoAfiliado, @Param("relacionParentesco") String relacionParentesco);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM afiliadosrelaciones WHERE numDoc = :numDoc", 
-       nativeQuery = true)
-    void eliminarAfiliadoRelacion(@Param("numDoc") Integer numDoc);
+    @Query(value = "DELETE FROM AFILIADOSRELACIONADOS WHERE NUMERO_DOCUMENTO = :numDoc AND AFILIADO_RELACIONADO_NUM = :relacionadoNum", nativeQuery = true)
+    void eliminarAfiliadoRelacion(@Param("numDoc") Integer numDoc, @Param("relacionadoNum") Integer relacionadoNum);
     
 }

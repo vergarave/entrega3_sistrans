@@ -3,17 +3,17 @@ package uniandes.edu.co.proyecto.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.modelo.ServicioSalud;
 import uniandes.edu.co.proyecto.repositorio.ServicioSaludRepository;
 
-@Controller
+@RestController
 public class ServicioSaludController {
 
     @Autowired
@@ -39,8 +39,8 @@ public class ServicioSaludController {
         return "redirect:/serviciosSalud";
     }
 
-    @GetMapping("/serviciosSalud/{nombre}/edit")
-    public String servicioSaludEditarForm(@PathVariable("nombre") String nombre, Model model) {
+    @GetMapping("/serviciosSalud/{NOMBRE}/edit")
+    public String servicioSaludEditarForm(@PathVariable("NOMBRE") String nombre, Model model) {
         Optional<ServicioSalud> servicioSalud = servicioSaludRepository.darServicioSalud(nombre);
         if (servicioSalud.isPresent()) {
             model.addAttribute("servicioSalud", servicioSalud.get());
@@ -50,16 +50,16 @@ public class ServicioSaludController {
         }
     }
 
-    @PostMapping("/serviciosSalud/{nombre}/edit/save")
-    public String servicioSaludEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute ServicioSalud servicioSalud) {
+    @PostMapping("/serviciosSalud/{NOMBRE}/edit/save")
+    public String servicioSaludEditarGuardar(@PathVariable("NOMBRE") String nombre, @ModelAttribute ServicioSalud servicioSalud) {
        servicioSaludRepository.actualizarServicioSalud(nombre, servicioSalud.getDescripcion(), 
                                 servicioSalud.getTipoServicio().toString(), servicioSalud.getIpsOfrecida().getNit());
         
         return "redirect:/serviciosSalud"; 
     }
 
-    @GetMapping("/serviciosSalud/{nombre}/delete")
-    public String servicioSaludEliminar(@PathVariable("nombre") String nombre) {
+    @GetMapping("/serviciosSalud/{NOMBRE}/delete")
+    public String servicioSaludEliminar(@PathVariable("NOMBRE") String nombre) {
         servicioSaludRepository.eliminarServicioSalud(nombre);;
         return "redirect:/serviciosSalud";
     }

@@ -15,24 +15,24 @@ import uniandes.edu.co.proyecto.modelo.Ips;
 @Repository
 public interface IpsRepository extends JpaRepository<Ips, String> {
     
-    @Query(value = "SELECT * FROM ips", nativeQuery = true)
+    @Query(value = "SELECT * FROM IPS", nativeQuery = true)
     Collection<Ips> darIpses();
 
-    @Query(value = "SELECT * FROM ips WHERE nit = :nit", nativeQuery = true)
+    @Query(value = "SELECT * FROM IPS WHERE NIT = :nit", nativeQuery = true)
     Ips darIps(@Param("nit") String nit);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO ips (nit, nombre, ciudad, direccion, telefono, epsNit) VALUES(:nit, :nombre, :ciudad, :direccion, :telefono, :epsNit)", nativeQuery = true)
+    @Query(value = "INSERT INTO IPS (NIT, NOMBRE, CIUDAD, DIRECCION, TELEFONO, EPS_NIT) VALUES (:nit, :nombre, :ciudad, :direccion, :telefono, :epsNit)", nativeQuery = true)
     void insertarIps(@Param("nit") String nit, @Param("nombre") String nombre, @Param("ciudad") String ciudad, @Param("direccion") String direccion, @Param("telefono") Integer telefono, @Param("epsNit") Eps epsNit);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE ips SET nombre = :nombre, ciudad = :ciudad, direccion = :direccion, telefono = :telefono, epsNit = :epsNit WHERE nit = :nit", nativeQuery = true)
+    @Query(value = "UPDATE IPS SET NOMBRE = :nombre, CIUDAD = :ciudad, DIRECCION = :direccion, TELEFONO = :telefono, EPS_NIT = :epsNit WHERE NIT = :nit", nativeQuery = true)
     void actualizarIps(@Param("nit") String nit, @Param("nombre") String nombre, @Param("ciudad") String ciudad, @Param("direccion") String direccion, @Param("telefono") Integer telefono, @Param("epsNit") Eps epsNit);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM ips WHERE nit = :nit", nativeQuery = true)
+    @Query(value = "DELETE FROM IPS WHERE NIT = :nit", nativeQuery = true)
     void eliminarIps(@Param("nit") String nit);
 }

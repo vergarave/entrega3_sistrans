@@ -14,24 +14,24 @@ import uniandes.edu.co.proyecto.modelo.Eps;
 @Repository
 public interface EpsRepository extends JpaRepository<Eps, String>{
     
-    @Query(value = "SELECT * FROM eps", nativeQuery = true)
+    @Query(value = "SELECT * FROM EPS", nativeQuery = true)
     Collection<Eps> darEpses();
 
-    @Query(value = "SELECT * FROM eps WHERE nit = :nit", nativeQuery = true)
+    @Query(value = "SELECT * FROM EPS WHERE NIT = :nit", nativeQuery = true)
     Eps darEps(@Param("nit") String nit);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO eps (nit, nombre) VALUES(:nit, :nombre)", nativeQuery = true)
+    @Query(value = "INSERT INTO EPS (NIT, NOMBRE) VALUES(:nit, :nombre)", nativeQuery = true)
     void insertarEps(@Param("nit") String nit, @Param("nombre") String nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE eps SET nombre = :nombre WHERE nit = :nit", nativeQuery = true)
+    @Query(value = "UPDATE EPS SET NOMBRE = :nombre WHERE NIT = :nit", nativeQuery = true)
     void actualizarEps(@Param("nit") String nit, @Param("nombre") String nombre);
     
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM eps WHERE nit = :nit", nativeQuery = true)
+    @Query(value = "DELETE FROM EPS WHERE NIT = :nit", nativeQuery = true)
     void eliminarEps(@Param("nit") String nit);
 }

@@ -1,17 +1,17 @@
 package uniandes.edu.co.proyecto.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.modelo.OrdenServicio;
 import uniandes.edu.co.proyecto.repositorio.OrdenServicioRepository;
 
-@Controller
+@RestController
 public class OrdenServicioController {
     
     @Autowired
@@ -32,8 +32,7 @@ public class OrdenServicioController {
 
     @PostMapping("/ordenes/new/save")
     public String ordenGuardar(@ModelAttribute OrdenServicio orden) {
-        ordenRepo.insertarOrden(orden.getFecha(), orden.getEstado(), orden.getTipoAfiliadoReceptor(),
-                                orden.getNumAfiliadoReceptor(), orden.getMedicoRemitente(), orden.getServicioNombre());
+        ordenRepo.insertarOrden(orden.getFecha(), orden.getEstado().toString(), orden.getNumAfiliadoReceptor(), orden.getMedicoRemitente(), orden.getServicioNombre());
         return "redirect:/ordenes";
     }
 
@@ -51,7 +50,7 @@ public class OrdenServicioController {
 
     @PostMapping("/ordenes/{numero}/edit/save")
     public String epsEditarGuardar(@PathVariable("nit") Integer numero, @ModelAttribute OrdenServicio orden) {
-        ordenRepo.actualizarOrden(numero, orden.getFecha(), orden.getEstado(), orden.getTipoAfiliadoReceptor(),
+        ordenRepo.actualizarOrden(numero, orden.getFecha(), orden.getEstado().toString(),
                                     orden.getNumAfiliadoReceptor(), orden.getMedicoRemitente(), orden.getServicioNombre());
         return "redirect:/ordenes";
     }

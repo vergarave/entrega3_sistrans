@@ -1,7 +1,6 @@
 package uniandes.edu.co.proyecto.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,12 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import uniandes.edu.co.proyecto.modelo.Eps;
 import uniandes.edu.co.proyecto.repositorio.EpsRepository;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 
 
-//@RestController
-@Controller
+@RestController
 public class EpsController {
     
     @Autowired
@@ -41,8 +40,8 @@ public class EpsController {
         
     }
 
-    @GetMapping("/epses/{nit}/edit")
-    public String epsEditarForm(@PathVariable("nit") String nit, Model model) {
+    @GetMapping("/epses/{NIT}/edit")
+    public String epsEditarForm(@PathVariable("NIT") String nit, Model model) {
         Eps eps = epsRepo.darEps(nit);
         if(eps != null) {
             model.addAttribute("eps", eps);
@@ -53,15 +52,15 @@ public class EpsController {
         }  
     }
 
-    @PostMapping("/epses/{nit}/edit/save")
-    public String epsEditarGuardar(@PathVariable("nit") String nit, @ModelAttribute Eps eps) {
+    @PostMapping("/epses/{NIT}/edit/save")
+    public String epsEditarGuardar(@PathVariable("NIT") String nit, @ModelAttribute Eps eps) {
         epsRepo.actualizarEps(nit, eps.getNombre());
         
         return "redirect:/epses";
     }
 
-    @GetMapping("/epses/{nit}/delete")
-    public String epsEliminar(@PathVariable("nit") String nit) {
+    @GetMapping("/epses/{NIT}/delete")
+    public String epsEliminar(@PathVariable("NIT") String nit) {
         epsRepo.eliminarEps(nit);
         return  "redirect:/epses";
     }

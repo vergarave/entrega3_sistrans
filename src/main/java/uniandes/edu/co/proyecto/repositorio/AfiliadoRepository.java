@@ -16,18 +16,18 @@ import uniandes.edu.co.proyecto.modelo.Afiliado;
 @Repository
 public interface AfiliadoRepository extends JpaRepository<Afiliado, Integer> {
 
-    @Query(value = "SELECT * FROM afiliados", nativeQuery =true)
+    @Query(value = "SELECT * FROM AFILIADOS", nativeQuery = true)
     Collection<Afiliado> darAfiliados();
 
-    @Query(value = "SELECT * FROM afiliados numDoc = :numDoc", nativeQuery = true)
+    @Query(value = "SELECT * FROM AFILIADOS WHERE NUMERO_DOCUMENTO = :numDoc", nativeQuery = true)
     Optional<Afiliado> darAfiliado(@Param("numDoc") Integer numDoc);
     
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO afiliados (tipoDoc, numDoc, nombre, fechaNac, ciudad, direccion, telefono, epsAsociada)" + 
-            " VALUES(:tipoDoc, :numDoc, :nombre, :fechaNac, :ciudad, :direccion, :telefono, :nitEps)", nativeQuery = true )
-    void insertarAfiliado(@Param("tipoDoc") String tipoDoc, 
-                            @Param("numDoc") Integer numDoc, 
+    @Query(value = "INSERT INTO AFILIADOS (NUMERO_DOCUMENTO, TIPO_DOCUMENTO, NOMBRE, FECHA_NACIMIENTO, CIUDAD, DIRECCION, TELEFONO, EPS) " + 
+            "VALUES (:numDoc, :tipoDoc, :nombre, :fechaNac, :ciudad, :direccion, :telefono, :nitEps)", nativeQuery = true)
+    void insertarAfiliado(@Param("numDoc") Integer numDoc,
+                            @Param("tipoDoc") String tipoDoc,  
                             @Param("nombre") String nombre, 
                             @Param("fechaNac") Date fechaNac, 
                             @Param("ciudad") String ciudad, 
@@ -37,9 +37,9 @@ public interface AfiliadoRepository extends JpaRepository<Afiliado, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE afiliados SET tipoDoc = :tipoDoc, nombre = :nombre, fecha_nac = :fechaNac, ciudad = :ciudad, direccion = :direccion, " +
-                    "telefono = :telefono, nit_eps = :nitEps " +
-                    "WHERE num_doc = :numDoc", nativeQuery = true)
+    @Query(value = "UPDATE AFILIADOS SET TIPO_DOCUMENTO = :tipoDoc, NOMBRE = :nombre, FECHA_NACIMIENTO = :fechaNac, CIUDAD = :ciudad, " +
+                    "DIRECCION = :direccion, TELEFONO = :telefono, EPS = :nitEps " +
+                    "WHERE NUMERO_DOCUMENTO = :numDoc", nativeQuery = true)
     void actualizarAfiliado(@Param("tipoDoc") String tipoDoc, 
                             @Param("numDoc") Integer numDoc, 
                             @Param("nombre") String nombre, 
@@ -51,6 +51,6 @@ public interface AfiliadoRepository extends JpaRepository<Afiliado, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM afiliados WHERE num_doc = :numDoc", nativeQuery = true)
+    @Query(value = "DELETE FROM AFILIADOS WHERE NUMERO_DOCUMENTO = :numDoc", nativeQuery = true)
     void eliminarAfiliado(@Param("numDoc") Integer numDoc);
 }
