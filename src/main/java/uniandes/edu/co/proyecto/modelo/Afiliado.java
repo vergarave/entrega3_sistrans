@@ -1,4 +1,4 @@
-package uniandes.edu.co.proyecto.model.entities;
+package uniandes.edu.co.proyecto.modelo;
 
 import java.util.Date;
 import java.util.List;
@@ -32,32 +32,32 @@ public abstract class AfiliadoEntity {
         private int contribuyente_id; 
         private String parentesco;
        
-        public void setId_Afiliado(long id_Afiliado) {
+        public void setId_Afiliado(final long id_Afiliado) {
             this.id_afiliado = id_Afiliado;
         }
-        public void setNombre(String nombre) {
+        public void setNombre(final String nombre) {
             this.nombre = nombre;
         }
-        public void setTipo(int tipo) {
+        public void setTipo(final int tipo) {
             this.tipo = tipo;
         }
-        public void setDireccion(String direccion) {
+        public void setDireccion(final String direccion) {
             this.direccion = direccion;
         }
-        public void setTelefono(String telefono) {
+        public void setTelefono(final String telefono) {
             this.telefono = telefono;
         }
-        public void setFecha_nacimiento(Date fecha_nacimiento) {
+        public void setFecha_nacimiento(final Date fecha_nacimiento) {
             this.fecha_nacimiento = fecha_nacimiento;
         }
-        public void setContribuyente_id(int contribuyente_id) {
+        public void setContribuyente_id(final int contribuyente_id) {
             this.contribuyente_id = contribuyente_id;
         }
-        public void setParentesco(String parentesco) {
+        public void setParentesco(final String parentesco) {
             this.parentesco = parentesco;
         }
-        public AfiliadoEntity(String nombre, int tipo, String direccion, String telefono, Date fecha_nacimiento,
-                int contribuyente_id, String parentesco) {
+        public AfiliadoEntity(final String nombre, final int tipo, final String direccion, final String telefono, final Date fecha_nacimiento,
+                final int contribuyente_id, final String parentesco) {
             this.nombre = nombre;
             this.tipo = tipo;
             this.direccion = direccion;

@@ -1,4 +1,4 @@
-package uniandes.edu.co.proyecto.model.entities;
+package uniandes.edu.co.proyecto.modelo;
 
 import java.util.Date;
 import java.util.List;
