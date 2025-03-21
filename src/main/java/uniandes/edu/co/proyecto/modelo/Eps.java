@@ -1,69 +1,102 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="EPS")
-
-public abstract class Eps {
+@Table(name="eps")
+public class Eps {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-        private long id_eps;
-        private String NIT;
-        private String nombre;
-        private String ubicacion;
-        private String telefono;
-        private Date fecha_creacion;
-        public Eps(String nIT, String nombre, String ubicacion, String telefono, Date fecha_creacion) {
-            NIT = nIT;
-            this.nombre = nombre;
-            this.ubicacion = ubicacion;
-            this.telefono = telefono;
-            this.fecha_creacion = fecha_creacion;
-        }
-        public long getId_eps() {
-            return id_eps;
-        }
-        public void setId_eps(long id_eps) {
-            this.id_eps = id_eps;
-        }
-        public String getNIT() {
-            return NIT;
-        }
-        public void setNIT(String nIT) {
-            NIT = nIT;
-        }
-        public String getNombre() {
-            return nombre;
-        }
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
-        }
-        public String getUbicacion() {
-            return ubicacion;
-        }
-        public void setUbicacion(String ubicacion) {
-            this.ubicacion = ubicacion;
-        }
-        public String getTelefono() {
-            return telefono;
-        }
-        public void setTelefono(String telefono) {
-            this.telefono = telefono;
-        }
-        public Date getFecha_creacion() {
-            return fecha_creacion;
-        }
-        public void setFecha_creacion(Date fecha_creacion) {
-            this.fecha_creacion = fecha_creacion;
-        }
-        public Eps(){;}
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer eps_id;
+    
+    private String nombre;
+    private String direccion;
+    private String telefono;
+    
+    @OneToMany(mappedBy = "eps")
+    private List<Afiliado> afiliados;
+    
+    @OneToMany(mappedBy = "eps")
+    private List<OrdenServicio> ordenServicios;
 
 
+    public Eps(String nombre, String direccion, String telefono, List<Afiliado> afiliados,
+            List<OrdenServicio> ordenServicios) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.afiliados = afiliados;
+        this.ordenServicios = ordenServicios;
+    }
+
+
+    public Eps() {;}
+
+
+    public Integer getEps_id() {
+        return eps_id;
+    }
+
+
+    public void setEps_id(Integer eps_id) {
+        this.eps_id = eps_id;
+    }
+
+
+    public String getNombre() {
+        return nombre;
+    }
+
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+
+    public List<Afiliado> getAfiliados() {
+        return afiliados;
+    }
+
+
+    public void setAfiliados(List<Afiliado> afiliados) {
+        this.afiliados = afiliados;
+    }
+
+
+    public List<OrdenServicio> getOrdenServicios() {
+        return ordenServicios;
+    }
+
+
+    public void setOrdenServicios(List<OrdenServicio> ordenServicios) {
+        this.ordenServicios = ordenServicios;
+    }
+    
 }

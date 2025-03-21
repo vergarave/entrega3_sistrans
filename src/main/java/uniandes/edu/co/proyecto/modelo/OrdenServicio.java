@@ -1,76 +1,108 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="ordenServicio")
+@Table(name="orden_servicio")
+public class OrdenServicio {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer ordenservicio_id;
+    
+    private Date fecha;
+    private String estado;
 
-public abstract class OrdenServicio {
-        @Id
-        @GeneratedValue(strategy=GenerationType.AUTO)
-        private long id_ordenService;
-        private Date fecha;
-        private String estado;
-        private int servicio_id;
-        private int medico_id;
-        private int afiliado_id; 
-        private int ips_id;
-        public OrdenServicio(Date fecha, String estado, int servicio_id, int medico_id, int afiliado_id, int ips_id) {
-            this.fecha = fecha;
-            this.estado = estado;
-            this.servicio_id = servicio_id;
-            this.medico_id = medico_id;
-            this.afiliado_id = afiliado_id;
-            this.ips_id = ips_id;
-        }
-        public long getId_ordenService() {
-            return id_ordenService;
-        }
-        public void setId_ordenService(long id_ordenService) {
-            this.id_ordenService = id_ordenService;
-        }
-        public Date getFecha() {
-            return fecha;
-        }
-        public void setFecha(Date fecha) {
-            this.fecha = fecha;
-        }
-        public String getEstado() {
-            return estado;
-        }
-        public void setEstado(String estado) {
-            this.estado = estado;
-        }
-        public int getServicio_id() {
-            return servicio_id;
-        }
-        public void setServicio_id(int servicio_id) {
-            this.servicio_id = servicio_id;
-        }
-        public int getMedico_id() {
-            return medico_id;
-        }
-        public void setMedico_id(int medico_id) {
-            this.medico_id = medico_id;
-        }
-        public int getAfiliado_id() {
-            return afiliado_id;
-        }
-        public void setAfiliado_id(int afiliado_id) {
-            this.afiliado_id = afiliado_id;
-        }
-        public int getIps_id() {
-            return ips_id;
-        }
-        public void setIps_id(int ips_id) {
-            this.ips_id = ips_id;
-        }
-        public OrdenServicio(){;}
+    @ManyToOne
+    @JoinColumn(name = "afiliado_id")
+    private Afiliado afiliado;
+    
+    @ManyToOne
+    @JoinColumn(name = "medico_id")
+    private Medico medico;
+    
+    @ManyToOne
+    @JoinColumn(name = "servicio_id")
+    private Servicio servicio;
+
+    @ManyToOne
+    @JoinColumn(name = "eps_id")
+    private Eps eps;
+
+    public OrdenServicio(Date fecha, String estado, Afiliado afiliado, Medico medico, Servicio servicio, Eps eps) {
+        this.fecha = fecha;
+        this.estado = estado;
+        this.afiliado = afiliado;
+        this.medico = medico;
+        this.servicio = servicio;
+        this.eps = eps;
+    }
+
+    public Integer getOrdenservicio_id() {
+        return ordenservicio_id;
+    }
+
+    public void setOrdenservicio_id(Integer ordenservicio_id) {
+        this.ordenservicio_id = ordenservicio_id;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Afiliado getAfiliado() {
+        return afiliado;
+    }
+
+    public void setAfiliado(Afiliado afiliado) {
+        this.afiliado = afiliado;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
+    public Servicio getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
+    }
+
+    public Eps getEps() {
+        return eps;
+    }
+
+    public void setEps(Eps eps) {
+        this.eps = eps;
+    }
+
+    public OrdenServicio(){;}
 
 }
