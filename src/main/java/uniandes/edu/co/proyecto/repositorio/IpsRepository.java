@@ -24,12 +24,12 @@ public interface IpsRepository extends JpaRepository<Ips, String> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO IPS (NIT, NOMBRE, CIUDAD, DIRECCION, TELEFONO, EPS_NIT) VALUES (:nit, :nombre, :ciudad, :direccion, :telefono, :epsNit)", nativeQuery = true)
-    void insertarIps(@Param("nit") String nit, @Param("nombre") String nombre, @Param("ciudad") String ciudad, @Param("direccion") String direccion, @Param("telefono") Integer telefono, @Param("epsNit") Eps epsNit);
+    void insertarIps(@Param("nit") String nit, @Param("nombre") String nombre, @Param("ciudad") String ciudad, @Param("direccion") String direccion, @Param("telefono") Integer telefono, @Param("epsNit") String epsNit);
 
     @Modifying
     @Transactional
     @Query(value = "UPDATE IPS SET NOMBRE = :nombre, CIUDAD = :ciudad, DIRECCION = :direccion, TELEFONO = :telefono, EPS_NIT = :epsNit WHERE NIT = :nit", nativeQuery = true)
-    void actualizarIps(@Param("nit") String nit, @Param("nombre") String nombre, @Param("ciudad") String ciudad, @Param("direccion") String direccion, @Param("telefono") Integer telefono, @Param("epsNit") Eps epsNit);
+    void actualizarIps(@Param("nit") String nit, @Param("nombre") String nombre, @Param("ciudad") String ciudad, @Param("direccion") String direccion, @Param("telefono") Integer telefono, @Param("epsNit") String epsNit);
 
     @Modifying
     @Transactional

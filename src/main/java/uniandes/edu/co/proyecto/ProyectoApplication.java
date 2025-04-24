@@ -11,27 +11,32 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import uniandes.edu.co.proyecto.modelo.Eps;
+import uniandes.edu.co.proyecto.modelo.Ips;
 import uniandes.edu.co.proyecto.repositorio.EpsRepository;
+import uniandes.edu.co.proyecto.repositorio.IpsRepository;
 
 @SpringBootApplication
 @ComponentScan("uniandes.edu.co.proyecto")
 @EnableJpaRepositories("uniandes.edu.co.proyecto.repositorio")
 @EntityScan("uniandes.edu.co.proyecto.modelo")
-public class ProyectoApplication implements CommandLineRunner{
+public class ProyectoApplication{
 
 	@Autowired
+	private IpsRepository ipsRepo;
 	private EpsRepository epsRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoApplication.class, args);
 	}
 
-	@Override
+	/*@Override
 	public void run(String... arg){
-		Collection<Eps> eps = epsRepo.darEpses();
-		for(Eps e: eps){
-			System.out.println(e);
-		}
-	}
+		//Eps eps = new Eps("890903433-7", "nombre");
+		Eps eps = epsRepo.darEps("890903433-6");
+		ipsRepo.insertarIps("1", "2", "3", "4", 123, eps);
+
+		//System.out.println(ips);
+		
+	}*/
 
 }
