@@ -32,7 +32,7 @@ public class IpsController {
 
     @PostMapping("/ipses/new/save")
     public String ipsGuardar(@ModelAttribute Ips ips) {
-        ipsRepo.insertarIps(ips.getNit(), ips.getNombre(), ips.getCiudad(), ips.getDireccion(), ips.getTelefono(), ips.getEpsNit());
+        ipsRepo.insertarIps(ips.getNit(), ips.getNombre(), ips.getCiudad(), ips.getDireccion(), ips.getTelefono(), ips.getEpsNit(ips.getEps()));
         return "redirect:/ipses"; 
     }
 
@@ -50,7 +50,7 @@ public class IpsController {
 
     @PostMapping("/ipses/{NIT}/edit/save")
     public String ipsEditarGuardar(@PathVariable("NIT") String nit, @ModelAttribute Ips ips) {
-        ipsRepo.actualizarIps(nit, ips.getNombre(), ips.getCiudad(), ips.getDireccion(), ips.getTelefono(), ips.getEpsNit());
+        ipsRepo.actualizarIps(nit, ips.getNombre(), ips.getCiudad(), ips.getDireccion(), ips.getTelefono(), ips.getEpsNit(ips.getEps()));
         
         return "redirect:/ipses";
     }

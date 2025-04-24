@@ -29,15 +29,15 @@ public class Ips {
 
     @ManyToOne
     @JoinColumn(name = "EPS_NIT", referencedColumnName = "NIT")
-    private String epsNit;
+    private Eps eps;
 
-    public Ips(String nit, String nombre, String ciudad, String direccion, Integer telefono, String epsNit){
+    public Ips(String nit, String nombre, String ciudad, String direccion, Integer telefono, Eps eps){
         this.nit = nit;
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.epsNit = epsNit;
+        this.eps = eps;
     }
 
     public Ips()
@@ -83,12 +83,16 @@ public class Ips {
         this.telefono = telefono;
     }
 
-    public String getEpsNit() {
-        return epsNit;
+    public Eps getEps() {
+        return eps;
     }
 
-    public void setEpsNit(String epsNit) {
-        this.epsNit = epsNit;
+    public void setEpsNit(Eps eps) {
+        this.eps = eps;
+    }
+
+    public String getEpsNit(Eps eps) {
+        return eps.getNit();
     }
 
 }
