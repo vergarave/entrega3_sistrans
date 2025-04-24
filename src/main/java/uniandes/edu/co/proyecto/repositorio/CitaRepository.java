@@ -3,6 +3,7 @@ package uniandes.edu.co.proyecto.repositorio;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,6 +23,14 @@ public interface CitaRepository extends JpaRepository<Cita, Integer> {
     
     @Query(value = "SELECT * FROM CITAS WHERE ID = :id", nativeQuery = true)
     Optional<Cita> darCita(@Param("id") Integer id);
+
+    //RFC PROBAR
+    @Query("SELECT c FROM Cita c " +
+           "JOIN c.ordenServicio os " +
+           "JOIN os.servicioSalud s " +
+           "WHERE s.nombre = :nombreServicio " +
+           "AND c.fecha BETWEEN CURRENT_DATE AND CURRENT_DATE + 28")
+    List<Cita> findDisponibilidadServicioEnProximas4Semanas(@Param("nombreServicio") String nombreServicio);
 
     @Modifying
     @Transactional
