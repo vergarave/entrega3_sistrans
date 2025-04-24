@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +23,10 @@ public class EpsController {
     private EpsRepository epsRepo;
 
     @GetMapping("/epses")
-    public String epses(Model model){
+    public Collection<Eps> epses(Model model){
         model.addAttribute("epses", epsRepo.darEpses());
-        return "epses";
+        return epsRepo.darEpses();
+        //return "epses";
         //return model.toString();
     }
 
