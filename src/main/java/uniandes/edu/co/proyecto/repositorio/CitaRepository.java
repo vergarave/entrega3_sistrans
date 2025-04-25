@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.repositorio;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -26,11 +27,24 @@ public interface CitaRepository extends JpaRepository<Cita, Integer> {
 
     //RFC PROBAR
     @Query("SELECT c FROM Cita c " +
-           "JOIN c.ordenServicio os " +
-           "JOIN os.servicioSalud s " +
-           "WHERE s.nombre = :nombreServicio " +
-           "AND c.fecha BETWEEN CURRENT_DATE AND CURRENT_DATE + 28")
-    List<Cita> findDisponibilidadServicioEnProximas4Semanas(@Param("nombreServicio") String nombreServicio);
+       "JOIN c.numOrden os " +
+       "JOIN os.servicioNombre s " +
+       "WHERE s.nombre = :nombreServicio " +
+       "AND c.fecha BETWEEN CURRENT_DATE AND CURRENT_DATE + 28")
+List<Cita> findDisponibilidadServicioEnProximas4Semanas(@Param("nombreServicio") String nombreServicio);
+
+//rfc probar
+@Query("SELECT c FROM Cita c " +
+       "JOIN c.numOrden os " +
+       "WHERE c.numDocAfiliado.numDoc = :numDoc " +
+       "AND c.tipoDocAfiliado = :tipoDoc " +
+       "AND c.fecha BETWEEN :inicio AND :fin")
+List<Cita> findServiciosUsadosPorAfiliadoEnRango(
+    @Param("numDoc") String numDoc,
+    @Param("tipoDoc") String tipoDoc,
+    @Param("inicio") Date inicio,
+    @Param("fin") Date fin);
+
 
     @Modifying
     @Transactional

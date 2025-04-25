@@ -27,9 +27,9 @@ public interface OrdenServicioRepository extends JpaRepository<OrdenServicio, In
     OrdenServicio darOrden(@Param("numero") Integer numero);
 
     // RFC PROBAR
-    @Query("SELECT os.servicioSalud.nombre, COUNT(os) as total " +
+    @Query("SELECT os.servicioNombre.nombre, COUNT(os) as total " +
            "FROM OrdenServicio os " +
-           "GROUP BY os.servicioSalud.nombre " +
+           "GROUP BY os.servicioNombre.nombre " +
            "ORDER BY total DESC")
     List<Object[]> findTop20ServiciosMasSolicitados(Pageable pageable);
 
