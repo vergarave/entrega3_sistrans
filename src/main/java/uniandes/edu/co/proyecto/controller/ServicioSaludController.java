@@ -11,12 +11,14 @@ import uniandes.edu.co.proyecto.repositorio.ServicioSaludRepository;
 import uniandes.edu.co.proyecto.modelo.ServicioSalud;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.http.ResponseEntity;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/api/servicios")
 public class ServicioSaludController {
     
     @Autowired
