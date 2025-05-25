@@ -1,0 +1,160 @@
+validation
+
+db.runCommand({
+  collMod: "ips",
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["nit", "nombre", "direccion", "telefono", "servicios"],
+      properties: {
+        nit: { bsonType: "string" },
+        nombre: { bsonType: "string" },
+        direccion: { bsonType: "string" },
+        telefono: { bsonType: "string" },
+        servicios: {
+          bsonType: "array",
+          items: { bsonType: "string" }
+        }
+      }
+    }
+  },
+  validationLevel: "strict"
+});
+
+
+db.runCommand({
+  collMod: "servicios",
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["codigo", "nombre", "tipo"],
+      properties: {
+        codigo: { bsonType: "string" },
+        nombre: { bsonType: "string" },
+        tipo: { bsonType: "string" }
+      }
+    }
+  },
+  validationLevel: "strict"
+});
+
+
+db.runCommand({
+  collMod: "medicos",
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["registroMedico", "tipoDocumento", "numeroDocumento", "nombre", "especialidad"],
+      properties: {
+        registroMedico: { bsonType: "string" },
+        tipoDocumento: { bsonType: "string" },
+        numeroDocumento: { bsonType: "string" },
+        nombre: { bsonType: "string" },
+        especialidad: {
+          bsonType: "object",
+          required: ["nombre"],
+          properties: {
+            nombre: { bsonType: "string" }
+          }
+        },
+        ips: {
+          bsonType: "array",
+          items: { bsonType: "string" }
+        },
+        servicios: {
+          bsonType: "array",
+          items: { bsonType: "string" }
+        }
+      }
+    }
+  },
+  validationLevel: "strict"
+});
+
+
+db.runCommand({
+  collMod: "afiliados",
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["tipoDocumento", "numeroDocumento", "nombre", "fechaNacimiento", "direccion", "telefono", "tipoAfiliado"],
+      properties: {
+        tipoDocumento: { bsonType: "string" },
+        numeroDocumento: { bsonType: "string" },
+        nombre: { bsonType: "string" },
+        fechaNacimiento: { bsonType: "date" },
+        direccion: { bsonType: "string" },
+        telefono: { bsonType: "string" },
+        tipoAfiliado: { enum: ["contribuyente", "beneficiario"] },
+        parentesco: { bsonType: ["string", "null"] },
+        idContribuyente: {
+          bsonType: ["object", "null"],
+          properties: {
+            tipoDocumento: { bsonType: "string" },
+            numeroDocumento: { bsonType: "string" }
+          }
+        }
+      }
+    }
+  },
+  validationLevel: "strict"
+});
+
+
+db.runCommand({
+  collMod: "ordenes",
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["id", "fecha", "estado", "afiliado", "medico", "servicio"],
+      properties: {
+        id: { bsonType: "string" },
+        fecha: { bsonType: "date" },
+        estado: { enum: ["vigente", "cancelada", "completada"] },
+        afiliado: {
+          bsonType: "object",
+          required: ["tipoDocumento", "numeroDocumento"],
+          properties: {
+            tipoDocumento: { bsonType: "string" },
+            numeroDocumento: { bsonType: "string" }
+          }
+        },
+        medico: { bsonType: "string" },
+        servicio: { bsonType: "string" }
+      }
+    }
+  },
+  validationLevel: "strict"
+});
+
+
+db.runCommand({
+  collMod: "agendamientos",
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["id", "fecha", "hora", "afiliado", "medico", "ips", "servicio"],
+      properties: {
+        id: { bsonType: "string" },
+        fecha: { bsonType: "date" },
+        hora: { bsonType: "string" }, // formato "HH:MM"
+        afiliado: {
+          bsonType: "object",
+          required: ["tipoDocumento", "numeroDocumento"],
+          properties: {
+            tipoDocumento: { bsonType: "string" },
+            numeroDocumento: { bsonType: "string" }
+          }
+        },
+        medico: { bsonType: "string" },
+        ips: { bsonType: "string" },
+        servicio: { bsonType: "string" },
+        orden: { bsonType: ["string", "null"] }
+      }
+    }
+  },
+  validationLevel: "strict"
+});
+
+
+
