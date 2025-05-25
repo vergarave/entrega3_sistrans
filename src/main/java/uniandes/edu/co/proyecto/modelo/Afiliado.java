@@ -114,5 +114,7 @@ public class Afiliado {
     public void setIdContribuyente(String idContribuyente) {
         this.idContribuyente = idContribuyente;
     }
+
+
 }
 
