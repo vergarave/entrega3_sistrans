@@ -1,5 +1,9 @@
 package uniandes.edu.co.proyecto.repositorio;
 
-public class MedicoRepository {
-    
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import uniandes.edu.co.proyecto.modelo.Medico;
+
+public interface MedicoRepository extends MongoRepository<Medico, String> {
 }
+

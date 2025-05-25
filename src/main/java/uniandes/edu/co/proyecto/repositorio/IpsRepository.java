@@ -1,5 +1,8 @@
 package uniandes.edu.co.proyecto.repositorio;
 
-public class IpsRepository {
-    
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import uniandes.edu.co.proyecto.modelo.Ips;
+
+public interface IpsRepository extends MongoRepository<Ips, String> {
 }

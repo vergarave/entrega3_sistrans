@@ -1,5 +1,9 @@
 package uniandes.edu.co.proyecto.repositorio;
 
-public class AfiliadoRepository {
-    
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import uniandes.edu.co.proyecto.modelo.Afiliado;
+
+public interface AfiliadoRepository extends MongoRepository<Afiliado, String> {
 }
+
