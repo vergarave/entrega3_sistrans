@@ -1,6 +1,7 @@
 package uniandes.edu.co.proyecto.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import uniandes.edu.co.proyecto.modelo.Medico;
-import uniandes.edu.co.proyecto.modelo.ServicioSalud;
 
 
 @Controller
@@ -34,7 +33,7 @@ public class MedicoController {
 
     @GetMapping("/{registroMedico}")
     public Medico obtenerMedicoPorRM(@PathVariable String registroMedico) {
-        return medicoRepo.findByRegistroMedico(registroMedico);
+        return medicoRepo.findByRegistroMedico(registroMedico).orElse(null);
     }
 
     @PostMapping
@@ -43,30 +42,32 @@ public class MedicoController {
     }
 
     @PutMapping("/{registroMedico}")
-    public ResponseEntity<Medico> actualizarServicio(@PathVariable String registroMedico,
+    public ResponseEntity<Medico> actualizarMedico(@PathVariable String registroMedico,
                                                             @RequestBody Medico medicoActualizado) {
         
-        Medico medicoViejo = medicoRepo.findByRegistroMedico(registroMedico);
-        //si hay errores tipo crash del app cuando no se encuentra el servicio, implementar Optional<> en repositorio
+        Optional<Medico> medicoViejo = medicoRepo.findByRegistroMedico(registroMedico);
+
         if (medicoViejo == null) {
             return ResponseEntity.notFound().build();
         } else {
-            medicoViejo.setNombre(medicoActualizado.getNombre());
-            medicoViejo.setEspecialidad(medicoActualizado.getEspecialidad());
-            medicoViejo.setIps(medicoActualizado.getIps());
-            medicoViejo.setServicios(medicoActualizado.getServicios());
-            return ResponseEntity.ok(medicoRepo.save(medicoViejo));
+            Medico medico = medicoViejo.get();
+            medico.setNombre(medicoActualizado.getNombre());
+            medico.setEspecialidad(medicoActualizado.getEspecialidad());
+            medico.setIps(medicoActualizado.getIps());
+            medico.setServicios(medicoActualizado.getServicios());
+            return ResponseEntity.ok(medicoRepo.save(medico));
         }
     }
 
     @DeleteMapping("/{registroMedico}")
-    public ResponseEntity<Void> eliminarServicio(@PathVariable String registroMedico) {
-        Medico medico = medicoRepo.findByRegistroMedico(registroMedico);
+    public ResponseEntity<Void> eliminarMedico(@PathVariable String registroMedico) {
+        Optional<Medico> medico = medicoRepo.findByRegistroMedico(registroMedico);
         
         if (medico == null) {
             return ResponseEntity.notFound().build();
         } else {
-            medicoRepo.delete(medico);
+            Medico medicoDel = medico.get();
+            medicoRepo.delete(medicoDel);
             return ResponseEntity.noContent().build();
         }  
     }

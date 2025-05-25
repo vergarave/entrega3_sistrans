@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 import uniandes.edu.co.proyecto.repositorio.ServicioSaludRepository;
 import uniandes.edu.co.proyecto.modelo.ServicioSalud;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.http.ResponseEntity;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/api/servicios")
@@ -31,7 +31,7 @@ public class ServicioSaludController {
 
     @GetMapping("/{codigo}")
     public ServicioSalud obtenerServicioPorCodigo(@PathVariable String codigo) {
-        return servicioSaludRepo.findByCodigo(codigo);
+        return servicioSaludRepo.findByCodigo(codigo).orElse(null);
     }
     
     @PostMapping
@@ -43,25 +43,27 @@ public class ServicioSaludController {
     public ResponseEntity<ServicioSalud> actualizarServicio(@PathVariable String codigo,
                                                             @RequestBody ServicioSalud servicioActualizado) {
         
-        ServicioSalud servicioViejo = servicioSaludRepo.findByCodigo(codigo);
-        //si hay errores tipo crash del app cuando no se encuentra el servicio, implementar Optional<> en repositorio
+        Optional<ServicioSalud> servicioViejo = servicioSaludRepo.findByCodigo(codigo);
+        
         if (servicioViejo == null) {
             return ResponseEntity.notFound().build();
         } else {
-            servicioViejo.setNombre(servicioActualizado.getNombre());
-            servicioViejo.setTipo(servicioActualizado.getTipo());
-            return ResponseEntity.ok(servicioSaludRepo.save(servicioViejo));
+            ServicioSalud servicio = servicioViejo.get();
+            servicio.setNombre(servicioActualizado.getNombre());
+            servicio.setTipo(servicioActualizado.getTipo());
+            return ResponseEntity.ok(servicioSaludRepo.save(servicio));
         }
     }
 
     @DeleteMapping("/{codigo}")
     public ResponseEntity<Void> eliminarServicio(@PathVariable String codigo) {
-        ServicioSalud servicio = servicioSaludRepo.findByCodigo(codigo);
+        Optional<ServicioSalud> servicio = servicioSaludRepo.findByCodigo(codigo);
         
         if (servicio == null) {
             return ResponseEntity.notFound().build();
         } else {
-            servicioSaludRepo.delete(servicio);
+            ServicioSalud servicioDel = servicio.get();
+            servicioSaludRepo.delete(servicioDel);
             return ResponseEntity.noContent().build();
         }  
     }
