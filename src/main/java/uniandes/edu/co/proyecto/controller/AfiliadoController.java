@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import uniandes.edu.co.proyecto.modelo.Afiliado;
-import uniandes.edu.co.proyecto.modelo.Medico;
 import uniandes.edu.co.proyecto.repositorio.AfiliadoRepository;
 
 
@@ -27,7 +26,7 @@ public class AfiliadoController {
     private AfiliadoRepository afiliadoRepo;
 
     @GetMapping
-    public List<Afiliado> obtenerafiliados() {
+    public List<Afiliado> obtenerAfiliados() {
         return afiliadoRepo.findAll();
     }
 
@@ -37,8 +36,8 @@ public class AfiliadoController {
     }
 
     @PostMapping
-    public Afiliado crearAfiliado(@RequestBody Afiliado nuevoafiliado) {
-        return afiliadoRepo.save(nuevoafiliado);
+    public Afiliado crearAfiliado(@RequestBody Afiliado nuevoAfiliado) {
+        return afiliadoRepo.save(nuevoAfiliado);
     }
 
     @PutMapping("/{id}")
