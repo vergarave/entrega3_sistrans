@@ -1,0 +1,161 @@
+poblamiento 
+
+db.ips.insertMany([
+  {
+    nit: "900111001",
+    nombre: "Clínica El Bosque",
+    direccion: "Calle 134 # 7B - 83",
+    telefono: "6016487000",
+    servicios: ["CONSULT-GRAL", "TER-FISICA", "EXAMEN-SANGRE"]
+  },
+  {
+    nit: "900222002",
+    nombre: "Hospital Central",
+    direccion: "Cra 30 # 45-25",
+    telefono: "6012323232",
+    servicios: ["CONSULT-CARDIO", "EXAMEN-RAYOSX", "URG-GRAL"]
+  }
+]);
+
+
+db.servicios.insertMany([
+  { codigo: "CONSULT-GRAL", nombre: "Consulta general", tipo: "consulta" },
+  { codigo: "CONSULT-CARDIO", nombre: "Consulta con cardiólogo", tipo: "consulta" },
+  { codigo: "TER-FISICA", nombre: "Terapia física", tipo: "terapia" },
+  { codigo: "EXAMEN-SANGRE", nombre: "Examen de sangre", tipo: "examen" },
+  { codigo: "EXAMEN-RAYOSX", nombre: "Rayos X", tipo: "examen" },
+  { codigo: "URG-GRAL", nombre: "Consulta de urgencias", tipo: "urgencia" }
+]);
+
+
+db.medicos.insertMany([
+  {
+    registroMedico: "RM10001",
+    tipoDocumento: "CC",
+    numeroDocumento: "11110000",
+    nombre: "Dr. Pedro Pérez",
+    especialidad: { nombre: "Medicina General" },
+    ips: ["900111001"],
+    servicios: ["CONSULT-GRAL"]
+  },
+  {
+    registroMedico: "RM10002",
+    tipoDocumento: "CC",
+    numeroDocumento: "11110001",
+    nombre: "Dra. Clara Cardona",
+    especialidad: { nombre: "Cardiología" },
+    ips: ["900222002"],
+    servicios: ["CONSULT-CARDIO"]
+  }
+]);
+
+
+db.afiliados.insertMany([
+  {
+    tipoDocumento: "CC",
+    numeroDocumento: "1020304050",
+    nombre: "Luis Rodríguez",
+    fechaNacimiento: ISODate("1995-04-10"),
+    direccion: "Calle 90 # 15-25",
+    telefono: "3101234567",
+    tipoAfiliado: "contribuyente"
+  },
+  {
+    tipoDocumento: "TI",
+    numeroDocumento: "2030405060",
+    nombre: "Ana Rodríguez",
+    fechaNacimiento: ISODate("2012-07-15"),
+    direccion: "Calle 90 # 15-25",
+    telefono: "3109876543",
+    tipoAfiliado: "beneficiario",
+    parentesco: "hija",
+    idContribuyente: {
+      tipoDocumento: "CC",
+      numeroDocumento: "1020304050"
+    }
+  }
+]);
+
+
+db.ordenes.insertMany([
+  {
+    id: "ORD-0001",
+    fecha: ISODate("2025-05-15T09:00:00Z"),
+    estado: "vigente",
+    afiliado: {
+      tipoDocumento: "TI",
+      numeroDocumento: "2030405060"
+    },
+    medico: "RM10001",
+    servicio: "TER-FISICA"
+  },
+  {
+    id: "ORD-0002",
+    fecha: ISODate("2025-05-16T11:00:00Z"),
+    estado: "completada",
+    afiliado: {
+      tipoDocumento: "CC",
+      numeroDocumento: "1020304050"
+    },
+    medico: "RM10002",
+    servicio: "CONSULT-CARDIO"
+  }
+]);
+
+
+db.agendamientos.insertMany([
+  {
+    id: "AGENDA-001",
+    fecha: ISODate("2025-05-26"),
+    hora: "09:00",
+    afiliado: {
+      tipoDocumento: "TI",
+      numeroDocumento: "2030405060"
+    },
+    medico: "RM10001",
+    ips: "900111001",
+    servicio: "TER-FISICA",
+    orden: "ORD-0001"
+  },
+  {
+    id: "AGENDA-002",
+    fecha: ISODate("2025-05-27"),
+    hora: "10:00",
+    afiliado: {
+      tipoDocumento: "CC",
+      numeroDocumento: "1020304050"
+    },
+    medico: "RM10002",
+    ips: "900222002",
+    servicio: "CONSULT-CARDIO",
+    orden: "ORD-0002"
+  },
+  {
+    id: "AGENDA-003",
+    fecha: ISODate("2025-05-28"),
+    hora: "11:00",
+    afiliado: {
+      tipoDocumento: "CC",
+      numeroDocumento: "1020304050"
+    },
+    medico: "RM10001",
+    ips: "900111001",
+    servicio: "CONSULT-GRAL"
+  },
+  {
+    id: "AGENDA-004",
+    fecha: ISODate("2025-05-29"),
+    hora: "08:00",
+    afiliado: {
+      tipoDocumento: "TI",
+      numeroDocumento: "2030405060"
+    },
+    medico: "RM10001",
+    ips: "900111001",
+    servicio: "CONSULT-GRAL"
+  }
+]);
+
+
+
+
