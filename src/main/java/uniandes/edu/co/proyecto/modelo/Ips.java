@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "ips")
 public class Ips {
-    @Id
+
     private String nit;
     private String nombre;
     private String direccion;

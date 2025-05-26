@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "agendamientos")
 public class Agendamiento {
-    @Id
+    
     private String id;
     private LocalDate fecha;
     private String hora; // puede ser tipo string "HH:mm"

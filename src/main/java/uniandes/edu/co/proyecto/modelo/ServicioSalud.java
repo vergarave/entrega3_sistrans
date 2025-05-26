@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "servicios")
 public class ServicioSalud {
-    @Id
+
     private String codigo;
     private String nombre;
     private String tipo;

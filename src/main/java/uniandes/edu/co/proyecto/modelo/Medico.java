@@ -8,7 +8,7 @@ import java.util.List;
 @Document(collection = "medicos")
 public class Medico {
 
-    @Id
+
     private String registroMedico;
 
     private String tipoDocumento;
@@ -39,8 +39,6 @@ public class Medico {
             this.nombre = nombre;
         }
     }
-
-    public Medico() {}
 
     public Medico(String registroMedico, String tipoDocumento, String numeroDocumento, String nombre,
                   Especialidad especialidad, List<String> ips, List<String> servicios) {

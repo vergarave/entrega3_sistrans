@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "ordenes")
 public class OrdenServicio {
-    @Id
+
     private String id;
     private LocalDate fecha;
     private String estado; // vigente, cancelada, completada
