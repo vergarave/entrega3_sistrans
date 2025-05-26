@@ -2,13 +2,12 @@ package uniandes.edu.co.proyecto.modelo;
 
 import java.time.LocalDate;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "ordenes")
 public class OrdenServicio {
 
-    private String id;
+    private String numero;
     private LocalDate fecha;
     private String estado; // vigente, cancelada, completada
 
@@ -16,8 +15,8 @@ public class OrdenServicio {
     private String medico;     // registro médico
     private String servicio;   // código
 
-    public OrdenServicio(String id, LocalDate fecha, String estado, String afiliado, String medico, String servicio) {
-        this.id = id;
+    public OrdenServicio(String numero, LocalDate fecha, String estado, String afiliado, String medico, String servicio) {
+        this.numero = numero;
         this.fecha = fecha;
         this.estado = estado;
         this.afiliado = afiliado;
@@ -26,11 +25,11 @@ public class OrdenServicio {
     }
 
     public String getId() {
-        return id;
+        return numero;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String numero) {
+        this.numero = numero;
     }
 
     public LocalDate getFecha() {
