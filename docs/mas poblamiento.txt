@@ -1,0 +1,211 @@
+mas poblamiento
+
+db.ips.insertMany([
+  {
+    nit: "900333003",
+    nombre: "Centro Médico Cedritos",
+    direccion: "Cra 19 # 140-20",
+    telefono: "6017778888",
+    servicios: ["CONSULT-GRAL", "EXAMEN-SANGRE"]
+  },
+  {
+    nit: "900444004",
+    nombre: "IPS NorteSalud",
+    direccion: "Av Suba # 120-10",
+    telefono: "6019990000",
+    servicios: ["CONSULT-CARDIO", "TER-FISICA", "URG-GRAL"]
+  }
+]);
+
+
+db.servicios.insertOne({
+  codigo: "TER-OCUP",
+  nombre: "Terapia Ocupacional",
+  tipo: "terapia"
+});
+
+
+db.medicos.insertMany([
+  {
+    registroMedico: "RM10003",
+    tipoDocumento: "CC",
+    numeroDocumento: "11110002",
+    nombre: "Dr. Andrés Gómez",
+    especialidad: { nombre: "Terapia Ocupacional" },
+    ips: ["900444004"],
+    servicios: ["TER-OCUP"]
+  },
+  {
+    registroMedico: "RM10004",
+    tipoDocumento: "CC",
+    numeroDocumento: "11110003",
+    nombre: "Dra. Paula Herrera",
+    especialidad: { nombre: "Urgencias" },
+    ips: ["900444004"],
+    servicios: ["URG-GRAL"]
+  }
+]);
+
+
+db.ordenes.insertMany([
+  {
+    id: "ORD-0006",
+    fecha: ISODate("2025-05-21"),
+    estado: "vigente",
+    afiliado: "CC-911122233",
+    medico: "RM10003",
+    servicio: "TER-OCUP"
+  },
+  {
+    id: "ORD-0007",
+    fecha: ISODate("2025-05-23"),
+    estado: "vigente",
+    afiliado: "TI-900200200",
+    medico: "RM10002",
+    servicio: "CONSULT-CARDIO"
+  }
+]);
+
+
+db.agendamientos.insertMany([
+  {
+    id: "AGENDA-009",
+    fecha: ISODate("2025-05-26"),
+    hora: "14:00",
+    afiliado: "CC-911122233",
+    medico: "RM10003",
+    ips: "900444004",
+    servicio: "TER-OCUP",
+    orden: "ORD-0006"
+  },
+  {
+    id: "AGENDA-010",
+    fecha: ISODate("2025-05-27"),
+    hora: "15:30",
+    afiliado: "TI-900200200",
+    medico: "RM10002",
+    ips: "900444004",
+    servicio: "CONSULT-CARDIO",
+    orden: "ORD-0007"
+  },
+  {
+    id: "AGENDA-011",
+    fecha: ISODate("2025-05-28"),
+    hora: "07:00",
+    afiliado: "CC-900100100",
+    medico: "RM10004",
+    ips: "900444004",
+    servicio: "URG-GRAL" // sin orden, permitido
+  }
+]);
+
+
+db.afiliados.insertMany([
+  {
+    _id: "CC-900100100",
+    tipoDocumento: "CC",
+    numeroDocumento: "900100100",
+    nombre: "Camilo López",
+    fechaNacimiento: ISODate("1988-05-12"),
+    direccion: "Calle 50 # 20-15",
+    telefono: "3008001000",
+    tipoAfiliado: "contribuyente"
+  },
+  {
+    _id: "TI-900200200",
+    tipoDocumento: "TI",
+    numeroDocumento: "900200200",
+    nombre: "María López",
+    fechaNacimiento: ISODate("2010-09-30"),
+    direccion: "Calle 50 # 20-15",
+    telefono: "3008001001",
+    tipoAfiliado: "beneficiario",
+    parentesco: "hija",
+    idContribuyente: "CC-900100100"
+  },
+  {
+    _id: "CC-911122233",
+    tipoDocumento: "CC",
+    numeroDocumento: "911122233",
+    nombre: "Diana Salas",
+    fechaNacimiento: ISODate("1993-01-01"),
+    direccion: "Carrera 8 # 10-45",
+    telefono: "3102223344",
+    tipoAfiliado: "contribuyente"
+  }
+]);
+
+
+db.ordenes.insertMany([
+  {
+    id: "ORD-0003",
+    fecha: ISODate("2025-05-20"),
+    estado: "vigente",
+    afiliado: "TI-900200200",
+    medico: "RM10001",
+    servicio: "TER-FISICA"
+  },
+  {
+    id: "ORD-0004",
+    fecha: ISODate("2025-05-21"),
+    estado: "completada",
+    afiliado: "CC-911122233",
+    medico: "RM10002",
+    servicio: "EXAMEN-RAYOSX"
+  },
+  {
+    id: "ORD-0005",
+    fecha: ISODate("2025-05-22"),
+    estado: "vigente",
+    afiliado: "CC-900100100",
+    medico: "RM10001",
+    servicio: "CONSULT-GRAL"
+  }
+]);
+
+
+
+db.agendamientos.insertMany([
+  {
+    id: "AGENDA-005",
+    fecha: ISODate("2025-05-23"),
+    hora: "09:30",
+    afiliado: "TI-900200200",
+    medico: "RM10001",
+    ips: "900111001",
+    servicio: "TER-FISICA",
+    orden: "ORD-0003"
+  },
+  {
+    id: "AGENDA-006",
+    fecha: ISODate("2025-05-24"),
+    hora: "10:00",
+    afiliado: "CC-911122233",
+    medico: "RM10002",
+    ips: "900222002",
+    servicio: "EXAMEN-RAYOSX",
+    orden: "ORD-0004"
+  },
+  {
+    id: "AGENDA-007",
+    fecha: ISODate("2025-05-24"),
+    hora: "11:30",
+    afiliado: "CC-900100100",
+    medico: "RM10001",
+    ips: "900111001",
+    servicio: "CONSULT-GRAL",
+    orden: "ORD-0005"
+  },
+  {
+    id: "AGENDA-008",
+    fecha: ISODate("2025-05-25"),
+    hora: "08:00",
+    afiliado: "CC-900100100",
+    medico: "RM10001",
+    ips: "900111001",
+    servicio: "CONSULT-GRAL" // sin orden, permitido
+  }
+]);
+
+
+
