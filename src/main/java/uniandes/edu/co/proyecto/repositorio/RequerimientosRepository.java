@@ -16,19 +16,18 @@ public class RequerimientosRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public List<Document> consultarAgendaRFC1(String codigoServicio) {
+   public List<Document> consultarAgendaRFC1(String codigoServicio) {
         Date ahora = new Date();
         Date enCuatroSemanas = new Date(ahora.getTime() + 1000L * 60 * 60 * 24 * 28);
 
         List<Document> pipeline = Arrays.asList(
-            new Document("$match", new Document("disponible", true)
-                .append("fecha", new Document("$gte", ahora).append("$lte", enCuatroSemanas))
+            new Document("$match", new Document("fecha", new Document("$gte", ahora).append("$lte", enCuatroSemanas))
                 .append("servicio", codigoServicio)),
 
             new Document("$lookup", new Document()
                 .append("from", "servicios")
                 .append("localField", "servicio")
-                .append("foreignField", "_id")
+                .append("foreignField", "codigo")
                 .append("as", "servicio_info")),
 
             new Document("$unwind", "$servicio_info"),
@@ -36,7 +35,7 @@ public class RequerimientosRepository {
             new Document("$lookup", new Document()
                 .append("from", "medicos")
                 .append("localField", "medico")
-                .append("foreignField", "_id")
+                .append("foreignField", "registroMedico")
                 .append("as", "medico_info")),
 
             new Document("$unwind", "$medico_info"),
@@ -44,7 +43,7 @@ public class RequerimientosRepository {
             new Document("$lookup", new Document()
                 .append("from", "ips")
                 .append("localField", "ips")
-                .append("foreignField", "_id")
+                .append("foreignField", "nit")
                 .append("as", "ips_info")),
 
             new Document("$unwind", "$ips_info"),
@@ -56,8 +55,9 @@ public class RequerimientosRepository {
                 .append("ips", "$ips_info.nombre"))
         );
 
-        return mongoTemplate.getCollection("agendamiento").aggregate(pipeline).into(new ArrayList<>());
+        return mongoTemplate.getCollection("agendamientos").aggregate(pipeline).into(new ArrayList<>());
     }
+
 
     public List<Document> consultarServiciosMasSolicitadosRFC2(Date fechaInicio, Date fechaFin) {
         List<Document> pipeline = Arrays.asList(
