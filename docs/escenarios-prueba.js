@@ -22,7 +22,7 @@ db.afiliados.insertOne({
 
 // RF6
 db.ordenes.insertOne({
-  id: "ORD-INVALIDA",
+  numero: "ORD-INVALIDA",
   fecha: ISODate("2025-06-01T10:00:00Z"),
   estado: "vigente",
   servicio: "CONSULT-GRAL"
@@ -30,7 +30,7 @@ db.ordenes.insertOne({
 
 //RF7
 db.agendamientos.insertOne({
-  id: "AGENDA-MALA",
+  id_num: "AGENDA-MALA",
   hora: "08:30",
   medico: "RM12345",
   ips: "900111001",
