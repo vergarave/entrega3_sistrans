@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "agendamientos")
 public class Agendamiento {
     
-    private String id;
+    private String id_num;
     private LocalDate fecha;
     private String hora; // puede ser tipo string "HH:mm"
 
@@ -18,8 +18,8 @@ public class Agendamiento {
     private String servicio;
     private String orden; // puede ser null
 
-    public Agendamiento(String id, LocalDate fecha, String hora, String afiliado, String medico, String ips, String servicio, String orden) {
-        this.id = id;
+    public Agendamiento(String id_num, LocalDate fecha, String hora, String afiliado, String medico, String ips, String servicio, String orden) {
+        this.id_num = id_num;
         this.fecha = fecha;
         this.hora = hora;
         this.afiliado = afiliado;
@@ -30,11 +30,11 @@ public class Agendamiento {
     }
 
     public String getId() {
-        return id;
+        return id_num;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id_num = id;
     }
 
     public LocalDate getFecha() {
